@@ -1,0 +1,103 @@
+import {Component} from '@angular/core';
+import {ActivatedRoute, NavigationStart, Router} from '@angular/router';
+
+import {EnvProperties} from './openaireLibrary/utils/properties/env-properties';
+import {MenuItem, RootMenuItem} from './openaireLibrary/sharedComponents/menu';
+import {EnvironmentSpecificService} from './openaireLibrary/utils/properties/environment-specific.service';
+import {HelperFunctions} from "./openaireLibrary/utils/HelperFunctions.class";
+
+@Component({
+  //changeDetection: ChangeDetectionStrategy.Default,
+  //encapsulation: ViewEncapsulation.Emulated,
+  selector: 'app-root',
+  styles: [`
+  `],
+  template: `
+
+    <navbar *ngIf="properties" portal="aggregator" [environment]=properties.environment [onlyTop]=false
+            [communityId]="properties.adminToolsCommunity" [menuItems]=menuItems
+            [APIUrl]="properties.adminToolsAPIURL" [logInUrl]="properties.loginUrl"
+            [logOutUrl]="properties.logoutUrl" [cookieDomain]="properties.cookieDomain" [userMenu]="false"></navbar>
+    <div class="custom-main-content">
+      <main>
+        <router-outlet></router-outlet>
+      </main>
+    </div>
+    <feedback *ngIf="isClient && properties" portalName="Explore" [feedbackmail]=feedbackmail></feedback>
+    <cookie-law *ngIf="isClient" position="bottom">
+      OpenAIRE uses cookies in order to function properly.<br>
+      Cookies are small pieces of data that websites store in your browser to allow us to give you the best browsing
+      experience possible.
+      By using the OpenAIRE portal you accept our use of cookies. <a
+      href="//ec.europa.eu/ipg/basics/legal/cookies/index_en.htm" target="_blank"> Read more <span class="uk-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" icon="chevron-right"
+                   ratio="1"><polyline fill="none" stroke="#000" stroke-width="1.03" points="7 4 13 10 7 16"></polyline></svg>
+              </span></a>
+    </cookie-law>
+    <bottom *ngIf="isClient && properties" [environment]=properties.environment></bottom>
+
+  `
+
+})
+export class AppComponent {
+  isClient: boolean = false;
+  menuItems: RootMenuItem [] = [
+    {rootItem: new MenuItem("home", "Home", "", "/", false, [], null, {}), items: []},
+    {
+      rootItem: new MenuItem("search", "Search", "", "/search/find", false, [], ["/search/find"], {}),
+      items: [new MenuItem("", "Publications", "", "/search/find/publications", false, ["publication"], ["/search/find/publications"], {}),
+        new MenuItem("", "Research Data", "", "/search/find/datasets", false, ["dataset"], ["/search/find/datasets"], {}),
+        new MenuItem("", "Software", "", "/search/find/software", false, ["software"], ["/search/find/software"], {}),
+        new MenuItem("", "Other Research Products", "", "/search/find/other", false, ["orp"], ["/search/find/other"], {}),
+        new MenuItem("", "Projects", "", "/search/find/projects/", false, ["project"], ["/search/find/projects"], {}),
+        new MenuItem("", "Content Providers", "", "/search/find/dataproviders", false, ["datasource"], ["/search/find/dataproviders"], {}),
+        new MenuItem("", "Organizations", "", "/search/find/organizations/", false, ["organization"], ["/search/find/organizations"], {})
+      ]
+    }
+  ];
+
+
+  feedbackmail: string
+  properties: EnvProperties;
+
+  constructor(private  route: ActivatedRoute, private propertiesService: EnvironmentSpecificService,
+              private router: Router) {
+    router.events.forEach((event) => {
+      if (event instanceof NavigationStart) {
+        HelperFunctions.scroll();
+      }
+    });
+  }
+
+  ngOnInit() {
+
+    if (typeof document !== 'undefined') {
+      try {
+        this.isClient = true;
+
+      } catch (e) {
+      }
+
+    }
+    this.propertiesService.loadEnvironment()
+      .then(es => {
+        this.propertiesService.setEnvProperties(es);
+        this.properties = this.propertiesService.envSpecific;
+        this.feedbackmail = this.properties.feedbackmail;
+        // if (Session.isPortalAdministrator()) {
+        //   this.userMenuItems.push(new MenuItem("", "Manage all links", "", "/claims", false, [], ["/claims"], {}));
+        //   this.userMenuItems.push(new MenuItem("", "Manage helptexts",
+        //     ((this.properties.environment == "beta") ? "https://beta.admin.connect.openaire.eu" : "https://admin.explore.openaire.eu") + "/dashboard?communityId=openaire", "", true, [], [], {}))
+        //
+        // } else if (Session.isClaimsCurator()) {
+        //   this.userMenuItems.push(new MenuItem("", "Manage all links", "", "/claims", false, [], ["/claims"], {}));
+        //
+        // }
+        //console.log(this.properties.loginUrl);
+      }, error => {
+        console.log("App couldn't fetch properties");
+        console.log(error);
+
+      });
+  }
+}

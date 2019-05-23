@@ -1,0 +1,105 @@
+:root {
+    --portal-main-color: #313179;
+    --portal-main-contrast: white;
+    --portal-dark-color: #4687E6;
+    --openaire-main-color: #313179;
+
+    --explore-portal-color: #D95F2D;
+    --provide-portal-color: #37C7E9;
+    --monitor-portal-color: #9ABB55;
+    --connect-portal-color: #EBB13E;
+    --develop-portal-color: #DA65AB;
+
+    --explore-portal-lower-tone: #a0462c;
+    --provide-portal-lower-tone: #3A8FA3;
+    --monitor-portal-lower-tone: #7c9144;
+    --connect-portal-lower-tone: #b48536;
+    --develop-portal-lower-tone: #9f4e7e;
+}
+
+
+.tm-toolbar .uk-subnav-line .custom-explore-li {
+   background:var(--portal-main-color) !important;
+}
+
+.mainPageSearchForm{
+  background-image: /*linear-gradient(rgba(255, 255, 255, 0.5),rgba(255, 255, 255, 0.5)),*/ url('home.jpg');
+
+}
+
+.mainPageBottomInfo{
+  background: linear-gradient( rgba(255, 255, 255, 0.5),rgba(255, 255, 255, 0.5)), url('home.jpg');
+  background-attachment: scroll, scroll;
+  background-size: auto auto, auto auto;
+  background-size: cover;
+  background-attachment: fixed;
+  box-sizing: border-box;
+  min-height: calc(100vh - 412.767px);
+}
+.box-links .uk-card-header:hover {
+  text-decoration: underline;
+  text-decoration-color: currentcolor;
+  text-decoration-color: #90929D;
+}
+
+.searchForm, .generalSearchForm,
+.publicationsSearchForm,
+.projectsSearchForm, .projectsTableSearchForm,
+.organizationsSearchForm,
+.datasetsSearchForm,
+.softwareSearchForm,
+.orpsSearchForm,
+.datasourcesSearchForm,  .compatibleDatasourcesSearchForm, .compatibleDatasourcesTableSearchForm, .datasourcesTableSearchForm,
+ .journalsSearchForm, .journalsTableSearchForm,
+.entityRegistriesSearchForm, .entityRegistriesTableSearchForm {
+
+    background: url('./Εxplore-sub.jpg') right !important;
+
+}
+
+.ask-explore.uk-grid-divider > :not(.uk-first-column)::before {
+  border-left: 1px solid var(--portal-main-color) ;
+}
+
+.questions .tm-child-list-divider > ul > li:nth-child(n+2), .questions .uk-list-divider > li:nth-child(n+2) {
+  border-top: 1px solid #c5c5c5;
+}
+
+.questions {
+  font-size: 15px;
+  font-weight: bold;
+  color: #4687E6;
+}
+
+.uk-card-explore {
+  background-color: var(--portal-main-color);
+  color: #fff !important;
+}
+
+.uk-card-explore .uk-h3 {
+  color: #fff !important;
+}
+
+.uk-card-explore .uk-h6 a {
+  color: #fff !important;
+  text-decoration: underline;
+}
+
+.uk-card-explore .uk-h5 {
+  color: #fff !important;
+  text-transform: uppercase;
+  font-size: 15px;
+  font-weight: bolder;
+}
+
+.emphasis {
+  color: #000;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.portal-color.emphasis {
+  color: #37C7E9;
+  font-size: 60px;
+  font-weight: 300;
+}

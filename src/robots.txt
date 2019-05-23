@@ -1,0 +1,19 @@
+User-Agent: *
+Disallow: /cache
+Disallow: /upload
+Disallow: /participate/claim
+Disallow: /participate/direct-claim
+Disallow: /myclaims
+Disallow: /claims
+
+#Disallow: /
+
+
+Sitemap: https://explore.openaire.eu/sitemap.xml
+Sitemap: https://explore.openaire.eu/publicationSitemap.xml
+Sitemap: https://explore.openaire.eu/datasetSitemap.xml
+Sitemap: https://explore.openaire.eu/softwareSitemap.xml
+Sitemap: https://explore.openaire.eu/otherSitemap.xml
+Sitemap: https://explore.openaire.eu/projectSitemap.xml
+Sitemap: https://explore.openaire.eu/organizationSitemap.xml
+Sitemap: https://explore.openaire.eu/dataproviderSitemap.xml
