@@ -1,0 +1,14 @@
+cp /home/argiro.kokogiannaki/sitemap/dataset/*  dist/server/;
+cp /home/argiro.kokogiannaki/sitemap/dataset/*  dist/browser/;
+cp /home/argiro.kokogiannaki/sitemap/publication/*  dist/server/;
+cp /home/argiro.kokogiannaki/sitemap/publication/*  dist/browser/;
+cp /home/argiro.kokogiannaki/sitemap/software/*  dist/server/;
+cp /home/argiro.kokogiannaki/sitemap/software/*  dist/browser/;
+cp /home/argiro.kokogiannaki/sitemap/other/*  dist/server/;
+cp /home/argiro.kokogiannaki/sitemap/other/*  dist/browser/;
+cp /home/argiro.kokogiannaki/sitemap/project/*  dist/server/;
+cp /home/argiro.kokogiannaki/sitemap/project/*  dist/browser/;
+cp /home/argiro.kokogiannaki/sitemap/organization/*  dist/server/;
+cp /home/argiro.kokogiannaki/sitemap/organization/*  dist/browser/;
+cp /home/argiro.kokogiannaki/sitemap/dataprovider//*  dist/server/;
+cp /home/argiro.kokogiannaki/sitemap/dataprovider/*  dist/browser/;

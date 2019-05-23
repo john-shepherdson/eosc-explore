@@ -1,0 +1,93 @@
+{
+  "environment" : "test",
+  "enablePiwikTrack" : true,
+  "enableHelper" : true,
+  "useCache" : true,
+  "metricsAPIURL" : "https://services.openaire.eu/usagestats/",
+  "framesAPIURL" : "https://test.openaire.eu/stats3/",
+  "statisticsAPIURL" : "https://beta.services.openaire.eu/stats-api/",
+  "statisticsFrameAPIURL":"https://test.openaire.eu/stats/",
+  "claimsAPIURL" : "https://services.openaire.eu/claims/rest/claimsService/",
+  "searchAPIURLLAst"     : "http://services.openaire.eu:8480/shadowSearch/rest/v2/api/",
+  "searchResourcesAPIURL"     : "http://services.openaire.eu:8480/shadowSearch/rest/v2/api/resources",
+  "csvAPIURL" : "http://services.openaire.eu:8480/shadowSearch/rest/v2/api/reports",
+  "searchCrossrefAPIURL" : "https://api.crossref.org/works",
+  "searchDataciteAPIURL" : "https://api.datacite.org/works",
+  "searchOrcidURL"    : "https://pub.orcid.org/v2.1/",
+  "pmidURL"    : "http://www.ncbi.nlm.nih.gov/pubmed/",
+  "doiURL"     : "https://dx.doi.org/",
+  "cordisURL"  : "http://cordis.europa.eu/projects/",
+  "pmcURL"     : "http://europepmc.org/articles/",
+  "handleURL"  : "http://hdl.handle.net/",
+  "openDoarURL": "http://v2.sherpa.ac.uk/id/repository/",
+  "r3DataURL": "http://service.re3data.org/repository/",
+  "zenodo"   : "https://zenodo.org/",
+  "openAccess" : "https://www.openaire.eu/support/faq#article-id-234",
+  "openAccessRepo" : "https://www.openaire.eu/support/faq#article-id-310",
+  "fp7Guidlines" : "https://www.openaire.eu/open-access-in-fp7-seventh-research-framework-programme",
+  "h2020Guidlines" : "https://www.openaire.eu/oa-publications/h2020/open-access-in-horizon-2020",
+  "ercGuidlines" : "http://erc.europa.eu/sites/default/files/document/file/ERC_Open_Access_Guidelines-revised_2014.pdf",
+  "helpdesk" : "https://www.openaire.eu/support/helpdesk",
+  "uploadService" : "https://explore.openaire.eu/upload/",
+
+  "vocabulariesAPI" :"https://services.openaire.eu/provision/mvc/vocabularies/",
+
+  "piwikBaseUrl" :"https://analytics.openaire.eu/piwik.php?idsite=",
+  "piwikSiteId" : "109",
+  "loginUrl" :"https://services.openaire.eu/uoa-user-management/openid_connect_login",
+
+  "logoutUrl" :"https://aai.openaire.eu/proxy/saml2/idp/SingleLogoutService.php?ReturnTo=",
+
+  "cookieDomain" :".openaire.eu",
+
+  "feedbackmail" :"feedback@openaire.eu",
+
+  "cacheUrl" :"https://explore.openaire.eu/cache/get?url=",
+
+  "datasourcesAPI": "https://services.openaire.eu/openaire/ds/search/",
+
+  "adminToolsAPIURL" :"https://services.openaire.eu/uoa-admin-tools/",
+
+  "adminToolsCommunity" :"openaire",
+  "contextsAPI":"https://services.openaire.eu/openaire/context",
+  "communityAPI": "https://services.openaire.eu/openaire/community/",
+
+  "csvLimit":  2000,
+  "pagingLimit":  20,
+  "resultsPerPage":  10,
+
+  "baseLink" : "https://test.explore.openaire.eu",
+
+  "searchLinkToPublication" : "/search/publication?articleId=",
+  "searchLinkToProject" : "/search/project?projectId=",
+  "searchLinkToDataProvider" : "/search/dataprovider?datasourceId=",
+  "searchLinkToDataset" : "/search/dataset?datasetId=",
+  "searchLinkToOrp" : "/search/other?orpId=",
+  "searchLinkToOrganization" : "/search/organization?organizationId=",
+
+  "searchLinkToPublications" : "/search/find/publications",
+  "searchLinkToDataProviders" : "/search/find/dataproviders",
+  "searchLinkToProjects" : "/search/find/projects",
+  "searchLinkToDatasets" : "/search/find/datasets",
+  "searchLinkToSoftware" : "/search/find/software",
+  "searchLinkToOrps" : "/search/find/other",
+  "searchLinkToOrganizations" : "/search/find/organizations",
+  "searchLinkToCompatibleDataProviders" : "/search/content-providers",
+  "searchLinkToCompatibleDataProvidersTable" : "/search/content-providers-table",
+  "searchLinkToEntityRegistriesDataProviders" : "/search/entity-registries",
+  "searchLinkToEntityRegistriesDataProvidersTable" : "/search/entity-registries-table",
+  "searchLinkToJournals" : "/search/journals",
+  "searchLinkToJournalsTable" : "/search/journals-table",
+
+  "searchLinkToAdvancedPublications" : "/search/advanced/publications",
+  "searchLinkToAdvancedProjects" : "/search/advanced/projects",
+  "searchLinkToAdvancedDatasets" : "/search/advanced/datasets",
+  "searchLinkToAdvancedSoftware" : "/search/advanced/software",
+  "searchLinkToAdvancedOrps" : "/search/advanced/other",
+  "searchLinkToAdvancedDataProviders" : "/search/advanced/dataproviders",
+  "searchLinkToAdvancedOrganizations" : "/search/advanced/organizations",
+  "lastIndexInformationLink" : "https://www.openaire.eu/aggregation-and-content-provision-workflows",
+  "showLastIndexInformationLink" : false,
+  "widgetLink" : "https://test.openaire.eu/index.php?option=com_openaire&view=widget&format=raw&projectId=",
+  "claimsInformationLink": "https://www.openaire.eu/linking"
+}
