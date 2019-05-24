@@ -17,14 +17,13 @@ import {HelperFunctions} from "./openaireLibrary/utils/HelperFunctions.class";
     <navbar *ngIf="properties" portal="aggregator" [environment]=properties.environment [onlyTop]=false
             [communityId]="properties.adminToolsCommunity" [menuItems]=menuItems
             [APIUrl]="properties.adminToolsAPIURL" [logInUrl]="properties.loginUrl"
-            [logOutUrl]="properties.logoutUrl" [cookieDomain]="properties.cookieDomain" [userMenu]="false"></navbar>
+            [logOutUrl]="properties.logoutUrl" [cookieDomain]="properties.cookieDomain" [userMenu]="false" [community]="community" [showCommunityName]="true"></navbar>
     <div class="custom-main-content">
       <main>
         <router-outlet></router-outlet>
       </main>
     </div>
-    <feedback *ngIf="isClient && properties" portalName="Explore" [feedbackmail]=feedbackmail></feedback>
-    <cookie-law *ngIf="isClient" position="bottom">
+     <cookie-law *ngIf="isClient" position="bottom">
       OpenAIRE uses cookies in order to function properly.<br>
       Cookies are small pieces of data that websites store in your browser to allow us to give you the best browsing
       experience possible.
@@ -49,15 +48,15 @@ export class AppComponent {
         new MenuItem("", "Research Data", "", "/search/find/datasets", false, ["dataset"], ["/search/find/datasets"], {}),
         new MenuItem("", "Software", "", "/search/find/software", false, ["software"], ["/search/find/software"], {}),
         new MenuItem("", "Other Research Products", "", "/search/find/other", false, ["orp"], ["/search/find/other"], {}),
-        new MenuItem("", "Projects", "", "/search/find/projects/", false, ["project"], ["/search/find/projects"], {}),
-        new MenuItem("", "Content Providers", "", "/search/find/dataproviders", false, ["datasource"], ["/search/find/dataproviders"], {}),
+        // new MenuItem("", "Projects", "", "/search/find/projects/", false, ["project"], ["/search/find/projects"], {}),
+        // new MenuItem("", "Content Providers", "", "/search/find/dataproviders", false, ["datasource"], ["/search/find/dataproviders"], {}),
         new MenuItem("", "Organizations", "", "/search/find/organizations/", false, ["organization"], ["/search/find/organizations"], {})
       ]
     }
   ];
+  community = {id: "CA", name: "Canada Aggregator", logoUrl:"assets/common-assets/logo-small-aggregator.png"};
 
 
-  feedbackmail: string
   properties: EnvProperties;
 
   constructor(private  route: ActivatedRoute, private propertiesService: EnvironmentSpecificService,
@@ -83,17 +82,6 @@ export class AppComponent {
       .then(es => {
         this.propertiesService.setEnvProperties(es);
         this.properties = this.propertiesService.envSpecific;
-        this.feedbackmail = this.properties.feedbackmail;
-        // if (Session.isPortalAdministrator()) {
-        //   this.userMenuItems.push(new MenuItem("", "Manage all links", "", "/claims", false, [], ["/claims"], {}));
-        //   this.userMenuItems.push(new MenuItem("", "Manage helptexts",
-        //     ((this.properties.environment == "beta") ? "https://beta.admin.connect.openaire.eu" : "https://admin.explore.openaire.eu") + "/dashboard?communityId=openaire", "", true, [], [], {}))
-        //
-        // } else if (Session.isClaimsCurator()) {
-        //   this.userMenuItems.push(new MenuItem("", "Manage all links", "", "/claims", false, [], ["/claims"], {}));
-        //
-        // }
-        //console.log(this.properties.loginUrl);
       }, error => {
         console.log("App couldn't fetch properties");
         console.log(error);

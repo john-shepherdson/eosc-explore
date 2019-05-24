@@ -16,7 +16,9 @@ const routes: Routes = [
   { path: 'search/project', loadChildren: './landingPages/project/libProject.module#LibProjectModule', resolve: { envSpecific: EnvironmentSpecificResolver  }},
   { path: 'search/dataprovider', loadChildren: '././landingPages/dataProvider/libDataProvider.module#LibDataProviderModule', resolve: { envSpecific: EnvironmentSpecificResolver  }},
   { path: 'search/organization', loadChildren: './landingPages/organization/libOrganization.module#LibOrganizationModule', resolve: { envSpecific: EnvironmentSpecificResolver  }},
-  { path: 'search/find', loadChildren: './searchPages/find/libSearch.module#LibMainSearchModule', resolve: { envSpecific: EnvironmentSpecificResolver  }},
+  { path: ':id/search/find', loadChildren: './searchPages/find/libSearch.module#LibMainSearchModule', resolve: { envSpecific: EnvironmentSpecificResolver  }},
+  { path: 'search/find',  loadChildren: './searchPages/find/libSearch.module#LibMainSearchModule', resolve: { envSpecific: EnvironmentSpecificResolver  }},
+
   { path: 'search/find/publications', loadChildren: './searchPages/simple/searchPublications.module#LibSearchPublicationsModule', resolve: { envSpecific: EnvironmentSpecificResolver  }},
   { path: 'search/find/datasets', loadChildren: './searchPages/simple/searchDatasets.module#LibSearchDatasetsModule', resolve: { envSpecific: EnvironmentSpecificResolver  }},
   { path: 'search/find/software', loadChildren: './searchPages/simple/searchSoftware.module#LibSearchSoftwareModule', resolve: { envSpecific: EnvironmentSpecificResolver  }},

@@ -1,4 +1,5 @@
-import {Component, Input, ViewChild} from '@angular/core';
+import {Component} from '@angular/core';
+
 @Component({
     selector: 'openaire-advanced-search-projects',
     template: `

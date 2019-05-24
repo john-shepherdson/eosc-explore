@@ -33,7 +33,7 @@
   "helpdesk" : "https://www.openaire.eu/support/helpdesk",
   "uploadService" : "http://scoobydoo.di.uoa.gr:8000/upload",
 
-  "vocabulariesAPI" :"https://beta.services.openaire.eu/provision/mvc/vocabularies/",
+  "vocabulariesAPI" :"https://dev-openaire.d4science.org/provision/mvc/vocabularies/",
 
   "piwikBaseUrl" :"https://analytics.openaire.eu/piwik.php?idsite=",
   "piwikSiteId" : "6",
@@ -93,7 +93,7 @@
   "searchLinkToAdvancedDataProviders" : "/search/advanced/dataproviders",
   "searchLinkToAdvancedOrganizations" : "/search/advanced/organizations",
   "lastIndexInformationLink" : "https://www.openaire.eu/aggregation-and-content-provision-workflows",
-  "showLastIndexInformationLink" : true,
+  "showLastIndexInformationLink" : false,
   "widgetLink" : "https://beta.openaire.eu/index.php?option=com_openaire&view=widget&format=raw&projectId=",
   "claimsInformationLink": "https://www.openaire.eu/linking-beta"
 }

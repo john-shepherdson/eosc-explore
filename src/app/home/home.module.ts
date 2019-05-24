@@ -24,6 +24,8 @@ import {Schema2jsonldModule} from '../openaireLibrary/sharedComponents/schema2js
 import { SEOServiceModule } from '../openaireLibrary/sharedComponents/SEO/SEOService.module';
 
 import {ErrorMessagesModule} from '../openaireLibrary/utils/errorMessages.module';
+import {SoftwareServiceModule} from "../openaireLibrary/services/softwareService.module";
+import {OrpsServiceModule} from "../openaireLibrary/services/orpsService.module";
 
  @NgModule({
   imports: [
@@ -31,7 +33,7 @@ import {ErrorMessagesModule} from '../openaireLibrary/utils/errorMessages.module
      RefineFieldResultsServiceModule,
     DataProvidersServiceModule, DatasetsServiceModule, ProjectsServiceModule,
      PublicationsServiceModule,
-    OrganizationsServiceModule,
+    OrganizationsServiceModule, SoftwareServiceModule, OrpsServiceModule,
      SearchFormModule,
       PiwikServiceModule,
       HomeRoutingModule,
