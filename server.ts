@@ -65,6 +65,10 @@ app.get('*.*', express.static(join(DIST_FOLDER, 'browser'), {
   maxAge: '1y'
 }));
 
+app.get('/metrics', (req, res) => {
+  res.set('Content-Type', prometheus.register.contentType);
+  res.end(prometheus.register.metrics());
+});
 // All regular routes use the Universal engine
 app.get('*', (req, res) => {
   let start = new Date();
