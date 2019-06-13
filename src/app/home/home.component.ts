@@ -23,6 +23,7 @@ import {SearchCustomFilter} from "../openaireLibrary/searchPages/searchUtils/sea
 import {StringUtils} from "../openaireLibrary/utils/string-utils.class";
 import {SearchSoftwareService} from "../openaireLibrary/services/searchSoftware.service";
 import {SearchOrpsService} from "../openaireLibrary/services/searchOrps.service";
+import {FilterInfo, PortalAggregators} from "../utils/aggregators";
 
 @Component({
   selector: 'home',
@@ -65,7 +66,7 @@ export class HomeComponent {
   public subProjects;
   public subOrg;
   public subDataPr;
-  customFilter:SearchCustomFilter= new SearchCustomFilter();
+  customFilter:SearchCustomFilter= null;
 
   constructor(
     private route: ActivatedRoute,
@@ -81,19 +82,24 @@ export class HomeComponent {
     private location: Location, private _piwikService: PiwikService,
     private config: ConfigurationService, private _meta: Meta, private _title: Title, private seoService: SEOService
   ) {
+    let id = this.route.snapshot.paramMap.get('id');
+    console.log(id);
+    let agg:FilterInfo = PortalAggregators.getFilterInfoByMenuId(id);
+    this.customFilter = PortalAggregators.getSearchCustomFilterByAggregator(agg);
+    let description = "openAIRE, open access, publications, research results, European commission, search";
 
-    let description = "openAIRE explore, open access, publications, research results, European commission, search";
-
-    let title = "OpenAIRE | Explore";
+    let title = "OpenAIRE | "+agg.title;
 
     this._title.setTitle(title);
     this._meta.updateTag({content: description}, "name='description'");
     this._meta.updateTag({content: description}, "property='og:description'");
     this._meta.updateTag({content: title}, "property='og:title'");
-    this.customFilter.set("Country", "country", "CA" , "Canada");
+
+    // this.customFilter.setValues("Country", "country", "CA" , "Canada");
   }
 
   public ngOnInit() {
+
     this.route.data
       .subscribe((data: { envSpecific: EnvProperties }) => {
         this.properties = data.envSpecific;
@@ -168,7 +174,7 @@ export class HomeComponent {
   }
 
   private getNumbers() {
-    let refineQuery = null
+    let refineQuery = null;
     if(this.customFilter){
       refineQuery= "&fq="+StringUtils.URIEncode(this.customFilter.queryFieldName + " exact " + StringUtils.quote((this.customFilter.valueId )));
     }

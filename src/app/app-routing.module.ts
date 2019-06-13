@@ -9,6 +9,7 @@ import { OpenaireErrorPageComponent } from './error/errorPage.component';
 
 const routes: Routes = [
   { path: '', loadChildren: './home/home.module#HomeModule', resolve: { envSpecific: EnvironmentSpecificResolver  }},
+  { path: ':id', loadChildren: './home/home.module#HomeModule', resolve: { envSpecific: EnvironmentSpecificResolver  }},
   { path: 'search/publication', loadChildren: './landingPages/publication/libPublication.module#LibPublicationModule', resolve: { envSpecific: EnvironmentSpecificResolver  }},
   { path: 'search/dataset', loadChildren: './landingPages/dataset/libDataset.module#LibDatasetModule', resolve: { envSpecific: EnvironmentSpecificResolver  }},
   { path: 'search/software', loadChildren: './landingPages/software/libSoftware.module#LibSoftwareModule', resolve: { envSpecific: EnvironmentSpecificResolver  }},
@@ -34,8 +35,8 @@ const routes: Routes = [
   { path: 'search/advanced/dataproviders', loadChildren: './searchPages/advanced/advancedSearchDataProviders.module#LibAdvancedSearchDataProvidersModule', resolve: { envSpecific: EnvironmentSpecificResolver  }},
   { path: 'search/advanced/projects', loadChildren: './searchPages/advanced/advancedSearchProjects.module#LibAdvancedSearchProjectsModule', resolve: { envSpecific: EnvironmentSpecificResolver  }},
   { path: 'project-report', loadChildren: './landingPages/htmlProjectReport/libHtmlProjectReport.module#LibHtmlProjectReportModule', resolve: { envSpecific: EnvironmentSpecificResolver  }},
-  { path: 'reload', loadChildren: './reload/libReload.module#LibReloadModule', resolve: { envSpecific: EnvironmentSpecificResolver  }},
-  { path: 'user-info', loadChildren: './login/libUser.module#LibUserModule', resolve: { envSpecific: EnvironmentSpecificResolver  }},
+  // { path: 'reload', loadChildren: './reload/libReload.module#LibReloadModule', resolve: { envSpecific: EnvironmentSpecificResolver  }},
+  // { path: 'user-info', loadChildren: './login/libUser.module#LibUserModule', resolve: { envSpecific: EnvironmentSpecificResolver  }},
   { path: 'error', component: OpenaireErrorPageComponent, resolve: { envSpecific: EnvironmentSpecificResolver  }},
   { path: '**',pathMatch: 'full',component: OpenaireErrorPageComponent, resolve: { envSpecific: EnvironmentSpecificResolver  }}
 ];

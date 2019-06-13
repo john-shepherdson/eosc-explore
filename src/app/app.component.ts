@@ -5,6 +5,7 @@ import {EnvProperties} from './openaireLibrary/utils/properties/env-properties';
 import {MenuItem, RootMenuItem} from './openaireLibrary/sharedComponents/menu';
 import {EnvironmentSpecificService} from './openaireLibrary/utils/properties/environment-specific.service';
 import {HelperFunctions} from "./openaireLibrary/utils/HelperFunctions.class";
+import {FilterInfo, PortalAggregators} from "./utils/aggregators";
 
 @Component({
   //changeDetection: ChangeDetectionStrategy.Default,
@@ -14,10 +15,9 @@ import {HelperFunctions} from "./openaireLibrary/utils/HelperFunctions.class";
   `],
   template: `
 
-    <navbar *ngIf="properties" portal="aggregator" [environment]=properties.environment [onlyTop]=false
+    <navbar *ngIf="properties" portal="aggregator" [properties]=properties [onlyTop]=false
             [communityId]="properties.adminToolsCommunity" [menuItems]=menuItems
-            [APIUrl]="properties.adminToolsAPIURL" [logInUrl]="properties.loginUrl"
-            [logOutUrl]="properties.logoutUrl" [cookieDomain]="properties.cookieDomain" [userMenu]="false" [community]="community" [showCommunityName]="true"></navbar>
+            [userMenu]="false" [community]="community" [showCommunityName]="true"></navbar>
     <div class="custom-main-content">
       <main>
         <router-outlet></router-outlet>
@@ -33,7 +33,7 @@ import {HelperFunctions} from "./openaireLibrary/utils/HelperFunctions.class";
                    ratio="1"><polyline fill="none" stroke="#000" stroke-width="1.03" points="7 4 13 10 7 16"></polyline></svg>
               </span></a>
     </cookie-law>
-    <bottom *ngIf="isClient && properties" [environment]=properties.environment></bottom>
+    <bottom *ngIf="isClient && properties" [properties]=properties></bottom>
 
   `
 
@@ -54,14 +54,16 @@ export class AppComponent {
       ]
     }
   ];
-  community = {id: "CA", name: "Canada Aggregator", logoUrl:"assets/common-assets/logo-small-aggregator.png"};
+  community = null;
 
 
   properties: EnvProperties;
 
   constructor(private  route: ActivatedRoute, private propertiesService: EnvironmentSpecificService,
               private router: Router) {
+
     router.events.forEach((event) => {
+
       if (event instanceof NavigationStart) {
         HelperFunctions.scroll();
       }
@@ -69,6 +71,13 @@ export class AppComponent {
   }
 
   ngOnInit() {
+    let id = this.router.url;
+
+    console.log("Id is:"+id);
+    let agg:FilterInfo = PortalAggregators.getFilterInfoByMenuId(id);
+    if(agg){
+      this.community = {id: agg.menuId, name: agg.title, logoUrl:agg.logoUrl};
+    }
 
     if (typeof document !== 'undefined') {
       try {

@@ -1,6 +1,7 @@
-import {Component, ViewChild, ElementRef} from '@angular/core';
+import {Component} from '@angular/core';
 import {SearchCustomFilter} from "../../openaireLibrary/searchPages/searchUtils/searchUtils.class";
 import {ActivatedRoute} from "@angular/router";
+import {FilterInfo, PortalAggregators} from "../../utils/aggregators";
 
 @Component({
     selector: 'openaire-search-find',
@@ -10,7 +11,7 @@ import {ActivatedRoute} from "@angular/router";
     `,
  })
 export class OpenaireSearchComponent{
-  customFilter:SearchCustomFilter= new SearchCustomFilter();
+  customFilter:SearchCustomFilter= null;
   constructor ( private  route: ActivatedRoute ) {
 
 
@@ -18,26 +19,11 @@ export class OpenaireSearchComponent{
 
   ngOnInit() {
     let id = this.route.snapshot.paramMap.get('id');
-    if(id && id.length > 0){
-      this.customFilter.set("Country", "country", id , "");
-    }else{
-      this.customFilter.set("Country", "country", "CA" , "Canada");
-    }
+    let agg:FilterInfo = PortalAggregators.getFilterInfoByMenuId(id);
+    this.customFilter = PortalAggregators.getSearchCustomFilterByAggregator(agg);
     this.route.data
       .subscribe((data: { envSpecific: any }) => {
 
-        // this.piwikSiteId = PiwikHelper.siteIDs[communityId];
-        // if(communityId){
-        //   this.connectCommunityId = communityId
-        // }else{
-        //   this.route.queryParams.subscribe(data => {
-        //
-        //     if(data['communityId'] && data['communityId']!=""){
-        //       this.connectCommunityId = data['communityId'];
-        //       this.piwikSiteId = PiwikHelper.siteIDs[this.connectCommunityId];
-        //     }
-        //   });
-        // }
       });
 }
 

@@ -26,6 +26,7 @@ import { SEOServiceModule } from '../openaireLibrary/sharedComponents/SEO/SEOSer
 import {ErrorMessagesModule} from '../openaireLibrary/utils/errorMessages.module';
 import {SoftwareServiceModule} from "../openaireLibrary/services/softwareService.module";
 import {OrpsServiceModule} from "../openaireLibrary/services/orpsService.module";
+// import {AggregatorNavBarComponent} from "../utils/aggregatorNavBar.component";
 
  @NgModule({
   imports: [
@@ -39,16 +40,16 @@ import {OrpsServiceModule} from "../openaireLibrary/services/orpsService.module"
       HomeRoutingModule,
       HelperModule,
       ErrorMessagesModule,
-      Schema2jsonldModule, SEOServiceModule
+      Schema2jsonldModule, SEOServiceModule,
   ],
   declarations: [
-    HomeComponent
+    HomeComponent//, AggregatorNavBarComponent
    ],
   providers:[
     FreeGuard, PreviousRouteRecorder, ConfigurationService
     ],
   exports: [
-    HomeComponent
+    HomeComponent//, AggregatorNavBarComponent
      ]
 })
 export class HomeModule { }

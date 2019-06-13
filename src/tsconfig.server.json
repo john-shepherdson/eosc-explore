@@ -14,7 +14,7 @@
     "**/*.spec.ts"
   ],
   // Add "angularCompilerOptions" with the AppServerModule you wrote
-  // set as the "entryModule".
+  // setValues as the "entryModule".
   "angularCompilerOptions": {
     "entryModule": "app/app.server.module#AppServerModule"
   }
