@@ -11,7 +11,7 @@ import {IsRouteEnabled} from '../../openaireLibrary/error/isRouteEnabled.guard'
   imports: [
     RouterModule.forChild([
      	{ path: '', component: OpenaireAdvancedSearchOrpsComponent, canActivate: [FreeGuard, IsRouteEnabled], data: {
-          redirect: '/error',  community : 'openaire'
+          redirect: '/error'
         }, canDeactivate: [PreviousRouteRecorder] }
 
     ])

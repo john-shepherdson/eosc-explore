@@ -43,14 +43,14 @@ export class AppComponent {
   menuItems: RootMenuItem [] = [
     {rootItem: new MenuItem("home", "Home", "", "/", false, [], null, {}), items: []},
     {
-      rootItem: new MenuItem("search", "Search", "", "/search/find", false, [], ["/search/find"], {}),
-      items: [new MenuItem("", "Publications", "", "/search/find/publications", false, ["publication"], ["/search/find/publications"], {}),
-        new MenuItem("", "Research Data", "", "/search/find/datasets", false, ["dataset"], ["/search/find/datasets"], {}),
-        new MenuItem("", "Software", "", "/search/find/software", false, ["software"], ["/search/find/software"], {}),
-        new MenuItem("", "Other Research Products", "", "/search/find/other", false, ["orp"], ["/search/find/other"], {}),
-        // new MenuItem("", "Projects", "", "/search/find/projects/", false, ["project"], ["/search/find/projects"], {}),
-        // new MenuItem("", "Content Providers", "", "/search/find/dataproviders", false, ["datasource"], ["/search/find/dataproviders"], {}),
-        new MenuItem("", "Organizations", "", "/search/find/organizations/", false, ["organization"], ["/search/find/organizations"], {})
+      rootItem: new MenuItem("search", "Search", "", "/search/find", false, [], [], {}),
+      items: [new MenuItem("", "Publications", "", "/search/find/publications", false, [], [], {}),
+        new MenuItem("", "Research Data", "", "/search/find/datasets", false, [], [], {}),
+        new MenuItem("", "Software", "", "/search/find/software", false, [], [], {}),
+        new MenuItem("", "Other Research Products", "", "/search/find/other", false, [], [], {}),
+        new MenuItem("", "Projects", "", "/search/find/projects/", false, [], [], {}),
+        new MenuItem("", "Content Providers", "", "/search/find/dataproviders", false, [], [], {}),
+        new MenuItem("", "Organizations", "", "/search/find/organizations/", false, [], [], {})
       ]
     }
   ];

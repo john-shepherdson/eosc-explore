@@ -50,9 +50,9 @@
 
   "cacheUrl" :"http://scoobydoo.di.uoa.gr:3000/get?url=",
 
-  "adminToolsAPIURL" :"http://duffy.di.uoa.gr:8080/uoa-admin-tools/",
+  "adminToolsAPIURL" :"http://mpagasas.di.uoa.gr:8080/uoa-admin-tools/",
 
-  "adminToolsCommunity" :"openaire",
+  "adminToolsCommunity" :null,
 
   "datasourcesAPI": "https://beta.services.openaire.eu/openaire/ds/search/",
   "contextsAPI":"https://dev-openaire.d4science.org/openaire/context",

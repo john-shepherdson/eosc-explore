@@ -114,8 +114,8 @@ export class HomeComponent {
           this.showOrganizations = true;
           this.showDatasets = true;
           this.showSoftware = true;
-          //this.showProjects = false;
-          // this.showDataProviders = true;
+          this.showProjects = true;
+          this.showDataProviders = true;
           this.getNumbers();
 
        /*   this.config.getCommunityInformation(this.properties.adminToolsAPIURL, this.properties.adminToolsCommunity).subscribe(data => {
@@ -235,7 +235,7 @@ export class HomeComponent {
       );
     }
     if (this.showProjects) {
-      this.subfunders = this._refineFieldResultsService.getRefineFieldsResultsByEntityName(["funder"], "project", this.properties).subscribe(
+      this.subfunders = this._refineFieldResultsService.getRefineFieldsResultsByEntityName(["funder"], "project", this.properties, refineQuery).subscribe(
         data => {
           if (data[0] && data[0] > 0) {
             this.projectsSize = NumberUtils.roundNumber(data[0]);
@@ -252,7 +252,7 @@ export class HomeComponent {
         });
     }
     if (this.showDataProviders) {
-      this.subDataPr = this._searchDataprovidersService.numOfSearchDataproviders("", this.properties).subscribe(
+      this.subDataPr = this._searchDataprovidersService.numOfSearchDataproviders("", this.properties, refineQuery).subscribe(
         data => {
           if (data && data > 0) {
             this.datasourcesSize = NumberUtils.roundNumber(data);

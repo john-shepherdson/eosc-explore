@@ -17,7 +17,7 @@ import {ErrorModule} from './openaireLibrary/error/error.module';
 
 import {OpenaireErrorPageComponent} from './error/errorPage.component';
 import {AppRoutingModule} from './app-routing.module';
-import {AggregatorNavBarComponent} from "./utils/aggregatorNavBar.component";
+// import {AggregatorNavBarComponent} from "./utils/aggregatorNavBar.component";
 
 @NgModule({
 
