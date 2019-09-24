@@ -6,9 +6,8 @@ import {FilterInfo, PortalAggregators} from "../../utils/aggregators";
 
 @Component({
   selector: 'openaire-advanced-search-datasets',
-  template: `
-    <advanced-search-datasets  [customFilter]="customFilter">
-    </advanced-search-datasets>
+  template: `    
+    <advanced-search-research-results  [customFilter]="customFilter" resultType="dataset"></advanced-search-research-results>
 
   `
 })

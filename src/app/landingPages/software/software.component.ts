@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 
 @Component({
     selector: 'openaire-software',
-    template: `<software></software>`,
+    template: `<result-landing type="software" [activeTab]="'Related Research Results'"></result-landing>`,
  })
 export class OpenaireSoftwareComponent{
   constructor (  ) {

@@ -6,9 +6,7 @@ import {ActivatedRoute} from "@angular/router";
 @Component({
     selector: 'openaire-search-software',
     template: `
-
-    <search-software [customFilter]="customFilter">
-    </search-software>
+        <search-research-results resultType="software" [customFilter]="customFilter"></search-research-results>
     `
 })
 

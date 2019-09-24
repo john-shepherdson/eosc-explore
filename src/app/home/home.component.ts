@@ -4,11 +4,9 @@ import {Location} from '@angular/common';
 import "rxjs/add/observable/zip";
 import {Meta, Title} from '@angular/platform-browser';
 import {ConfigurationService} from '../openaireLibrary/utils/configuration/configuration.service';
-import {SearchPublicationsService} from '../openaireLibrary/services/searchPublications.service';
 import {FetchDataproviders} from '../openaireLibrary/utils/fetchEntitiesClasses/fetchDataproviders.class';
 import {SearchDataprovidersService} from '../openaireLibrary/services/searchDataproviders.service';
 import {SearchProjectsService} from '../openaireLibrary/services/searchProjects.service';
-import {SearchDatasetsService} from '../openaireLibrary/services/searchDatasets.service';
 import {SearchOrganizationsService} from '../openaireLibrary/services/searchOrganizations.service';
 import {RefineFieldResultsService} from '../openaireLibrary/services/refineFieldResults.service';
 import {SearchFields} from '../openaireLibrary/utils/properties/searchFields';
@@ -21,8 +19,8 @@ import {PiwikService} from '../openaireLibrary/utils/piwik/piwik.service';
 import {SEOService} from '../openaireLibrary/sharedComponents/SEO/SEO.service';
 import {SearchCustomFilter} from "../openaireLibrary/searchPages/searchUtils/searchUtils.class";
 import {StringUtils} from "../openaireLibrary/utils/string-utils.class";
-import {SearchSoftwareService} from "../openaireLibrary/services/searchSoftware.service";
-import {SearchOrpsService} from "../openaireLibrary/services/searchOrps.service";
+import {SearchResearchResultsService} from "../openaireLibrary/services/searchResearchResults.service";
+
 import {FilterInfo, PortalAggregators} from "../utils/aggregators";
 
 @Component({
@@ -71,12 +69,9 @@ export class HomeComponent {
   constructor(
     private route: ActivatedRoute,
     private _router: Router,
-    private _searchPublicationsService: SearchPublicationsService,
+    private _searchResearchResultsService: SearchResearchResultsService,
     private _searchDataprovidersService: SearchDataprovidersService,
     private _searchProjectsService: SearchProjectsService,
-    private _searchDatasetsService: SearchDatasetsService,
-    private _searchSoftwareService: SearchSoftwareService,
-    private _searchOrpsService: SearchOrpsService,
     private _searchOrganizationsService: SearchOrganizationsService,
     private _refineFieldResultsService: RefineFieldResultsService,
     private location: Location, private _piwikService: PiwikService,
@@ -179,7 +174,7 @@ export class HomeComponent {
       refineQuery= "&fq="+StringUtils.URIEncode(this.customFilter.queryFieldName + " exact " + StringUtils.quote((this.customFilter.valueId )));
     }
     if (this.showPublications) {
-      this.subPub = this._searchPublicationsService.numOfSearchPublications("", this.properties,refineQuery).subscribe(
+      this.subPub = this._searchResearchResultsService.numOfSearchResults("publication","", this.properties,refineQuery).subscribe(
         data => {
           if (data  && data > 0) {
             this.publicationsSize = NumberUtils.roundNumber(data);
@@ -193,7 +188,7 @@ export class HomeComponent {
       );
     }
     if (this.showDatasets) {
-      this.subData = this._searchDatasetsService.numOfSearchDatasets("", this.properties,refineQuery).subscribe(
+      this.subData = this._searchResearchResultsService.numOfSearchResults("dataset","", this.properties,refineQuery).subscribe(
         data => {
           if (data && data > 0) {
             this.datasetsSize = NumberUtils.roundNumber(data);
@@ -207,7 +202,7 @@ export class HomeComponent {
       );
     }
     if (this.showSoftware) {
-      this.subSoft = this._searchSoftwareService.numOfSearchSoftware("", this.properties,refineQuery).subscribe(
+      this.subSoft = this._searchResearchResultsService.numOfSearchResults("software","", this.properties,refineQuery).subscribe(
         data => {
           if (data && data > 0) {
             this.softwareSize = NumberUtils.roundNumber(data);
@@ -221,7 +216,7 @@ export class HomeComponent {
       );
     }
     if (this.showOrp) {
-      this.subOrp = this._searchOrpsService.numOfSearchOrps("", this.properties,refineQuery).subscribe(
+      this.subOrp = this._searchResearchResultsService.numOfSearchResults("other","", this.properties,refineQuery).subscribe(
         data => {
           if (data && data > 0) {
             this.otherSize = NumberUtils.roundNumber(data);

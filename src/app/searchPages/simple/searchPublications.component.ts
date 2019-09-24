@@ -5,10 +5,8 @@ import {FilterInfo, PortalAggregators} from "../../utils/aggregators";
 
 @Component({
     selector: 'openaire-search-publications',
-    template: `      
-    <search-publications [customFilter]="customFilter">
-    </search-publications>
-
+    template: `
+        <search-research-results resultType="publication" [customFilter]="customFilter"></search-research-results>
     `
 
 })

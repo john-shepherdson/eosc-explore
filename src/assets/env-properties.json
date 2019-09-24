@@ -16,7 +16,7 @@
   "searchDataciteAPIURL" : "https://api.datacite.org/works",
 
   "searchOrcidURL"    :  "https://pub.orcid.org/v2.1/",
-
+  "orcidURL"   : "https://orcid.org/",
   "pmidURL"    : "http://www.ncbi.nlm.nih.gov/pubmed/",
   "doiURL"     : "https://dx.doi.org/",
   "cordisURL"  : "http://cordis.europa.eu/projects/",
@@ -39,7 +39,7 @@
   "piwikSiteId" : "6",
 
   "loginUrl" :"http://scoobydoo.di.uoa.gr:8080/dnet-openaire-users-1.0.0-SNAPSHOT/openid_connect_login",
-
+  "userInfoUrl" : "http://rudie.di.uoa.gr:8080/dnet-openaire-users-1.0.0-SNAPSHOT/api/users/getUserInfo?accessToken=",
   "logoutUrl" :"https://aai.openaire.eu/proxy/saml2/idp/SingleLogoutService.php?ReturnTo=",
 
   "cookieDomain" :".di.uoa.gr",

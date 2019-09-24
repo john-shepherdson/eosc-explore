@@ -6,6 +6,8 @@ import {MenuItem, RootMenuItem} from './openaireLibrary/sharedComponents/menu';
 import {EnvironmentSpecificService} from './openaireLibrary/utils/properties/environment-specific.service';
 import {HelperFunctions} from "./openaireLibrary/utils/HelperFunctions.class";
 import {FilterInfo, PortalAggregators} from "./utils/aggregators";
+import {UserManagementService} from "./openaireLibrary/services/user-management.service";
+import {User} from "./openaireLibrary/login/utils/helper.class";
 
 @Component({
   //changeDetection: ChangeDetectionStrategy.Default,
@@ -15,8 +17,8 @@ import {FilterInfo, PortalAggregators} from "./utils/aggregators";
   `],
   template: `
 
-    <navbar *ngIf="properties" portal="aggregator" [properties]=properties [onlyTop]=false
-            [communityId]="properties.adminToolsCommunity" [menuItems]=menuItems
+    <navbar *ngIf="properties && loginCheck" portal="aggregator" [properties]=properties [onlyTop]=false [user]="user"
+            [communityId]="properties.adminToolsCommunity" [menuItems]=menuItems  
             [userMenu]="false" [community]="community" [showCommunityName]="true"></navbar>
     <div class="custom-main-content">
       <main>
@@ -43,7 +45,7 @@ export class AppComponent {
   menuItems: RootMenuItem [] = [
     {rootItem: new MenuItem("home", "Home", "", "/", false, [], null, {}), items: []},
     {
-      rootItem: new MenuItem("search", "Search", "", "/search/find", false, [], [], {}),
+      rootItem: new MenuItem("search", "Search", "", "/search/find", false, [], null, {}),
       items: [new MenuItem("", "Publications", "", "/search/find/publications", false, [], [], {}),
         new MenuItem("", "Research Data", "", "/search/find/datasets", false, [], [], {}),
         new MenuItem("", "Software", "", "/search/find/software", false, [], [], {}),
@@ -58,9 +60,10 @@ export class AppComponent {
 
 
   properties: EnvProperties;
-
+  user: User;
+  loginCheck: boolean = false;
   constructor(private  route: ActivatedRoute, private propertiesService: EnvironmentSpecificService,
-              private router: Router) {
+              private router: Router, private userManagementService: UserManagementService) {
 
     router.events.forEach((event) => {
 
@@ -91,6 +94,11 @@ export class AppComponent {
       .then(es => {
         this.propertiesService.setEnvProperties(es);
         this.properties = this.propertiesService.envSpecific;
+        this.userManagementService.getUserInfo(this.properties.userInfoUrl).subscribe(user => {
+          this.user = user;
+          this.loginCheck = true;
+          console.log(this.user)
+        });
       }, error => {
         console.log("App couldn't fetch properties");
         console.log(error);

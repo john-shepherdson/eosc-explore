@@ -7,9 +7,9 @@ import{HomeRoutingModule} from './home-routing.module';
 import{HomeComponent} from './home.component';
 
 import {  DataProvidersServiceModule} from '../openaireLibrary/services/dataProvidersService.module';
-import {  DatasetsServiceModule} from '../openaireLibrary/services/datasetsService.module';
+import { SearchResearchResultsServiceModule} from '../openaireLibrary/services/searchResearchResultsService.module';
 import {  ProjectsServiceModule} from '../openaireLibrary/services/projectsService.module';
-import {  PublicationsServiceModule} from '../openaireLibrary/services/publicationsService.module';
+// import {  PublicationsServiceModule} from '../openaireLibrary/services/publicationsService.module';
 import {  OrganizationsServiceModule} from '../openaireLibrary/services/organizationsService.module';
 import { SearchFormModule} from '../openaireLibrary/searchPages/searchUtils/searchForm.module';
 import {PiwikServiceModule} from '../openaireLibrary/utils/piwik/piwikService.module';
@@ -24,17 +24,16 @@ import {Schema2jsonldModule} from '../openaireLibrary/sharedComponents/schema2js
 import { SEOServiceModule } from '../openaireLibrary/sharedComponents/SEO/SEOService.module';
 
 import {ErrorMessagesModule} from '../openaireLibrary/utils/errorMessages.module';
-import {SoftwareServiceModule} from "../openaireLibrary/services/softwareService.module";
-import {OrpsServiceModule} from "../openaireLibrary/services/orpsService.module";
+// import {SoftwareServiceModule} from "../openaireLibrary/services/softwareService.module";
+// import {OrpsServiceModule} from "../openaireLibrary/services/orpsService.module";
 // import {AggregatorNavBarComponent} from "../utils/aggregatorNavBar.component";
 
  @NgModule({
   imports: [
     CommonModule, FormsModule, RouterModule,
      RefineFieldResultsServiceModule,
-    DataProvidersServiceModule, DatasetsServiceModule, ProjectsServiceModule,
-     PublicationsServiceModule,
-    OrganizationsServiceModule, SoftwareServiceModule, OrpsServiceModule,
+    DataProvidersServiceModule, SearchResearchResultsServiceModule, ProjectsServiceModule,
+    OrganizationsServiceModule,
      SearchFormModule,
       PiwikServiceModule,
       HomeRoutingModule,

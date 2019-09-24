@@ -1,16 +1,14 @@
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-
-import { OpenaireOrpComponent } from './orp.component';
+import {NgModule} from '@angular/core';
+import {RouterModule} from '@angular/router';
+import {OpenaireOrpComponent} from './orp.component';
 import {FreeGuard} from '../../openaireLibrary/login/freeGuard.guard';
 import {PreviousRouteRecorder} from '../../openaireLibrary/utils/piwik/previousRouteRecorder.guard';
-import {IsRouteEnabled} from '../../openaireLibrary/error/isRouteEnabled.guard'
 
 
 @NgModule({
  imports: [
   RouterModule.forChild([
-    { path: '', component: OpenaireOrpComponent, canActivate: [FreeGuard, IsRouteEnabled], data: {
+    { path: '', component: OpenaireOrpComponent, canActivate: [FreeGuard], data: {
         redirect: '/error'
       },canDeactivate: [PreviousRouteRecorder] }
   ])
