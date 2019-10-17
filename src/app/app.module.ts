@@ -17,7 +17,6 @@ import {ErrorModule} from './openaireLibrary/error/error.module';
 
 import {OpenaireErrorPageComponent} from './error/errorPage.component';
 import {AppRoutingModule} from './app-routing.module';
-// import {AggregatorNavBarComponent} from "./utils/aggregatorNavBar.component";
 
 @NgModule({
 
@@ -27,18 +26,18 @@ import {AppRoutingModule} from './app-routing.module';
     CommonModule,
     HttpClientModule,
     ErrorModule,
-NavigationBarModule, FeedbackModule, BottomModule,
+    NavigationBarModule, FeedbackModule, BottomModule,
     CookieLawModule,
     BrowserModule.withServerTransition({appId: 'my-app'}),
     AppRoutingModule
   ],
-  declarations: [ AppComponent, OpenaireErrorPageComponent],
-  exports: [ AppComponent ],
- providers:[
-   EnvironmentSpecificResolver
-
- ],
- bootstrap: [AppComponent]
+  declarations: [AppComponent, OpenaireErrorPageComponent],
+  exports: [AppComponent],
+  providers: [
+    EnvironmentSpecificResolver
+  ],
+  bootstrap: [AppComponent]
 })
 
-export class AppModule {}
+export class AppModule {
+}

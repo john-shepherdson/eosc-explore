@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {ActivatedRoute, NavigationStart, Router} from '@angular/router';
+import {ActivatedRoute, NavigationEnd, NavigationStart, Router} from '@angular/router';
 
 import {EnvProperties} from './openaireLibrary/utils/properties/env-properties';
 import {MenuItem, RootMenuItem} from './openaireLibrary/sharedComponents/menu';
@@ -18,14 +18,14 @@ import {User} from "./openaireLibrary/login/utils/helper.class";
   template: `
 
     <navbar *ngIf="properties && loginCheck" portal="aggregator" [properties]=properties [onlyTop]=false [user]="user"
-            [communityId]="properties.adminToolsCommunity" [menuItems]=menuItems  
+            [communityId]="properties.adminToolsCommunity" [menuItems]=menuItems
             [userMenu]="false" [community]="community" [showCommunityName]="true"></navbar>
     <div class="custom-main-content">
       <main>
         <router-outlet></router-outlet>
       </main>
     </div>
-     <cookie-law *ngIf="isClient" position="bottom">
+    <cookie-law *ngIf="isClient" position="bottom">
       OpenAIRE uses cookies in order to function properly.<br>
       Cookies are small pieces of data that websites store in your browser to allow us to give you the best browsing
       experience possible.
@@ -57,11 +57,13 @@ export class AppComponent {
     }
   ];
   community = null;
+  id: string = null;
 
 
   properties: EnvProperties;
   user: User;
   loginCheck: boolean = false;
+
   constructor(private  route: ActivatedRoute, private propertiesService: EnvironmentSpecificService,
               private router: Router, private userManagementService: UserManagementService) {
 
@@ -69,19 +71,49 @@ export class AppComponent {
 
       if (event instanceof NavigationStart) {
         HelperFunctions.scroll();
+      } else if (event instanceof NavigationEnd) {
+        let r = this.route;
+        while (r.firstChild) {
+          r = r.firstChild;
+        }
+        r.params.subscribe(params => {
+          if(!this.id) {
+            this.id = params['id'];
+            let agg: FilterInfo = PortalAggregators.getFilterInfoByMenuId(this.id);
+            if (agg) {
+              this.community = {id: agg.menuId, name: agg.title, logoUrl: agg.logoUrl};
+            }
+            if (this.id) {
+              this.buildMenu();
+            }
+          } else {
+            if(this.router.url === '/') {
+              this.router.navigate([this.id]);
+            }
+          }
+        });
       }
     });
   }
 
+  private buildMenu() {
+    this.menuItems = [
+      {rootItem: new MenuItem("home", "Home", "", "/" + this.id, false, [], null, {}), items: []},
+      {
+        rootItem: new MenuItem("search", "Search", "", "/" + this.id + "/search/find", false, [], null, {}),
+        items: [new MenuItem("", "Publications", "", "/" + this.id + "/search/find/publications", false, [], [], {}),
+          new MenuItem("", "Research Data", "", "/" + this.id + "/search/find/datasets", false, [], [], {}),
+          new MenuItem("", "Software", "", "/" + this.id + "/search/find/software", false, [], [], {}),
+          new MenuItem("", "Other Research Products", "", "/" + this.id + "/search/find/other", false, [], [], {}),
+          new MenuItem("", "Projects", "", "/" + this.id + "/search/find/projects/", false, [], [], {}),
+          new MenuItem("", "Content Providers", "", "/" + this.id + "/search/find/dataproviders", false, [], [], {}),
+          new MenuItem("", "Organizations", "", "/" + this.id + "/search/find/organizations/", false, [], [], {})
+        ]
+      }
+    ];
+  }
+
   ngOnInit() {
-    let id = this.router.url;
-
-    console.log("Id is:"+id);
-    let agg:FilterInfo = PortalAggregators.getFilterInfoByMenuId(id);
-    if(agg){
-      this.community = {id: agg.menuId, name: agg.title, logoUrl:agg.logoUrl};
-    }
-
     if (typeof document !== 'undefined') {
       try {
         this.isClient = true;
@@ -97,7 +129,6 @@ export class AppComponent {
         this.userManagementService.getUserInfo(this.properties.userInfoUrl).subscribe(user => {
           this.user = user;
           this.loginCheck = true;
-          console.log(this.user)
         });
       }, error => {
         console.log("App couldn't fetch properties");
