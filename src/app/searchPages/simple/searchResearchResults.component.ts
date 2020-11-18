@@ -1,25 +1,24 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {SearchCustomFilter} from "../../openaireLibrary/searchPages/searchUtils/searchUtils.class";
 import {ActivatedRoute} from "@angular/router";
 import {FilterInfo, PortalAggregators} from "../../utils/aggregators";
 
-
 @Component({
-    selector: 'openaire-advanced-search-publications',
+    selector: 'openaire-search-results',
     template: `
-      <advanced-search-research-results  [customFilter]="customFilter" resultType="publication"></advanced-search-research-results>
+      <search-research-results resultType="result" [stickyForm]="false" [customFilter]="customFilter"></search-research-results>
     `
- })
 
-export class OpenaireAdvancedSearchPublicationsComponent {
+})
+export class OpenaireSearchResearchResultsComponent {
+  @Input() searchLink: string = "/search/research-results";
   customFilter:SearchCustomFilter= null;
-  constructor(private  route: ActivatedRoute) {
+  constructor ( private  route: ActivatedRoute ) {
 
   }
-
   ngOnInit() {
     let id = this.route.snapshot.paramMap.get('id');
-    let agg: FilterInfo = PortalAggregators.getFilterInfoByMenuId(id);
+    let agg:FilterInfo = PortalAggregators.getFilterInfoByMenuId(id);
     this.customFilter = PortalAggregators.getSearchCustomFilterByAggregator(agg);
   }
 }

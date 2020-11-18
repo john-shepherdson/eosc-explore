@@ -8,10 +8,10 @@ import { EnvironmentSpecificService} from './openaireLibrary/utils/properties/en
 import { OpenaireErrorPageComponent } from './error/errorPage.component';
 
 const routes: Routes = [
-  { path: '', loadChildren: './aggregator/aggregator.module#AggregatorModule', resolve: { envSpecific: EnvironmentSpecificResolver  }},
-  { path: ':id', loadChildren: './aggregator/aggregator.module#AggregatorModule', resolve: { envSpecific: EnvironmentSpecificResolver  }},
-  { path: 'error', component: OpenaireErrorPageComponent, resolve: { envSpecific: EnvironmentSpecificResolver  }},
-  { path: '**',pathMatch: 'full',component: OpenaireErrorPageComponent, resolve: { envSpecific: EnvironmentSpecificResolver  }}
+  { path: '', loadChildren: './aggregator/aggregator.module#AggregatorModule'},
+  { path: ':id', loadChildren: './aggregator/aggregator.module#AggregatorModule'},
+  { path: 'error', component: OpenaireErrorPageComponent},
+  { path: '**',pathMatch: 'full',component: OpenaireErrorPageComponent}
 ];
 
 @NgModule({

@@ -3,20 +3,19 @@ import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {AdvancedSearchProjectsRoutingModule} from './advancedSearchProjects-routing.module';
 import {OpenaireAdvancedSearchProjectsComponent} from './advancedSearchProjects.component';
-import {AdvancedSearchProjectsModule} from '../../openaireLibrary/searchPages/advanced/advancedSearchProjects.module';
-import {FreeGuard} from '../../openaireLibrary/login/freeGuard.guard';
+import {SearchProjectsModule} from "../../openaireLibrary/searchPages/searchProjects.module";
 
 @NgModule({
   imports: [
     CommonModule, FormsModule,
-    AdvancedSearchProjectsModule,
+    SearchProjectsModule,
    AdvancedSearchProjectsRoutingModule
 
   ],
   declarations: [
     OpenaireAdvancedSearchProjectsComponent
    ],
-  providers:[FreeGuard],
+  providers:[],
   exports: [
     OpenaireAdvancedSearchProjectsComponent
      ]

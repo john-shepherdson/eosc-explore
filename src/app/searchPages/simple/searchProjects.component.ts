@@ -1,4 +1,4 @@
-import {Component, Input, ViewChild} from '@angular/core';
+import {Component} from '@angular/core';
 import {SearchCustomFilter} from "../../openaireLibrary/searchPages/searchUtils/searchUtils.class";
 import {ActivatedRoute} from "@angular/router";
 import {FilterInfo, PortalAggregators} from "../../utils/aggregators";

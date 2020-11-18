@@ -44,6 +44,7 @@
     "datatables.net": "^1.10.19",
     "datatables.net-dt": "^1.10.19",
     "jquery": "^3.4.1",
+    "ng-recaptcha": "^3.0.5",
     "ngx-json-ld": "0.1.6",
     "prom-client": "^11.3.0",
     "ts-md5": "^1.2.0",

@@ -7,8 +7,8 @@ import {FilterInfo, PortalAggregators} from "../../utils/aggregators";
 @Component({
   selector: 'openaire-advanced-search-dataprovider',
   template: `
-    <advanced-search-dataprovider [customFilter]="customFilter">
-    </advanced-search-dataprovider>
+    <search-dataproviders [customFilter]="customFilter" [simpleView]="false">
+    </search-dataproviders>
 
   `
 })

@@ -3,9 +3,8 @@ import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {OpenaireSearchDataprovidersComponent} from './searchDataproviders.component';
 import {SearchDataProvidersRoutingModule} from './searchDataProviders-routing.module';
-import {FreeGuard} from '../../openaireLibrary/login/freeGuard.guard';
 import {PreviousRouteRecorder} from '../../openaireLibrary/utils/piwik/previousRouteRecorder.guard';
-import {SearchDataProvidersModule} from '../../openaireLibrary/searchPages/simple/searchDataProviders.module';
+import {SearchDataProvidersModule} from "../../openaireLibrary/searchPages/searchDataProviders.module";
 
 @NgModule({
   imports: [
@@ -16,7 +15,7 @@ SearchDataProvidersModule, SearchDataProvidersRoutingModule
   declarations: [
     OpenaireSearchDataprovidersComponent
    ],
-  providers:[FreeGuard,PreviousRouteRecorder],
+  providers:[PreviousRouteRecorder],
   exports: [
     OpenaireSearchDataprovidersComponent
      ]

@@ -9,7 +9,7 @@ import {PreviousRouteRecorder} from '../../openaireLibrary/utils/piwik/previousR
 @NgModule({
   imports: [
     RouterModule.forChild([
-     	{ path: '', component: OpenaireSearchDataprovidersComponent, canActivate: [FreeGuard], data: {
+     	{ path: '', component: OpenaireSearchDataprovidersComponent,data: {
           redirect: '/error'
         }, canDeactivate: [PreviousRouteRecorder]  }
 

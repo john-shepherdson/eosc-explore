@@ -6,7 +6,7 @@ import {FilterInfo, PortalAggregators} from "../../utils/aggregators";
 @Component({
     selector: 'openaire-search-find',
     template: `
-    <search-find logoURL = "/assets/common-assets/logo-small-aggregator.png" name="OpenAIRE" [customFilter]="customFilter"></search-find>
+    <search-all logoURL = "/assets/common-assets/logo-small-aggregator.png" name="OpenAIRE" [customFilter]="customFilter"></search-all>
  
     `,
  })
@@ -21,10 +21,7 @@ export class OpenaireSearchComponent{
     let id = this.route.snapshot.paramMap.get('id');
     let agg:FilterInfo = PortalAggregators.getFilterInfoByMenuId(id);
     this.customFilter = PortalAggregators.getSearchCustomFilterByAggregator(agg);
-    this.route.data
-      .subscribe((data: { envSpecific: any }) => {
 
-      });
 }
 
 

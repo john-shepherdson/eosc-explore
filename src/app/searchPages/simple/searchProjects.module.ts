@@ -5,9 +5,8 @@ import {FormsModule} from '@angular/forms';
 import {SearchProjectsRoutingModule} from './searchProjects-routing.module';
 import {OpenaireSearchProjectsComponent} from './searchProjects.component';
 
-import {FreeGuard} from '../../openaireLibrary/login/freeGuard.guard';
 import {PreviousRouteRecorder} from '../../openaireLibrary/utils/piwik/previousRouteRecorder.guard';
-import {SearchProjectsModule} from '../../openaireLibrary/searchPages/simple/searchProjects.module';
+import {SearchProjectsModule} from "../../openaireLibrary/searchPages/searchProjects.module";
 
 @NgModule({
   imports: [
@@ -17,7 +16,7 @@ import {SearchProjectsModule} from '../../openaireLibrary/searchPages/simple/sea
   declarations: [
     OpenaireSearchProjectsComponent
    ],
-  providers:[FreeGuard,PreviousRouteRecorder],
+  providers:[PreviousRouteRecorder],
   exports: [
     OpenaireSearchProjectsComponent
      ]

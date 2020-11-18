@@ -8,6 +8,8 @@ import {HelperFunctions} from "./openaireLibrary/utils/HelperFunctions.class";
 import {FilterInfo, PortalAggregators} from "./utils/aggregators";
 import {UserManagementService} from "./openaireLibrary/services/user-management.service";
 import {User} from "./openaireLibrary/login/utils/helper.class";
+import {Header} from "./openaireLibrary/sharedComponents/navigationBar.component";
+import {portalProperties} from "../environments/environment-aggregator";
 
 @Component({
   //changeDetection: ChangeDetectionStrategy.Default,
@@ -17,9 +19,9 @@ import {User} from "./openaireLibrary/login/utils/helper.class";
   `],
   template: `
 
-    <navbar *ngIf="properties && loginCheck" portal="aggregator" [properties]=properties [onlyTop]=false [user]="user"
+    <navbar *ngIf="properties && loginCheck && header" portal="aggregator" [properties]=properties [onlyTop]=false [user]="user"
             [communityId]="properties.adminToolsCommunity" [menuItems]=menuItems
-            [userMenu]="false" [community]="community" [showCommunityName]="true"></navbar>
+            [userMenu]="true"    [header]="header"></navbar>
     <div class="custom-main-content">
       <main>
         <router-outlet></router-outlet>
@@ -46,10 +48,7 @@ export class AppComponent {
     {rootItem: new MenuItem("home", "Home", "", "/", false, [], null, {}), items: []},
     {
       rootItem: new MenuItem("search", "Search", "", "/search/find", false, [], null, {}),
-      items: [new MenuItem("", "Publications", "", "/search/find/publications", false, [], [], {}),
-        new MenuItem("", "Research Data", "", "/search/find/datasets", false, [], [], {}),
-        new MenuItem("", "Software", "", "/search/find/software", false, [], [], {}),
-        new MenuItem("", "Other Research Products", "", "/search/find/other", false, [], [], {}),
+      items: [new MenuItem("", "Research outcomes", "", "/search/find/research-outcomes", false, [], [], {}),
         new MenuItem("", "Projects", "", "/search/find/projects/", false, [], [], {}),
         new MenuItem("", "Content Providers", "", "/search/find/dataproviders", false, [], [], {}),
         new MenuItem("", "Organizations", "", "/search/find/organizations/", false, [], [], {})
@@ -63,7 +62,8 @@ export class AppComponent {
   properties: EnvProperties;
   user: User;
   loginCheck: boolean = false;
-
+  footer=portalProperties.sectionFooter;
+  header:Header;
   constructor(private  route: ActivatedRoute, private propertiesService: EnvironmentSpecificService,
               private router: Router, private userManagementService: UserManagementService) {
 
@@ -81,7 +81,16 @@ export class AppComponent {
             this.id = params['id'];
             let agg: FilterInfo = PortalAggregators.getFilterInfoByMenuId(this.id);
             if (agg) {
-              this.community = {id: agg.menuId, name: agg.title, logoUrl: agg.logoUrl};
+              this.header = {
+                route: '/',
+                url: null,
+                title: agg.title,
+                logoUrl:   agg.logoUrl,
+                logoSmallUrl:  agg.logoUrl,
+                position: 'left',
+                badge: true
+              };
+
             }
             if (this.id) {
               this.buildMenu();
@@ -101,16 +110,29 @@ export class AppComponent {
       {rootItem: new MenuItem("home", "Home", "", "/" + this.id, false, [], null, {}), items: []},
       {
         rootItem: new MenuItem("search", "Search", "", "/" + this.id + "/search/find", false, [], null, {}),
-        items: [new MenuItem("", "Publications", "", "/" + this.id + "/search/find/publications", false, [], [], {}),
-          new MenuItem("", "Research Data", "", "/" + this.id + "/search/find/datasets", false, [], [], {}),
-          new MenuItem("", "Software", "", "/" + this.id + "/search/find/software", false, [], [], {}),
-          new MenuItem("", "Other Research Products", "", "/" + this.id + "/search/find/other", false, [], [], {}),
-          new MenuItem("", "Projects", "", "/" + this.id + "/search/find/projects/", false, [], [], {}),
-          new MenuItem("", "Content Providers", "", "/" + this.id + "/search/find/dataproviders", false, [], [], {}),
-          new MenuItem("", "Organizations", "", "/" + this.id + "/search/find/organizations/", false, [], [], {})
-        ]
+        items: []
       }
     ];
+    if((portalProperties.entities.publication.isEnabled && portalProperties.entities.publication.simpleSearchPage) ||
+      (portalProperties.entities.dataset.isEnabled && portalProperties.entities.dataset.simpleSearchPage) ||
+      (portalProperties.entities.software.isEnabled && portalProperties.entities.software.simpleSearchPage) ||
+      portalProperties.entities.other.isEnabled && portalProperties.entities.other.simpleSearchPage){
+
+      this.menuItems[1].items.push(new MenuItem("", "Research outcomes", "", "/" + this.id + "/search/find/research-outcomes", false, [], [], {}))
+    }
+
+    if(portalProperties.entities.project.isEnabled && portalProperties.entities.project.simpleSearchPage){
+      this.menuItems[1].items.push(new MenuItem("", "Projects", "", "/" + this.id + "/search/find/projects/", false, [], [], {}))
+    }
+    if(portalProperties.entities.datasource.isEnabled && portalProperties.entities.datasource.simpleSearchPage){
+      this.menuItems[1].items.push(new MenuItem("", "Content Providers", "", "/" + this.id + "/search/find/dataproviders", false, [], [], {}))
+    }
+    if(portalProperties.entities.organization.isEnabled && portalProperties.entities.organization.simpleSearchPage){
+      this.menuItems[1].items.push(new MenuItem("", "Organizations", "", "/" + this.id + "/search/find/organizations/", false, [], [], {}))
+    }
+
+
+
   }
 
   ngOnInit() {
@@ -126,7 +148,7 @@ export class AppComponent {
       .then(es => {
         this.propertiesService.setEnvProperties(es);
         this.properties = this.propertiesService.envSpecific;
-        this.userManagementService.getUserInfo(this.properties.userInfoUrl).subscribe(user => {
+        this.userManagementService.getUserInfo().subscribe(user => {
           this.user = user;
           this.loginCheck = true;
         });

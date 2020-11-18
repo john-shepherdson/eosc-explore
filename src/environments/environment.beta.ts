@@ -1,24 +1,24 @@
 import {EnvProperties} from "../app/openaireLibrary/utils/properties/env-properties";
 
 export let properties: EnvProperties = {
-  environment: "production",
+  environment: "beta",
   adminToolsPortalType: "aggregator",
   dashboard: "explore",
   enablePiwikTrack: true,
   useCache: false,
   useLongCache: true,
   showAddThis: true,
-  metricsAPIURL: "https://services.openaire.eu/usagestats/",
-  framesAPIURL: "https://www.openaire.eu/stats3/",
+  metricsAPIURL: "https://beta.services.openaire.eu/usagestats/",
+  framesAPIURL: "https://beta.openaire.eu/stats3/",
   statisticsAPIURL: "https://beta.services.openaire.eu/stats-api/",
-  statisticsFrameAPIURL: "https://www.openaire.eu/stats/",
-  statisticsFrameNewAPIURL: "https://services.openaire.eu/stats/",
-  useNewStatistisTool: false,
-  claimsAPIURL: "https://services.openaire.eu/claims/rest/claimsService/",
-  searchAPIURLLAst: "https://services.openaire.eu/search/v2/api/",
-  searchResourcesAPIURL: "https://services.openaire.eu/search/v2/api/resources",
+  statisticsFrameAPIURL: "https://beta.openaire.eu/stats/",
+  statisticsFrameNewAPIURL: "https://stats.madgik.di.uoa.gr/stats-api/",
+  useNewStatistisTool: true,
+  claimsAPIURL: "https://beta.services.openaire.eu/claims/rest/claimsService/",
+  searchAPIURLLAst: "https://beta.services.openaire.eu/search/v2/api/",
+  searchResourcesAPIURL: "https://beta.services.openaire.eu/search/v2/api/resources",
   openCitationsAPIURL: "https://services.openaire.eu/opencitations/getCitations?id=",
-  csvAPIURL: "https://services.openaire.eu/search/v2/api/reports",
+  csvAPIURL: "https://beta.services.openaire.eu/search/v2/api/reports",
   searchCrossrefAPIURL: "https://api.crossref.org/works",
   searchDataciteAPIURL: "https://api.datacite.org/works",
   searchOrcidURL: "https://pub.orcid.org/v2.1/",
@@ -40,15 +40,15 @@ export let properties: EnvProperties = {
   ercGuidlines: "http://erc.europa.eu/sites/default/files/document/file/ERC_Open_Access_Guidelines-revised_2014.pdf",
   helpdesk: "https://www.openaire.eu/support/helpdesk",
   helpdeskEmail: "helpdesk@openaire.eu",
-  utilsService: "https://explore.openaire.eu/utils-service",
+  utilsService: "https://demo.openaire.eu/utils-service",
   
-  vocabulariesAPI: "https://services.openaire.eu/provision/mvc/vocabularies/",
+  vocabulariesAPI: "https://beta.services.openaire.eu/provision/mvc/vocabularies/",
   
   piwikBaseUrl: "https://analytics.openaire.eu/piwik.php?idsite=",
-  piwikSiteId: "109",
-  loginUrl: "https://services.openaire.eu/uoa-user-management/openid_connect_login",
+  piwikSiteId: "6",
+  loginUrl: "https://beta.services.openaire.eu/uoa-user-management/openid_connect_login",
   
-  userInfoUrl: " https://services.openaire.eu/uoa-user-management/api/users/getUserInfo?accessToken=",
+  userInfoUrl: "https://beta.services.openaire.eu/uoa-user-management/api/users/getUserInfo?accessToken=",
   
   logoutUrl: "https://aai.openaire.eu/proxy/saml2/idp/SingleLogoutService.php?ReturnTo=",
   
@@ -56,23 +56,22 @@ export let properties: EnvProperties = {
   
   feedbackmail: "feedback@openaire.eu",
   
-  cacheUrl: "https://explore.openaire.eu/cache/get?url=",
+  cacheUrl: "https://demo.openaire.eu/cache/get?url=",
   
-  datasourcesAPI: "https://services.openaire.eu/openaire/ds/search/",
+  datasourcesAPI: "https://beta.services.openaire.eu/openaire/ds/search/",
   
-  adminToolsAPIURL: "https://services.openaire.eu/uoa-admin-tools/",
+  adminToolsAPIURL: "https://beta.services.openaire.eu/uoa-admin-tools/",
   
   adminToolsCommunity: "openaire",
-  contextsAPI: "https://services.openaire.eu/openaire/context",
-  
-  communityAPI: "https://services.openaire.eu/openaire/community/",
+  contextsAPI: "https://beta.services.openaire.eu/openaire/context",
+  communityAPI: "https://beta.services.openaire.eu/openaire/community/",
   
   csvLimit: 2000,
   pagingLimit: 20,
   resultsPerPage: 10,
 
   "baseLink" : "/",
-  "domain": "https://explore.openaire.eu",
+  "domain":"https://beta.explore.openaire.eu",
   
   searchLinkToResult: "/search/result?id=",
   searchLinkToPublication: "/search/publication?articleId=",
@@ -107,11 +106,11 @@ export let properties: EnvProperties = {
   searchLinkToAdvancedResults: "/search/advanced/research-outcomes",
   
   lastIndexInformationLink: "https://www.openaire.eu/aggregation-and-content-provision-workflows",
-  showLastIndexInformationLink: true,
-  widgetLink: "https://www.openaire.eu/index.php?option=com_openaire&view=widget&format=raw&projectId=",
-  claimsInformationLink: "https://www.openaire.eu/linking",
-  lastIndexUpdate: "2020-06-15",
-  indexInfoAPI: "https://services.openaire.eu/openaire/info/",
+  showLastIndexInformationLink: false,
+  widgetLink: "https://beta.openaire.eu/index.php?option=com_openaire&view=widget&format=raw&projectId=",
+  claimsInformationLink: "https://beta.openaire.eu/linking",
+  lastIndexUpdate: "2020-05-11",
+  indexInfoAPI: "https://beta.services.openaire.eu/openaire/info/",
   
   depositLearnHowPage: "/participate/deposit/learn-how",
   depositSearchPage: "/participate/deposit/search",

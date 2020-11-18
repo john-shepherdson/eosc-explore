@@ -1,366 +1,354 @@
-<!--<aggNavbar></aggNavbar>-->
 
-<div class="image-front-topbar  uk-section-secondary uk-section-overlap uk-position-relative uk-preserve-color"
-     uk-scrollspy="{&quot;target&quot;:&quot;[uk-scrollspy-class]&quot;,&quot;cls&quot;:&quot;uk-animation-fade&quot;,&quot;delay&quot;:false}"
-     tm-header-transparent="light" tm-header-transparent-placeholder="">
-  <div style=" min-height: calc(7.89999px + 60vh);"
-       class=" mainPageSearchForm uk-background-norepeat uk-background-cover uk-background-fixed uk-section uk-padding-remove-bottom">
-    <!-- uk-height-viewport="offset-top: true;offset-bottom: 20"> -->
-    <div class="uk-position-cover" style="/*background-color: rgba(70, 68, 68, 0.24);*/"></div>
-    <div class="uk-position-relative uk-panel">
-      <div class="uk-container uk-margin-medium">
-        <div class="tm-header-placeholder uk-margin-medium" style="height: 84px;"></div>
-        <div class="search_box_bg uk-grid-large uk-flex-middle uk-grid uk-grid-stack" uk-grid="">
-          <div class="uk-width-1-1@m uk-first-column">
-            <div data-id="page#4">
-              <search-form placeholderText="Search for scholarly works" link="/search/find"></search-form>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="uk-container uk-container-large uk-margin-medium explore-numbers">
-        <div class="search_box_bg uk-grid uk-grid-stack" uk-grid="">
-          <div class="uk-width-1-1@m uk-first-column">
-            <div id="page#7"
-                 class="firstPageNumbers uk-margin uk-margin-remove-bottom uk-width-xlarge uk-margin-auto  uk-animation-fade"
-                 uk-scrollspy-class="" style="">
-              <!--<h2>
-                Search for more than
-                <span *ngIf="showPublications && publicationsSize">{{publicationsSize.number|number}}
-                  {{publicationsSize.size}} publications{{((showDatasets || showSoftware || showOrp) ? "," : "")}} </span>
-                <span *ngIf="showDatasets && datasetsSize">{{datasetsSize.number|number}}
-                  {{datasetsSize.size}} research data{{((showSoftware || showOrp) ? "," : "")}}  </span>
-                <span *ngIf="showSoftware && softwareSize">{{softwareSize.number|number}}
-                  {{softwareSize.size}} software{{(showOrp ? "," : "")}}   </span>
-                <span *ngIf="showOrp && otherSize">{{otherSize.number|number}}
-                  {{otherSize.size}} other research products </span>
-                <br>
-                <span *ngIf="showOrganizations && organizationsSize"> from {{organizationsSize.number |number}}
-                  {{organizationsSize.size}} organizations</span>
+<div class="image-front-topbar mainPageSearchForm uk-background-norepeat uk-background-cover uk-background-fixed">
+  <div class="uk-position-relative uk-panel">
+    <div class="uk-container">
+      <div class="tm-header-placeholder" style="height: 84px;"></div>
+      <div class="search_box_bg uk-grid-large uk-flex-middle uk-grid uk-grid-stack" uk-grid="">
+        <div class="uk-width-1-1@m uk-first-column">
+          <div data-id="page#4">
+            <form class="uk-margin">
+              <div class="uk-grid uk-margin-small-left">
+                <div class="uk-margin-small-top uk-padding-remove-left">
+                  <entities-selection [simpleView]="true" currentEntity="all" [selectedEntity]="selectedEntity"
+                                      [properties]="properties" [onChangeNavigate]="false"
+                                      (selectionChange)="entityChanged($event)"
+                  ></entities-selection>
+                </div>
+                <div class=" uk-padding-remove-left uk-margin-small-top">
+                  <div class="uk-inline">
+                    <a *ngIf="keyword.length > 0" class="uk-form-icon uk-form-icon-flip" (click)="keyword = ''"
+                       uk-icon="icon: close"></a>
+                    <input type="text" class="uk-input   uk-width-xlarge@l uk-width-large@m uk-width-medium"
+                           placeholder="Search in OpenAIRE for scholarly works"
+                           [(ngModel)]="keyword"
+                           name="keyword">
+                  </div>
+                  <div class=" quickSelectionsBox uk-width-xlarge@l uk-width-large@m uk-width-medium">
+                    <quick-selections *ngIf="selectedEntity == 'result'" [resultTypes]="resultTypes"
+                                      [quickFilter]="resultsQuickFilter"
+                                      [properties]="properties">
+                    </quick-selections>
+                  </div>
+                </div>
+                <div class="uk-padding-remove-left uk-margin-small-top">
 
-                <span
-                  *ngIf="showDataProviders && datasourcesSize"> from {{datasourcesSize.number |number}} {{datasourcesSize.size}} content providers</span>
-                <span
-                  *ngIf="showProjects && fundersSize"> {{((showDataProviders && datasourcesSize) ? " and " : " from ")}} {{fundersSize.number|number}} {{fundersSize.size}} funders</span>
-
-              </h2>-->
-              <div class="uk-margin-bottom">
-                <span class="uk-text-large"> Search for more than </span>
-
-                <span *ngIf="showPublications && publicationsSize">
-                  <span class="uk-h2">{{publicationsSize.number|number}}{{publicationsSize.size}}</span>
-                  <span class="uk-text-large"> {{((showDatasets || showSoftware || showOrp) ? " publications, "
-                      : " publications ")}}</span>
-                </span>
-                <span *ngIf="showDatasets && datasetsSize">
-                  <span class="uk-h2">{{datasetsSize.number|number}}{{datasetsSize.size}}</span>
-                  <span
-                    class="uk-text-large">{{((showSoftware || showOrp) ? "  research data, " : "  research data ")}}</span>
-                </span>
-                <span *ngIf="showOrp && otherSize">
-                  <span class="uk-h2">{{otherSize.number|number}}{{otherSize.size}}</span>
-                  <span
-                    class="uk-text-large">  {{((showSoftware) ? " other research products, " : " other research products ")}}</span>
-                </span>
-                <span *ngIf="showSoftware && softwareSize">
-                  <span class="uk-h2">{{softwareSize.number|number}}{{softwareSize.size}}</span>
-                  <span class="uk-text-large">  software </span>
-                </span>
-
-                <br>
-                <span *ngIf="showOrganizations && organizationsSize">
-                  <span class="uk-text-large"> from </span>
-                   <span class="uk-h2">{{organizationsSize.number|number}}{{organizationsSize.size}}</span>
-                   <span class="uk-text-large"> organizations </span>
-                </span>
-                <span *ngIf="showDataProviders && datasourcesSize">
-                   <span class="uk-text-large"> {{((showOrganizations && showOrganizations) ? " and " : " from ")}} </span>
-                   <span class="uk-h2">{{datasourcesSize.number|number}}{{datasourcesSize.size}}</span>
-                   <span class="uk-text-large"> content providers </span>
-                </span>
-                <span *ngIf="showProjects && fundersSize">
-                  <span class="uk-text-large"> {{((showDataProviders && datasourcesSize) ? " and " : " from ")}} </span>
-                   <span class="uk-h2">{{fundersSize.number|number}}{{fundersSize.size}} </span>
-                  <span class="uk-text-large"> funders </span>
-
-                </span>
-                <span *ngIf="showPublications || showDatasets || showOrp || showSoftware || showProjects ||
-                   showDataProviders"
-                      class="uk-text-large"> linked together for an integrated discovery of scientific output </span>
-
+                  <button (click)="goTo(true)" type="submit"
+                          class="uk-button portal-button uk-text-bold  uk-padding uk-padding-remove-vertical uk-margin-small-left">
+                    Search
+                  </button>
+                  <div class="uk-margin-small-top  uk-margin-left">
+                    <!--                        (click)="goTo(false)"-->
+                    <a *ngIf="selectedEntity!='all'" (click)="goTo(false)" class="portal-link">Advanced Search</a>
+                    <a *ngIf="selectedEntity=='all'" class="portal-link ">Advanced Search</a></div>
+                  <div *ngIf="selectedEntity=='all'" uk-dropdown class="uk-dropdown default-dropdown">
+                    <ul class="uk-list uk-margin-remove-bottom">
+                      <li *ngIf="showSoftware || showPublications || showOrp || showDatasets"><a
+                        [routerLink]="properties.searchLinkToAdvancedResults"
+                        [queryParams]="{qf:true, q: keyword, op: 'and'}"
+                      >Research
+                        outcomes</a></li>
+                      <li *ngIf="showProjects"><a
+                        [routerLink]="properties.searchLinkToAdvancedProjects"
+                        [queryParams]="{q: keyword, op: 'and'}">
+                        Projects</a></li>
+                      <li *ngIf="showDataProviders"><a
+                        [routerLink]="properties.searchLinkToAdvancedDataProviders"
+                        [queryParams]="{q: keyword, op: 'and'}">
+                        Content providers</a></li>
+                      <li *ngIf="showOrganizations"><a
+                        [routerLink]="properties.searchLinkToAdvancedOrganizations"
+                        [queryParams]="{q: keyword, op: 'and'}">
+                        Organizations</a></li>
+                    </ul>
+                  </div>
+                </div>
               </div>
-            </div>
-
-
+            </form>
           </div>
         </div>
       </div>
+    </div>
+<!--    <div class="uk-margin-medium">-->
+<!--      <div class="uk-container uk-container-large explore-numbers uk-margin-medium-bottom">-->
+<!--        <div class="search_box_bg uk-grid uk-grid-stack" uk-grid="">-->
+<!--          <div class="uk-width-1-1@m uk-first-column">-->
+<!--            <div class="uk-grid uk-margin uk-margin-bottom uk-width-xxlarge uk-margin-auto">-->
+<!--              <div class="uk-width-expand uk-padding-remove">-->
 
+<!--                <div uk-slider="autoplay: true; autoplay-interval: 2500" class="uk-margin-top">-->
+<!--                  <div class="uk-position-relative">-->
+<!--                    <div class="uk-slider-container">-->
+<!--                      <ul class="uk-slider-items" uk-height-match="target: > li > div > div > .logo1; row: false;">-->
+<!--                        <ng-container *ngFor="let type of ['publication','dataset', 'software']">-->
+<!--                          <li-->
+<!--                              class="uk-width-1-1 home-logo">-->
+<!--                            <h1 class="uk-text-center uk-margin-bottom portal-color uk-h3">-->
+<!--                                <span *ngIf="type=='publication' && showPublications && publicationsSize">-->
+<!--                                  <span class="uk-text-bold">{{publicationsSize.number|number}}{{publicationsSize.size}}-->
+<!--                                    publications</span><span> deduplicated</span>-->
+<!--                                </span>-->
+<!--                              <span *ngIf="type=='dataset' && showDatasets && (datasetsLinkedSize ||datasetsSize)">-->
+<!--                                  <span *ngIf="datasetsLinkedSize">-->
+<!--                                       <span-->
+<!--                                         class="uk-text-bold">{{datasetsLinkedSize.number|number}}{{datasetsLinkedSize.size}}-->
+<!--                                         datasets</span> interlinked with publications</span>-->
+<!--                                  <span *ngIf="datasetsSize && !datasetsLinkedSize"-->
+<!--                                        class="uk-text-bold">{{datasetsSize.number|number}}{{datasetsSize.size}}-->
+<!--                                    research data</span>-->
+<!--                                </span>-->
+<!--                              <span *ngIf="type=='software' && showSoftware && (softwareSize ||softwareLinkedSize)">-->
+<!--                                  <span *ngIf="softwareLinkedSize">-->
+<!--                                        <span class="uk-text-bold-->
+<!--                                    ">{{softwareLinkedSize.number|number}}{{softwareLinkedSize.size}} research-->
+<!--                                          software</span>  interlinked with publications</span>-->
+<!--                                  <span *ngIf="softwareSize && !softwareLinkedSize"-->
+<!--                                        class="uk-text-bold">{{softwareSize.number|number}}{{softwareSize.size}}-->
+<!--                                    research software</span>-->
+<!--                                </span>-->
+<!--                              <span *ngIf="type=='persistent'">-->
+<!--                                  <span>Persistent identifiers and registries</span>-->
+<!--                                </span>-->
+<!--                              <span *ngIf="type=='funder' && showProjects && fundersSize">-->
+<!--                                  <span class="uk-text-bold">{{fundersSize.number|number}}{{fundersSize.size}}-->
+<!--                                    funders</span><span> and</span>-->
+<!--                                  <span class="uk-text-bold"> {{projectsSize.number|number}}{{projectsSize.size}} funded grants</span>-->
+<!--                                </span>-->
+
+<!--                            </h1>-->
+<!--                            <div-->
+<!--                              class="uk-grid-small  uk-child-width-1-6 uk-text-center grid uk-flex uk-flex-center"-->
+<!--                              uk-grid uk-height-match="target: > div > .logo2; row: false;">-->
+<!--                              &lt;!&ndash;<div-->
+<!--                                *ngFor="let logo of logos[type][j].slice(0,ceil(logos[type][j].length/2)); let i=index">-->
+<!--                                <ng-container-->
+<!--                                  *ngTemplateOutlet="_logos; context: { logo: logo, class: 'logo1 '}"></ng-container>-->
+<!--                                <ng-container-->
+<!--                                  *ngTemplateOutlet="_logos; context: { logo: logos[type][j][ceil(logos[type][j].length/2)+i], class: 'uk-margin-top logo2 '}"></ng-container>-->
+<!--                              </div>&ndash;&gt;-->
+<!--                            </div>-->
+<!--                          </li>-->
+<!--                        </ng-container>-->
+<!--                      </ul>-->
+<!--                    </div>-->
+
+<!--                    <div class="uk-hidden@s">-->
+<!--                      <a class="uk-position-center-left uk-position-small" href="#" uk-slidenav-previous-->
+<!--                         uk-slider-item="previous"></a>-->
+<!--                      <a class="uk-position-center-right uk-position-small" href="#" uk-slidenav-next-->
+<!--                         uk-slider-item="next"></a>-->
+<!--                    </div>-->
+
+<!--                    <div class="uk-visible@s">-->
+<!--                      <a class="uk-position-center-left-out uk-position-small" href="#" uk-slidenav-previous-->
+<!--                         uk-slider-item="previous"></a>-->
+<!--                      <a class="uk-position-center-right-out uk-position-small" href="#" uk-slidenav-next-->
+<!--                         uk-slider-item="next"></a>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+
+<!--              </div>-->
+<!--            </div>-->
+
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <helper *ngIf="pageContents && pageContents['top'] && pageContents['top'].length > 0"-->
+<!--              [texts]="pageContents['top']"></helper>-->
+<!--    </div>-->
+  </div>
+</div>
+
+
+  <div
+       class="uk-section graph-background uk-margin-top">
+    <div class="uk-container">
+      <div class="uk-flex uk-flex-top uk-child-width-1-1 uk-child-width-1-2@m" uk-grid>
+        <div class="uk-flex-last@m">
+          <div [class.lines-10]="!readMore" class="uk-margin-bottom multi-line-ellipsis">
+            <div class="uk-h3">Extracted <strong>Metadata Combined.</strong></div>
+
+            <p>The <a class="graph-color" href="https://graph.openaire.eu" target="blank">OpenAIRE Research Graph</a> is one of the largest open scholarly record collections worldwide, key in fostering Open Science and establishing its practices in the daily research activities. Conceived as a public and transparent good, populated out of data sources trusted by scientists, the Graph aims at bringing discovery, monitoring, and assessment of science back in the hands of the scientific community.<br>
+              <br>
+              Imagine a vast collection of research products all linked together, contextualised and openly available. For the past ten years OpenAIRE has been working to gather this valuable record. OpenAIRE is pleased to announce the release of its Research Graph, a massive collection of metadata and links between scientific products such as articles, datasets, software, and other research products, entities like organisations, funders, funding streams, projects, communities, and data sources.<br>
+              <br>
+              As of today, the OpenAIRE Research Graph aggregates around 450Mi metadata records with links collecting from 10,000 data sources trusted by scientists! After cleaning, deduplication, and fine-grained classification processes, they narrow down to ~100Mi publications, ~8Mi datasets, ~200K software research products, 8Mi other products linked together with semantic relations.<br>
+              <br>
+              More than 10Mi full-texts of Open Access publications are mined by algorithms to enrich metadata records with additional properties and links among research products, funders, projects, communities, and organizations. Thanks to the mining algorithm, the graph is completed with 480Mi semantic relations.</p>
+
+          </div>
+          <div *ngIf="!readMore" class="uk-text-center clickable" (click)="readMore = true">
+            <span>Read more<span class="space" uk-icon="chevron-down"></span></span>
+          </div>
+          <div *ngIf="readMore" class="uk-text-center clickable" (click)="readMore = false">
+            <span>Read less<span class="space" uk-icon="chevron-up"></span></span>
+          </div>
+        </div>
+        <div class="uk-flex uk-flex-bottom">
+          <div class="uk-width-1-3 uk-width-1-2@m">
+            <img src="assets/graph.svg">
+          </div>
+          <div class="uk-padding uk-width-1-2">
+            <img src="assets/common-assets/logo-large-graph.png">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--<div *ngIf="pageContents && pageContents['right'] && pageContents['right'].length > 0"-->
+<!--     class="graph-background-bottom uk-section uk-padding-remove-vertical uk-background-cover"></div>-->
+<!--<helper *ngIf="pageContents && pageContents['bottom'] && pageContents['bottom'].length > 0"-->
+<!--        [texts]="pageContents['bottom']"></helper>-->
+
+<div class="uk-section" style="background: linear-gradient(180deg, #FAFAFA 50%, #FFFFFF 50%);">
+  <div class="uk-container uk-container-small">
+    <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid="">
+      <div class="uk-width-1-1@m uk-first-column">
+        <div class="uk-margin uk-text-center uk-child-width-1-1 uk-grid-match uk-child-width-1-1@s uk-child-width-1-2@m uk-child-width-1-2@l uk-grid" id="page#8" uk-grid="" uk-height-match="target: .target">
+          <div class="uk-first-column">
+            <div class="el-item uk-card uk-card-default uk-card-medium uk-card-body">
+              <div class="uk-text-center target"><img alt="Share" class="uk-width-1-3@m uk-width-small" src="assets/share.svg"></div>
+
+              <div class="el-content uk-margin uk-text-large"><span class="uk-text-bold">Deposit</span> your research</div>
+
+              <div class="uk-margin-small-top uk-text-left card-text uk-flex uk-flex-center">
+                <div class="uk-margin-left uk-margin-right">Deposit in a repository of your choice.<br>
+                  Select an OpenAIRE compatible<br>
+                  repository (2.0 +) so that your research is linked to your funding information. Use Zenodo, a catch-all repository hosted by CERN to deposit all your research results (publications, data, software, etc.)</div>
+              </div>
+              <a class="uk-button portal-button uk-padding uk-padding-remove-vertical uk-margin-small-left ng-star-inserted uk-margin uk-margin-bottom uk-width-1-2" href="/participate/deposit/learn-how" type="submit">Deposit </a></div>
+          </div>
+
+          <div>
+            <div class="el-item uk-card uk-card-default uk-card-medium uk-card-body">
+              <div class="uk-text-center target"><img alt="Share" class="uk-width-1-3@m uk-width-small" src="assets/link.svg"></div>
+
+              <div class="el-content uk-margin uk-text-large"><span class="uk-text-bold">Link</span> your work</div>
+
+              <div class="uk-margin-small-top uk-text-left card-text uk-flex uk-flex-center">
+                <div class="uk-margin-left uk-margin-right">Connect all your research.<br>
+                  If you can't find your research results in OpenAIRE, don't worry! Use our Link Out service , that reaches out to many<br>
+                  external sources via APIs, to connect<br>
+                  your research results and claim them to your project.</div>
+              </div>
+              <a class="uk-button portal-button uk-padding uk-padding-remove-vertical uk-margin-small-left ng-star-inserted uk-margin uk-margin-bottom uk-width-1-2" href="/participate/claim" type="submit">Link </a></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-<schema2jsonld [URL]="properties.baseLink" [logoURL]=
-  "properties.baseLink+'/assets/common-assets/logo-small-aggregator.png'" type="home"
-               name="OpenAIRE Explore"></schema2jsonld>
-
-
-<!--<div class=" uk-section uk-section-small">
-   <div class="uk-container uk-container-small">
-      <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid="">
-         <div class="uk-width-1-1@m uk-first-column">
-            <div id="page#8" class="uk-margin uk-text-center uk-child-width-1-1 uk-grid-match uk-child-width-1-1@s uk-child-width-1-3@m uk-child-width-1-3@l uk-grid-large uk-grid" uk-grid="">
-               <div class="uk-first-column">
-                  <div class="el-item uk-card uk-card-hover uk-card-small uk-card-body">
-                     <a routerLinkActive="uk-link" routerLink="/search/find" class="el-link uk-position-cover uk-position-z-index uk-margin-remove-adjacent"></a>
-                     <img class=""  width="80" height="80" src="assets/explore.svg"   alt="Explore">
-                     <h3 class="el-title uk-margin uk-h3">
-                        Explore
-                     </h3>
-                     <div class="el-content uk-margin uk-text-lead">Discover linked open research</div>
-                     <div class="  uk-margin-small-top">Search for
-                       publications, datasets, software and other research products. See how these
-                       are linked together and how they are linked to funding and
-                       organizations.
-                       <br>
-                       View statistics on projects and institutions.
-                     </div>
-                  </div>
-               </div>
-
-               <div class="">
-                  <div class="el-item uk-card uk-card-hover uk-card-small uk-card-body">
-                     <a  routerLinkActive="uk-link" routerLink="/participate/deposit-publications" class="el-link uk-position-cover uk-position-z-index uk-margin-remove-adjacent"></a>
-                       <img class=""  width="70" height="70" src="assets/share.svg"   alt="Share">
-
-                     <h3 class="el-title uk-margin uk-h3">
-                        Share
-                     </h3>
-                     <div class="el-content uk-margin uk-text-lead">Deposit in a repository of your choice </div>
-                     <div class="  uk-margin-small-top">
-                       Select an OpenAIRE compatible repository (2.0 +) so that your research is linked to your funding information.
-                       <br>
-                       Use <a href="http://www.zenodo.org/" target="_blank" rel="noopener">ZENODO</a>,
-                        a catch-all repository hosted by CERN to deposit all your research results (publications, data, software, etc.)
-                     </div>
-                  </div>
-               </div>
-
-
-
-               <div class="">
-                  <div class="el-item uk-card uk-card-hover uk-card-small uk-card-body">
-                     <img class=""  width="60" height="70" src="assets/link.svg"   alt="Link">
-                     <a routerLinkActive="uk-link" routerLink="/participate/claim" routerLink="/participate/claim"  class="el-link uk-position-cover uk-position-z-index uk-margin-remove-adjacent"></a>
-
-                     <h3 class="el-title uk-margin uk-h3">
-                        Link
-                     </h3>
-                     <div class="el-content uk-margin uk-text-lead">Connect all your research</div>
-                     <div class="  uk-margin-small-top">
-                       If you can't find your research results in OpenAIRE, don't worry!
-                       <br>
-                       Use our <strong>LINK OUT service</strong>,
-                       that reaches out to many external sources via APIs, to connect your research results and <em>claim</em> them to your project.
-                     </div>
-                  </div>
-               </div>
-
-            </div>
-         </div>
-      </div>
-   </div>
-</div>-->
-
-<!--<div class="uk-section-muted uk-section uk-section-small">
-    <div class="uk-container uk-container-large">
-      <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid="">
-        <div class="uk-width-1-1@m uk-first-column">
-          <div class="uk-margin uk-child-width-1-1 uk-grid-match uk-child-width-1-1@s uk-child-width-1-2@m
-            uk-child-width-1-2@l uk-grid-large uk-grid uk-grid-divider ask-explore" uk-grid="">
-            <div class="uk-first-column uk-text-center">
-              <div class="el-item uk-card uk-card-small uk-card-body">
-                <img src="assets/ask-explore.svg" class="el-image" alt="" uk-svg="" hidden="true">
-                <h3 class="el-title uk-margin uk-h3">Have more questions?</h3>
-              </div>
-            </div>
-            <div class="questions">
-              <div class="el-item uk-card uk-card-small uk-card-body">
-                <ul class="uk-list uk-list-divider">
-                  <li><a href="https://www.openaire.eu/os-primers">Learn about open science policies and how to align</a></li>
-                  <li><a href="https://www.openaire.eu/rdm-handbook">Learn more on how to manage your data in the open science era</a></li>
-                  <li><a href="https://www.openaire.eu/guides/">Find out how to use OpenAIRE to best serve your needs</a></li>
-                  <li><a href="https://www.openaire.eu/webinars/">View our training material on a variety of related topics</a></li>
-                  <li><a href="https://www.openaire.eu/contact-us/">Contact us</a></li>
-                </ul>
-              </div>
+<div class="uk-section-default uk-section  uk-padding-remove-bottom">
+  <div class="uk-container uk-text-center  uk-margin-medium-bottom">
+    <div class="uk-margin-medium uk-flex-center">
+      <div class="uk-first-column">
+        <div class="uk-panel">
+          <h3 class="uk-margin uk-text-center">
+            Our growing <span class="uk-text-bold">Community</span>
+          </h3>
+          <div class="uk-margin-medium-top">
+            <div class="uk-grid uk-child-width-1-3@m">
+              <p *ngIf="showProjects && fundersSize">
+                <span class="portal-color emphasis">
+                  <span class="uk-text-bold"> {{fundersSize.number|number}}</span>
+                  <span class="portal-color uk-h3">{{fundersSize.size}}</span>
+                </span>
+                <br>
+                <span class="uk-text-uppercase uk-text-large">Funders</span>
+              </p>
+              <p *ngIf="showDataProviders && datasourcesSize" class="">
+                <span class="portal-color emphasis">
+                  <span class="uk-text-bold"> {{datasourcesSize.number|number}}</span>
+                  <span class="portal-color uk-h3">{{datasourcesSize.size}}</span>
+                </span>
+                <br>
+                <span class="uk-text-uppercase uk-text-large">Content providers</span>
+              </p>
+              <p *ngIf="showProjects && projectsSize">
+                <span class="portal-color emphasis">
+                  <span class="uk-text-bold"> {{projectsSize.number|number}}</span>
+                  <span class="portal-color uk-h3">{{projectsSize.size}}</span>
+                </span>
+                <br>
+                <span class="uk-text-uppercase uk-text-large">Projects</span>
+              </p>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-
-   <div class="uk-section-default uk-section">
-       <div class="uk-container">
-         <div class="uk-grid-medium uk-margin-medium uk-grid" uk-grid="">
-           <div class="uk-width-2-3@m uk-first-column">
-             <div class="uk-margin-medium-top uk-panel">
-               <h3 class="el-title uk-margin uk-h3">
-                 Our community
-               </h3>
-               <hr class="uk-divider-small uk-text-left provide">
-
-               <div class="uk-grid uk-margin-medium-top">
-
-                 <div class="uk-width-expand@m">
-                   &lt;!&ndash; <div class="uk-grid uk-child-width-1-2@m"> &ndash;&gt;
-                     <p *ngIf="showPublications && publicationsSize">
-                       <span class="emphasis portal-color">{{publicationsSize.count|number}} </span><span class="uk-text-uppercase"> publications</span>
-                     </p>
-                     <p  *ngIf="showDatasets && datasetsSize">
-                       <span class="emphasis portal-color">{{datasetsSize.count|number}} </span><span class="uk-text-uppercase"> research data</span>
-                     </p>
-                   &lt;!&ndash; </div> &ndash;&gt;
-
-
-
-                 </div>
-
-
-               </div>
-
-               <div class="uk-margin-top">
-                 <div class="uk-grid uk-child-width-1-3@m">
-                   <p *ngIf="showDataProviders && datasourcesSize" class="uk-margin-medium-bottom">
-                     <span class="  emphasis "> {{datasourcesSize.number |number}} {{datasourcesSize.size}}</span><br>
-                     <span class="uk-text-uppercase">content providers</span>
-                   </p>
-                   <p *ngIf="showProjects && fundersSize">
-                     <span class="  emphasis ">{{fundersSize.number|number}} {{fundersSize.size}}</span><br>
-                     <span class="uk-text-uppercase">Funders</span>
-                   </p>
-                   <p *ngIf="showProjects && projectsSize">
-                     <span class=" emphasis ">{{projectsSize.count|number}} </span><br>
-                     <span class="uk-text-uppercase">Projects</span>
-                   </p>
-                 </div>
-                 &lt;!&ndash; <div class="uk-grid uk-child-width-1-2@m uk-margin-small-top">
-
-                   <p *ngIf="showProjects && projectsSize">
-                     <span class=" emphasis ">{{projectsSize.count|number}} </span><br>
-                     <span class="uk-text-uppercase">Projects</span>
-                   </p>
-                 </div> &ndash;&gt;
-
-
-
-
-               </div>
-             </div>
-           </div>
-           <div class="uk-width-expand@m">
-
-             <div class="uk-card uk-card-body uk-card-explore">
-
-               <h3 class="uk-margin-remove-top uk-h3">
-                 <span class="">Our data policies</span>
-               </h3>
-               <hr class="uk-divider-small uk-text-left">
-
-               <ul class="uk-margin-small uk-list uk-list-large uk-margin-medium-bottom">
-                 <li class="el-item uk-margin-medium-bottom">
-                   <h5 class="el-title uk-h5">Data acquisition</h5>
-                   <div class="el-content">
-                     <span>How we retrieve data, how often, what processes it goes through (aggregating cleaning, transforming, inferring, de-duplicating), what are the quality checks&nbsp;along all&nbsp; data processing stages.</span>
-                   </div>
-                 </li>
-                 <li class="el-item">
-                   <h5 class="el-title uk-h5">Data usage</h5>
-                   <div class="el-content">
-                     <span>Who is able to retrieve our data, what are the licences, what about specific SLAs.</span>
-                   </div>
-                 </li>
-               </ul>
-               <div class="uk-margin uk-margin-remove-bottom uk-text-left">
-                 <h6 class="uk-h6">
-                   <a class="el-content uk-link-text" href="https://www.openaire.eu/data-aquisition-policy" target="_blank">
-                     Learn more
-                   </a>
-                 </h6>
-               </div>
-             </div>
-
-
-           </div>
-         </div>
-       </div>
-     </div>-->
-
-<!--<div class="uk-section-muted" uk-scrollspy="{&quot;target&quot;:&quot;[uk-scrollspy-class]&quot;,&quot;cls&quot;:&quot;uk-animation-fade&quot;,&quot;delay&quot;:false}">
-    <div class="uk-container uk-container-large">
-      <div uk-grid="" class="uk-grid uk-margin-large-top uk-margin-large-bottom">
-
-        <div class="uk-width-expand@m uk-width-1-2@s uk-dark uk-grid-item-match uk-first-column provide">
-          <div class="uk-margin uk-panel uk-scrollspy-inview uk-animation-fade" uk-scrollspy-class="" style="">
-            <h4 class="el-title uk-margin uk-h4">
-              Content provider?
-            </h4>
-            <div class="el-content uk-margin">
-              Join OpenAIRE, use our tools and make your content more visible around the world.
-            </div>
-            <p>
-              <a target="_blank" [href]="'https://'+(properties.environment =='beta'?'beta.':'')+'provide.openaire.eu'" class="el-link uk-button uk-button-default">
-                OpenAIRE.PROVIDE
-              </a>
-            </p>
-          </div>
+</div>
+<div class="uk-section-default uk-section numbers-background  uk-padding-remove-top">
+  <div class="uk-container uk-margin-medium-top">
+    <div class="uk-grid uk-flex uk-flex-center">
+      <div class="uk-margin-large-right">
+        <div *ngIf="showPublications && publicationsSize" class="uk-margin-medium-bottom">
+          <p>
+            <span class="emphasis">{{publicationsSize.count|number}} </span><br>
+            <span class="uk-icon uk-text-uppercase uk-float-left">
+              <svg height="20" ratio="1" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg"><rect
+                style="stroke: var(--portal-main-color);" fill="none" height="16" stroke="#000" width="12" x="3.5"
+                y="2.5"></rect><polyline style="stroke: var(--portal-main-color);" fill="none"
+                                         points="5 0.5 17.5 0.5 17.5 17" stroke="#000"></polyline></svg>
+              publications
+            </span>
+          </p>
         </div>
-        <div class="uk-width-expand@m uk-width-1-2@s uk-dark uk-grid-item-match connect">
-          <div class="uk-margin uk-panel uk-scrollspy-inview uk-animation-fade" uk-scrollspy-class="" style="">
-            <h4 class="el-title uk-margin uk-h4">
-              Research community?
-            </h4>
-            <div class="el-content uk-margin">
-              Use a trusted partner to share, link, disseminate and monitor your research.
-            </div>
-            <p>
-              <a target="_blank" [href]="'https://'+(properties.environment =='beta'?'beta.':'')+'connect.openaire.eu'" class="el-link uk-button uk-button-default">
-                OpenAIRE.CONNECT
-              </a>
-            </p>
-          </div>
+        <div *ngIf="showSoftware && softwareSize" class="uk-margin-medium-bottom">
+          <p>
+            <span class="emphasis">{{softwareSize.count|number}} </span><br>
+            <span class="uk-icon uk-text-uppercase uk-float-left">
+              <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" data-svg="cog"><circle
+                style="stroke: var(--portal-main-color);" fill="none" stroke="#000" cx="9.997" cy="10"
+                r="3.31"></circle><path style="stroke: var(--portal-main-color);" fill="none" stroke="#000"
+                                        d="M18.488,12.285 L16.205,16.237 C15.322,15.496 14.185,15.281 13.303,15.791 C12.428,16.289 12.047,17.373 12.246,18.5 L7.735,18.5 C7.938,17.374 7.553,16.299 6.684,15.791 C5.801,15.27 4.655,15.492 3.773,16.237 L1.5,12.285 C2.573,11.871 3.317,10.999 3.317,9.991 C3.305,8.98 2.573,8.121 1.5,7.716 L3.765,3.784 C4.645,4.516 5.794,4.738 6.687,4.232 C7.555,3.722 7.939,2.637 7.735,1.5 L12.263,1.5 C12.072,2.637 12.441,3.71 13.314,4.22 C14.206,4.73 15.343,4.516 16.225,3.794 L18.487,7.714 C17.404,8.117 16.661,8.988 16.67,10.009 C16.672,11.018 17.415,11.88 18.488,12.285 L18.488,12.285 Z"></path></svg>
+              software
+            </span>
+          </p>
         </div>
-        <div class="uk-width-expand@m uk-width-1-2@s uk-dark uk-grid-item-match monitor">
-          <div class="uk-margin uk-panel uk-scrollspy-inview uk-animation-fade" uk-scrollspy-class="" style="">
-            <h4 class="el-title uk-margin uk-h4">
-              Research manager?
-            </h4>
-            <div class="el-content uk-margin">
-              Use our monitoring services and easily track all relevant research results.
-            </div>
-            <p>
-              <a target="_blank" [href]="'https://'+(properties.environment =='beta'?'beta.openaire.eu/monitor':'monitor.openaire.eu')" class="el-link uk-button uk-button-default">
-                OpenAIRE.MONITOR
-              </a>
-            </p>
-          </div>
+      </div>
+      <div class="">
+        <div *ngIf="showDatasets && datasetsSize" class="uk-margin-medium-bottom">
+          <p>
+            <span class="emphasis">{{datasetsSize.count|number}} </span><br>
+            <span class="uk-icon uk-text-uppercase uk-float-left">
+              <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" data-svg="database"><ellipse
+                style="stroke: var(--portal-main-color);" fill="none" stroke="#000" cx="10" cy="4.64" rx="7.5"
+                ry="3.14"></ellipse><path style="stroke: var(--portal-main-color);" fill="none" stroke="#000"
+                                          d="M17.5,8.11 C17.5,9.85 14.14,11.25 10,11.25 C5.86,11.25 2.5,9.84 2.5,8.11"></path><path
+                style="stroke: var(--portal-main-color);" fill="none" stroke="#000"
+                d="M17.5,11.25 C17.5,12.99 14.14,14.39 10,14.39 C5.86,14.39 2.5,12.98 2.5,11.25"></path><path
+                style="stroke: var(--portal-main-color);" fill="none" stroke="#000"
+                d="M17.49,4.64 L17.5,14.36 C17.5,16.1 14.14,17.5 10,17.5 C5.86,17.5 2.5,16.09 2.5,14.36 L2.5,4.64"></path></svg>
+              research data
+            </span>
+          </p>
         </div>
-        <div class="uk-width-expand@m uk-width-1-2@s uk-dark uk-grid-item-match develop">
-          <div class="uk-margin uk-panel uk-scrollspy-inview uk-animation-fade" uk-scrollspy-class="" style="">
-            <h4 class="el-title uk-margin uk-h4">
-              Developer?
-            </h4>
-            <div class="el-content uk-margin">
-              Get access to OpenAIRE data and capitalize on on Europe's open linked research
-            </div>
-            <p>
-              <a target="_blank" href="https://develop.openaire.eu" class="el-link uk-button uk-button-default">
-                OpenAIRE.DEVELOP
-              </a>
-            </p>
-          </div>
+        <div *ngIf="showOrp && otherSize" class="uk-margin-medium-bottom">
+          <p>
+            <span class="emphasis">{{otherSize.count|number}} </span><br>
+            <span class="uk-icon uk-text-uppercase uk-float-left">
+              <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" data-svg="world"><path
+                style="stroke: var(--portal-main-color);" fill="none" stroke="#000" d="M1,10.5 L19,10.5"></path><path
+                style="stroke: var(--portal-main-color);" fill="none" stroke="#000" d="M2.35,15.5 L17.65,15.5"></path><path
+                style="stroke: var(--portal-main-color);" fill="none" stroke="#000" d="M2.35,5.5 L17.523,5.5"></path><path
+                style="stroke: var(--portal-main-color);" fill="none" stroke="#000"
+                d="M10,19.46 L9.98,19.46 C7.31,17.33 5.61,14.141 5.61,10.58 C5.61,7.02 7.33,3.83 10,1.7 C10.01,1.7 9.99,1.7 10,1.7 L10,1.7 C12.67,3.83 14.4,7.02 14.4,10.58 C14.4,14.141 12.67,17.33 10,19.46 L10,19.46 L10,19.46 L10,19.46 Z"></path><circle
+                style="stroke: var(--portal-main-color);" fill="none" stroke="#000" cx="10" cy="10.5" r="9"></circle></svg>
+              other research products
+            </span>
+          </p>
         </div>
       </div>
     </div>
-  </div>-->
-
+  </div>
+</div>
+<!--<helper *ngIf="pageContents && pageContents['left'] && pageContents['left'].length > 0"-->
+<!--        [texts]="pageContents['left']"></helper>-->
+<!--<div class="uk-section-muted"-->
+<!--     uk-scrollspy="{&quot;target&quot;:&quot;[uk-scrollspy-class]&quot;,&quot;cls&quot;:&quot;uk-animation-fade&quot;,&quot;delay&quot;:false}">-->
+<!--  <div class="uk-container uk-container-large">-->
+<!--    <other-portals portal="explore" [properties]="properties"></other-portals>-->
+<!--  </div>-->
+<!--</div>-->

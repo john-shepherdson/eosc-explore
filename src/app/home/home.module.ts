@@ -3,52 +3,54 @@ import { CommonModule }        from '@angular/common';
 import { FormsModule }         from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import{HomeRoutingModule} from './home-routing.module';
-import{HomeComponent} from './home.component';
+import {HomeRoutingModule} from './home-routing.module';
+import {HomeComponent} from './home.component';
 
-import {  DataProvidersServiceModule} from '../openaireLibrary/services/dataProvidersService.module';
+import { DataProvidersServiceModule} from '../openaireLibrary/services/dataProvidersService.module';
 import { SearchResearchResultsServiceModule} from '../openaireLibrary/services/searchResearchResultsService.module';
-import {  ProjectsServiceModule} from '../openaireLibrary/services/projectsService.module';
-// import {  PublicationsServiceModule} from '../openaireLibrary/services/publicationsService.module';
-import {  OrganizationsServiceModule} from '../openaireLibrary/services/organizationsService.module';
+import { ProjectsServiceModule} from '../openaireLibrary/services/projectsService.module';
+import { OrganizationsServiceModule} from '../openaireLibrary/services/organizationsService.module';
 import { SearchFormModule} from '../openaireLibrary/searchPages/searchUtils/searchForm.module';
-import {PiwikServiceModule} from '../openaireLibrary/utils/piwik/piwikService.module';
+import { PiwikServiceModule} from '../openaireLibrary/utils/piwik/piwikService.module';
 
 import {HelperModule} from '../openaireLibrary/utils/helper/helper.module';
 
 import {RefineFieldResultsServiceModule} from '../openaireLibrary/services/refineFieldResultsService.module';
-import {ConfigurationService} from '../openaireLibrary/utils/configuration/configuration.service';
-import {FreeGuard} from '../openaireLibrary/login/freeGuard.guard';
 import {PreviousRouteRecorder} from '../openaireLibrary/utils/piwik/previousRouteRecorder.guard';
-import {Schema2jsonldModule} from '../openaireLibrary/sharedComponents/schema2jsonld/schema2jsonld.module';
 import { SEOServiceModule } from '../openaireLibrary/sharedComponents/SEO/SEOService.module';
 
 import {ErrorMessagesModule} from '../openaireLibrary/utils/errorMessages.module';
-// import {SoftwareServiceModule} from "../openaireLibrary/services/softwareService.module";
-// import {OrpsServiceModule} from "../openaireLibrary/services/orpsService.module";
-// import {AggregatorNavBarComponent} from "../utils/aggregatorNavBar.component";
+import {EntitiesSelectionModule} from "../openaireLibrary/searchPages/searchUtils/entitiesSelection.module";
+import {QuickSelectionsModule} from "../openaireLibrary/searchPages/searchUtils/quick-selections.module";
+import {IconsModule} from "../openaireLibrary/utils/icons/icons.module";
+import {IconsService} from "../openaireLibrary/utils/icons/icons.service";
+import {arrow_right} from "../openaireLibrary/utils/icons/icons";
 
- @NgModule({
+@NgModule({
   imports: [
     CommonModule, FormsModule, RouterModule,
-     RefineFieldResultsServiceModule,
-    DataProvidersServiceModule, SearchResearchResultsServiceModule, ProjectsServiceModule,
-    OrganizationsServiceModule,
-     SearchFormModule,
-      PiwikServiceModule,
-      HomeRoutingModule,
-      HelperModule,
-      ErrorMessagesModule,
-      Schema2jsonldModule, SEOServiceModule,
+    RefineFieldResultsServiceModule,
+    DataProvidersServiceModule, SearchResearchResultsServiceModule,
+    ProjectsServiceModule, OrganizationsServiceModule,
+    SearchFormModule,
+    PiwikServiceModule,
+    HomeRoutingModule,
+    HelperModule,
+    ErrorMessagesModule,
+    SEOServiceModule,  EntitiesSelectionModule, QuickSelectionsModule, IconsModule
   ],
   declarations: [
-    HomeComponent//, AggregatorNavBarComponent
-   ],
+    HomeComponent
+  ],
   providers:[
-    FreeGuard, PreviousRouteRecorder, ConfigurationService
-    ],
+    PreviousRouteRecorder
+  ],
   exports: [
-    HomeComponent//, AggregatorNavBarComponent
-     ]
+    HomeComponent
+  ]
 })
-export class HomeModule { }
+export class HomeModule {
+  constructor(private iconsService: IconsService) {
+    this.iconsService.registerIcons([arrow_right]);
+  }
+}

@@ -1,6 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { Location } from '@angular/common';
-  
+import { Component } from '@angular/core';
+
 @Component({
     selector: 'openaire-error',
     template: `

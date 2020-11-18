@@ -1,131 +1,81 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {EnvironmentSpecificResolver} from "../openaireLibrary/utils/properties/environmentSpecificResolver";
-import {EnvironmentSpecificService} from "../openaireLibrary/utils/properties/environment-specific.service";
 
 const routes: Routes = [
-  {path: '', loadChildren: '../home/home.module#HomeModule', resolve: {envSpecific: EnvironmentSpecificResolver}},
+  {path: '', loadChildren: '../home/home.module#HomeModule'},
+  { path: 'search/result',
+    loadChildren: '../landingPages/result/libResult.module#LibResultModule'
+  },
   {
     path: 'search/publication',
-    loadChildren: '../landingPages/publication/libPublication.module#LibPublicationModule',
-    resolve: {envSpecific: EnvironmentSpecificResolver}
+    loadChildren: '../landingPages/publication/libPublication.module#LibPublicationModule'
   },
   {
     path: 'search/dataset',
-    loadChildren: '../landingPages/dataset/libDataset.module#LibDatasetModule',
-    resolve: {envSpecific: EnvironmentSpecificResolver}
+    loadChildren: '../landingPages/dataset/libDataset.module#LibDatasetModule'
   },
   {
     path: 'search/software',
-    loadChildren: '../landingPages/software/libSoftware.module#LibSoftwareModule',
-    resolve: {envSpecific: EnvironmentSpecificResolver}
+    loadChildren: '../landingPages/software/libSoftware.module#LibSoftwareModule'
   },
   {
     path: 'search/other',
-    loadChildren: '../landingPages/orp/libOrp.module#LibOrpModule',
-    resolve: {envSpecific: EnvironmentSpecificResolver}
+    loadChildren: '../landingPages/orp/libOrp.module#LibOrpModule'
   },
   {
     path: 'search/project',
-    loadChildren: '../landingPages/project/libProject.module#LibProjectModule',
-    resolve: {envSpecific: EnvironmentSpecificResolver}
+    loadChildren: '../landingPages/project/libProject.module#LibProjectModule'
   },
   {
     path: 'search/dataprovider',
-    loadChildren: '../landingPages/dataProvider/libDataProvider.module#LibDataProviderModule',
-    resolve: {envSpecific: EnvironmentSpecificResolver}
+    loadChildren: '../landingPages/dataProvider/libDataProvider.module#LibDataProviderModule'
   },
   {
     path: 'search/organization',
-    loadChildren: '../landingPages/organization/libOrganization.module#LibOrganizationModule',
-    resolve: {envSpecific: EnvironmentSpecificResolver}
+    loadChildren: '../landingPages/organization/libOrganization.module#LibOrganizationModule'
   },
   {
     path: 'search/find',
-    loadChildren: '../searchPages/find/libSearch.module#LibMainSearchModule',
-    resolve: {envSpecific: EnvironmentSpecificResolver}
+    loadChildren: '../searchPages/find/libSearch.module#LibMainSearchModule'
   },
-  {
-    path: 'search/find/publications',
-    loadChildren: '../searchPages/simple/searchPublications.module#LibSearchPublicationsModule',
-    resolve: {envSpecific: EnvironmentSpecificResolver}
-  },
-  {
-    path: 'search/find/datasets',
-    loadChildren: '../searchPages/simple/searchDatasets.module#LibSearchDatasetsModule',
-    resolve: {envSpecific: EnvironmentSpecificResolver}
-  },
-  {
-    path: 'search/find/software',
-    loadChildren: '../searchPages/simple/searchSoftware.module#LibSearchSoftwareModule',
-    resolve: {envSpecific: EnvironmentSpecificResolver}
-  },
-  {
-    path: 'search/find/other',
-    loadChildren: '../searchPages/simple/searchOrps.module#LibSearchOrpsModule',
-    resolve: {envSpecific: EnvironmentSpecificResolver}
+  { path: 'search/find/research-outcomes', loadChildren:  '../searchPages/simple/searchResearchResults.module#OpenaireSearchResearchResultsModule'
   },
   {
     path: 'search/find/projects',
-    loadChildren: '../searchPages/simple/searchProjects.module#LibSearchProjectsModule',
-    resolve: {envSpecific: EnvironmentSpecificResolver}
+    loadChildren: '../searchPages/simple/searchProjects.module#LibSearchProjectsModule'
   },
   {
     path: 'search/find/dataproviders',
-    loadChildren: '../searchPages/simple/searchDataProviders.module#LibSearchDataProvidersModule',
-    resolve: {envSpecific: EnvironmentSpecificResolver}
+    loadChildren: '../searchPages/simple/searchDataProviders.module#LibSearchDataProvidersModule'
   },
   {
     path: 'search/find/organizations',
-    loadChildren: '../searchPages/simple/searchOrganizations.module#LibSearchOrganizationsModule',
-    resolve: {envSpecific: EnvironmentSpecificResolver}
+    loadChildren: '../searchPages/simple/searchOrganizations.module#LibSearchOrganizationsModule'
   },
-  {
-    path: 'search/advanced/publications',
-    loadChildren: '../searchPages/advanced/advancedSearchPublications.module#LibAdvancedSearchPublicationsModule',
-    resolve: {envSpecific: EnvironmentSpecificResolver}
-  },
-  {
-    path: 'search/advanced/datasets',
-    loadChildren: '../searchPages/advanced/advancedSearchDatasets.module#LibAdvancedSearchDatasetsModule',
-    resolve: {envSpecific: EnvironmentSpecificResolver}
-  },
-  {
-    path: 'search/advanced/software',
-    loadChildren: '../searchPages/advanced/advancedSearchSoftware.module#LibAdvancedSearchSoftwareModule',
-    resolve: {envSpecific: EnvironmentSpecificResolver}
-  },
-  {
-    path: 'search/advanced/other',
-    loadChildren: '../searchPages/advanced/advancedSearchOrps.module#LibAdvancedSearchOrpsModule',
-    resolve: {envSpecific: EnvironmentSpecificResolver}
+  { path: 'search/advanced/research-outcomes',
+    loadChildren:  '../searchPages/advanced/searchResearchResults.module#OpenaireAdvancedSearchResearchResultsModule'
   },
   {
     path: 'search/advanced/organizations',
-    loadChildren: '../searchPages/advanced/advancedSearchOrganizations.module#LibAdvancedSearchOrganizationsModule',
-    resolve: {envSpecific: EnvironmentSpecificResolver}
+    loadChildren: '../searchPages/advanced/advancedSearchOrganizations.module#LibAdvancedSearchOrganizationsModule'
   },
   {
     path: 'search/advanced/dataproviders',
-    loadChildren: '../searchPages/advanced/advancedSearchDataProviders.module#LibAdvancedSearchDataProvidersModule',
-    resolve: {envSpecific: EnvironmentSpecificResolver}
+    loadChildren: '../searchPages/advanced/advancedSearchDataProviders.module#LibAdvancedSearchDataProvidersModule'
   },
   {
     path: 'search/advanced/projects',
-    loadChildren: '../searchPages/advanced/advancedSearchProjects.module#LibAdvancedSearchProjectsModule',
-    resolve: {envSpecific: EnvironmentSpecificResolver}
+    loadChildren: '../searchPages/advanced/advancedSearchProjects.module#LibAdvancedSearchProjectsModule'
   },
   {
     path: 'project-report',
-    loadChildren: '../landingPages/htmlProjectReport/libHtmlProjectReport.module#LibHtmlProjectReportModule',
-    resolve: {envSpecific: EnvironmentSpecificResolver}
+    loadChildren: '../landingPages/htmlProjectReport/libHtmlProjectReport.module#LibHtmlProjectReportModule'
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
-  providers: [EnvironmentSpecificResolver, EnvironmentSpecificService]
 })
 export class AggregatorRoutingModule {
 }

@@ -4,21 +4,20 @@ import {FormsModule} from '@angular/forms';
 
 import {AdvancedSearchDataProvidersRoutingModule} from './advancedSearchDataProviders-routing.module';
 import {OpenaireAdvancedSearchDataProvidersComponent} from './advancedSearchDataProviders.component';
-import {AdvancedSearchDataProvidersModule} from '../../openaireLibrary/searchPages/advanced/advancedSearchDataProviders.module';
 
-import {FreeGuard} from '../../openaireLibrary/login/freeGuard.guard';
+import {SearchDataProvidersModule} from "../../openaireLibrary/searchPages/searchDataProviders.module";
 
 @NgModule({
   imports: [
     CommonModule, FormsModule,
     AdvancedSearchDataProvidersRoutingModule,
-    AdvancedSearchDataProvidersModule
+    SearchDataProvidersModule
 
   ],
   declarations: [
     OpenaireAdvancedSearchDataProvidersComponent
    ],
-  providers:[FreeGuard],
+  providers:[],
   exports: [
     OpenaireAdvancedSearchDataProvidersComponent
      ]

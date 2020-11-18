@@ -22,7 +22,7 @@ export class FilterInfo {
 
 export class PortalAggregators {
   static list: FilterInfo[] = [
-    new FilterInfo("canada", "Canadian Aggregator", "assets/common-assets/logo-small-aggregator.png", "Country", "country", "CA", "Canada"),
+    new FilterInfo("canada", "Canadian Aggregator", "assets/canada-logo.png", "Country", "country", "CA", "Canada"),
     new FilterInfo("italy", "Italian Aggregator", "assets/common-assets/logo-small-aggregator.png", "Country", "country", "IT", "Italy"),
     new FilterInfo("greece", "Greek Aggregator", "assets/common-assets/logo-small-aggregator.png", "Country", "country", "GR", "Greece"),
 
@@ -46,6 +46,8 @@ export class PortalAggregators {
     let filter:SearchCustomFilter = null;
     if(agg) {
       filter = new SearchCustomFilter(agg.fieldName, agg.queryFieldName, agg.valueId, agg.valueName);
+      filter.promptToAddFilter = true;
+      filter.isHiddenFilter = false;
     }
     return filter;
   }
