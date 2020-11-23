@@ -8,7 +8,7 @@ import {properties} from "../../../environments/environment";
 @Component({
     selector: 'openaire-search-results',
     template: `
-      <search-research-results resultType="result" [simpleView]="false"></search-research-results>
+      <search-research-results resultType="result" [simpleView]="false" [customFilter]="customFilter"></search-research-results>
     `
 
 })

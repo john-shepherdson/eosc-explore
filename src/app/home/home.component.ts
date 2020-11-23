@@ -332,7 +332,28 @@ export class HomeComponent {
       parameterNames.push("f0");
       parameterValues.push("q");
     }
-    console.log( this.routerHelper.createQueryParams(parameterNames, parameterValues))
+    if(this.customFilter){
+      parameterNames.push(this.customFilter.queryFieldName);
+      parameterValues.push(this.customFilter.valueId);
+      parameterNames.push("cf");
+      parameterValues.push("true");
+    }
     this._router.navigate([url], {queryParams: this.routerHelper.createQueryParams(parameterNames, parameterValues)});
+  }
+  getQueryParamsForAdvancedSearch(entity){
+    let params = {};
+    if (entity == "result") {
+      if (this.resultsQuickFilter) {
+        params["qf"] = "" + this.resultsQuickFilter.selected;
+      }
+    }
+    if(this.keyword.length > 0) {
+      params["fv0"] = "" + this.keyword;
+      params["f0"] = "q";
+    }
+    if(this.customFilter){
+     params = this.customFilter.getParameters(params);
+    }
+    return params;
   }
 }

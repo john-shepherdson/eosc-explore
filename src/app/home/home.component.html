@@ -10,7 +10,7 @@
                 <div class="uk-margin-small-top uk-padding-remove-left">
                   <entities-selection [simpleView]="true" currentEntity="all" [selectedEntity]="selectedEntity"
                                       [properties]="properties" [onChangeNavigate]="false"
-                                      (selectionChange)="entityChanged($event)"
+                                      (selectionChange)="entityChanged($event)" [customFilter]="customFilter"
                   ></entities-selection>
                 </div>
                 <div class=" uk-padding-remove-left uk-margin-small-top">
@@ -43,20 +43,20 @@
                     <ul class="uk-list uk-margin-remove-bottom">
                       <li *ngIf="showSoftware || showPublications || showOrp || showDatasets"><a
                         [routerLink]="properties.searchLinkToAdvancedResults"
-                        [queryParams]="{qf:true, q: keyword, op: 'and'}"
+                        [queryParams]="getQueryParamsForAdvancedSearch('result')"
                       >Research
                         outcomes</a></li>
                       <li *ngIf="showProjects"><a
                         [routerLink]="properties.searchLinkToAdvancedProjects"
-                        [queryParams]="{q: keyword, op: 'and'}">
+                        [queryParams]="getQueryParamsForAdvancedSearch('project')">
                         Projects</a></li>
                       <li *ngIf="showDataProviders"><a
                         [routerLink]="properties.searchLinkToAdvancedDataProviders"
-                        [queryParams]="{q: keyword, op: 'and'}">
+                        [queryParams]="getQueryParamsForAdvancedSearch('datasource')">
                         Content providers</a></li>
                       <li *ngIf="showOrganizations"><a
                         [routerLink]="properties.searchLinkToAdvancedOrganizations"
-                        [queryParams]="{q: keyword, op: 'and'}">
+                        [queryParams]="getQueryParamsForAdvancedSearch('organization')">
                         Organizations</a></li>
                     </ul>
                   </div>
