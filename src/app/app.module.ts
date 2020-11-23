@@ -1,9 +1,9 @@
 import {NgModule} from '@angular/core';
 import {SharedModule} from './shared/shared.module';
-import {BrowserModule} from '@angular/platform-browser';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {BrowserModule, BrowserTransferStateModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {CommonModule} from '@angular/common';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AppComponent} from './app.component';
 
 
@@ -17,6 +17,9 @@ import {ErrorModule} from './openaireLibrary/error/error.module';
 
 import {OpenaireErrorPageComponent} from './error/errorPage.component';
 import {AppRoutingModule} from './app-routing.module';
+import {HttpInterceptorService} from "./openaireLibrary/http-interceptor.service";
+import {ErrorInterceptorService} from "./openaireLibrary/error-interceptor.service";
+import {DEFAULT_TIMEOUT, TimeoutInterceptor} from "./openaireLibrary/timeout-interceptor.service";
 
 @NgModule({
 
@@ -28,13 +31,27 @@ import {AppRoutingModule} from './app-routing.module';
     ErrorModule,
     NavigationBarModule, FeedbackModule, BottomModule,
     CookieLawModule,
+    BrowserAnimationsModule,
+    BrowserTransferStateModule,
     BrowserModule.withServerTransition({appId: 'my-app'}),
     AppRoutingModule
   ],
   declarations: [AppComponent, OpenaireErrorPageComponent],
   exports: [AppComponent],
   providers: [
-    EnvironmentSpecificResolver
+    EnvironmentSpecificResolver,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpInterceptorService,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptorService,
+      multi: true
+    },
+    [{provide: HTTP_INTERCEPTORS, useClass: TimeoutInterceptor, multi: true}],
+    [{provide: DEFAULT_TIMEOUT, useValue: 30000}]
   ],
   bootstrap: [AppComponent]
 })

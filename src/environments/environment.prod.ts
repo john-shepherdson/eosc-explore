@@ -62,7 +62,6 @@ export let properties: EnvProperties = {
   
   adminToolsAPIURL: "https://services.openaire.eu/uoa-admin-tools/",
   
-  adminToolsCommunity: "openaire",
   contextsAPI: "https://services.openaire.eu/openaire/context",
   
   communityAPI: "https://services.openaire.eu/openaire/community/",

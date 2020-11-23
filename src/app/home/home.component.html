@@ -1,4 +1,3 @@
-
 <div class="image-front-topbar mainPageSearchForm uk-background-norepeat uk-background-cover uk-background-fixed">
   <div class="uk-position-relative uk-panel">
     <div class="uk-container">
@@ -238,107 +237,107 @@
     </div>
   </div>
 </div>
-<div class="uk-section-default uk-section  uk-padding-remove-bottom">
-  <div class="uk-container uk-text-center  uk-margin-medium-bottom">
+<div class="uk-section uk-padding-remove-bottom">
+  <div class="uk-container uk-text-center uk-margin-medium-bottom">
     <div class="uk-margin-medium uk-flex-center">
       <div class="uk-first-column">
         <div class="uk-panel">
           <h3 class="uk-margin uk-text-center">
             Our growing <span class="uk-text-bold">Community</span>
           </h3>
-          <div class="uk-margin-medium-top">
+          <div class="uk-margin-large-top uk-container uk-margin-bottom uk-text-center">
             <div class="uk-grid uk-child-width-1-3@m">
-              <p *ngIf="showProjects && fundersSize">
-                <span class="portal-color emphasis">
-                  <span class="uk-text-bold"> {{fundersSize.number|number}}</span>
-                  <span class="portal-color uk-h3">{{fundersSize.size}}</span>
-                </span>
-                <br>
+              <div *ngIf="fundersSize">
+                <h3 class="portal-color">
+                  <span class="uk-text-bold number"> {{fundersSize.number|number}}</span>{{fundersSize.size}}
+                </h3>
                 <span class="uk-text-uppercase uk-text-large">Funders</span>
-              </p>
-              <p *ngIf="showDataProviders && datasourcesSize" class="">
-                <span class="portal-color emphasis">
-                  <span class="uk-text-bold"> {{datasourcesSize.number|number}}</span>
-                  <span class="portal-color uk-h3">{{datasourcesSize.size}}</span>
-                </span>
-                <br>
+              </div>
+              <div *ngIf="datasourcesSize">
+                <h3 class="portal-color">
+                  <span class="uk-text-bold number"> {{datasourcesSize.number|number}}</span>{{datasourcesSize.size}}
+                </h3>
                 <span class="uk-text-uppercase uk-text-large">Content providers</span>
-              </p>
-              <p *ngIf="showProjects && projectsSize">
-                <span class="portal-color emphasis">
-                  <span class="uk-text-bold"> {{projectsSize.number|number}}</span>
-                  <span class="portal-color uk-h3">{{projectsSize.size}}</span>
-                </span>
-                <br>
+              </div>
+              <div *ngIf="projectsSize">
+                <h3 class="portal-color">
+                  <span class="uk-text-bold number"> {{projectsSize.number|number}}</span>{{projectsSize.size}}
+                </h3>
                 <span class="uk-text-uppercase uk-text-large">Projects</span>
-              </p>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<div class="uk-section-default uk-section numbers-background  uk-padding-remove-top">
-  <div class="uk-container uk-margin-medium-top">
-    <div class="uk-grid uk-flex uk-flex-center">
-      <div class="uk-margin-large-right">
-        <div *ngIf="showPublications && publicationsSize" class="uk-margin-medium-bottom">
-          <p>
-            <span class="emphasis">{{publicationsSize.count|number}} </span><br>
-            <span class="uk-icon uk-text-uppercase uk-float-left">
-              <svg height="20" ratio="1" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg"><rect
-                style="stroke: var(--portal-main-color);" fill="none" height="16" stroke="#000" width="12" x="3.5"
-                y="2.5"></rect><polyline style="stroke: var(--portal-main-color);" fill="none"
-                                         points="5 0.5 17.5 0.5 17.5 17" stroke="#000"></polyline></svg>
-              publications
-            </span>
-          </p>
+  <div class="numbers-background">
+    <div class="uk-container uk-section">
+      <div class="uk-grid uk-margin-auto-left uk-margin-auto-right uk-grid-large uk-child-width-1-2@m" uk-grid>
+        <div *ngIf="publicationsSize || softwareSize || datasetsSize"
+             class="uk-margin-medium-bottom uk-flex uk-flex-center">
+          <div>
+            <div *ngIf="publicationsSize">
+              <div class="number uk-text-bold uk-margin-bottom">{{publicationsSize.count|number}} </div>
+              <div class="uk-text-uppercase uk-flex uk-flex-middle">
+                <icon name="book" ratio="1.5" [flex]="true" class="uk-margin-right" customClass="portal-color"></icon>
+                <span>publications</span>
+              </div>
+            </div>
+            <div *ngIf="softwareSize" class="uk-visible@m">
+              <div
+                  class="number uk-text-bold uk-margin-medium-top uk-margin-bottom">{{softwareSize.count|number}} </div>
+              <div class="uk-text-uppercase uk-flex uk-flex-middle">
+                <icon name="cog" ratio="1.5" [flex]="true" class="uk-margin-right" customClass="portal-color"></icon>
+                <span>software</span>
+              </div>
+            </div>
+            <div *ngIf="otherSize && !softwareSize" class="uk-visible@m">
+              <div class="number uk-text-bold uk-margin-medium-top uk-margin-bottom">{{otherSize.count|number}} </div>
+              <div class="uk-text-uppercase uk-flex uk-flex-middle">
+                <icon name="earth" ratio="1.5" [flex]="true" class="uk-margin-right" customClass="portal-color"></icon>
+                <span class="uk-hidden@m">other research<br>products</span>
+                <span class="uk-visible@m">other research products</span>
+              </div>
+            </div>
+            <div *ngIf="datasetsSize" class="uk-hidden@m">
+              <div
+                  class="number uk-text-bold uk-margin-medium-top uk-margin-bottom">{{datasetsSize.count|number}} </div>
+              <div class="uk-text-uppercase uk-flex uk-flex-middle">
+                <icon name="database" ratio="1.5" [flex]="true" class="uk-margin-right"
+                      customClass="portal-color"></icon>
+                <span>research data</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <div *ngIf="showSoftware && softwareSize" class="uk-margin-medium-bottom">
-          <p>
-            <span class="emphasis">{{softwareSize.count|number}} </span><br>
-            <span class="uk-icon uk-text-uppercase uk-float-left">
-              <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" data-svg="cog"><circle
-                style="stroke: var(--portal-main-color);" fill="none" stroke="#000" cx="9.997" cy="10"
-                r="3.31"></circle><path style="stroke: var(--portal-main-color);" fill="none" stroke="#000"
-                                        d="M18.488,12.285 L16.205,16.237 C15.322,15.496 14.185,15.281 13.303,15.791 C12.428,16.289 12.047,17.373 12.246,18.5 L7.735,18.5 C7.938,17.374 7.553,16.299 6.684,15.791 C5.801,15.27 4.655,15.492 3.773,16.237 L1.5,12.285 C2.573,11.871 3.317,10.999 3.317,9.991 C3.305,8.98 2.573,8.121 1.5,7.716 L3.765,3.784 C4.645,4.516 5.794,4.738 6.687,4.232 C7.555,3.722 7.939,2.637 7.735,1.5 L12.263,1.5 C12.072,2.637 12.441,3.71 13.314,4.22 C14.206,4.73 15.343,4.516 16.225,3.794 L18.487,7.714 C17.404,8.117 16.661,8.988 16.67,10.009 C16.672,11.018 17.415,11.88 18.488,12.285 L18.488,12.285 Z"></path></svg>
-              software
-            </span>
-          </p>
-        </div>
-      </div>
-      <div class="">
-        <div *ngIf="showDatasets && datasetsSize" class="uk-margin-medium-bottom">
-          <p>
-            <span class="emphasis">{{datasetsSize.count|number}} </span><br>
-            <span class="uk-icon uk-text-uppercase uk-float-left">
-              <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" data-svg="database"><ellipse
-                style="stroke: var(--portal-main-color);" fill="none" stroke="#000" cx="10" cy="4.64" rx="7.5"
-                ry="3.14"></ellipse><path style="stroke: var(--portal-main-color);" fill="none" stroke="#000"
-                                          d="M17.5,8.11 C17.5,9.85 14.14,11.25 10,11.25 C5.86,11.25 2.5,9.84 2.5,8.11"></path><path
-                style="stroke: var(--portal-main-color);" fill="none" stroke="#000"
-                d="M17.5,11.25 C17.5,12.99 14.14,14.39 10,14.39 C5.86,14.39 2.5,12.98 2.5,11.25"></path><path
-                style="stroke: var(--portal-main-color);" fill="none" stroke="#000"
-                d="M17.49,4.64 L17.5,14.36 C17.5,16.1 14.14,17.5 10,17.5 C5.86,17.5 2.5,16.09 2.5,14.36 L2.5,4.64"></path></svg>
-              research data
-            </span>
-          </p>
-        </div>
-        <div *ngIf="showOrp && otherSize" class="uk-margin-medium-bottom">
-          <p>
-            <span class="emphasis">{{otherSize.count|number}} </span><br>
-            <span class="uk-icon uk-text-uppercase uk-float-left">
-              <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" data-svg="world"><path
-                style="stroke: var(--portal-main-color);" fill="none" stroke="#000" d="M1,10.5 L19,10.5"></path><path
-                style="stroke: var(--portal-main-color);" fill="none" stroke="#000" d="M2.35,15.5 L17.65,15.5"></path><path
-                style="stroke: var(--portal-main-color);" fill="none" stroke="#000" d="M2.35,5.5 L17.523,5.5"></path><path
-                style="stroke: var(--portal-main-color);" fill="none" stroke="#000"
-                d="M10,19.46 L9.98,19.46 C7.31,17.33 5.61,14.141 5.61,10.58 C5.61,7.02 7.33,3.83 10,1.7 C10.01,1.7 9.99,1.7 10,1.7 L10,1.7 C12.67,3.83 14.4,7.02 14.4,10.58 C14.4,14.141 12.67,17.33 10,19.46 L10,19.46 L10,19.46 L10,19.46 Z"></path><circle
-                style="stroke: var(--portal-main-color);" fill="none" stroke="#000" cx="10" cy="10.5" r="9"></circle></svg>
-              other research products
-            </span>
-          </p>
+        <div *ngIf="softwareSize || datasetsSize || otherSize"
+             class="uk-margin-medium-bottom uk-flex uk-flex-center">
+          <div>
+            <div *ngIf="softwareSize" class="uk-hidden@m">
+              <div class="number uk-text-bold uk-margin-bottom">{{softwareSize.count|number}} </div>
+              <div class="uk-text-uppercase uk-flex uk-flex-middle">
+                <icon name="cog" ratio="1.5" [flex]="true" class="uk-margin-right" customClass="portal-color"></icon>
+                <span>software</span>
+              </div>
+            </div>
+            <div *ngIf="datasetsSize" class="uk-visible@m">
+              <div class="number uk-text-bold uk-margin-bottom">{{datasetsSize.count|number}} </div>
+              <div class="uk-text-uppercase uk-flex uk-flex-middle">
+                <icon name="database" ratio="1.5" [flex]="true" class="uk-margin-right"
+                      customClass="portal-color"></icon>
+                <span>research data</span>
+              </div>
+            </div>
+            <div *ngIf="otherSize" [class.uk-hidden@m]="!softwareSize">
+              <div class="number uk-text-bold uk-margin-medium-top uk-margin-bottom">{{otherSize.count|number}} </div>
+              <div class="uk-text-uppercase uk-flex uk-flex-middle">
+                <icon name="earth" ratio="1.5" [flex]="true" class="uk-margin-right" customClass="portal-color"></icon>
+                <span class="uk-hidden@m">other research<br>products</span>
+                <span class="uk-visible@m">other research products</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

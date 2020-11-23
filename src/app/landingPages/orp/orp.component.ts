@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 
 @Component({
     selector: 'openaire-orp',
-    template: `<result-landing type="orp" [activeTab]="'References'"></result-landing>`,
+    template: `<result-landing type="orp"></result-landing>`,
  })
 export class OpenaireOrpComponent{
   constructor (  ) {

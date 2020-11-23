@@ -64,8 +64,6 @@ export let properties: EnvProperties = {
   cacheUrl: "http://dl170.madgik.di.uoa.gr:3000/get?url=",
   
   adminToolsAPIURL: "http://duffy.di.uoa.gr:8080/uoa-admin-tools/",
-  
-  adminToolsCommunity: "openaire",
   datasourcesAPI: "https://beta.services.openaire.eu/openaire/ds/search/",
   contextsAPI: "https://dev-openaire.d4science.org/openaire/context",
   communityAPI: "https://dev-openaire.d4science.org/openaire/community/",

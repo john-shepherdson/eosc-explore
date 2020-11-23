@@ -24,7 +24,7 @@ import {EntitiesSelectionModule} from "../openaireLibrary/searchPages/searchUtil
 import {QuickSelectionsModule} from "../openaireLibrary/searchPages/searchUtils/quick-selections.module";
 import {IconsModule} from "../openaireLibrary/utils/icons/icons.module";
 import {IconsService} from "../openaireLibrary/utils/icons/icons.service";
-import {arrow_right} from "../openaireLibrary/utils/icons/icons";
+import {arrow_right, book, cog, database, earth} from "../openaireLibrary/utils/icons/icons";
 
 @NgModule({
   imports: [
@@ -51,6 +51,6 @@ import {arrow_right} from "../openaireLibrary/utils/icons/icons";
 })
 export class HomeModule {
   constructor(private iconsService: IconsService) {
-    this.iconsService.registerIcons([arrow_right]);
+    this.iconsService.registerIcons([arrow_right, book, earth, cog, database]);
   }
 }
