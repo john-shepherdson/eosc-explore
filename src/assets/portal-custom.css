@@ -32,7 +32,7 @@
 }
 
 .explorePanelBackground {
-    background: transparent linear-gradient(133deg, #F5F5F5 0%, #D8D8D8 100%) 0% 0% no-repeat padding-box;
+    background: transparent linear-gradient(133deg, #F5F5F5 0%, #D8D8D8 100%) 0 0 no-repeat padding-box;
 }
 
 .explorePanelBackground .uk-grid-divider > :not(.uk-first-column)::before {
@@ -41,4 +41,8 @@
 
 .explorePanelBackground .uk-breadcrumb > :nth-child(n+2):not(.uk-first-column)::before {
     color: #bfbfbf;
+}
+
+.numbers-background {
+    background: transparent url('numbers_background_pattern.svg') 0 0  repeat-x padding-box;
 }
