@@ -31,15 +31,14 @@
     background-image: none !important;
 }
 
-
-.emphasis {
-    color: #000;
-    font-size: 17px;
-    font-weight: bold;
+.explorePanelBackground {
+    background: transparent linear-gradient(133deg, #F5F5F5 0%, #D8D8D8 100%) 0% 0% no-repeat padding-box;
 }
 
-.portal-color.emphasis {
-    color: #37C7E9;
-    font-size: 40px;
-    font-weight: bold;
+.explorePanelBackground .uk-grid-divider > :not(.uk-first-column)::before {
+    border-left: 1px solid rgba(0, 0, 0, .2);
+}
+
+.explorePanelBackground .uk-breadcrumb > :nth-child(n+2):not(.uk-first-column)::before {
+    color: #bfbfbf;
 }
