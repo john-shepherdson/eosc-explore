@@ -1,10 +1,8 @@
 import {Component} from '@angular/core';
-import {ActivatedRoute, NavigationEnd, NavigationStart, Router} from '@angular/router';
 
 import {EnvProperties} from './openaireLibrary/utils/properties/env-properties';
 import {MenuItem, RootMenuItem} from './openaireLibrary/sharedComponents/menu';
 import {EnvironmentSpecificService} from './openaireLibrary/utils/properties/environment-specific.service';
-import {HelperFunctions} from "./openaireLibrary/utils/HelperFunctions.class";
 import {FilterInfo, PortalAggregators} from "./utils/aggregators";
 import {UserManagementService} from "./openaireLibrary/services/user-management.service";
 import {User} from "./openaireLibrary/login/utils/helper.class";
@@ -12,6 +10,8 @@ import {Header} from "./openaireLibrary/sharedComponents/navigationBar.component
 import {portalProperties} from "../environments/environment-aggregator";
 import {properties} from "../environments/environment";
 import {ConnectHelper} from "./openaireLibrary/connect/connectHelper";
+import {ConfigurationService} from "./openaireLibrary/utils/configuration/configuration.service";
+import {Subscriber} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -53,11 +53,22 @@ export class AppComponent {
   footer = portalProperties.sectionFooter;
   header: Header;
   agg: FilterInfo = null;
-  
+  subscriptions = [];
   constructor(private propertiesService: EnvironmentSpecificService,
-              private userManagementService: UserManagementService) {
+              private userManagementService: UserManagementService,  private configurationService: ConfigurationService) {
+    this.id = ConnectHelper.getCommunityFromDomain(this.properties.domain);
+    this.agg = PortalAggregators.getFilterInfoByMenuId(this.id);
+    this.configurationService.initStaticCommunityInformation(PortalAggregators.getCommunityInfoByMenuId(this.id));
   }
-  
+  ngOnDestroy() {
+    this.subscriptions.forEach(subscription => {
+      if (subscription instanceof Subscriber) {
+        subscription.unsubscribe();
+      }
+    });
+    this.configurationService.clearSubscriptions();
+    this.userManagementService.clearSubscriptions();
+  }
   ngOnInit() {
     if (typeof document !== 'undefined') {
         this.isClient = true;
@@ -76,56 +87,41 @@ export class AppComponent {
       };
       this.buildMenu();
     }
-    this.userManagementService.getUserInfo().subscribe(user => {
+    this.subscriptions.push(this.userManagementService.getUserInfo().subscribe(user => {
       this.user = user;
       this.loginCheck = true;
       this.userMenuItems = [];
       if (this.user) {
         this.userMenuItems.push(new MenuItem("", "User information", "", "/user-info", false, [], [], {}));
       }
-    });
+    }));
   }
   
   private buildMenu() {
     this.menuItems = [
       {rootItem: new MenuItem("home", "Home", "", "/", false, [], null, {}), items: []},
       {
-        rootItem: new MenuItem("search", "Search", "", "/search/find", false, [], null, {}),
+        rootItem: new MenuItem("search", "Search", "", "/search/find", false, [], ["/search/find"], {}),
         items: []
       },
       {
-        rootItem: new MenuItem("deposit", "Deposit", "", "/participate/deposit/learn-how", false, [], null, {}),
-        //rootItem: new MenuItem("deposit", "Deposit", "", "/participate/deposit/learn-how", false, [], ["/participate/deposit/learn-how"], {}),
+        rootItem: new MenuItem("deposit", "Deposit", "", "/participate/deposit/learn-how", false, [], ["/participate/deposit/learn-how"], {}),
         items: []
-        //rootItem: new MenuItem("share", "Share", "", "", false, [], null, {}),
-        //items: [new MenuItem("", "Publications", "", "/participate/deposit-publications", false, ["publication"], null, {}),
-        //  new MenuItem("", "Research Data", "", "/participate/deposit-datasets", false, ["dataset"], null, {})]
       },
       {
-        rootItem: new MenuItem("link", "Link", "", "/participate/claim", false, [], null, {}),
-        items: [new MenuItem("", "Start linking", "", "/participate/claim", false, [], null, {}),
+        rootItem: new MenuItem("link", "Link", "", "/participate/claim", false, [], ["/participate/claim"], {}),
+        items: [new MenuItem("", "Start linking", "", "/participate/claim", false, [], ["/participate/claim"], {}),
           new MenuItem("", "Learn more", this.properties.claimsInformationLink, "", false, [], [], {})]
       }
     ];
     let params = {};
     params[this.agg.queryFieldName] = this.agg.valueId;
-    if ((portalProperties.entities.publication.isEnabled && portalProperties.entities.publication.simpleSearchPage) ||
-      (portalProperties.entities.dataset.isEnabled && portalProperties.entities.dataset.simpleSearchPage) ||
-      (portalProperties.entities.software.isEnabled && portalProperties.entities.software.simpleSearchPage) ||
-      portalProperties.entities.other.isEnabled && portalProperties.entities.other.simpleSearchPage) {
-      
-      this.menuItems[1].items.push(new MenuItem("", "Research outcomes", "", "/search/find/research-outcomes", false, [], [], params))
-    }
-    
-    if (portalProperties.entities.project.isEnabled && portalProperties.entities.project.simpleSearchPage) {
-      this.menuItems[1].items.push(new MenuItem("", "Projects", "", "/search/find/projects/", false, [], [],
-        {cf: true}))
-    }
-    if (portalProperties.entities.datasource.isEnabled && portalProperties.entities.datasource.simpleSearchPage) {
-      this.menuItems[1].items.push(new MenuItem("", "Content Providers", "", "/search/find/dataproviders", false, [], [], params))
-    }
-    if (portalProperties.entities.organization.isEnabled && portalProperties.entities.organization.simpleSearchPage) {
-      this.menuItems[1].items.push(new MenuItem("", "Organizations", "", "/search/find/organizations/", false, [], [], params))
-    }
+    this.menuItems[1].items.push(new MenuItem("", "Research outcomes", "", "/search/find/research-outcomes", false, [], ["/search/find/research-outcomes"], params))
+
+    this.menuItems[1].items.push(new MenuItem("", "Projects", "", "/search/find/projects", false, ["project"], ["/search/find/projects"],
+        {cf: true}));
+    this.menuItems[1].items.push(new MenuItem("", "Content Providers", "", "/search/find/dataproviders", false, ["datasource"], ["/search/find/dataproviders"], params))
+    this.menuItems[1].items.push(new MenuItem("", "Organizations", "", "/search/find/organizations", false, ["organization"], ["/search/find/organizations"], params))
+
   }
 }

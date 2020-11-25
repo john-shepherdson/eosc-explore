@@ -20,6 +20,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {HttpInterceptorService} from "./openaireLibrary/http-interceptor.service";
 import {ErrorInterceptorService} from "./openaireLibrary/error-interceptor.service";
 import {DEFAULT_TIMEOUT, TimeoutInterceptor} from "./openaireLibrary/timeout-interceptor.service";
+import {ConfigurationService} from "./openaireLibrary/utils/configuration/configuration.service";
 
 @NgModule({
 
@@ -39,7 +40,7 @@ import {DEFAULT_TIMEOUT, TimeoutInterceptor} from "./openaireLibrary/timeout-int
   declarations: [AppComponent, OpenaireErrorPageComponent],
   exports: [AppComponent],
   providers: [
-    EnvironmentSpecificResolver,
+    EnvironmentSpecificResolver, ConfigurationService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpInterceptorService,

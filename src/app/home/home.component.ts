@@ -137,7 +137,7 @@ export class HomeComponent {
       }
 
       //this.config.getCommunityInformation(this.properties, this.properties.adminToolsCommunity ).subscribe(data => {
-     /* this.subs.push(this.config.communityInformationState.subscribe(data => {
+      this.subs.push(this.config.communityInformationState.subscribe(data => {
           if(data) {
             var showEntity = {};
             for (var i = 0; i < data['entities'].length; i++) {
@@ -150,7 +150,7 @@ export class HomeComponent {
             this.showOrp = showEntity["orp"];
             this.showProjects = showEntity["project"];
             this.showDataProviders = showEntity["datasource"];
-            this.showOrganizations = showEntity["organization"];*/
+            this.showOrganizations = showEntity["organization"];
             if(this.showPublications){
               this.resultTypes.values.push({name: "Publications" , id:"publications",selected:true, number:0});
             }
@@ -164,12 +164,12 @@ export class HomeComponent {
               this.resultTypes.values.push({name: "Other research products" , id:"other",selected:true, number:0});
             }
             this.getNumbers();
-         /* }
+          }
         },
         error => {
           this.handleError("Error getting community information", error);
         }
-      ));*/
+      ));
     }
 
   }

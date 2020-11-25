@@ -59,8 +59,10 @@ export let properties: EnvProperties = {
   cacheUrl: "https://demo.openaire.eu/cache/get?url=",
   
   datasourcesAPI: "https://beta.services.openaire.eu/openaire/ds/search/",
-  
+
+  adminToolsCommunity: "aggregator",
   adminToolsAPIURL: "https://beta.services.openaire.eu/uoa-admin-tools/",
+  useHelpTexts: false,
   contextsAPI: "https://beta.services.openaire.eu/openaire/context",
   communityAPI: "https://beta.services.openaire.eu/openaire/community/",
   

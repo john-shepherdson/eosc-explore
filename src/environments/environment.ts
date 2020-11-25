@@ -62,8 +62,10 @@ export let properties: EnvProperties = {
   feedbackmail: "kostis30fylloy@gmail.com",
   
   cacheUrl: "http://dl170.madgik.di.uoa.gr:3000/get?url=",
-  
+
+  adminToolsCommunity: "aggregator",
   adminToolsAPIURL: "http://duffy.di.uoa.gr:8080/uoa-admin-tools/",
+  useHelpTexts: false,
   datasourcesAPI: "https://beta.services.openaire.eu/openaire/ds/search/",
   contextsAPI: "https://dev-openaire.d4science.org/openaire/context",
   communityAPI: "https://dev-openaire.d4science.org/openaire/community/",

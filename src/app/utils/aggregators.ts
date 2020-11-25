@@ -1,4 +1,5 @@
 import {SearchCustomFilter} from "../openaireLibrary/searchPages/searchUtils/searchUtils.class";
+import {Portal} from "../openaireLibrary/utils/entities/adminTool/portal";
 
 export class FilterInfo {
   menuId: string;
@@ -27,6 +28,11 @@ export class PortalAggregators {
     new FilterInfo("greece", "Greek Aggregator", "assets/common-assets/logo-small-aggregator.png", "Country", "country", "GR", "Greece"),
 
   ];
+  static disabled = {
+    "canada": {pages: [], entities: ["software"]},
+    "italy": {pages: [], entities: []},
+    "greece": {pages: [], entities: []}
+  };
   static defaultAggregator: FilterInfo = PortalAggregators.list[0];
 
   public static getList(): FilterInfo[] {
@@ -50,6 +56,13 @@ export class PortalAggregators {
       filter.isHiddenFilter = false;
     }
     return filter;
+  }
+
+  public static getCommunityInfoByMenuId(menuId: string): any {
+    if(PortalAggregators.disabled[menuId]){
+      return Portal.getMockCommunityInfo(PortalAggregators.disabled[menuId].entities,PortalAggregators.disabled[menuId].pages);
+    }
+    return Portal.getMockCommunityInfo([],[]);
   }
 }
 

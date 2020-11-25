@@ -93,10 +93,8 @@ const routes: Routes = [
   
   // Linking Pages
   { path: 'myclaims', loadChildren: './claims/myClaims/myClaims.module#LibMyClaimsModule', resolve: { envSpecific: EnvironmentSpecificResolver  }},
-  { path: 'claims', loadChildren: './claims/claimsAdmin/claimsAdmin.module#LibClaimsAdminModule', resolve: { envSpecific: EnvironmentSpecificResolver  }},
   { path: 'participate/claim', loadChildren: './claims/linking/linkingGeneric.module#LibLinkingGenericModule', resolve: { envSpecific: EnvironmentSpecificResolver  }},
   { path: 'participate/direct-claim', loadChildren: './claims/directLinking/directLinking.module#LibDirectLinkingModule', resolve: { envSpecific: EnvironmentSpecificResolver  }},
-  { path: 'claims-project-manager', loadChildren: './claims/claimsByToken/claimsByToken.module#LibClaimsByTokenModule', resolve: { envSpecific: EnvironmentSpecificResolver  }},
   {path: 'user-info', loadChildren: './login/libUser.module#LibUserModule'},
   {path: 'error', component: OpenaireErrorPageComponent},
   {path: '**', pathMatch: 'full', component: OpenaireErrorPageComponent}
