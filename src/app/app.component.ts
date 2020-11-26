@@ -115,13 +115,11 @@ export class AppComponent {
       }
     ];
     let params = {};
-    params[this.agg.queryFieldName] = this.agg.valueId;
-    this.menuItems[1].items.push(new MenuItem("", "Research outcomes", "", "/search/find/research-outcomes", false, [], ["/search/find/research-outcomes"], params))
-
-    this.menuItems[1].items.push(new MenuItem("", "Projects", "", "/search/find/projects", false, ["project"], ["/search/find/projects"],
-        {cf: true}));
-    this.menuItems[1].items.push(new MenuItem("", "Content Providers", "", "/search/find/dataproviders", false, ["datasource"], ["/search/find/dataproviders"], params))
-    this.menuItems[1].items.push(new MenuItem("", "Organizations", "", "/search/find/organizations", false, ["organization"], ["/search/find/organizations"], params))
+    // params[this.agg.queryFieldName] = this.agg.valueId;
+    this.menuItems[1].items.push(new MenuItem("", "Research outcomes", "", "/search/find/research-outcomes", false, [], ["/search/find/research-outcomes"], params));
+    this.menuItems[1].items.push(new MenuItem("", "Projects", "", "/search/find/projects", false, ["project"], ["/search/find/projects"], params));
+    this.menuItems[1].items.push(new MenuItem("", "Content Providers", "", "/search/find/dataproviders", false, ["datasource"], ["/search/find/dataproviders"], params));
+    this.menuItems[1].items.push(new MenuItem("", "Organizations", "", "/search/find/organizations", false, ["organization"], ["/search/find/organizations"], params));
 
   }
 }

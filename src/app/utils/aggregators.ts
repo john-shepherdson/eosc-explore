@@ -52,8 +52,8 @@ export class PortalAggregators {
     let filter:SearchCustomFilter = null;
     if(agg) {
       filter = new SearchCustomFilter(agg.fieldName, agg.queryFieldName, agg.valueId, agg.valueName);
-      filter.promptToAddFilter = true;
-      filter.isHiddenFilter = false;
+      filter.promptToAddFilter = false;
+      filter.isHiddenFilter = true;
     }
     return filter;
   }

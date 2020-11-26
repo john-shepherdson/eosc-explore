@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {SearchCustomFilter} from "../../openaireLibrary/searchPages/searchUtils/searchUtils.class";
-import {ActivatedRoute} from "@angular/router";
 import {FilterInfo, PortalAggregators} from "../../utils/aggregators";
 import {ConnectHelper} from "../../openaireLibrary/connect/connectHelper";
 import {properties} from "../../../environments/environment";
@@ -13,11 +12,7 @@ import {properties} from "../../../environments/environment";
  })
 export class OpenaireSearchComponent{
   customFilter:SearchCustomFilter= null;
-  constructor ( private  route: ActivatedRoute ) {
-
-
-  }
-
+  constructor ( ) {}
   ngOnInit() {
     let id = ConnectHelper.getCommunityFromDomain(properties.domain);
     let agg:FilterInfo = PortalAggregators.getFilterInfoByMenuId(id);
