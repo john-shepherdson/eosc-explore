@@ -45,12 +45,12 @@ export let properties: EnvProperties = {
   vocabulariesAPI: "https://beta.services.openaire.eu/provision/mvc/vocabularies/",
   
   piwikBaseUrl: "https://analytics.openaire.eu/piwik.php?idsite=",
-  piwikSiteId: "6",
-  loginUrl: "https://beta.services.openaire.eu/uoa-user-management/openid_connect_login",
+  piwikSiteId: null,
+  loginUrl: "https://beta.services.openaire.eu/explore-login/openid_connect_login",
   
   userInfoUrl: "https://beta.services.openaire.eu/uoa-user-management/api/users/getUserInfo?accessToken=",
   
-  logoutUrl: "https://aai.openaire.eu/proxy/saml2/idp/SingleLogoutService.php?ReturnTo=",
+  logoutUrl: "https://beta.services.openaire.eu/explore-login/openid_logout",
   
   cookieDomain: ".openaire.eu",
   
@@ -70,7 +70,7 @@ export let properties: EnvProperties = {
   pagingLimit: 20,
   resultsPerPage: 10,
 
-  "baseLink" : "/",
+  "baseLink" : "",
   "domain":"https://beta.explore.openaire.eu",
   
   searchLinkToResult: "/search/result?id=",

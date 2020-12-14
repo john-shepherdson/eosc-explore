@@ -1,5 +1,5 @@
 {
-  "name": "openaire-search",
+  "name": "openaire-aggregator",
   "version": "1.0.0",
   "license": "Openaire",
   "contributors": [
@@ -11,14 +11,20 @@
     "start": "ng serve --disable-host-check --host 0.0.0.0 --port 4400",
     "start:ssr": "npm run build:ssr && npm run serve:ssr",
     "start:prerender": "npm run build:prerender && npm run serve:prerender",
+    "start:ssr-beta": "npm run build:ssr-beta && npm run serve:ssr",
+    "start:prerender-beta": "npm run build:prerender-beta && npm run serve:prerender",
     "build": "ng build",
-    "build:client-and-server-bundles": "ng build --prod --sourceMap --stats-json=true && ng run openaire-search:server:production",
+    "build:client-and-server-bundles": "ng build --prod --sourceMap --stats-json=true && ng run openaire-aggregator:server:production",
+    "build:client-and-server-bundles-beta": "ng build --configuration=beta --sourceMap --stats-json=true && ng run openaire-aggregator:server:beta",
     "build:prerender": "npm run build:client-and-server-bundles && npm run webpack:server && npm run generate:prerender",
     "build:ssr": "npm run build:client-and-server-bundles  && npm run webpack:server",
+    "build:prerender-beta": "npm run build:client-and-server-bundles-beta && npm run webpack:server && npm run generate:prerender",
+    "build:ssr-beta": "npm run build:client-and-server-bundles-beta  && npm run webpack:server",
     "generate:prerender": "cd dist && node prerender",
     "webpack:server": "webpack --config webpack.server.config.js --progress --colors",
     "serve:prerender": "cd dist/browser && http-server",
-    "serve:ssr": "node dist/server"
+    "serve:ssr": "node dist/server",
+    "after-build-clean": "rm -rf src node_modules  .idea/ installOpenaireLib.sh deploy dist/browser/assets/common-assets/.svn/ dist/browser/stats.json ; "
   },
   "private": true,
   "dependencies": {
@@ -45,7 +51,9 @@
     "datatables.net-dt": "^1.10.19",
     "jquery": "^3.4.1",
     "ng-recaptcha": "^3.0.5",
+    "ng2-ckeditor": "1.1.9",
     "ngx-json-ld": "0.1.6",
+    "nouislider": "^14.6.0",
     "prom-client": "^11.3.0",
     "ts-md5": "^1.2.0",
     "tslib": "^1.9.0",

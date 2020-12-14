@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "openaire-search": {
+    "openaire-aggregator": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -54,6 +54,31 @@
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.prod.ts"
+                },
+                {
+                  "replace": "src/index.html",
+                  "with": "src/index.prod.html"
+                },
+                {
+                  "replace": "src/robots.txt",
+                  "with": "src/robots.prod.txt"
+                }
+              ]
+            },
+            "beta": {
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.beta.ts"
                 }
               ]
             }
@@ -62,18 +87,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "openaire-search:build"
+            "browserTarget": "openaire-aggregator:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "openaire-search:build:production"
+              "browserTarget": "openaire-aggregator:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "openaire-search:build"
+            "browserTarget": "openaire-aggregator:build"
           }
         },
         "test": {
@@ -131,6 +156,22 @@
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.prod.ts"
+                },
+                {
+                  "replace": "src/index.html",
+                  "with": "src/index.prod.html"
+                },
+                {
+                  "replace": "src/robots.txt",
+                  "with": "src/robots.prod.txt"
+                }
+              ]
+            },
+            "beta": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.beta.ts"
                 }
               ]
             }
@@ -138,7 +179,7 @@
         }
       }
     },
-    "openaire-search-e2e": {
+    "openaire-aggregator-e2e": {
       "root": "e2e",
       "sourceRoot": "e2e",
       "projectType": "application",
@@ -147,7 +188,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "openaire-search:serve"
+            "devServerTarget": "openaire-aggregator:serve"
           }
         },
         "lint": {
@@ -164,7 +205,7 @@
       }
     }
   },
-  "defaultProject": "openaire-search",
+  "defaultProject": "openaire-aggregator",
   "schematics": {
     "@schematics/angular:class": {
       "spec": false
