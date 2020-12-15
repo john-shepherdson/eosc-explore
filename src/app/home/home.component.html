@@ -207,7 +207,7 @@
   </div>
   <div class="numbers-background uk-section">
     <div class="uk-container">
-      <div class="uk-grid uk-margin-auto-left uk-margin-auto-right uk-grid-large uk-flex uk-flex-center" uk-grid>
+      <div class="uk-grid uk-margin-auto-left uk-margin-auto-right uk-grid-large" uk-grid>
         <div *ngIf="publicationsSize" class="uk-width-1-2@m uk-flex uk-flex-center">
           <div class="number-width">
             <a class="number uk-text-bold uk-margin-bottom" [routerLink]="properties.searchLinkToResults"
@@ -249,8 +249,7 @@
                [queryParams]="{type: 'other', qf: false}">{{otherSize.count|number}} </a>
             <div class="uk-text-uppercase uk-flex uk-flex-middle">
               <icon name="earth" ratio="1.5" [flex]="true" class="uk-margin-right" customClass="portal-color"></icon>
-              <span class="uk-hidden@m">other research<br>products</span>
-              <span class="uk-visible@m">other research products</span>
+              <span>other research products</span>
             </div>
           </div>
         </div>
