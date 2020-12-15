@@ -48,3 +48,6 @@
 .numbers-background {
     background: transparent url('numbers_background_pattern.svg') 0 0  repeat-x padding-box;
 }
+.number {
+    color: #1d1d1d;
+}
