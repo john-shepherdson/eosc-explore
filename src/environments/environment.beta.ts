@@ -4,7 +4,7 @@ export let properties: EnvProperties = {
   environment: "beta",
   adminToolsPortalType: "aggregator",
   dashboard: "explore",
-  enablePiwikTrack: true,
+  enablePiwikTrack: false,
   useCache: false,
   useLongCache: true,
   showAddThis: true,

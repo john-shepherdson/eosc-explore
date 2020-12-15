@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {FilterInfo, PortalAggregators} from "../../utils/aggregators";
+import {AggregatorInfo, PortalAggregators} from "../../utils/aggregators";
 import {SearchCustomFilter} from "../../openaireLibrary/searchPages/searchUtils/searchUtils.class";
 import {ConnectHelper} from "../../openaireLibrary/connect/connectHelper";
 import {properties} from "../../../environments/environment";
@@ -20,7 +20,7 @@ export class OpenaireSearchResearchResultsComponent {
     ngOnInit() {
         this.properties = properties;
         let id = ConnectHelper.getCommunityFromDomain(properties.domain);
-        let agg: FilterInfo = PortalAggregators.getFilterInfoByMenuId(id);
+        let agg: AggregatorInfo = PortalAggregators.getFilterInfoByMenuId(id);
         this.customFilter = PortalAggregators.getSearchCustomFilterByAggregator(agg);
     }
 }

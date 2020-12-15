@@ -20,7 +20,7 @@ import { SEOService } from '../openaireLibrary/sharedComponents/SEO/SEO.service'
 import {SearchResearchResultsService} from "../openaireLibrary/services/searchResearchResults.service";
 import {HelperService} from "../openaireLibrary/utils/helper/helper.service";
 import {Filter} from "../openaireLibrary/searchPages/searchUtils/searchHelperClasses.class";
-import {FilterInfo, PortalAggregators} from "../utils/aggregators";
+import {AggregatorInfo, PortalAggregators} from "../utils/aggregators";
 import {SearchCustomFilter} from "../openaireLibrary/searchPages/searchUtils/searchUtils.class";
 import {properties} from "../../environments/environment";
 import {portalProperties} from "../../environments/environment-aggregator";
@@ -75,7 +75,7 @@ export class HomeComponent {
   public pageContents = null;
   customFilter:SearchCustomFilter= null;
   aggregatorId;
-  aggregator:FilterInfo;
+  aggregator:AggregatorInfo;
   constructor (
     private route: ActivatedRoute,
     private _router: Router,
@@ -324,6 +324,11 @@ export class HomeComponent {
           parameterNames.push("qf");
           parameterValues.push("" + this.resultsQuickFilter.selected);
         }
+      }
+    }else if(this.selectedEntity == "all"){
+      if (this.resultsQuickFilter) {
+        parameterNames.push("qf");
+        parameterValues.push("true");
       }
     }
     if(this.keyword.length > 0) {

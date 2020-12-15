@@ -174,22 +174,26 @@
             Our growing <span class="uk-text-bold">Community</span>
           </h3>
           <div class="uk-margin-large-top uk-container uk-margin-bottom uk-text-center">
-            <div class="uk-grid uk-child-width-1-3@m">
-              <div *ngIf="fundersSize">
+            <div class="uk-grid uk-flex uk-flex-center">
+              <div *ngIf="fundersSize" class="uk-width-1-3@m">
                 <h3 class="portal-color">
-                  <span class="uk-text-bold number"> {{fundersSize.number|number}}</span>{{fundersSize.size}}
+                  <a  [routerLink]="properties.searchLinkToProjects"  class="uk-text-bold number">
+                    {{fundersSize.number|number}}</a>{{fundersSize.size}}
                 </h3>
                 <span class="uk-text-uppercase uk-text-large">Funders</span>
               </div>
-              <div *ngIf="datasourcesSize">
+              <div *ngIf="datasourcesSize" class="uk-width-1-3@m">
                 <h3 class="portal-color">
-                  <span class="uk-text-bold number"> {{datasourcesSize.number|number}}</span>{{datasourcesSize.size}}
+                  <a  [routerLink]="properties.searchLinkToDataProviders" class="uk-text-bold number">
+                    {{datasourcesSize.number|number}}</a>{{datasourcesSize.size}}
                 </h3>
                 <span class="uk-text-uppercase uk-text-large">Content providers</span>
               </div>
-              <div *ngIf="projectsSize">
+              <div *ngIf="projectsSize" class="uk-width-1-3@m">
                 <h3 class="portal-color">
-                  <span class="uk-text-bold number"> {{projectsSize.number|number}}</span>{{projectsSize.size}}
+                  <a  [routerLink]="properties.searchLinkToProjects" class="uk-text-bold number">
+                    {{projectsSize.number|number}}</a>{{projectsSize.size}}
+
                 </h3>
                 <span class="uk-text-uppercase uk-text-large">Projects</span>
               </div>
@@ -201,69 +205,51 @@
   </div>
   <div class="numbers-background uk-section">
     <div class="uk-container">
-      <div class="uk-grid uk-margin-auto-left uk-margin-auto-right uk-grid-large uk-child-width-1-2@m" uk-grid>
-        <div *ngIf="publicationsSize || softwareSize || datasetsSize"
-             class="uk-margin-medium-bottom uk-flex uk-flex-center">
+      <div class="uk-grid uk-margin-auto-left uk-margin-auto-right uk-grid-large uk-flex uk-flex-center " uk-grid>
+        <div *ngIf="publicationsSize" class="uk-width-1-2@m uk-flex uk-flex-center">
           <div>
-            <div *ngIf="publicationsSize">
-              <div class="number uk-text-bold uk-margin-bottom">{{publicationsSize.count|number}} </div>
-              <div class="uk-text-uppercase uk-flex uk-flex-middle">
-                <icon name="book" ratio="1.5" [flex]="true" class="uk-margin-right" customClass="portal-color"></icon>
-                <span>publications</span>
-              </div>
-            </div>
-            <div *ngIf="softwareSize" class="uk-visible@m">
-              <div
-                  class="number uk-text-bold uk-margin-medium-top uk-margin-bottom">{{softwareSize.count|number}} </div>
-              <div class="uk-text-uppercase uk-flex uk-flex-middle">
-                <icon name="cog" ratio="1.5" [flex]="true" class="uk-margin-right" customClass="portal-color"></icon>
-                <span>software</span>
-              </div>
-            </div>
-            <div *ngIf="otherSize && !softwareSize" class="uk-visible@m">
-              <div class="number uk-text-bold uk-margin-medium-top uk-margin-bottom">{{otherSize.count|number}} </div>
-              <div class="uk-text-uppercase uk-flex uk-flex-middle">
-                <icon name="earth" ratio="1.5" [flex]="true" class="uk-margin-right" customClass="portal-color"></icon>
-                <span class="uk-hidden@m">other research<br>products</span>
-                <span class="uk-visible@m">other research products</span>
-              </div>
-            </div>
-            <div *ngIf="datasetsSize" class="uk-hidden@m">
-              <div
-                  class="number uk-text-bold uk-margin-medium-top uk-margin-bottom">{{datasetsSize.count|number}} </div>
-              <div class="uk-text-uppercase uk-flex uk-flex-middle">
-                <icon name="database" ratio="1.5" [flex]="true" class="uk-margin-right"
-                      customClass="portal-color"></icon>
-                <span>research data</span>
-              </div>
+            <a class="number uk-text-bold uk-margin-bottom"  [routerLink]="properties.searchLinkToResults"
+               [queryParams]="{type: 'publications', qf: false}">
+              {{publicationsSize.count|number}} </a>
+            <div class="uk-text-uppercase uk-flex uk-flex-middle">
+              <icon name="book" ratio="1.5" [flex]="true" class="uk-margin-right" customClass="portal-color"></icon>
+              <span>publications</span>
             </div>
           </div>
         </div>
-        <div *ngIf="softwareSize || datasetsSize || otherSize"
-             class="uk-margin-medium-bottom uk-flex uk-flex-center">
+        <div *ngIf="datasetsSize" class="uk-width-1-2@m uk-flex uk-flex-center">
           <div>
-            <div *ngIf="softwareSize" class="uk-hidden@m">
-              <div class="number uk-text-bold uk-margin-bottom">{{softwareSize.count|number}} </div>
-              <div class="uk-text-uppercase uk-flex uk-flex-middle">
-                <icon name="cog" ratio="1.5" [flex]="true" class="uk-margin-right" customClass="portal-color"></icon>
-                <span>software</span>
-              </div>
+            <a class="number uk-text-bold uk-margin-bottom"
+               [routerLink]="properties.searchLinkToResults"
+               [queryParams]="{type: 'datasets', qf: false}">{{datasetsSize.count|number}} </a>
+
+            <div class="uk-text-uppercase uk-flex uk-flex-middle">
+              <icon name="database" ratio="1.5" [flex]="true" class="uk-margin-right"
+                    customClass="portal-color"></icon>
+              <span>research data</span>
             </div>
-            <div *ngIf="datasetsSize" class="uk-visible@m">
-              <div class="number uk-text-bold uk-margin-bottom">{{datasetsSize.count|number}} </div>
-              <div class="uk-text-uppercase uk-flex uk-flex-middle">
-                <icon name="database" ratio="1.5" [flex]="true" class="uk-margin-right"
-                      customClass="portal-color"></icon>
-                <span>research data</span>
-              </div>
+          </div>
+        </div>
+        <div *ngIf="softwareSize" class="uk-width-1-2@m uk-flex uk-flex-center">
+          <div>
+            <a
+                class="number uk-text-bold uk-margin-bottom"  [routerLink]="properties.searchLinkToResults"
+                [queryParams]="{type: 'software', qf: false}">
+              {{softwareSize.count|number}} </a>
+            <div class="uk-text-uppercase uk-flex uk-flex-middle">
+              <icon name="cog" ratio="1.5" [flex]="true" class="uk-margin-right" customClass="portal-color"></icon>
+              <span>software</span>
             </div>
-            <div *ngIf="otherSize" [class.uk-hidden@m]="!softwareSize">
-              <div class="number uk-text-bold uk-margin-medium-top uk-margin-bottom">{{otherSize.count|number}} </div>
-              <div class="uk-text-uppercase uk-flex uk-flex-middle">
-                <icon name="earth" ratio="1.5" [flex]="true" class="uk-margin-right" customClass="portal-color"></icon>
-                <span class="uk-hidden@m">other research<br>products</span>
-                <span class="uk-visible@m">other research products</span>
-              </div>
+          </div>
+        </div>
+        <div *ngIf="otherSize" class="uk-width-1-2@m uk-flex uk-flex-center">
+          <div>
+            <a class="number uk-text-bold  uk-margin-bottom"  [routerLink]="properties.searchLinkToResults"
+               [queryParams]="{type: 'other', qf: false}">{{otherSize.count|number}} </a>
+            <div class="uk-text-uppercase uk-flex uk-flex-middle">
+              <icon name="earth" ratio="1.5" [flex]="true" class="uk-margin-right" customClass="portal-color"></icon>
+              <span class="uk-hidden@m">other research<br>products</span>
+              <span class="uk-visible@m">other research products</span>
             </div>
           </div>
         </div>

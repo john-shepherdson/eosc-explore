@@ -1,14 +1,16 @@
 :root {
-    --portal-main-color: #E80000;
+    --portal-main-color:  #2d72d6;
     --portal-main-contrast: white;
-    --portal-dark-color: #ad0000;
+    --portal-dark-color: #313179;
     --openaire-main-color: #313179;
+    --graph-background:  no-repeat bottom;;
 }
 
 .graph-background {
     background-size: cover !important;
     padding-bottom: 100px;
-    background: #FAFAFA url('/assets/canada-background.svg') no-repeat bottom;
+    background-color: #FAFAFA !important;
+    background: var(--graph-background);
 }
 .mainPageSearchForm{
     background-color: white !important;
@@ -45,4 +47,7 @@
 
 .numbers-background {
     background: transparent url('numbers_background_pattern.svg') 0 0  repeat-x padding-box;
+}
+.number {
+    color: #1d1d1d;
 }

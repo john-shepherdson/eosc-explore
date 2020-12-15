@@ -1,7 +1,7 @@
 import {SearchCustomFilter} from "../openaireLibrary/searchPages/searchUtils/searchUtils.class";
 import {Portal} from "../openaireLibrary/utils/entities/adminTool/portal";
 
-export class FilterInfo {
+export class AggregatorInfo {
   menuId: string;
   title: string;
   logoUrl: string;
@@ -9,8 +9,11 @@ export class FilterInfo {
   queryFieldName: string; //country
   valueId: string; //gr
   valueName: string; // Greece
+  mainColor:string;
+  darkColor:string;
+  background:string;
 
-  constructor(menuId: string, title: string, logoUrl: string, fieldName: string, queryFieldName: string, valueId: string, valueName: string) {
+  constructor(menuId: string, title: string, logoUrl: string, fieldName: string, queryFieldName: string, valueId: string, valueName: string, mainColor:string=null, darkColor:string=null, background:string=null) {
     this.menuId = menuId;
     this.title = title;
     this.logoUrl = logoUrl;
@@ -18,28 +21,31 @@ export class FilterInfo {
     this.queryFieldName = queryFieldName;
     this.valueId = valueId;
     this.valueName = valueName;
+    this.mainColor = mainColor;
+    this.darkColor = darkColor;
+    this.background = background;
   }
 }
 
 export class PortalAggregators {
-  static list: FilterInfo[] = [
-    new FilterInfo("canada", "Canadian Aggregator", "assets/canada-logo.png", "Country", "country", "CA", "Canada"),
-    new FilterInfo("italy", "Italian Aggregator", "assets/common-assets/logo-small-aggregator.png", "Country", "country", "IT", "Italy"),
-    new FilterInfo("greece", "Greek Aggregator", "assets/common-assets/logo-small-aggregator.png", "Country", "country", "GR", "Greece"),
+  static list: AggregatorInfo[] = [
+    new AggregatorInfo("canada", "Canadian Aggregator", "assets/canada-logo.png", "Country", "country", "CA", "Canada","#E80000","#ad0000", "/assets/canada-background.svg" ),
+    new AggregatorInfo("italy", "Italian Aggregator", "assets/common-assets/logo-small-aggregator.png", "Country", "country", "IT", "Italy"),
+    new AggregatorInfo("greece", "Greek Aggregator", "assets/common-assets/logo-small-aggregator.png", "Country", "country", "GR", "Greece"),
 
   ];
   static disabled = {
-    "canada": {pages: [], entities: ["software"]},
+    "canada": {pages: [], entities: []},
     "italy": {pages: [], entities: []},
-    "greece": {pages: [], entities: []}
+    "greece": {pages: [], entities: ["dataset"]}
   };
-  static defaultAggregator: FilterInfo = PortalAggregators.list[0];
+  static defaultAggregator: AggregatorInfo = PortalAggregators.list[0];
 
-  public static getList(): FilterInfo[] {
+  public static getList(): AggregatorInfo[] {
     return PortalAggregators.list;
   }
 
-  public static getFilterInfoByMenuId(menuId: string): FilterInfo {
+  public static getFilterInfoByMenuId(menuId: string): AggregatorInfo {
     for (let agg of this.getList()) {
       if (agg.menuId == menuId) {
         return agg;
@@ -48,7 +54,7 @@ export class PortalAggregators {
     return PortalAggregators.defaultAggregator;
   }
 
-  public static getSearchCustomFilterByAggregator(agg: FilterInfo): SearchCustomFilter {
+  public static getSearchCustomFilterByAggregator(agg: AggregatorInfo): SearchCustomFilter {
     let filter:SearchCustomFilter = null;
     if(agg) {
       filter = new SearchCustomFilter(agg.fieldName, agg.queryFieldName, agg.valueId, agg.valueName);
