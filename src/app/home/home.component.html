@@ -176,26 +176,28 @@
           <div class="uk-margin-large-top uk-container uk-margin-bottom uk-text-center">
             <div class="uk-grid uk-flex uk-flex-center">
               <div *ngIf="fundersSize" class="uk-width-1-3@m">
-                <h3 class="portal-color">
-                  <a  [routerLink]="properties.searchLinkToProjects"  class="uk-text-bold number">
-                    {{fundersSize.number|number}}</a>{{fundersSize.size}}
+                <h3>
+                  <a [routerLink]="properties.searchLinkToProjects" class="uk-text-bold number">
+                    {{fundersSize.number|number}}<span class="number-size">{{fundersSize.size}}</span>
+                  </a>
                 </h3>
-                <span class="uk-text-uppercase uk-text-large">Funders</span>
+                <div class="uk-text-uppercase uk-text-large">Funders</div>
               </div>
               <div *ngIf="datasourcesSize" class="uk-width-1-3@m">
-                <h3 class="portal-color">
-                  <a  [routerLink]="properties.searchLinkToDataProviders" class="uk-text-bold number">
-                    {{datasourcesSize.number|number}}</a>{{datasourcesSize.size}}
+                <h3>
+                  <a [routerLink]="properties.searchLinkToDataProviders" class="uk-text-bold number">
+                    {{datasourcesSize.number|number}}<span class="number-size">{{datasourcesSize.size}}</span>
+                  </a>
                 </h3>
-                <span class="uk-text-uppercase uk-text-large">Content providers</span>
+                <div class="uk-text-uppercase uk-text-large">Content providers</div>
               </div>
               <div *ngIf="projectsSize" class="uk-width-1-3@m">
-                <h3 class="portal-color">
-                  <a  [routerLink]="properties.searchLinkToProjects" class="uk-text-bold number">
-                    {{projectsSize.number|number}}</a>{{projectsSize.size}}
-
+                <h3>
+                  <a [routerLink]="properties.searchLinkToProjects" class="uk-text-bold number">
+                    {{projectsSize.number|number}}<span class="number-size">{{projectsSize.size}}</span>
+                  </a>
                 </h3>
-                <span class="uk-text-uppercase uk-text-large">Projects</span>
+                <div class="uk-text-uppercase uk-text-large">Projects</div>
               </div>
             </div>
           </div>
@@ -208,7 +210,7 @@
       <div class="uk-grid uk-margin-auto-left uk-margin-auto-right uk-grid-large uk-flex uk-flex-center " uk-grid>
         <div *ngIf="publicationsSize" class="uk-width-1-2@m uk-flex uk-flex-center">
           <div>
-            <a class="number uk-text-bold uk-margin-bottom"  [routerLink]="properties.searchLinkToResults"
+            <a class="number uk-text-bold uk-margin-bottom" [routerLink]="properties.searchLinkToResults"
                [queryParams]="{type: 'publications', qf: false}">
               {{publicationsSize.count|number}} </a>
             <div class="uk-text-uppercase uk-flex uk-flex-middle">
@@ -233,7 +235,7 @@
         <div *ngIf="softwareSize" class="uk-width-1-2@m uk-flex uk-flex-center">
           <div>
             <a
-                class="number uk-text-bold uk-margin-bottom"  [routerLink]="properties.searchLinkToResults"
+                class="number uk-text-bold uk-margin-bottom" [routerLink]="properties.searchLinkToResults"
                 [queryParams]="{type: 'software', qf: false}">
               {{softwareSize.count|number}} </a>
             <div class="uk-text-uppercase uk-flex uk-flex-middle">
@@ -244,7 +246,7 @@
         </div>
         <div *ngIf="otherSize" class="uk-width-1-2@m uk-flex uk-flex-center">
           <div>
-            <a class="number uk-text-bold  uk-margin-bottom"  [routerLink]="properties.searchLinkToResults"
+            <a class="number uk-text-bold  uk-margin-bottom" [routerLink]="properties.searchLinkToResults"
                [queryParams]="{type: 'other', qf: false}">{{otherSize.count|number}} </a>
             <div class="uk-text-uppercase uk-flex uk-flex-middle">
               <icon name="earth" ratio="1.5" [flex]="true" class="uk-margin-right" customClass="portal-color"></icon>
