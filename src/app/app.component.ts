@@ -114,6 +114,10 @@ export class AppComponent {
         rootItem: new MenuItem("link", "Link", "", "/participate/claim", false, [], ["/participate/claim"], {}),
         items: [new MenuItem("", "Start linking", "", "/participate/claim", false, [], ["/participate/claim"], {}),
           new MenuItem("", "Learn more", this.properties.claimsInformationLink, "", false, [], [], {})]
+      },
+      {
+        rootItem: new MenuItem("develop", "Develop", "", "/develop", false, [], ["/develop"], {}),
+        items: []
       }
     ];
     let params = {};

@@ -95,6 +95,9 @@ const routes: Routes = [
   { path: 'myclaims', loadChildren: './claims/myClaims/myClaims.module#LibMyClaimsModule', resolve: { envSpecific: EnvironmentSpecificResolver  }},
   { path: 'participate/claim', loadChildren: './claims/linking/linkingGeneric.module#LibLinkingGenericModule', resolve: { envSpecific: EnvironmentSpecificResolver  }},
   { path: 'participate/direct-claim', loadChildren: './claims/directLinking/directLinking.module#LibDirectLinkingModule', resolve: { envSpecific: EnvironmentSpecificResolver  }},
+
+  {path: 'develop', loadChildren: './develop/develop.module#DevelopModule'},
+
   {path: 'user-info', loadChildren: './login/libUser.module#LibUserModule'},
   {path: 'error', component: OpenaireErrorPageComponent},
   {path: '**', pathMatch: 'full', component: OpenaireErrorPageComponent}

@@ -35,9 +35,9 @@ export class PortalAggregators {
 
   ];
   static disabled = {
-    "canada": {pages: [], entities: []},
+    "canada": {pages: [], entities: ["software"]},
     "italy": {pages: [], entities: []},
-    "greece": {pages: [], entities: ["dataset"]}
+    "greece": {pages: [], entities: []}
   };
   static defaultAggregator: AggregatorInfo = PortalAggregators.list[0];
 

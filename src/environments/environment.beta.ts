@@ -105,8 +105,8 @@ export let properties: EnvProperties = {
   searchLinkToAdvancedOrganizations: "/search/advanced/organizations",
   searchLinkToAdvancedResults: "/search/advanced/research-outcomes",
   
-  lastIndexInformationLink: "https://www.openaire.eu/aggregation-and-content-provision-workflows",
-  showLastIndexInformationLink: false,
+  lastIndexInformationLink: "https://beta.openaire.eu/aggregation-and-content-provision-workflows",
+  showLastIndexInformationLink: true,
   widgetLink: "https://beta.openaire.eu/index.php?option=com_openaire&view=widget&format=raw&projectId=",
   claimsInformationLink: "https://beta.openaire.eu/linking",
   lastIndexUpdate: "2020-05-11",
