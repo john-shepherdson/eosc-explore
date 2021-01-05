@@ -119,6 +119,5 @@ export let properties: EnvProperties = {
   depositLearnHowPage: "/participate/deposit/learn-how",
   depositSearchPage: "/participate/deposit/search",
   altMetricsAPIURL: "https://api.altmetric.com/v1/doi/",
-  reCaptchaSiteKey: "6LcVtFIUAAAAAB2ac6xYivHxYXKoUvYRPi-6_rLu",
-  b2noteAPIURL: 'https://b2note.eudat.eu/'
+  reCaptchaSiteKey: "6LcVtFIUAAAAAB2ac6xYivHxYXKoUvYRPi-6_rLu"
 };
