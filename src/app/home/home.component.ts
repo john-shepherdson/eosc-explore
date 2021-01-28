@@ -25,6 +25,7 @@ import {SearchCustomFilter} from "../openaireLibrary/searchPages/searchUtils/sea
 import {properties} from "../../environments/environment";
 import {portalProperties} from "../../environments/environment-aggregator";
 import {StringUtils} from "../openaireLibrary/utils/string-utils.class";
+import {ConnectHelper} from "../openaireLibrary/connect/connectHelper";
 
 @Component({
   selector: 'home',
@@ -88,7 +89,7 @@ export class HomeComponent {
     private config: ConfigurationService, private _meta: Meta, private _title: Title, private seoService: SEOService,
     private helper: HelperService
   ) {
-    this.aggregatorId = this.route.snapshot.paramMap.get('id');
+    this.aggregatorId = ConnectHelper.getCommunityFromDomain(properties.domain);
     this.aggregator =  PortalAggregators.getFilterInfoByMenuId(this.aggregatorId);
     this.customFilter = PortalAggregators.getSearchCustomFilterByAggregator(this.aggregator);
     let description = "OpenAIRE Explore: Over 100M of research deduplicated, 170K research software, 11M research data. One of the largest open scholarly records collection worldwide.";
