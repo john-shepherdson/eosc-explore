@@ -22,14 +22,15 @@ import {ConnectHelper} from "../openaireLibrary/connect/connectHelper";
             <div class="uk-margin-large-top uk-margin-medium-bottom">
               Not sure where to start? Let us give you some guides and request examples.
             </div>
-            <div class="uk-grid   uk-child-width-1-1" uk-grid>
+            <p>
+              <span class="uk-text-bold">For research outcomes </span>
+              (publications, datasets, software and other research data) you can use the
+              <a href="http://api.openaire.eu/api.html" target="_blank">Selective Access APIs</a>
+              by adding the <span class="uk-text-lowercase">country</span> parameter.
+            </p>
+            <div class="uk-grid   uk-child-width-1-2@m uk-child-width-1-1@s" uk-grid>
               <div>
-                <p>
-                  <span class="uk-text-bold">For research outcomes </span>
-                  (publications, datasets, software and other research data) you can use the
-                  <a href="http://api.openaire.eu/api.html" target="_blank">Selective Access APIs</a>
-                  by adding the <span class="uk-text-lowercase">country</span> parameter.
-                </p>
+                
                 <p>
                   Request examples:
                 </p>
@@ -66,35 +67,11 @@ import {ConnectHelper} from "../openaireLibrary/connect/connectHelper";
                   </li>
                 </ul>
               </div>
-              <!--<div>
-                <p>
-                  <span class="uk-text-bold">For projects</span> you can use the <a
-                  href="http://api.openaire.eu/api.html" target="_blank">Selective Access APIs</a>
-                  and the <a href="http://api.openaire.eu/bulk-projects.html" target="_blank">Bulk Access APIs</a>.
-                </p>
-                <p>
-                  Request examples:
-                </p>
-                <ul class="portal-circle">
-                  <li>
-                    <span class="uk-text-bold">For the “Selective Access”</span><br>
-                    <span
-                      class="uk-text-break space">https://api.openaire.eu/search/projects?country={{aggregator.valueId}}</span>
-                  </li>
-                  <li>
-                    <span class="uk-text-bold">For the “Bulk Access”</span><br>
-                    <span class="uk-text-bold uk-text-nowrap">DSpace endpoint:</span>
-                    <span
-                      class="uk-text-break space">https://api.openaire.eu/projects/dspace/{{aggregator.valueId}}/ALL/ ALL</span><br>
-                    <span class="uk-text-bold uk-text-nowrap">ePrints endpoint:</span>
-                    <span
-                      class="uk-text-break space">https://api.openaire.eu/projects/eprints/{{aggregator.valueId}}/ALL/ ALL</span>
-                  </li>
-                </ul>
+              <div class="uk-flex uk-flex-middle">
                 <div class="uk-flex uk-flex-center uk-width-1-1 uk-margin-medium-top">
                   <img width="350" src="assets/develop.png">
                 </div>
-              </div>-->
+              </div>
             </div>
             <div class="uk-margin-large-top uk-flex uk-flex-center uk-padding">
               <div class="documentation">
