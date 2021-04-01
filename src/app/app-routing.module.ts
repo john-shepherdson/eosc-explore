@@ -1,10 +1,5 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-
-
-import {EnvironmentSpecificResolver} from './openaireLibrary/utils/properties/environmentSpecificResolver';
-import {EnvironmentSpecificService} from './openaireLibrary/utils/properties/environment-specific.service';
-
 import {OpenaireErrorPageComponent} from './error/errorPage.component';
 
 const routes: Routes = [
@@ -88,16 +83,13 @@ const routes: Routes = [
   { path: 'participate/deposit-publications',  redirectTo: 'participate/deposit/learn-how', pathMatch: 'full'},
   { path: 'participate/deposit-publications-result',  redirectTo: 'participate/deposit/learn-how', pathMatch: 'full'},
   
-  { path: 'participate/deposit/learn-how', loadChildren: './deposit/deposit.module#LibDepositModule', resolve: { envSpecific: EnvironmentSpecificResolver  }},
-  { path: 'participate/deposit/search', loadChildren: './deposit/searchDataprovidersToDeposit.module#LibSearchDataprovidersToDepositModule', resolve: { envSpecific: EnvironmentSpecificResolver  }},
-  
+  { path: 'participate/deposit/learn-how', loadChildren: './deposit/deposit.module#LibDepositModule'},
+  { path: 'participate/deposit/search', loadChildren: './deposit/searchDataprovidersToDeposit.module#LibSearchDataprovidersToDepositModule'},
   // Linking Pages
-  { path: 'myclaims', loadChildren: './claims/myClaims/myClaims.module#LibMyClaimsModule', resolve: { envSpecific: EnvironmentSpecificResolver  }},
-  { path: 'participate/claim', loadChildren: './claims/linking/linkingGeneric.module#LibLinkingGenericModule', resolve: { envSpecific: EnvironmentSpecificResolver  }},
-  { path: 'participate/direct-claim', loadChildren: './claims/directLinking/directLinking.module#LibDirectLinkingModule', resolve: { envSpecific: EnvironmentSpecificResolver  }},
-
+  { path: 'myclaims', loadChildren: './claims/myClaims/myClaims.module#LibMyClaimsModule'},
+  { path: 'participate/claim', loadChildren: './claims/linking/linkingGeneric.module#LibLinkingGenericModule'},
+  { path: 'participate/direct-claim', loadChildren: './claims/directLinking/directLinking.module#LibDirectLinkingModule'},
   {path: 'develop', loadChildren: './develop/develop.module#DevelopModule'},
-
   {path: 'user-info', loadChildren: './login/libUser.module#LibUserModule'},
   {path: 'error', component: OpenaireErrorPageComponent},
   {path: '**', pathMatch: 'full', component: OpenaireErrorPageComponent}
@@ -105,8 +97,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
-  providers: [EnvironmentSpecificResolver, EnvironmentSpecificService]
+  exports: [RouterModule]
 })
 export class AppRoutingModule {
 }

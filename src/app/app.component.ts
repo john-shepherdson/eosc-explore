@@ -1,7 +1,6 @@
 import {Component, Inject, RendererFactory2, ViewEncapsulation} from '@angular/core';
 import {EnvProperties} from './openaireLibrary/utils/properties/env-properties';
 import {MenuItem, RootMenuItem} from './openaireLibrary/sharedComponents/menu';
-import {EnvironmentSpecificService} from './openaireLibrary/utils/properties/environment-specific.service';
 import {AggregatorInfo, PortalAggregators} from "./utils/aggregators";
 import {UserManagementService} from "./openaireLibrary/services/user-management.service";
 import {User} from "./openaireLibrary/login/utils/helper.class";
@@ -39,7 +38,6 @@ import {DOCUMENT} from "@angular/common";
       <bottom *ngIf="isClient && properties" [properties]=properties></bottom>
     </div>
   `
-  
 })
 export class AppComponent {
   isClient: boolean = false;
@@ -54,8 +52,8 @@ export class AppComponent {
   header: Header;
   agg: AggregatorInfo = null;
   subscriptions = [];
-  constructor(private propertiesService: EnvironmentSpecificService,
-              private userManagementService: UserManagementService,  private configurationService: ConfigurationService,  @Inject(DOCUMENT) private document, private rendererFactory: RendererFactory2) {
+  
+  constructor(private userManagementService: UserManagementService,  private configurationService: ConfigurationService,  @Inject(DOCUMENT) private document, private rendererFactory: RendererFactory2) {
     this.id = ConnectHelper.getCommunityFromDomain(this.properties.domain);
     this.agg = PortalAggregators.getFilterInfoByMenuId(this.id);
     this.setStyles();

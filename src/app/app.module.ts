@@ -5,16 +5,11 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CommonModule} from '@angular/common';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AppComponent} from './app.component';
-
-
 import {NavigationBarModule} from './openaireLibrary/sharedComponents/navigationBar.module';
 import {CookieLawModule} from './openaireLibrary/sharedComponents/cookie-law/cookie-law.module';
-
 import {BottomModule} from './openaireLibrary/sharedComponents/bottom.module';
 import {FeedbackModule} from './openaireLibrary/sharedComponents/feedback/feedback.module';
-import {EnvironmentSpecificResolver} from './openaireLibrary/utils/properties/environmentSpecificResolver';
 import {ErrorModule} from './openaireLibrary/error/error.module';
-
 import {OpenaireErrorPageComponent} from './error/errorPage.component';
 import {AppRoutingModule} from './app-routing.module';
 import {HttpInterceptorService} from "./openaireLibrary/http-interceptor.service";
@@ -23,7 +18,6 @@ import {DEFAULT_TIMEOUT, TimeoutInterceptor} from "./openaireLibrary/timeout-int
 import {ConfigurationService} from "./openaireLibrary/utils/configuration/configuration.service";
 
 @NgModule({
-
   imports: [
     SharedModule,
     BrowserAnimationsModule,
@@ -40,7 +34,7 @@ import {ConfigurationService} from "./openaireLibrary/utils/configuration/config
   declarations: [AppComponent, OpenaireErrorPageComponent],
   exports: [AppComponent],
   providers: [
-    EnvironmentSpecificResolver, ConfigurationService,
+    ConfigurationService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpInterceptorService,
@@ -56,6 +50,5 @@ import {ConfigurationService} from "./openaireLibrary/utils/configuration/config
   ],
   bootstrap: [AppComponent]
 })
-
 export class AppModule {
 }
