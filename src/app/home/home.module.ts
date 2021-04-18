@@ -25,6 +25,7 @@ import {QuickSelectionsModule} from "../openaireLibrary/searchPages/searchUtils/
 import {IconsModule} from "../openaireLibrary/utils/icons/icons.module";
 import {IconsService} from "../openaireLibrary/utils/icons/icons.service";
 import {arrow_right, book, cog, database, earth} from "../openaireLibrary/utils/icons/icons";
+import {NumbersModule} from "../openaireLibrary/sharedComponents/numbers/numbers.module";
 
 @NgModule({
   imports: [
@@ -37,7 +38,7 @@ import {arrow_right, book, cog, database, earth} from "../openaireLibrary/utils/
     HomeRoutingModule,
     HelperModule,
     ErrorMessagesModule,
-    SEOServiceModule,  EntitiesSelectionModule, QuickSelectionsModule, IconsModule
+    SEOServiceModule, EntitiesSelectionModule, QuickSelectionsModule, IconsModule, NumbersModule
   ],
   declarations: [
     HomeComponent

@@ -46,7 +46,7 @@
 }
 
 .numbers-background {
-    background: transparent url('numbers_background_pattern.svg') 0 0  repeat-x padding-box;
+    background: transparent url('numbers_background_pattern.svg') repeat-x center bottom;
 }
 .number {
     color: #1d1d1d;

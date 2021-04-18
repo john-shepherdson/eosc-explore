@@ -1,22 +1,21 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Location} from '@angular/common';
 import "rxjs/add/observable/zip";
-import {Title, Meta}                  from '@angular/platform-browser';
+import {Meta, Title} from '@angular/platform-browser';
 import {ConfigurationService} from '../openaireLibrary/utils/configuration/configuration.service';
-import {  SearchDataprovidersService} from '../openaireLibrary/services/searchDataproviders.service';
-import {  SearchProjectsService} from '../openaireLibrary/services/searchProjects.service';
-import {  SearchOrganizationsService} from '../openaireLibrary/services/searchOrganizations.service';
-import {  RefineFieldResultsService} from '../openaireLibrary/services/refineFieldResults.service';
-import {  SearchFields} from '../openaireLibrary/utils/properties/searchFields';
-import {  NumberUtils} from '../openaireLibrary/utils/number-utils.class';
+import {SearchDataprovidersService} from '../openaireLibrary/services/searchDataproviders.service';
+import {SearchProjectsService} from '../openaireLibrary/services/searchProjects.service';
+import {SearchOrganizationsService} from '../openaireLibrary/services/searchOrganizations.service';
+import {RefineFieldResultsService} from '../openaireLibrary/services/refineFieldResults.service';
+import {SearchFields} from '../openaireLibrary/utils/properties/searchFields';
 
-import {  RouterHelper} from '../openaireLibrary/utils/routerHelper.class';
-import { EnvProperties} from '../openaireLibrary/utils/properties/env-properties';
-import { ErrorCodes} from '../openaireLibrary/utils/properties/errorCodes';
+import {RouterHelper} from '../openaireLibrary/utils/routerHelper.class';
+import {EnvProperties} from '../openaireLibrary/utils/properties/env-properties';
+import {ErrorCodes} from '../openaireLibrary/utils/properties/errorCodes';
 import {PiwikService} from '../openaireLibrary/utils/piwik/piwik.service';
-import { SEOService } from '../openaireLibrary/sharedComponents/SEO/SEO.service';
+import {SEOService} from '../openaireLibrary/sharedComponents/SEO/SEO.service';
 import {SearchResearchResultsService} from "../openaireLibrary/services/searchResearchResults.service";
 import {HelperService} from "../openaireLibrary/utils/helper/helper.service";
 import {Filter} from "../openaireLibrary/searchPages/searchUtils/searchHelperClasses.class";
@@ -26,6 +25,7 @@ import {properties} from "../../environments/environment";
 import {portalProperties} from "../../environments/environment-aggregator";
 import {StringUtils} from "../openaireLibrary/utils/string-utils.class";
 import {ConnectHelper} from "../openaireLibrary/connect/connectHelper";
+import {NumbersComponent} from "../openaireLibrary/sharedComponents/numbers/numbers.component";
 
 @Component({
   selector: 'home',
@@ -58,7 +58,7 @@ export class HomeComponent {
   showOrganizations: boolean = portalProperties.entities.organization.isEnabled;
   showProjects: boolean = portalProperties.entities.project.isEnabled;
   showDataProviders: boolean = portalProperties.entities.datasource.isEnabled;
-  properties: EnvProperties;
+  properties: EnvProperties = properties;
   public readMore: boolean = false;
 
   subs: Subscription[] = [];
@@ -77,6 +77,8 @@ export class HomeComponent {
   customFilter:SearchCustomFilter= null;
   aggregatorId;
   aggregator:AggregatorInfo;
+  @ViewChild('numbersComponent') numbersComponent: NumbersComponent;
+  
   constructor (
     private route: ActivatedRoute,
     private _router: Router,
@@ -109,27 +111,13 @@ export class HomeComponent {
     }));
   }
 
-  public getKeys(obj: {}) {
-    return Object.keys(obj);
-  }
-
-  createRange(number){
-    var items: number[] = [];
-    for(var i = 1; i <= number; i++){
-      items.push(i);
-    }
-    return items;
-  }
-
   public ceil(num: number) {
     return Math.ceil(num);
   }
 
   public ngOnInit() {
-    this.properties = properties;
     this.seoService.createLinkForCanonicalURL(this.properties.domain + this.properties.baseLink+this._router.url, false);
     this.getPageContents();
-
     if(this.properties!=null){
       var url = this.properties.domain + this.properties.baseLink+this._router.url;
       this._meta.updateTag({content:url},"property='og:url'");
@@ -145,13 +133,13 @@ export class HomeComponent {
 
               showEntity["" + data['entities'][i]["pid"] + ""] = data['entities'][i]["isEnabled"];
             }
-            this.showPublications = showEntity["publication"];
-            this.showDatasets = showEntity["dataset"];
-            this.showSoftware = showEntity["software"];
-            this.showOrp = showEntity["orp"];
-            this.showProjects = showEntity["project"];
-            this.showDataProviders = showEntity["datasource"];
-            this.showOrganizations = showEntity["organization"];
+            this.showPublications = !!showEntity["publication"];
+            this.showDatasets = !!showEntity["dataset"];
+            this.showSoftware = !!showEntity["software"];
+            this.showOrp = !!showEntity["orp"];
+            this.showProjects = !!showEntity["project"];
+            this.showDataProviders = !!showEntity["datasource"];
+            this.showOrganizations = !!showEntity["organization"];
             if(this.showPublications){
               this.resultTypes.values.push({name: "Publications" , id:"publications",selected:true, number:0});
             }
@@ -164,7 +152,9 @@ export class HomeComponent {
             if(this.showOrp){
               this.resultTypes.values.push({name: "Other research products" , id:"other",selected:true, number:0});
             }
-            this.getNumbers();
+            this.numbersComponent.init(false, false, this.showPublications, this.showDatasets,
+              this.showSoftware, this.showOrp, this.showProjects, this.showDataProviders,
+              StringUtils.URIEncode(this.customFilter.queryFieldName + " exact " + StringUtils.quote((this.customFilter.valueId ))));
           }
         },
         error => {
@@ -177,123 +167,6 @@ export class HomeComponent {
   public ngOnDestroy() {
     for (let sub of this.subs) {
       sub.unsubscribe();
-    }
-  }
-
-  private getNumbers() {
-    let refineQuery = null
-    if(this.customFilter){
-      refineQuery= "&fq="+StringUtils.URIEncode(this.customFilter.queryFieldName + " exact " + StringUtils.quote((this.customFilter.valueId )));
-    }
-    if(this.showPublications){
-      this.subs.push(this._searchResearchResultsService.numOfSearchResults("publication", "", this.properties, refineQuery).subscribe(
-        data => {
-          if(data && data != null && data > 0 ){
-            this.publicationsSize = NumberUtils.roundNumber(data);
-
-          }
-        },
-        err => {
-          //console.log(err);
-          this.handleError("Error getting number of publications", err);
-        }
-      ));
-    }
-    if(this.showDatasets){
-      this.subs.push(this._searchResearchResultsService.numOfSearchResults("dataset", "", this.properties, refineQuery).subscribe(
-        data => {
-          if(data && data != null && data > 0 ){
-            this.datasetsSize = NumberUtils.roundNumber(data);
-          }
-        },
-        err => {
-          //console.log(err);
-          this.handleError("Error getting number of research data", err);
-        }
-      ));
-      /*this.subs.push(this._searchResearchResultsService.numOfSearchResultsLinkedToPub("dataset", this.properties, refineQuery).subscribe(
-        data => {
-          if(data && data != null && data > 0 ){
-            this.datasetsLinkedSize = NumberUtils.roundNumber(data);
-          }
-        },
-        err => {
-          //console.log(err);
-          this.handleError("Error getting number of linkedresearch data", err);
-        }
-      ));*/
-
-    }
-    if (this.showSoftware) {
-      this.subs.push(this._searchResearchResultsService.numOfSearchResults("software", "", this.properties, refineQuery).subscribe(
-        data => {
-          if (data && data > 0) {
-            this.softwareSize = NumberUtils.roundNumber(data);
-          }else{
-            this.showSoftware = false;
-          }
-        },
-        err => {
-          this.handleError("Error getting number of software data", err);
-        }
-      ));
-    /*  this.subs.push(this._searchResearchResultsService.numOfSearchResultsLinkedToPub("software", this.properties, refineQuery).subscribe(
-        data => {
-          if(data && data != null && data > 0 ){
-            this.softwareLinkedSize = NumberUtils.roundNumber(data);
-          }
-        },
-        err => {
-          //console.log(err);
-          this.handleError("Error getting number of linked software", err);
-        }
-      ));*/
-    }
-    if (this.showOrp) {
-      this.subs.push(this._searchResearchResultsService.numOfSearchResults("other", "", this.properties, refineQuery).subscribe(
-        data => {
-          if (data && data > 0) {
-            this.otherSize = NumberUtils.roundNumber(data);
-          }else{
-            this.showOrp = false;
-          }
-        },
-        err => {
-          this.handleError("Error getting number of software data", err);
-        }
-      ));
-    }
-    if(this.showProjects){
-      this.subs.push(this._refineFieldResultsService.getRefineFieldsResultsByEntityName(["funder"],"project", this.properties, refineQuery).subscribe(
-        data => {
-
-
-          if(data[0] && data[0] > 0 ){
-            this.projectsSize = NumberUtils.roundNumber(data[0]);
-          }
-          if(data[1].length > 0 && data[1][0].filterId == "funder" && data[1][0].values ){
-            this.fundersSize = NumberUtils.roundNumber(data[1][0].values.length);
-          }
-
-        },
-        err => {
-          //console.log(err);
-          this.handleError("Error getting 'funder' field results of projects", err);
-        }));
-    }
-    if(this.showDataProviders){
-      this.subs.push(this._searchDataprovidersService.numOfSearchDataproviders("", this.properties, refineQuery).subscribe(
-        data => {
-          if(data && data != null && data > 0 ){
-            this.datasourcesSize = NumberUtils.roundNumber(data);
-          }
-
-        },
-        err => {
-          //console.log(err);
-          this.handleError("Error getting number of content providers", err);
-        }
-      ));
     }
   }
 
