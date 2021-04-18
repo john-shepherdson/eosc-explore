@@ -32,25 +32,11 @@ import {NumbersComponent} from "../openaireLibrary/sharedComponents/numbers/numb
   templateUrl: 'home.component.html',
 })
 export class HomeComponent {
-
-
-  // public pageTitle = "OpenAIRE - Explore |" ;
   public keyword:string = "";
 
   public searchFields:SearchFields = new SearchFields();
   public errorCodes:ErrorCodes = new ErrorCodes();
   public routerHelper:RouterHelper = new RouterHelper();
-
-  public publicationsSize:any = null;
-  public datasetsSize:any = null;
-  public datasetsLinkedSize:any = null;
-  public softwareLinkedSize:any = null;
-  public softwareSize: any = null;
-  public otherSize: any = null;
-  public fundersSize:any = null;
-  public projectsSize:any = null;
-  public datasourcesSize:any = null;
-
   showPublications: boolean = portalProperties.entities.publication.isEnabled;
   showDatasets: boolean = portalProperties.entities.dataset.isEnabled;
   showSoftware: boolean = portalProperties.entities.software.isEnabled;
