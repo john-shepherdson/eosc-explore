@@ -11,6 +11,7 @@ import {ConnectHelper} from "./openaireLibrary/connect/connectHelper";
 import {ConfigurationService} from "./openaireLibrary/utils/configuration/configuration.service";
 import {Subscriber} from "rxjs";
 import {DOCUMENT} from "@angular/common";
+import {SmoothScroll} from "./openaireLibrary/utils/smooth-scroll";
 
 @Component({
   selector: 'app-root',
@@ -53,21 +54,15 @@ export class AppComponent {
   agg: AggregatorInfo = null;
   subscriptions = [];
   
-  constructor(private userManagementService: UserManagementService,  private configurationService: ConfigurationService,  @Inject(DOCUMENT) private document, private rendererFactory: RendererFactory2) {
+  constructor(private userManagementService: UserManagementService,
+              private configurationService: ConfigurationService, private smoothScroll: SmoothScroll,
+              @Inject(DOCUMENT) private document, private rendererFactory: RendererFactory2) {
     this.id = ConnectHelper.getCommunityFromDomain(this.properties.domain);
     this.agg = PortalAggregators.getFilterInfoByMenuId(this.id);
     this.setStyles();
     this.configurationService.initStaticCommunityInformation(PortalAggregators.getCommunityInfoByMenuId(this.id));
   }
-  ngOnDestroy() {
-    this.subscriptions.forEach(subscription => {
-      if (subscription instanceof Subscriber) {
-        subscription.unsubscribe();
-      }
-    });
-    this.configurationService.clearSubscriptions();
-    this.userManagementService.clearSubscriptions();
-  }
+  
   ngOnInit() {
     if (typeof document !== 'undefined') {
         this.isClient = true;
@@ -95,6 +90,17 @@ export class AppComponent {
         // this.userMenuItems.push(new MenuItem("", "User information", "", "/user-info", false, [], [], {}));
       }
     }));
+  }
+  
+  ngOnDestroy() {
+    this.subscriptions.forEach(subscription => {
+      if (subscription instanceof Subscriber) {
+        subscription.unsubscribe();
+      }
+    });
+    this.configurationService.clearSubscriptions();
+    this.userManagementService.clearSubscriptions();
+    this.smoothScroll.clearSubscriptions();
   }
   
   private buildMenu() {
