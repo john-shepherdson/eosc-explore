@@ -1,54 +1,39 @@
-# Angular Universal & Anguar-CLI minimal starter
+# Aggregator
 
-> This demo is built following the [Angular-CLI Wiki guide](https://github.com/angular/angular-cli/wiki/stories-universal-rendering)
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.10 and has been updated to 11.2.14.
 
-We're utilizing packages from the [Angular Universal @nguniversal](https://github.com/angular/universal) repo, such as [ng-module-map-ngfactory-loader](https://github.com/angular/universal/tree/master/modules/module-map-ngfactory-loader) to enable Lazy Loading.
+## Install packages
 
----
+Run npm install (maybe needs sudo), a script that will delete unused files from library will be run.
 
-## Static or Dynamic
-This repo demonstrates the use of 2 different forms of Server Side Rendering.
+## Development server
 
-**Static** Also known as "prerendering"
-* Happens at build time
-* Renders your application and replaces the dist index.html with a version rendered at the route `/`.
+Run `npm start` for a dev server. Navigate to `http://localhost:4400/`. The app will automatically reload if you change any of the source files.
 
-**Dynamic**
-* Happens at runtime
-* Uses `ngExpressEngine` to render you application on the fly at the requested url.
+## Build - CSR
 
----
+Use the `npm run build-dev` for a development build.<br>
+Use the `npm run build-beta` for a beta build.<br>
+Use the `npm run build-prod` for a production build.
 
-## Installation
-* `npm install` or `yarn`
+## Build - SSR
 
----
+Use the `npm run build:ssr-dev` for a development build.<br>
+Use the `npm run build:ssr-beta` for a beta build.<br>
+Use the `npm run build:ssr-prod` for a production build.
 
-## Development (Client-side only rendering)
-* run `npm run start` which will start `ng serve` (project served at the standard: localhost:4200)
+## Run SSR
 
----
+`npm run serve:ssr` will run the last server build.
 
-## Production 
+## Webpack Analyzer
 
-Depending on whether you're publishing dynamic or static prerendering, run the build command, and then serve up your dist folder assets.
+In order to analyze bundle size you can run `npm run webpack-bundle-analyzer`
 
-> **NOTE**: To deploy your **Static** site to a static hosting platform you will have to deploy the *`dist/browser`* folder, rather than the usual *`dist`*
+## Running unit tests
 
-ie: `npm run build:dynamic` or `npm run build:static`. All of the files that need to be served will be found within the `/dist` folder.
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
+## Running end-to-end tests
 
-
----
-
-## Testing Universal (dynamic or static) builds -Locally-
-
-**Dynamic** : **`npm run start:dynamic`**
-
-Compiles your application and spins up a Node Express to dynamically serve your Universal application on `http://localhost:4000`.
-
-**Static** : **`npm run start:static`**
-
-- Compiles your application and prerenders your applications files, spinning up a demo http-server so you can view it on `http://127.0.0.1:8080`
-
-
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).

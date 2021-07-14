@@ -1,84 +1,158 @@
 {
-  "$schema": "./node_modules/@angular-devkit/core/src/workspace/workspace-schema.json",
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "openaire-aggregator": {
+    "aggregator": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
+      "prefix": "app",
+      "schematics": {
+        "@schematics/angular:class": {
+          "skipTests": true
+        },
+        "@schematics/angular:component": {
+          "skipTests": true
+        },
+        "@schematics/angular:directive": {
+          "skipTests": true
+        },
+        "@schematics/angular:guard": {
+          "skipTests": true
+        },
+        "@schematics/angular:module": {
+          "skipTests": true
+        },
+        "@schematics/angular:pipe": {
+          "skipTests": true
+        },
+        "@schematics/angular:service": {
+          "skipTests": true
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/browser",
+            "aot": true,
+            "outputPath": "dist/aggregator/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "tsConfig": "src/tsconfig.app.json",
             "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/assets",
-              "src/robots.txt",
-              "src/sitemap.xml",
-              {
-                "glob": "**/*",
-                "input": "src/sitemaps",
-                "output": "/"
-              }
+              "src/robots.txt"
             ],
             "styles": [
               "src/styles.css",
-              "src/material.scss",
-              "node_modules/datatables.net-dt/css/jquery.dataTables.css"
+              "src/material.scss"
             ],
             "scripts": [
               "src/assets/common-assets/common/jquery.js",
               "src/assets/common-assets/common/uikit.min.js",
               "src/assets/common-assets/common/uikit-icons.min.js",
-              "node_modules/jquery/dist/jquery.js",
-              "node_modules/datatables.net/js/jquery.dataTables.js"
+              "node_modules/jquery/dist/jquery.js"
             ]
           },
           "configurations": {
-            "production": {
+            "development": {
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "fileReplacements": [
+              "budgets": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
                 },
                 {
-                  "replace": "src/index.html",
-                  "with": "src/index.prod.html"
-                },
-                {
-                  "replace": "src/robots.txt",
-                  "with": "src/robots.prod.txt"
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ]
             },
             "beta": {
+              "assets": [
+                "src/assets",
+                {
+                  "input": "src/beta/",
+                  "output": "/",
+                  "glob": "*.txt"
+                }
+              ],
+              "index": {
+                "input": "src/beta/index.html",
+                "output": "index.html"
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.beta.ts"
+                }
+              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ]
+            },
+            "production": {
+              "assets": [
+                "src/assets",
+                {
+                  "input": "src/prod/",
+                  "output": "/",
+                  "glob": "*.txt"
+                }
+              ],
+              "index": {
+                "input": "src/prod/index.html",
+                "output": "index.html"
+              },
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.beta.ts"
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ]
             }
@@ -87,47 +161,33 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "openaire-aggregator:build"
+            "browserTarget": "aggregator:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "openaire-aggregator:build:production"
+              "browserTarget": "aggregator:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "openaire-aggregator:build"
+            "browserTarget": "aggregator:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "src/test.ts",
-            "karmaConfig": "./karma.conf.js",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
-            "scripts": [
-              "src/assets/common-assets/common/jquery.js",
-              "src/assets/common-assets/common/uikit.min.js",
-              "src/assets/common-assets/common/uikit-icons.min.js",
-              "node_modules/jquery/dist/jquery.js",
-              "node_modules/datatables.net/js/jquery.dataTables.js"
-            ],
+            "karmaConfig": "src/karma.conf.js",
             "styles": [
-              "src/styles.css",
-              "node_modules/datatables.net-dt/css/jquery.dataTables.css"
+              "src/styles.css"
             ],
+            "scripts": [],
             "assets": [
-              "src/assets",
-              "src/robots.txt",
-              "src/sitemap.xml",
-              {
-                "glob": "**/*",
-                "input": "src/sitemaps",
-                "output": "/"
-              }
+              "src/assets"
             ]
           }
         },
@@ -146,57 +206,89 @@
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {
-            "outputPath": "dist/server",
-            "main": "src/main.server.ts",
+            "outputPath": "dist/aggregator/server",
+            "main": "server.ts",
             "tsConfig": "src/tsconfig.server.json"
           },
           "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                },
-                {
-                  "replace": "src/index.html",
-                  "with": "src/index.prod.html"
-                },
-                {
-                  "replace": "src/robots.txt",
-                  "with": "src/robots.prod.txt"
-                }
-              ]
+            "development": {
+              "outputHashing": "media",
+              "sourceMap": false,
+              "optimization": true
             },
             "beta": {
+              "outputHashing": "media",
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.beta.ts"
                 }
-              ]
+              ],
+              "sourceMap": false,
+              "optimization": true
+            },
+            "production": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "sourceMap": false,
+              "optimization": true
             }
+          }
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "options": {
+            "browserTarget": "aggregator:build",
+            "serverTarget": "aggregator:server"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "aggregator:build:production",
+              "serverTarget": "aggregator:server:production"
+            }
+          }
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "browserTarget": "aggregator:build:production",
+            "serverTarget": "aggregator:server:production",
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {}
           }
         }
       }
     },
-    "openaire-aggregator-e2e": {
-      "root": "e2e",
-      "sourceRoot": "e2e",
+    "aggregator-e2e": {
+      "root": "e2e/",
       "projectType": "application",
+      "prefix": "",
       "architect": {
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "openaire-aggregator:serve"
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "aggregator:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "aggregator:serve:production"
+            }
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "e2e/tsconfig.e2e.json"
-            ],
+            "tsConfig": "e2e/tsconfig.e2e.json",
             "exclude": [
               "**/node_modules/**"
             ]
@@ -205,33 +297,5 @@
       }
     }
   },
-  "defaultProject": "openaire-aggregator",
-  "schematics": {
-    "@schematics/angular:class": {
-      "spec": false
-    },
-    "@schematics/angular:component": {
-      "spec": false,
-      "inlineStyle": true,
-      "inlineTemplate": true,
-      "prefix": "app",
-      "styleext": "css"
-    },
-    "@schematics/angular:directive": {
-      "spec": false,
-      "prefix": "app"
-    },
-    "@schematics/angular:guard": {
-      "spec": false
-    },
-    "@schematics/angular:module": {
-      "spec": false
-    },
-    "@schematics/angular:pipe": {
-      "spec": false
-    },
-    "@schematics/angular:service": {
-      "spec": false
-    }
-  }
+  "defaultProject": "aggregator"
 }

@@ -28,7 +28,7 @@ import {ConfigurationService} from "./openaireLibrary/utils/configuration/config
     CookieLawModule,
     BrowserAnimationsModule,
     BrowserTransferStateModule,
-    BrowserModule.withServerTransition({appId: 'my-app'}),
+    BrowserModule.withServerTransition({appId: 'aggregator'}),
     AppRoutingModule
   ],
   declarations: [AppComponent, OpenaireErrorPageComponent],

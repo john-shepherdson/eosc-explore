@@ -3,78 +3,78 @@ import {Routes, RouterModule, PreloadAllModules} from '@angular/router';
 import {OpenaireErrorPageComponent} from './error/errorPage.component';
 
 const routes: Routes = [
-  {path: '', loadChildren: './home/home.module#HomeModule'},
+  {path: '', loadChildren: () => import('./home/home.module').then(m => m.HomeModule)},
   {
     path: 'search/result',
-    loadChildren: './landingPages/result/libResult.module#LibResultModule'
+    loadChildren: () => import('./landingPages/result/libResult.module').then(m => m.LibResultModule)
   },
   {
     path: 'search/publication',
-    loadChildren: './landingPages/publication/libPublication.module#LibPublicationModule'
+    loadChildren: () => import('./landingPages/publication/libPublication.module').then(m => m.LibPublicationModule)
   },
   {
     path: 'search/dataset',
-    loadChildren: './landingPages/dataset/libDataset.module#LibDatasetModule'
+    loadChildren: () => import('./landingPages/dataset/libDataset.module').then(m => m.LibDatasetModule)
   },
   {
     path: 'search/software',
-    loadChildren: './landingPages/software/libSoftware.module#LibSoftwareModule'
+    loadChildren: () => import('./landingPages/software/libSoftware.module').then(m => m.LibSoftwareModule)
   },
   {
     path: 'search/other',
-    loadChildren: './landingPages/orp/libOrp.module#LibOrpModule'
+    loadChildren: () => import('./landingPages/orp/libOrp.module').then(m => m.LibOrpModule)
   },
   {
     path: 'search/project',
-    loadChildren: './landingPages/project/libProject.module#LibProjectModule'
+    loadChildren: () => import('./landingPages/project/libProject.module').then(m => m.LibProjectModule)
   },
   {
     path: 'search/dataprovider',
-    loadChildren: './landingPages/dataProvider/libDataProvider.module#LibDataProviderModule'
+    loadChildren: () => import('./landingPages/dataProvider/libDataProvider.module').then(m => m.LibDataProviderModule)
   },
   {
     path: 'search/organization',
-    loadChildren: './landingPages/organization/libOrganization.module#LibOrganizationModule'
+    loadChildren: () => import('./landingPages/organization/libOrganization.module').then(m => m.LibOrganizationModule)
   },
   {
     path: 'search/find',
-    loadChildren: './searchPages/find/libSearch.module#LibMainSearchModule'
+    loadChildren: () => import('./searchPages/find/libSearch.module').then(m => m.LibMainSearchModule)
   },
   {
     path: 'search/find/research-outcomes',
-    loadChildren: './searchPages/simple/searchResearchResults.module#OpenaireSearchResearchResultsModule'
+    loadChildren: () => import('./searchPages/simple/searchResearchResults.module').then(m => m.OpenaireSearchResearchResultsModule)
   },
   {
     path: 'search/find/projects',
-    loadChildren: './searchPages/simple/searchProjects.module#LibSearchProjectsModule'
+    loadChildren: () => import('./searchPages/simple/searchProjects.module').then(m => m.LibSearchProjectsModule)
   },
   {
     path: 'search/find/dataproviders',
-    loadChildren: './searchPages/simple/searchDataProviders.module#LibSearchDataProvidersModule'
+    loadChildren: () => import('./searchPages/simple/searchDataProviders.module').then(m => m.LibSearchDataProvidersModule)
   },
   {
     path: 'search/find/organizations',
-    loadChildren: './searchPages/simple/searchOrganizations.module#LibSearchOrganizationsModule'
+    loadChildren: () => import('./searchPages/simple/searchOrganizations.module').then(m => m.LibSearchOrganizationsModule)
   },
   {
     path: 'search/advanced/research-outcomes',
-    loadChildren: './searchPages/advanced/searchResearchResults.module#OpenaireAdvancedSearchResearchResultsModule'
+    loadChildren: () => import('./searchPages/advanced/searchResearchResults.module').then(m => m.OpenaireAdvancedSearchResearchResultsModule)
   },
   {
     path: 'search/advanced/organizations',
-    loadChildren: './searchPages/advanced/advancedSearchOrganizations.module#LibAdvancedSearchOrganizationsModule'
+    loadChildren: () => import('./searchPages/advanced/advancedSearchOrganizations.module').then(m => m.LibAdvancedSearchOrganizationsModule)
   },
   {
     path: 'search/advanced/dataproviders',
-    loadChildren: './searchPages/advanced/advancedSearchDataProviders.module#LibAdvancedSearchDataProvidersModule'
+    loadChildren: () => import('./searchPages/advanced/advancedSearchDataProviders.module').then(m => m.LibAdvancedSearchDataProvidersModule)
   },
   {
     path: 'search/advanced/projects',
-    loadChildren: './searchPages/advanced/advancedSearchProjects.module#LibAdvancedSearchProjectsModule'
+    loadChildren: () => import('./searchPages/advanced/advancedSearchProjects.module').then(m => m.LibAdvancedSearchProjectsModule)
   },
   {
     path: 'project-report',
-    loadChildren: './landingPages/htmlProjectReport/libHtmlProjectReport.module#LibHtmlProjectReportModule'
+    loadChildren: () => import('./landingPages/htmlProjectReport/libHtmlProjectReport.module').then(m => m.LibHtmlProjectReportModule)
   },
   // Deposit Pages
   { path: 'participate/deposit-datasets',  redirectTo: 'participate/deposit/learn-how', pathMatch: 'full'},
@@ -83,23 +83,21 @@ const routes: Routes = [
   { path: 'participate/deposit-publications',  redirectTo: 'participate/deposit/learn-how', pathMatch: 'full'},
   { path: 'participate/deposit-publications-result',  redirectTo: 'participate/deposit/learn-how', pathMatch: 'full'},
   
-  { path: 'participate/deposit/learn-how', loadChildren: './deposit/deposit.module#LibDepositModule'},
-  { path: 'participate/deposit/search', loadChildren: './deposit/searchDataprovidersToDeposit.module#LibSearchDataprovidersToDepositModule'},
+  { path: 'participate/deposit/learn-how', loadChildren: () => import('./deposit/deposit.module').then(m => m.LibDepositModule)},
+  { path: 'participate/deposit/search', loadChildren: () => import('./deposit/searchDataprovidersToDeposit.module').then(m => m.LibSearchDataprovidersToDepositModule)},
   // Linking Pages
-  { path: 'myclaims', loadChildren: './claims/myClaims/myClaims.module#LibMyClaimsModule'},
-  { path: 'participate/claim', loadChildren: './claims/linking/linkingGeneric.module#LibLinkingGenericModule'},
-  { path: 'participate/direct-claim', loadChildren: './claims/directLinking/directLinking.module#LibDirectLinkingModule'},
-  {path: 'develop', loadChildren: './develop/develop.module#DevelopModule'},
-  {path: 'user-info', loadChildren: './login/libUser.module#LibUserModule'},
+  { path: 'myclaims', loadChildren: () => import('./claims/myClaims/myClaims.module').then(m => m.LibMyClaimsModule)},
+  { path: 'participate/claim', loadChildren: () => import('./claims/linking/linkingGeneric.module').then(m => m.LibLinkingGenericModule)},
+  { path: 'participate/direct-claim', loadChildren: () => import('./claims/directLinking/directLinking.module').then(m => m.LibDirectLinkingModule)},
+  {path: 'develop', loadChildren: () => import('./develop/develop.module').then(m => m.DevelopModule)},
+  {path: 'user-info', loadChildren: () => import('./login/libUser.module').then(m => m.LibUserModule)},
   {path: 'error', component: OpenaireErrorPageComponent},
   {path: '**', pathMatch: 'full', component: OpenaireErrorPageComponent}
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
-    preloadingStrategy: PreloadAllModules,
     onSameUrlNavigation: "reload",
-    relativeLinkResolution: 'corrected'
   })],
   exports: [RouterModule]
 })

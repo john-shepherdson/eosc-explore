@@ -1,91 +1,109 @@
 import 'zone.js/dist/zone-node';
-import 'reflect-metadata';
-import { renderModuleFactory } from '@angular/platform-server';
-import { enableProdMode } from '@angular/core';
 
-import * as express from 'express';
-import { join } from 'path';
-import { readFileSync } from 'fs';
-
-// Faster server renders w/ Prod mode (dev mode never needed)
-enableProdMode();
-
-// Express server
-const app = express();
-
-const PORT = process.env.PORT || 3500;
-const DIST_FOLDER = join(process.cwd(), 'dist');
-
-// Our index.html we'll use as our template
-const template = readFileSync(join(DIST_FOLDER, 'browser', 'index.html')).toString();
-
-// * NOTE :: leave this as require() since this file is built Dynamically from webpack
-const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('./dist/server/main');
-
-// Express Engine
 import { ngExpressEngine } from '@nguniversal/express-engine';
-// Import module map for lazy loading
-import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
+import * as express from 'express';
+import * as compression from 'compression';
+import { join } from 'path';
+
+import { AppServerModule } from './src/main.server';
+import { APP_BASE_HREF } from '@angular/common';
+import { existsSync } from 'fs';
 import {Prometheus} from "./prometheus";
 import {Counter} from "prom-client";
+import {REQUEST, RESPONSE} from "./src/app/openaireLibrary/utils/tokens";
 
-/*
-// Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
-app.engine('html', ngExpressEngine({
-  bootstrap: AppServerModuleNgFactory,
-  providers: [
-    provideModuleMap(LAZY_MODULE_MAP)
-  ]
-}));
-*/
-// be able to get request and get domain from there
+// The Express app is exported so that it can be used by serverless Functions.
+export function app() {
+  const server = express();
+  server.use(compression());
+  const distFolder = join(process.cwd(), 'dist/aggregator/browser');
+  const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
+  
+  const prometheus: Prometheus = new Prometheus();
+  
+  // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
+  server.engine('html', ngExpressEngine({
+    bootstrap: AppServerModule,
+  }));
 
-const prometheus: Prometheus = new Prometheus();
+  server.set('view engine', 'html');
+  server.set('views', distFolder);
 
-app.engine('html', (_, options, callback) => {
-    let engine = ngExpressEngine({
-        bootstrap: AppServerModuleNgFactory,
-        providers: [
-            { provide: 'request', useFactory: () => options.req, deps: [] },
-            provideModuleMap(LAZY_MODULE_MAP)
+  // Example Express Rest API endpoints
+  // server.get('/api/**', (req, res) => { });
+  // Serve static files from /browser
+  server.get('*.*', express.static(distFolder, {
+    maxAge: '1y'
+  }));
+  
+  server.get('/metrics', (req, res) => {
+    res.set('Content-Type', prometheus.register.contentType);
+    res.end(prometheus.register.metrics());
+  });
+  
+  // All regular routes use the Universal engine
+  server.get('*', (req, res) => {
+    let start = new Date();
+    let counter: Counter = prometheus.counters.get(req.path);
+    if(counter !== undefined) {
+      counter.inc(1, new Date());
+      res.render(indexHtml, {
+        req, providers: [
+          {
+            provide: APP_BASE_HREF,
+            useValue: req.baseUrl
+          },
+          {
+            provide: REQUEST, useValue: (req)
+          },
+          {
+            provide: RESPONSE, useValue: (res)
+          }
         ]
-    });
-    engine(_, options, callback);
-});
+      });
+      // event triggers when express is done sending response
+      res.on('finish', function() {
+        console.log(new Date().getTime() - start.getTime());
+      });
+    } else {
+      res.render(indexHtml, {
+        req, providers: [
+          {
+            provide: APP_BASE_HREF,
+            useValue: req.baseUrl
+          },
+          {
+            provide: REQUEST, useValue: (req)
+          },
+          {
+            provide: RESPONSE, useValue: (res)
+          }
+        ]
+      });
+    }
+  });
 
-app.set('view engine', 'html');
-app.set('views', join(DIST_FOLDER, 'browser'));
+  return server;
+}
 
-/* - Example Express Rest API endpoints -
-  app.get('/api/**', (req, res) => { });
-*/
+function run() {
+  const port = process.env.PORT || 4000;
 
-// Server static files from /browser
-app.get('*.*', express.static(join(DIST_FOLDER, 'browser'), {
-  maxAge: '1y'
-}));
+  // Start up the Node server
+  const server = app();
+  server.listen(port, () => {
+    console.log(`Node Express server listening on http://localhost:${port}`);
+  });
+}
 
-app.get('/metrics', (req, res) => {
-  res.set('Content-Type', prometheus.register.contentType);
-  res.end(prometheus.register.metrics());
-});
-// All regular routes use the Universal engine
-app.get('*', (req, res) => {
-  let start = new Date();
-  let counter: Counter = prometheus.counters.get(req.path);
-  if(counter !== undefined) {
-    counter.inc(1, new Date());
-    res.render('index', { req });
-    // event triggers when express is done sending response
-    res.on('finish', function() {
-      console.log(new Date().getTime() - start.getTime());
-    });
-  } else {
-    res.render('index', { req });
-  }
-});
+// Webpack will replace 'require' with '__webpack_require__'
+// '__non_webpack_require__' is a proxy to Node 'require'
+// The below code is to ensure that the server is run only when not requiring the bundle.
+declare const __non_webpack_require__: NodeRequire;
+const mainModule = __non_webpack_require__.main;
+const moduleFilename = mainModule && mainModule.filename || '';
+if (moduleFilename === __filename || moduleFilename.includes('iisnode')) {
+  run();
+}
 
-// Start up the Node server
-app.listen(PORT, () => {
-  console.log(`Node Express server listening on http://localhost:${PORT}`);
-});
+export * from './src/main.server';

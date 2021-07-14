@@ -1,3 +1,1 @@
-export const portalProperties = {
-  production: true
-};
+export const portalProperties = {};

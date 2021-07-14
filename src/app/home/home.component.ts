@@ -2,7 +2,6 @@ import {Component, ViewChild} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Location} from '@angular/common';
-import "rxjs/add/observable/zip";
 import {Meta, Title} from '@angular/platform-browser';
 import {ConfigurationService} from '../openaireLibrary/utils/configuration/configuration.service';
 import {SearchDataprovidersService} from '../openaireLibrary/services/searchDataproviders.service';
@@ -63,7 +62,7 @@ export class HomeComponent {
   customFilter:SearchCustomFilter= null;
   aggregatorId;
   aggregator:AggregatorInfo;
-  @ViewChild('numbersComponent') numbersComponent: NumbersComponent;
+  @ViewChild('numbersComponent', { static: true }) numbersComponent: NumbersComponent;
   
   constructor (
     private route: ActivatedRoute,
