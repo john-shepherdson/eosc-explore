@@ -1,0 +1,6 @@
+[submodule "src/app/openaireLibrary"]
+	path = src/app/openaireLibrary
+	url = gitea@code-repo.d4science.org:MaDgIK/openaire-library.git
+[submodule "src/assets/common-assets"]
+	path = src/assets/common-assets
+	url = gitea@code-repo.d4science.org:MaDgIK/openaire-assets.git
