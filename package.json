@@ -17,7 +17,7 @@
     "build:ssr-beta": "npm run build-beta && ng run aggregator:server:beta",
     "build:ssr-prod": "npm run build-prod && ng run aggregator:server:production",
     "prerender": "ng run aggregator:prerender",
-    "after-build-clean": "rm -rf dist/aggregator/browser/assets/common-assets/.svn/ src/app/openaireLibrary/.svn node_modules"
+    "after-build-clean": "rm -rf dist/aggregator/browser/assets/common-assets/.git/ src/app/openaireLibrary/.git node_modules .git*"
   },
   "private": true,
   "dependencies": {
