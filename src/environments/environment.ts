@@ -51,11 +51,9 @@ export let properties: EnvProperties = {
   
   piwikBaseUrl: "https://analytics.openaire.eu/piwik.php?idsite=",
   piwikSiteId: "6",
-  loginUrl: "http://dl170.madgik.di.uoa.gr:8180/dnet-login/openid_connect_login",
-  
-  userInfoUrl: "http://dl170.madgik.di.uoa.gr:8180/dnet-openaire-users-1.0.0-SNAPSHOT/api/users/getUserInfo?accessToken=",
-  
-  logoutUrl: "https://aai.openaire.eu/proxy/saml2/idp/SingleLogoutService.php?ReturnTo=",
+  loginUrl: "http://mpagasas.di.uoa.gr:8080/login-service/openid_connect_login",
+  userInfoUrl: "http://mpagasas.di.uoa.gr:8080/login-service/userInfo",
+  logoutUrl: "http://mpagasas.di.uoa.gr:8080/login-service/openid_logout",
   
   cookieDomain: ".di.uoa.gr",
   
