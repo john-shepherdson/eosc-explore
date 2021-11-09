@@ -9,7 +9,8 @@ import {EnvProperties} from "../../openaireLibrary/utils/properties/env-properti
     selector: 'openaire-search-projects',
     template: `
 
-    <search-projects [customFilter]="customFilter" [openaireLink]="'https://'+(properties.environment != 'production'?'beta.':'')+'explore.openaire.eu/search/find/projects'">
+    <search-projects [customFilter]="customFilter" [openaireLink]="'https://'+(properties.environment != 'production'?'beta.':'')+'explore.openaire.eu/search/find/projects'"
+                     [piwikSiteId]="properties.piwikSiteId">
     </search-projects>
      `
 

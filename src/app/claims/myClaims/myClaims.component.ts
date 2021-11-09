@@ -2,13 +2,14 @@ import {Component} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {EnvProperties} from '../../openaireLibrary/utils/properties/env-properties';
 import {Subscriber} from "rxjs";
+import {properties} from "../../../environments/environment";
 
 
 
 @Component({
     selector: 'openaire-my-claims',
     template: `
-    <my-claims *ngIf="userInfoURL && claimsInfoURL" [claimsInfoURL]=claimsInfoURL [userInfoURL]="userInfoURL">
+    <my-claims *ngIf="userInfoURL && claimsInfoURL" [claimsInfoURL]=claimsInfoURL [userInfoURL]="userInfoURL" [piwikSiteId]="piwikSiteId">
 </my-claims>
 `
 
@@ -17,6 +18,8 @@ import {Subscriber} from "rxjs";
   claimsInfoURL:string;
   userInfoURL: string;
   sub;
+  piwikSiteId = properties.piwikSiteId;
+
   constructor (private route: ActivatedRoute) {
   }
   ngOnDestroy() {

@@ -4,7 +4,7 @@ export let properties: EnvProperties = {
   environment: "beta",
   adminToolsPortalType: "aggregator",
   dashboard: "explore",
-  enablePiwikTrack: false,
+  enablePiwikTrack: true,
   useCache: false,
   useLongCache: true,
   showAddThis: true,
@@ -41,23 +41,23 @@ export let properties: EnvProperties = {
   helpdesk: "https://www.openaire.eu/support/helpdesk",
   helpdeskEmail: "helpdesk@openaire.eu",
   utilsService: "https://demo.openaire.eu/utils-service",
-  
+
   vocabulariesAPI: "https://beta.services.openaire.eu/provision/mvc/vocabularies/",
-  
+
   piwikBaseUrl: "https://analytics.openaire.eu/piwik.php?idsite=",
-  piwikSiteId: null,
+  piwikSiteId: "553",
   loginUrl: "https://beta.services.openaire.eu/explore-login/openid_connect_login",
-  
+
   userInfoUrl: "https://beta.services.openaire.eu/uoa-user-management/api/users/getUserInfo?accessToken=",
-  
+
   logoutUrl: "https://beta.services.openaire.eu/explore-login/openid_logout",
-  
+
   cookieDomain: ".openaire.eu",
-  
+
   feedbackmail: "feedback@openaire.eu",
-  
+
   cacheUrl: "https://demo.openaire.eu/cache/get?url=",
-  
+
   datasourcesAPI: "https://beta.services.openaire.eu/openaire/ds/search/",
 
   adminToolsCommunity: "aggregator",
@@ -65,14 +65,14 @@ export let properties: EnvProperties = {
   useHelpTexts: false,
   contextsAPI: "https://beta.services.openaire.eu/openaire/context",
   communityAPI: "https://beta.services.openaire.eu/openaire/community/",
-  
+
   csvLimit: 2000,
   pagingLimit: 20,
   resultsPerPage: 10,
 
   "baseLink" : "",
-  "domain":"https://beta.explore.openaire.eu",
-  
+  "domain":"https://beta.canada.explore.openaire.eu",
+
   searchLinkToResult: "/search/result?id=",
   searchLinkToPublication: "/search/publication?articleId=",
   searchLinkToProject: "/search/project?projectId=",
@@ -81,7 +81,7 @@ export let properties: EnvProperties = {
   searchLinkToSoftwareLanding: "/search/software?softwareId=",
   searchLinkToOrp: "/search/other?orpId=",
   searchLinkToOrganization: "/search/organization?organizationId=",
-  
+
   searchLinkToPublications: "/search/find/publications",
   searchLinkToDataProviders: "/search/find/dataproviders",
   searchLinkToProjects: "/search/find/projects",
@@ -95,7 +95,7 @@ export let properties: EnvProperties = {
   searchLinkToJournals: "/search/journals",
   searchLinkToJournalsTable: "/search/journals-table",
   searchLinkToResults: "/search/find/research-outcomes",
-  
+
   searchLinkToAdvancedPublications: "/search/advanced/publications",
   searchLinkToAdvancedProjects: "/search/advanced/projects",
   searchLinkToAdvancedDatasets: "/search/advanced/datasets",
@@ -104,14 +104,14 @@ export let properties: EnvProperties = {
   searchLinkToAdvancedDataProviders: "/search/advanced/dataproviders",
   searchLinkToAdvancedOrganizations: "/search/advanced/organizations",
   searchLinkToAdvancedResults: "/search/advanced/research-outcomes",
-  
+
   lastIndexInformationLink: "https://beta.openaire.eu/aggregation-and-content-provision-workflows",
   showLastIndexInformationLink: true,
   widgetLink: "https://beta.openaire.eu/index.php?option=com_openaire&view=widget&format=raw&projectId=",
   claimsInformationLink: "https://beta.openaire.eu/linking",
   lastIndexUpdate: "2020-05-11",
   indexInfoAPI: "https://beta.services.openaire.eu/openaire/info/",
-  
+
   depositLearnHowPage: "/participate/deposit/learn-how",
   depositSearchPage: "/participate/deposit/search",
   altMetricsAPIURL: "https://api.altmetric.com/v1/doi/",

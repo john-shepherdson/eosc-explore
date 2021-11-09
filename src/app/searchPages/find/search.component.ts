@@ -7,11 +7,12 @@ import {properties} from "../../../environments/environment";
 @Component({
     selector: 'openaire-search-find',
     template: `
-    <search-all logoURL = "/assets/common-assets/logo-small-aggregator.png" name="OpenAIRE" [customFilter]="customFilter"></search-all>
+    <search-all logoURL = "/assets/common-assets/logo-small-aggregator.png" name="OpenAIRE" [customFilter]="customFilter" [piwikSiteId]="piwikSiteId"></search-all>
     `,
  })
 export class OpenaireSearchComponent{
   customFilter:SearchCustomFilter= null;
+  piwikSiteId = properties.piwikSiteId;
   constructor ( ) {}
   ngOnInit() {
     let id = ConnectHelper.getCommunityFromDomain(properties.domain);

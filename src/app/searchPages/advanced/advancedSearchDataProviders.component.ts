@@ -9,14 +9,14 @@ import {EnvProperties} from "../../openaireLibrary/utils/properties/env-properti
 @Component({
   selector: 'openaire-advanced-search-dataprovider',
   template: `
-    <search-dataproviders [customFilter]="customFilter" [simpleView]="false" [openaireLink]="'https://'+(properties.environment != 'production'?'beta.':'')+'explore.openaire.eu/search/advanced/dataproviders'">
+    <search-dataproviders [customFilter]="customFilter" [simpleView]="false" [openaireLink]="'https://'+(properties.environment != 'production'?'beta.':'')+'explore.openaire.eu/search/advanced/dataproviders'"
+    [piwikSiteId]="properties.piwikSiteId">
     </search-dataproviders>
 
   `
 })
 
 export class OpenaireAdvancedSearchDataProvidersComponent {
-
   customFilter: SearchCustomFilter = null;
   properties: EnvProperties;
   constructor ( ) {}

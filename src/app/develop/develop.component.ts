@@ -5,6 +5,8 @@ import {properties} from "../../environments/environment";
 import {Router} from "@angular/router";
 import {AggregatorInfo, PortalAggregators} from "../utils/aggregators";
 import {ConnectHelper} from "../openaireLibrary/connect/connectHelper";
+import {PiwikService} from "../openaireLibrary/utils/piwik/piwik.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'develop',
@@ -88,15 +90,20 @@ import {ConnectHelper} from "../openaireLibrary/connect/connectHelper";
   styleUrls: ['develop.component.css']
 })
 export class DevelopComponent implements OnInit {
-  
+
   public aggregator: AggregatorInfo = null;
+  subs: Subscription[] = [];
 
   constructor(private seoService: SEOService,
               private _meta: Meta,
               private _router: Router,
-              private _title: Title) {
+              private _title: Title,  private _piwikService:PiwikService,) {
   }
-  
+  public ngOnDestroy() {
+    for (let sub of this.subs) {
+      sub.unsubscribe();
+    }
+  }
   ngOnInit() {
 
       let id = ConnectHelper.getCommunityFromDomain(properties.domain);
@@ -113,6 +120,9 @@ export class DevelopComponent implements OnInit {
         this._meta.updateTag({content: description}, "property='og:description'");
         this._meta.updateTag({content: title}, "property='og:title'");
         this._title.setTitle(title);
+        if(properties.enablePiwikTrack && (typeof document !== 'undefined')){
+          this.subs.push(this._piwikService.trackView(properties, "OpenAIRE").subscribe());
+        }
 
       }else {
         this.navigateToError();
@@ -123,6 +133,6 @@ export class DevelopComponent implements OnInit {
   private navigateToError() {
     this._router.navigate(['/error'], {queryParams: {'page': this._router.url}});
   }
-  
+
 
 }
