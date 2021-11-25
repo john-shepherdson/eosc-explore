@@ -1,5 +1,6 @@
 import {SearchCustomFilter} from "../openaireLibrary/searchPages/searchUtils/searchUtils.class";
 import {Portal} from "../openaireLibrary/utils/entities/adminTool/portal";
+import {properties} from "../../environments/environment";
 
 export class AggregatorInfo {
   menuId: string;
@@ -36,8 +37,8 @@ export class PortalAggregators {
   static list: AggregatorInfo[] = [
     new AggregatorInfo("canada", "Canadian Aggregator", "assets/canada-logo.png", "Country", "country", "CA", "Canada","#E80000","#ad0000", "/assets/canada-background.svg",
       "Portal to Canadian Research Outputs", `<span>
-            Welcome to the beta Portal to Canadian Research Outputs, which has been developed as part of a
-            collaboration between CARL and OpenAIRE as part of the OpenAIRE Advance Project. The portal enables users
+            Welcome to the Canadian Research Outputs`+ (properties.environment != 'production'?' beta':'') + ` Portal, which has been developed as part of a
+            collaboration between CARL and OpenAIRE in the context of the OpenAIRE Advance Project. The portal enables users
             to search and browse Canadian content that is included in the OpenAIRE aggregation. The number of
             research products is expected to grow in 2021 as more Canadian repositories become compliant with
             OpenAIRE guidelines and Canadian affiliation information is enhanced. For more information, visit the
@@ -46,7 +47,7 @@ export class PortalAggregators {
           </span>
             <br>
           <span>
-            Bienvenue sur la version bêta du portail des résultats de la recherche canadienne, qui a été développé dans le cadre d'une collaboration entre l'ABRC et OpenAIRE dans le contexte du projet OpenAIRE Advance. Le portail permet aux utilisateurs de repérer et de parcourir le contenu canadien inclus sur la plateforme OpenAIRE. La quantité des résultats de la recherche canadienne disponible sur la plateforme augmentera tout au long de l'année 2021 au fur et à mesure que les dépôts canadiens se conformeront aux directives d'OpenAIRE et que les détails relatifs aux affiliations canadiennes seront améliorés. Pour plus d'informations,
+            Bienvenue sur ` + (properties.environment != 'production'?'la version bêta du portail':'le portal') + ` des résultats de la recherche canadienne, qui a été développé dans le cadre d'une collaboration entre l'ABRC et OpenAIRE dans le contexte du projet OpenAIRE Advance. Le portail permet aux utilisateurs de repérer et de parcourir le contenu canadien inclus sur la plateforme OpenAIRE. La quantité des résultats de la recherche canadienne disponible sur la plateforme augmentera tout au long de l'année 2021 au fur et à mesure que les dépôts canadiens se conformeront aux directives d'OpenAIRE et que les détails relatifs aux affiliations canadiennes seront améliorés. Pour plus d'informations,
               <a
                 href="https://www.carl-abrc.ca/fr/faire-avancer-la-recherche/depots-institutionnels/groupe-de-travail-depots-ouverts/collaboration-avec-openaire/" target="_blank">veuillez visiter le site Web de l’ABRC</a>.
           </span>`),

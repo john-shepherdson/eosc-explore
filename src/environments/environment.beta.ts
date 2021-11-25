@@ -46,11 +46,9 @@ export let properties: EnvProperties = {
 
   piwikBaseUrl: "https://analytics.openaire.eu/piwik.php?idsite=",
   piwikSiteId: "553",
-  loginUrl: "https://beta.services.openaire.eu/explore-login/openid_connect_login",
-
-  userInfoUrl: "https://beta.services.openaire.eu/uoa-user-management/api/users/getUserInfo?accessToken=",
-
-  logoutUrl: "https://beta.services.openaire.eu/explore-login/openid_logout",
+  loginUrl: "https://beta.services.openaire.eu/login-service/openid_connect_login",
+  userInfoUrl: "https://beta.services.openaire.eu/login-service/userInfo",
+  logoutUrl: "https://beta.services.openaire.eu/login-service/openid_logout",
 
   cookieDomain: ".openaire.eu",
 
@@ -115,5 +113,7 @@ export let properties: EnvProperties = {
   depositLearnHowPage: "/participate/deposit/learn-how",
   depositSearchPage: "/participate/deposit/search",
   altMetricsAPIURL: "https://api.altmetric.com/v1/doi/",
-  reCaptchaSiteKey: "6LezhVIUAAAAAOb4nHDd87sckLhMXFDcHuKyS76P"
+  reCaptchaSiteKey: "6LezhVIUAAAAAOb4nHDd87sckLhMXFDcHuKyS76P",
+  footerGrantText : "This OpenAIRE gateway is part of a project that has received funding from the European Union's Horizon 2020 research and innovation programme under grant agreements No. 777541 and 101017452"
+
 };

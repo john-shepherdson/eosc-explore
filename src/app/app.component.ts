@@ -36,7 +36,7 @@ import {SmoothScroll} from "./openaireLibrary/utils/smooth-scroll";
                    ratio="1"><polyline fill="none" stroke="#000" stroke-width="1.03" points="7 4 13 10 7 16"></polyline></svg>
               </span></a>
       </cookie-law>
-      <bottom *ngIf="isClient && properties" [properties]=properties></bottom>
+      <bottom *ngIf="isClient && properties" [properties]=properties [centered]="true" [showMenuItems]="true" [menuItems]="[]" [darkBackground]="false" ></bottom>
     </div>
   `
 })
