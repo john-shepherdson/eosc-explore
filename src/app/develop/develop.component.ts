@@ -27,7 +27,7 @@ import {Subscription} from "rxjs";
             <p>
               <span class="uk-text-bold">For research outcomes </span>
               (publications, datasets, software and other research data) you can use the
-              <a href="http://api.openaire.eu/api.html" target="_blank">Selective Access APIs</a>
+              <a href="https://graph.openaire.eu/develop/api.html" target="_blank">Selective Access APIs</a>
               by adding the <span class="uk-text-lowercase">country</span> parameter.
             </p>
             <div class="uk-grid   uk-child-width-1-2@m uk-child-width-1-1@s" uk-grid>
@@ -79,7 +79,7 @@ import {Subscription} from "rxjs";
               <div class="documentation">
                 For <span
                 class="uk-text-bold">more information</span> on the full potential of the OpenAIRE APIs please check
-                the <a href="http://develop.openaire.eu/" target="_blank">OpenAIRE API Documentation</a>.
+                the <a href="https://graph.openaire.eu/develop" target="_blank">OpenAIRE API Documentation</a>.
               </div>
             </div>
           </div>
@@ -97,7 +97,7 @@ export class DevelopComponent implements OnInit {
   constructor(private seoService: SEOService,
               private _meta: Meta,
               private _router: Router,
-              private _title: Title,  private _piwikService:PiwikService,) {
+              private _title: Title,  private _piwikService:PiwikService) {
   }
   public ngOnDestroy() {
     for (let sub of this.subs) {
