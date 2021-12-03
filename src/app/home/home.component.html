@@ -151,6 +151,29 @@
   <h3 class="uk-text-center uk-margin-medium-bottom">Our growing <span class="uk-text-bold">Community</span></h3>
   <numbers #numbersComponent [defaultInit]="false" backgroundClass="numbers-background"></numbers>
 </div>
+<!-- Funders Cards -->
+<div *ngIf="properties.environment == 'development'" class="uk-section uk-padding-remove-bottom">
+	<h3 class="uk-text-center uk-margin-medium-bottom">Our Canadian <span class="uk-text-bold">Funders</span></h3>
+	<!-- TODO: individual component -->
+	<div class="uk-section uk-container uk-container-large">
+		<div class="uk-grid uk-child-width-1-3" uk-grid uk-height-match="target: > div > .uk-card">
+			<div *ngFor="let funder of funders">
+				<div [routerLink]="properties.searchLinkToResults" [queryParams]="funder.params" class="uk-card uk-card-default uk-card-body uk-text-center">
+					<div class="uk-margin-bottom">
+						<h4>{{funder.name}}</h4>
+					</div>
+					<div class="uk-margin-bottom">
+						<h5 class="uk-text-bold uk-margin-remove uk-link">{{funder.publications | number}}</h5> research outcomes found
+					</div>
+					<div>
+						<h5 class="uk-text-bold uk-margin-remove uk-link">{{(funder.openAccessPublications / funder.publications) * 100 | number : '1.0-0'}}%</h5> Open Access
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
 <!--<helper *ngIf="pageContents && pageContents['left'] && pageContents['left'].length > 0"-->
 <!--        [texts]="pageContents['left']"></helper>-->
 <!--<div class="uk-section-muted"-->

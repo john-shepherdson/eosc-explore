@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import {Subscription} from 'rxjs';
+import {Subscription, zip} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Location} from '@angular/common';
 import {Meta, Title} from '@angular/platform-browser';
@@ -45,6 +45,9 @@ export class HomeComponent {
   showDataProviders: boolean = portalProperties.entities.datasource.isEnabled;
   properties: EnvProperties = properties;
   public readMore: boolean = false;
+
+	private noOfFunders = 3;
+	public funders = [];
 
   subs: Subscription[] = [];
 
@@ -140,6 +143,7 @@ export class HomeComponent {
             this.numbersComponent.init(false, false, this.showPublications, this.showDatasets,
               this.showSoftware, this.showOrp, this.showProjects, this.showDataProviders,
               StringUtils.URIEncode(this.customFilter.queryFieldName + " exact " + StringUtils.quote((this.customFilter.valueId ))));
+						this.getTopFunders();
           }
         },
         error => {
@@ -220,4 +224,33 @@ export class HomeComponent {
     }
     return params;
   }
+
+	getTopFunders() {
+		let refineParams1 = '&fq=country%20exact%20%22CA%22';
+		let refineParams2 = '&fq=resultbestaccessright%20exact%20%22Open%20Access%22&fq=country%20exact%20%22CA%22%20';
+		this.subs.push(zip(
+			this._refineFieldResultsService.getRefineFieldsResultsByEntityName(['relfunder'], 'result', this.properties, refineParams1),
+			this._refineFieldResultsService.getRefineFieldsResultsByEntityName(['relfunder'], 'result', this.properties, refineParams2)
+		).subscribe((data: any[]) => {
+			for(let i = 0; i < this.noOfFunders; i++) {
+				this.funders.push({
+					"id": data[0][1][0].values[i].id,
+					"name": data[0][1][0].values[i].name,
+					"publications": data[0][1][0].values[i].number,
+					"openAccessPublications": null,
+					"params": {
+						relfunder: '"'+encodeURIComponent(data[0][1][0].values[i].id)+'"'
+					}
+				});
+			}
+			let allFunders = data[1][1][0].values;
+			allFunders.forEach(funder => {
+				for(let topFunder of this.funders) {
+					if(funder.id == topFunder.id) {
+						topFunder.openAccessPublications = funder.number;
+					}
+				}
+			});
+		}))
+	}
 }
