@@ -143,7 +143,7 @@ export class HomeComponent {
             this.numbersComponent.init(false, false, this.showPublications, this.showDatasets,
               this.showSoftware, this.showOrp, this.showProjects, this.showDataProviders,
               StringUtils.URIEncode(this.customFilter.queryFieldName + " exact " + StringUtils.quote((this.customFilter.valueId ))));
-						this.getTopFunders();
+						this.getFunders();
           }
         },
         error => {
@@ -225,32 +225,59 @@ export class HomeComponent {
     return params;
   }
 
-	getTopFunders() {
+	getFunders() {
 		let refineParams1 = '&fq=country%20exact%20%22CA%22';
 		let refineParams2 = '&fq=resultbestaccessright%20exact%20%22Open%20Access%22&fq=country%20exact%20%22CA%22%20';
 		this.subs.push(zip(
 			this._refineFieldResultsService.getRefineFieldsResultsByEntityName(['relfunder'], 'result', this.properties, refineParams1),
 			this._refineFieldResultsService.getRefineFieldsResultsByEntityName(['relfunder'], 'result', this.properties, refineParams2)
 		).subscribe((data: any[]) => {
-			for(let i = 0; i < this.noOfFunders; i++) {
-				this.funders.push({
-					"id": data[0][1][0].values[i].id,
-					"name": data[0][1][0].values[i].name,
-					"publications": data[0][1][0].values[i].number,
-					"openAccessPublications": null,
-					"params": {
-						relfunder: '"'+encodeURIComponent(data[0][1][0].values[i].id)+'"'
-					}
-				});
-			}
-			let allFunders = data[1][1][0].values;
-			allFunders.forEach(funder => {
-				for(let topFunder of this.funders) {
-					if(funder.id == topFunder.id) {
-						topFunder.openAccessPublications = funder.number;
+			let queriedFunders1 = data[0][1][0].values;
+			queriedFunders1.forEach(queriedFunder => {
+				if(queriedFunder.id.includes('nserc')) {
+					this.funders.push({
+						"id": queriedFunder.id,
+						"name": queriedFunder.name,
+						"publications": queriedFunder.number,
+						"openAccessPublications": null,
+						"logo": 'assets/nserc_logo.png',
+						"params": {
+							relfunder: '"'+encodeURIComponent(queriedFunder.id)+'"'
+						}
+					});
+				} else if(queriedFunder.id.includes('cihr')) {
+					this.funders.push({
+						"id": queriedFunder.id,
+						"name": queriedFunder.name,
+						"publications": queriedFunder.number,
+						"openAccessPublications": null,
+						"logo": 'assets/cihr_logo.png',
+						"params": {
+							relfunder: '"'+encodeURIComponent(queriedFunder.id)+'"'
+						}
+					});
+				} else if(queriedFunder.id.includes('sshrc')) {
+					this.funders.push({
+						"id": queriedFunder.id,
+						"name": queriedFunder.name,
+						"publications": queriedFunder.number,
+						"openAccessPublications": null,
+						"logo": 'assets/sshrc_logo.png',
+						"params": {
+							relfunder: '"'+encodeURIComponent(queriedFunder.id)+'"'
+						}
+					});
+				}
+			});
+			let queriedFunders2 = data[1][1][0].values;
+			queriedFunders2.forEach(queriedFunder => {
+				for(let funder of this.funders) {
+					if(queriedFunder.id == funder.id) {
+						funder.openAccessPublications = queriedFunder.number;
 					}
 				}
 			});
-		}))
+			// console.log(this.funders);
+		}));
 	}
 }
