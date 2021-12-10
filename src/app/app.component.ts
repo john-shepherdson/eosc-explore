@@ -31,7 +31,7 @@ import {SmoothScroll} from "./openaireLibrary/utils/smooth-scroll";
         Cookies are small pieces of data that websites store in your browser to allow us to give you the best browsing
         experience possible.
         By using the OpenAIRE portal you accept our use of cookies. <a
-          href="//ec.europa.eu/ipg/basics/legal/cookies/index_en.htm" target="_blank"> Read more <span class="uk-icon">
+          href="https://www.openaire.eu/privacy-policy#cookies" target="_blank"> Read more <span class="uk-icon">
               <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" icon="chevron-right"
                    ratio="1"><polyline fill="none" stroke="#000" stroke-width="1.03" points="7 4 13 10 7 16"></polyline></svg>
               </span></a>
