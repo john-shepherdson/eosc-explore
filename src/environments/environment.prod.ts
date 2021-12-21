@@ -46,12 +46,10 @@ export let properties: EnvProperties = {
 
   piwikBaseUrl: "https://analytics.openaire.eu/piwik.php?idsite=",
   piwikSiteId: "553",
-  loginUrl: "https://services.openaire.eu/uoa-user-management/openid_connect_login",
 
-  userInfoUrl: " https://services.openaire.eu/uoa-user-management/api/users/getUserInfo?accessToken=",
-
-  logoutUrl: "https://aai.openaire.eu/proxy/saml2/idp/SingleLogoutService.php?ReturnTo=",
-
+  loginUrl: "https://services.openaire.eu/login-service/openid_connect_login",
+  userInfoUrl: "https://services.openaire.eu/login-service/userInfo",
+  logoutUrl: "https://services.openaire.eu/login-service/openid_logout",
   cookieDomain: ".openaire.eu",
 
   feedbackmail: "feedback@openaire.eu",
