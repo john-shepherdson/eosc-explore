@@ -9,8 +9,8 @@ import {EnvProperties} from "../../openaireLibrary/utils/properties/env-properti
 @Component({
   selector: 'openaire-advanced-search-organizations',
   template: `
-    <search-organizations  [customFilter]="customFilter" [simpleView]="false" [openaireLink]="'https://'+(properties.environment != 'production'?'beta.':'')+'explore.openaire.eu/search/advanced/organizations'"
-                           [piwikSiteId]="properties.piwikSiteId">
+    <search-organizations  [customFilter]="customFilter" [simpleView]="false" [openaireLink]="customFilter?'https://'+(properties.environment != 'production'?'beta.':'')+'explore.openaire.eu/search/advanced/organizations':null"
+                           [piwikSiteId]="properties.piwikSiteId" [hasPrefix]="false">
     </search-organizations>
 
   `

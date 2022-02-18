@@ -1,29 +1,24 @@
-// The file contents for the current environment will overwrite these during build.
-// The build system defaults to the dev environment which uses `environment.ts`, but if you do
-// `ng build --env=prod` then `environment.prod.ts` will be used instead.
-// The list of which env maps to which file can be found in `.angular-cli.json`.
-
 import {EnvProperties} from "../app/openaireLibrary/utils/properties/env-properties";
 
 export let properties: EnvProperties = {
-  environment: "development",
+  environment: "production",
   adminToolsPortalType: "aggregator",
   dashboard: "explore",
   enablePiwikTrack: false,
-  useCache: true,
+  useCache: false,
   useLongCache: true,
   showAddThis: true,
-  metricsAPIURL: "https://beta.services.openaire.eu/usagestats/",
-  framesAPIURL: "https://beta.openaire.eu/stats3/",
-  statisticsAPIURL: "http://vatopedi.di.uoa.gr:8080/stats/",
-  statisticsFrameAPIURL: "https://beta.openaire.eu/stats/",
-  statisticsFrameNewAPIURL: "https://stats.madgik.di.uoa.gr/stats-api/",
-  useNewStatistisTool: true,
-  claimsAPIURL: "http://dl170.madgik.di.uoa.gr:8180/dnet-claims-service-2.0.0-SNAPSHOT/rest/claimsService/",
-  searchAPIURLLAst: "http://beta.services.openaire.eu/search/v2/api/",
-  searchResourcesAPIURL: "https://beta.services.openaire.eu/search/v2/api/resources",
+  metricsAPIURL: "https://services.openaire.eu/usagestats/",
+  framesAPIURL: "https://www.openaire.eu/stats3/",
+  statisticsAPIURL: "https://beta.services.openaire.eu/stats-api/",
+  statisticsFrameAPIURL: "https://www.openaire.eu/stats/",
+  statisticsFrameNewAPIURL: "https://services.openaire.eu/stats/",
+  useNewStatistisTool: false,
+  claimsAPIURL: "https://services.openaire.eu/claims/rest/claimsService/",
+  searchAPIURLLAst: "https://services.openaire.eu/search/v2/api/",
+  searchResourcesAPIURL: "https://services.openaire.eu/search/v2/api/resources",
   openCitationsAPIURL: "https://services.openaire.eu/opencitations/getCitations?id=",
-  csvAPIURL: "https://beta.services.openaire.eu/search/v2/api/reports",
+  csvAPIURL: "https://services.openaire.eu/search/v2/api/reports",
   searchCrossrefAPIURL: "https://api.crossref.org/works",
   searchDataciteAPIURL: "https://api.datacite.org/works",
   searchOrcidURL: "https://pub.orcid.org/v2.1/",
@@ -45,36 +40,39 @@ export let properties: EnvProperties = {
   ercGuidlines: "http://erc.europa.eu/sites/default/files/document/file/ERC_Open_Access_Guidelines-revised_2014.pdf",
   helpdesk: "https://www.openaire.eu/support/helpdesk",
   helpdeskEmail: "helpdesk@openaire.eu",
-  utilsService: "http://dl170.madgik.di.uoa.gr:8000",
-  
-  vocabulariesAPI: "https://dev-openaire.d4science.org/provision/mvc/vocabularies/",
-  
+  utilsService: "https://explore.openaire.eu/utils-service",
+
+  vocabulariesAPI: "https://services.openaire.eu/provision/mvc/vocabularies/",
+
   piwikBaseUrl: "https://analytics.openaire.eu/piwik.php?idsite=",
-  piwikSiteId: "6",
-  loginUrl: "http://mpagasas.di.uoa.gr:8080/login-service/openid_connect_login",
-  userInfoUrl: "http://mpagasas.di.uoa.gr:8080/login-service/userInfo",
-  logoutUrl: "http://mpagasas.di.uoa.gr:8080/login-service/openid_logout",
-  
-  cookieDomain: ".di.uoa.gr",
-  
-  feedbackmail: "kostis30fylloy@gmail.com",
-  
-  cacheUrl: "http://dl170.madgik.di.uoa.gr:3000/get?url=",
+  piwikSiteId: null,
+
+  loginUrl: "https://services.openaire.eu/login-service/openid_connect_login",
+  userInfoUrl: "https://services.openaire.eu/login-service/userInfo",
+  logoutUrl: "https://services.openaire.eu/login-service/openid_logout",
+  cookieDomain: ".openaire.eu",
+
+  feedbackmail: "feedback@openaire.eu",
+
+  cacheUrl: "https://explore.openaire.eu/cache/get?url=",
+
+  datasourcesAPI: "https://services.openaire.eu/openaire/ds/search/",
 
   adminToolsCommunity: "aggregator",
-  adminToolsAPIURL: "http://duffy.di.uoa.gr:8080/uoa-admin-tools/",
-  useHelpTexts: false,
-  datasourcesAPI: "https://beta.services.openaire.eu/openaire/ds/search/",
-  contextsAPI: "https://dev-openaire.d4science.org/openaire/context",
-  communityAPI: "https://dev-openaire.d4science.org/openaire/community/",
-  
+  adminToolsAPIURL: "https://services.openaire.eu/uoa-admin-tools/",
+  useHelpTexts:false,
+
+  contextsAPI: "https://services.openaire.eu/openaire/context",
+
+  communityAPI: "https://services.openaire.eu/openaire/community/",
+
   csvLimit: 2000,
   pagingLimit: 20,
   resultsPerPage: 10,
 
-  "baseLink" : "",
-  "domain":"https://explore.eosc-portal.eu",
-  
+  "baseLink" : "/",
+  "domain": "https://explore.eosc-portal.eu",
+
   searchLinkToResult: "/search/result?id=",
   searchLinkToPublication: "/search/publication?articleId=",
   searchLinkToProject: "/search/project?projectId=",
@@ -83,7 +81,7 @@ export let properties: EnvProperties = {
   searchLinkToSoftwareLanding: "/search/software?softwareId=",
   searchLinkToOrp: "/search/other?orpId=",
   searchLinkToOrganization: "/search/organization?organizationId=",
-  
+
   searchLinkToPublications: "/search/find/publications",
   searchLinkToDataProviders: "/search/find/dataproviders",
   searchLinkToProjects: "/search/find/projects",
@@ -97,7 +95,7 @@ export let properties: EnvProperties = {
   searchLinkToJournals: "/search/journals",
   searchLinkToJournalsTable: "/search/journals-table",
   searchLinkToResults: "/search/find/research-outcomes",
-  
+
   searchLinkToAdvancedPublications: "/search/advanced/publications",
   searchLinkToAdvancedProjects: "/search/advanced/projects",
   searchLinkToAdvancedDatasets: "/search/advanced/datasets",
@@ -106,17 +104,18 @@ export let properties: EnvProperties = {
   searchLinkToAdvancedDataProviders: "/search/advanced/dataproviders",
   searchLinkToAdvancedOrganizations: "/search/advanced/organizations",
   searchLinkToAdvancedResults: "/search/advanced/research-outcomes",
-  
+
   lastIndexInformationLink: "https://www.openaire.eu/aggregation-and-content-provision-workflows",
   showLastIndexInformationLink: true,
-  widgetLink: "https://beta.openaire.eu/index.php?option=com_openaire&view=widget&format=raw&projectId=",
-  claimsInformationLink: "https://www.openaire.eu/linking-beta",
-  lastIndexUpdate: "2019-11-01",
-  indexInfoAPI: "https://beta.services.openaire.eu/openaire/info/",
-  
+  widgetLink: "https://www.openaire.eu/index.php?option=com_openaire&view=widget&format=raw&projectId=",
+  claimsInformationLink: "https://www.openaire.eu/linking",
+  lastIndexUpdate: "2020-06-15",
+  indexInfoAPI: "https://services.openaire.eu/openaire/info/",
+
   depositLearnHowPage: "/participate/deposit/learn-how",
   depositSearchPage: "/participate/deposit/search",
   altMetricsAPIURL: "https://api.altmetric.com/v1/doi/",
-  reCaptchaSiteKey: "6LcVtFIUAAAAAB2ac6xYivHxYXKoUvYRPi-6_rLu",
+  reCaptchaSiteKey: "6LezhVIUAAAAAOb4nHDd87sckLhMXFDcHuKyS76P",
   footerGrantText : "This OpenAIRE gateway is part of a project that has received funding from the European Union's Horizon 2020 research and innovation programme under grant agreements No. 777541 and 101017452"
+
 };

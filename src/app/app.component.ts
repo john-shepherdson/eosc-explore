@@ -12,21 +12,22 @@ import {ConfigurationService} from "./openaireLibrary/utils/configuration/config
 import {Subscriber} from "rxjs";
 import {DOCUMENT} from "@angular/common";
 import {SmoothScroll} from "./openaireLibrary/utils/smooth-scroll";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
   template: `
     <div *ngIf="agg">
-      <navbar *ngIf="properties && loginCheck && header" portal="aggregator" [properties]=properties [onlyTop]=false
+      <navbar *ngIf="properties && loginCheck && header " portal="aggregator" [properties]=properties [onlyTop]=false
               [user]="user" [userMenuItems]="userMenuItems"
               [communityId]="properties.adminToolsCommunity" [menuItems]=menuItems
-              [userMenu]="true" [header]="header"></navbar>
+              [userMenu]="agg.enableLogin" [header]="header"></navbar>
       <div class="custom-main-content">
         <main>
           <router-outlet></router-outlet>
         </main>
       </div>
-      <cookie-law *ngIf="isClient" position="bottom">
+      <cookie-law *ngIf="isClient && agg.menuId != 'eosc'" position="bottom">
         OpenAIRE uses cookies in order to function properly.<br>
         Cookies are small pieces of data that websites store in your browser to allow us to give you the best browsing
         experience possible.
@@ -36,7 +37,7 @@ import {SmoothScroll} from "./openaireLibrary/utils/smooth-scroll";
                    ratio="1"><polyline fill="none" stroke="#000" stroke-width="1.03" points="7 4 13 10 7 16"></polyline></svg>
               </span></a>
       </cookie-law>
-      <bottom *ngIf="isClient && properties" [properties]=properties [centered]="true" [showMenuItems]="true" [menuItems]="[]" [darkBackground]="false" ></bottom>
+      <bottom *ngIf="isClient && properties && agg.menuId != 'eosc'" [properties]=properties [centered]="true" [showMenuItems]="true" [menuItems]="[]" [darkBackground]="false" ></bottom>
     </div>
   `
 })
@@ -53,7 +54,7 @@ export class AppComponent {
   header: Header;
   agg: AggregatorInfo = null;
   subscriptions = [];
-  
+
   constructor(private userManagementService: UserManagementService,
               private configurationService: ConfigurationService, private smoothScroll: SmoothScroll,
               @Inject(DOCUMENT) private document, private rendererFactory: RendererFactory2) {
@@ -62,7 +63,7 @@ export class AppComponent {
     this.setStyles();
     this.configurationService.initStaticCommunityInformation(PortalAggregators.getCommunityInfoByMenuId(this.id));
   }
-  
+
   ngOnInit() {
     if (typeof document !== 'undefined') {
         this.isClient = true;
@@ -76,8 +77,9 @@ export class AppComponent {
         title: this.agg.title,
         logoUrl: this.agg.logoUrl,
         logoSmallUrl: this.agg.logoUrl,
-        position: 'left',
-        badge: true
+        position:  this.agg.menuId == 'eosc'?'center':'left',
+        menuPosition: this.agg.menuId == 'eosc'?'center':'right',
+        badge: this.agg.menuId == 'eosc'?false:true
       };
       this.buildMenu();
     }
@@ -91,7 +93,7 @@ export class AppComponent {
       }
     }));
   }
-  
+
   ngOnDestroy() {
     this.subscriptions.forEach(subscription => {
       if (subscription instanceof Subscriber) {
@@ -102,7 +104,7 @@ export class AppComponent {
     this.userManagementService.clearSubscriptions();
     this.smoothScroll.clearSubscriptions();
   }
-  
+
   private buildMenu() {
     this.menuItems = [
       {rootItem: new MenuItem("home", "Home", "", "/", false, [], null, {}), items: []},
@@ -144,7 +146,85 @@ export class AppComponent {
       css = css.concat("--graph-background:  url('" + this.agg.background + "\') no-repeat bottom;\n");
     }
     css = css.concat('}');
+    let css2 = `
 
+    .uk-button-primary:not(.uk-icon-button), .portal-button:not(.uk-icon-button) {
+      color: #fff !important;
+      background-color: #0c2bd5 !important;
+      background-image: linear-gradient(135deg,#05cae7,#0c2bd5) !important;
+      border:none !important;
+     }
+     
+   .uk-button-primary:hover, .portal-button:hover:not(.uk-icon-button) {
+       background: #0c2bd5 !important;
+        border:none !important;
+    }
+
+       .search_box_bg .uk-button, #searchForm .uk-button, .search_box_bg .uk-button:hover, #searchForm .uk-button:hover {
+      border-radius: 0px;
+      margin-left: 0px !important;
+      color: rgb(102, 102, 102) !important;
+      background-color: #0c2bd5 !important;
+      background-color: rgba(255, 255, 255, 1.0) !important;
+      border: 1px solid rgba(0, 0, 0, 0.40) !important;
+      background-image: none !important;
+
+    }
+
+    .uk-navbar-nav > li > a, .uk-navbar-dropdown-nav > li > a, .uk-navbar-dropdown-nav > li > a:focus, .uk-navbar-dropdown-nav > li > a:hover {
+      color: #555 !important;
+    }
+    .uk-navbar-nav > li:hover > a, .uk-navbar-nav > li > a.uk-open, .uk-navbar-nav > li > a:focus {
+      color: #555 ;
+      outline: 0;
+    }
+    
+.aggregator-menu .uk-navbar-nav>li {
+ margin-right:20px
+}
+.aggregator-menu .uk-navbar-nav>li>a {
+ padding:0
+}
+
+.navbar .nav > li > .dropdown-menu, .uk-navbar-dropdown{
+background-color: white;
+ color: #555;
+}
+ 
+.aggregator-menu .uk-navbar-dropdown li:before {
+ bottom:0
+} 
+.navbar .nav>li>.dropdown-menu,
+.uk-navbar-dropdown {
+ padding:20px
+}
+ 
+
+/* .aggregator-menu .uk-navbar-dropdown li:active::before, .aggregator-menu .uk-navbar-dropdown li:focus::before, .aggregator-menu .uk-navbar-dropdown li:hover::before, .aggregator-menu .uk-navbar-nav > li > a:active::before, .aggregator-menu .uk-navbar-nav > li > a:focus::before, .aggregator-menu .uk-navbar-nav > li > a:hover::before {
+
+    transform: scaleX(1);
+    transform-origin: 0 50%;
+
+}
+.aggregator-menu .uk-navbar-dropdown li::before, .aggregator-menu .uk-navbar-nav > li > a::before {
+
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    bottom: 20px;
+    z-index: 300;
+    left: 0;
+    background-color: #dc9d19;
+    transform: scaleX(0);
+    transition: transform .5s cubic-bezier(.7,0,.3,1);
+    transform-origin: 100% 50%;
+
+}*/
+ 
+
+    `;
+    css = css.concat(css2);
     try {
       if( this.document.getElementById('customStyle')){
         try {

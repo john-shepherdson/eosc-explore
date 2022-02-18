@@ -1,6 +1,10 @@
 import {NgModule} from '@angular/core';
-import {Routes, RouterModule, PreloadAllModules} from '@angular/router';
+import {Router, RouterModule, Routes} from '@angular/router';
 import {OpenaireErrorPageComponent} from './error/errorPage.component';
+import {ConnectHelper} from "./openaireLibrary/connect/connectHelper";
+import {PortalAggregators} from "./utils/aggregators";
+import {properties} from "../environments/environment";
+import {ConfigurationService} from "./openaireLibrary/utils/configuration/configuration.service";
 
 const routes: Routes = [
   {path: '', loadChildren: () => import('./home/home.module').then(m => m.HomeModule)},
@@ -76,20 +80,7 @@ const routes: Routes = [
     path: 'project-report',
     loadChildren: () => import('./landingPages/htmlProjectReport/libHtmlProjectReport.module').then(m => m.LibHtmlProjectReportModule)
   },
-  // Deposit Pages
-  { path: 'participate/deposit-datasets',  redirectTo: 'participate/deposit/learn-how', pathMatch: 'full'},
-  { path: 'participate/deposit-datasets-result',  redirectTo: 'participate/deposit/learn-how', pathMatch: 'full'},
-  { path: 'participate/deposit-subject-result',  redirectTo: 'participate/deposit/learn-how', pathMatch: 'full'},
-  { path: 'participate/deposit-publications',  redirectTo: 'participate/deposit/learn-how', pathMatch: 'full'},
-  { path: 'participate/deposit-publications-result',  redirectTo: 'participate/deposit/learn-how', pathMatch: 'full'},
-  
-  { path: 'participate/deposit/learn-how', loadChildren: () => import('./deposit/deposit.module').then(m => m.LibDepositModule)},
-  { path: 'participate/deposit/search', loadChildren: () => import('./deposit/searchDataprovidersToDeposit.module').then(m => m.LibSearchDataprovidersToDepositModule)},
-  // Linking Pages
-  { path: 'myclaims', loadChildren: () => import('./claims/myClaims/myClaims.module').then(m => m.LibMyClaimsModule)},
-  { path: 'participate/claim', loadChildren: () => import('./claims/linking/linkingGeneric.module').then(m => m.LibLinkingGenericModule)},
-  { path: 'participate/direct-claim', loadChildren: () => import('./claims/directLinking/directLinking.module').then(m => m.LibDirectLinkingModule)},
-  {path: 'develop', loadChildren: () => import('./develop/develop.module').then(m => m.DevelopModule)},
+
   {path: 'user-info', loadChildren: () => import('./login/libUser.module').then(m => m.LibUserModule)},
   {path: 'error', component: OpenaireErrorPageComponent},
   {path: '**', pathMatch: 'full', component: OpenaireErrorPageComponent}
@@ -102,4 +93,51 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule {
+  subs = [];
+  routes =[];
+  ngOnDestroy() {
+    for (let sub of this.subs) {
+      sub.unsubscribe();
+    }
+  }
+  constructor( private config: ConfigurationService, private router: Router){
+    this.subs.push(this.config.communityInformationState.subscribe(data => {
+        if (data) {
+          if (data['pages']) {
+            for (var i = 0; i < data['pages'].length; i++) {
+              this.routes[data['pages'][i]['route']] = data['pages'][i]['isEnabled'];
+            }
+          }
+          this.getRoutes();
+        }
+      },
+      error => {
+        // this.handleError('Error getting community information (e.g. pages,entities) for community with id: ' + this.communityId, error);
+      }));
+  }
+  getRoutes(){
+    let optionalRoutes = [
+      // Deposit Pages
+  { path: 'participate/deposit-datasets',  redirectTo: 'participate/deposit/learn-how', pathMatch: 'full'},
+  { path: 'participate/deposit-datasets-result',  redirectTo: 'participate/deposit/learn-how', pathMatch: 'full'},
+  { path: 'participate/deposit-subject-result',  redirectTo: 'participate/deposit/learn-how', pathMatch: 'full'},
+  { path: 'participate/deposit-publications',  redirectTo: 'participate/deposit/learn-how', pathMatch: 'full'},
+  { path: 'participate/deposit-publications-result',  redirectTo: 'participate/deposit/learn-how', pathMatch: 'full'},
+  
+  { path: 'participate/deposit/learn-how', loadChildren: () => import('./deposit/deposit.module').then(m => m.LibDepositModule)},
+  { path: 'participate/deposit/search', loadChildren: () => import('./deposit/searchDataprovidersToDeposit.module').then(m => m.LibSearchDataprovidersToDepositModule)},
+  // Linking Pages
+  { path: 'myclaims', loadChildren: () => import('./claims/myClaims/myClaims.module').then(m => m.LibMyClaimsModule)},
+  { path: 'participate/claim', loadChildren: () => import('./claims/linking/linkingGeneric.module').then(m => m.LibLinkingGenericModule)},
+  { path: 'participate/direct-claim', loadChildren: () => import('./claims/directLinking/directLinking.module').then(m => m.LibDirectLinkingModule)},
+  {path: 'develop', loadChildren: () => import('./develop/develop.module').then(m => m.DevelopModule)}
+  ];
+    
+    for (var i = 0; i <optionalRoutes.length; i++) {
+      if(this.routes["/"+optionalRoutes[i].path]){
+        this.router.config.push(optionalRoutes[i]);
+      }
+    }
+    return routes;
+  }
 }

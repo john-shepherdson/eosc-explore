@@ -15,9 +15,10 @@ export class AggregatorInfo {
   background:string;
   graphSectionTitle: string;
   graphSectionText: string;
+  enableLogin: boolean;
 
   constructor(menuId: string, title: string, logoUrl: string, fieldName: string, queryFieldName: string, valueId: string,
-              valueName: string, mainColor:string=null, darkColor:string=null, background:string=null,graphSectionTitle: string = null, graphSectionText:string = null ) {
+              valueName: string, mainColor:string=null, darkColor:string=null, background:string=null,graphSectionTitle: string = null, graphSectionText:string = null, enableLogin:boolean = true ) {
     this.menuId = menuId;
     this.title = title;
     this.logoUrl = logoUrl;
@@ -30,6 +31,7 @@ export class AggregatorInfo {
     this.background = background;
     this.graphSectionTitle = graphSectionTitle;
     this.graphSectionText = graphSectionText;
+    this.enableLogin = enableLogin;
   }
 }
 
@@ -54,12 +56,15 @@ export class PortalAggregators {
           </span>`),
     new AggregatorInfo("italy", "Italian Aggregator", "assets/common-assets/logo-small-aggregator.png", "Country", "country", "IT", "Italy"),
     new AggregatorInfo("greece", "Greek Aggregator", "assets/common-assets/logo-small-aggregator.png", "Country", "country", "GR", "Greece"),
+    new AggregatorInfo("eosc", "Eosc Explore", "https://providers.eosc-portal.eu/assets/images/EOSC_Portal_Logo.png", null, null, null, null, "#3540b6","#233d4c",  null,null,null ,false)
 
   ];
   static disabled = {
     "canada": {pages: [], entities: ["software"]},
     "italy": {pages: [], entities: []},
-    "greece": {pages: [], entities: []}
+    "greece": {pages: [], entities: []},
+    "eosc": {pages: ["/participate/deposit/search", "/participate/deposit/learn-how","/participate/claim", "/participate/direct-claim", "/myclaims","/claims", "/develop"]
+      , entities: []}
   };
   static defaultAggregator: AggregatorInfo = PortalAggregators.list[0];
 
@@ -78,7 +83,7 @@ export class PortalAggregators {
 
   public static getSearchCustomFilterByAggregator(agg: AggregatorInfo): SearchCustomFilter {
     let filter:SearchCustomFilter = null;
-    if(agg) {
+    if(agg && agg.fieldName) {
       filter = new SearchCustomFilter(agg.fieldName, agg.queryFieldName, agg.valueId, agg.valueName);
       filter.promptToAddFilter = false;
       filter.isHiddenFilter = true;

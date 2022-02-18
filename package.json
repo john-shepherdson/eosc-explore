@@ -7,6 +7,7 @@
     "build": "ng build",
     "build-dev": "ng build --configuration=development",
     "build-beta": "ng build --configuration=beta",
+    "build-eosc": "ng build --configuration=eosc",
     "build-prod": "ng build --prod",
     "webpack-bundle-analyzer": "ng build --stats-json && webpack-bundle-analyzer dist/aggregator/browser/stats-es2015.json --host 0.0.0.0",
     "test": "ng test",
@@ -16,6 +17,7 @@
     "build:ssr-dev": "npm run build-dev && ng run aggregator:server:development",
     "build:ssr-beta": "npm run build-beta && ng run aggregator:server:beta",
     "build:ssr-prod": "npm run build-prod && ng run aggregator:server:production",
+    "build:ssr-eosc": "npm run build-eosc && ng run aggregator:server:eosc",
     "prerender": "ng run aggregator:prerender",
     "after-build-clean": "rm -rf dist/aggregator/browser/assets/common-assets/.git/ src/app/openaireLibrary/.git node_modules .git*"
   },

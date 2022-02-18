@@ -8,8 +8,8 @@ import {EnvProperties} from "../../openaireLibrary/utils/properties/env-properti
 @Component({
     selector: 'openaire-search-results',
     template: `
-      <search-research-results resultType="result" [simpleView]="false" [customFilter]="customFilter" [openaireLink]="'https://'+(properties.environment != 'production'?'beta.':'')+'explore.openaire.eu/search/advanced/research-outcomes'"
-                               [piwikSiteId]="properties.piwikSiteId"></search-research-results>
+      <search-research-results resultType="result" [simpleView]="false" [customFilter]="customFilter" [openaireLink]="customFilter?'https://'+(properties.environment != 'production'?'beta.':'')+'explore.openaire.eu/search/advanced/research-outcomes':null"
+                               [piwikSiteId]="properties.piwikSiteId" [hasPrefix]="false"></search-research-results>
     `
 
 })

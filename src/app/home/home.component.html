@@ -96,6 +96,7 @@
   </div>
 </div>
 <!-- Funders Cards -->
+<ng-container *ngIf="this.customFilter && this.customFilter.valueId == 'CA'">
 <div *ngIf="  funders.length" class="uk-section uk-padding-remove-bottom"   style="background: linear-gradient(180deg, #FAFAFA 50%, #FFFFFF 55%);">
   <h3 class="uk-text-center uk-margin-medium-bottom">Our Canadian <span class="uk-text-bold">Funders</span></h3>
   <!-- TODO: individual component -->
@@ -120,12 +121,12 @@
     </div>
   </div>
 </div>
-
+</ng-container>
 <div class="uk-section uk-padding-remove-bottom">
   <h3 class="uk-text-center uk-margin-medium-bottom">Our growing <span class="uk-text-bold">Community</span></h3>
   <numbers #numbersComponent [defaultInit]="false" backgroundClass="numbers-background"></numbers>
 </div>
-<div class="uk-section" >
+<div class="uk-section" *ngIf="isRouteAvailable('participate/deposit/learn-how') || isRouteAvailable('participate/claim')">
   <div class="uk-padding uk-padding-remove-horizontal">
     <div class="uk-container uk-container-small">
       <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid="">
@@ -133,7 +134,7 @@
           <div
               class="uk-margin uk-text-center uk-child-width-1-1 uk-grid-match uk-child-width-1-1@s uk-child-width-1-2@m uk-child-width-1-2@l uk-grid"
               id="page#8" uk-grid="" uk-height-match="target: .target">
-            <div class="uk-first-column">
+            <div class="uk-first-column" *ngIf="isRouteAvailable('participate/deposit/learn-how')">
               <div class="el-item uk-card uk-card-default uk-card-medium uk-card-body">
                 <div class="uk-text-center target"><img alt="Share" class="uk-width-1-3@m uk-width-small"
                                                         src="assets/share.svg"></div>
@@ -153,7 +154,7 @@
                    href="/participate/deposit/learn-how" type="submit">Deposit </a></div>
             </div>
 
-            <div>
+            <div *ngIf=" isRouteAvailable('participate/claim')">
               <div class="el-item uk-card uk-card-default uk-card-medium uk-card-body">
                 <div class="uk-text-center target"><img alt="Share" class="uk-width-1-3@m uk-width-small"
                                                         src="assets/link.svg"></div>
