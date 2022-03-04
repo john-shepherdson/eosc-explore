@@ -4,7 +4,7 @@ export let properties: EnvProperties = {
   environment: "production",
   adminToolsPortalType: "aggregator",
   dashboard: "explore",
-  enablePiwikTrack: false,
+  enablePiwikTrack: true,
   useCache: false,
   useLongCache: true,
   showAddThis: true,
@@ -45,7 +45,7 @@ export let properties: EnvProperties = {
   vocabulariesAPI: "https://services.openaire.eu/provision/mvc/vocabularies/",
 
   piwikBaseUrl: "https://analytics.openaire.eu/piwik.php?idsite=",
-  piwikSiteId: null,
+  piwikSiteId: "582",
 
   loginUrl: "https://services.openaire.eu/login-service/openid_connect_login",
   userInfoUrl: "https://services.openaire.eu/login-service/userInfo",
