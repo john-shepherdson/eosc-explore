@@ -140,9 +140,11 @@ export class HomeComponent {
             if(this.showOrp){
               this.resultTypes.values.push({name: "Other research products" , id:"other",selected:true, number:0});
             }
-            this.numbersComponent.init(false, false, this.showPublications, this.showDatasets,
-              this.showSoftware, this.showOrp, this.showProjects, this.showDataProviders, this.customFilter?
-              StringUtils.URIEncode(this.customFilter.queryFieldName + " exact " + StringUtils.quote((this.customFilter.valueId ))):'');
+            if(this.numbersComponent) {
+              this.numbersComponent.init(false, false, this.showPublications, this.showDatasets,
+                this.showSoftware, this.showOrp, this.showProjects, this.showDataProviders, this.customFilter ?
+                  StringUtils.URIEncode(this.customFilter.queryFieldName + " exact " + StringUtils.quote((this.customFilter.valueId))) : '');
+            }
 						this.getFunders();
           }
         },

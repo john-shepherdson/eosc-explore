@@ -1,9 +1,10 @@
 <div class="image-front-topbar">
   <div class="uk-section mainPageSearchForm">
-    <div class="uk-container">
-      <div class="search_box_bg uk-flex uk-flex-center">
-        <div>
-          <form class="uk-margin">
+    <div class="">
+      <div class="search_box_bg ">
+        <div id="searchForm" class="uk-grid  uk-flex uk-flex-center">
+          <div id="searchImage" class="uk-margin-small-top "></div>
+          <form class="uk-margin ">
             <div class="uk-grid uk-margin-small-left">
               <div class="uk-margin-small-top uk-padding-remove-left">
                 <entities-selection [simpleView]="true" currentEntity="all" [selectedEntity]="selectedEntity"
@@ -66,6 +67,19 @@
     </div>
   </div>
 </div>
+<div *ngIf="aggregatorId == 'eosc'" class="uk-grid uk-child-width-1-2@m uk-child-width-1-1@s">
+  <div>
+    <div class="uk-margin-large-left">
+      <h1 class=" uk-text-bold">Welcome to EOSC research discovery portal!</h1>
+      <div class="uk-margin-large-top uk-text-large">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a 
+        ligula ante. Interdum et malesuada 
+        fames ac ante ipsum primis in faucibus. Vivamus vitae sagittis metus, eget fringilla lectus. Sed sit amet nisi odio. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Ut sed diam sem. Phasellus fermentum vulputate mi, non mollis sem dictum ut. Ut quis vestibulum mauris. </div>
+    </div>
+  </div>
+  <img src="https://marketplace.eosc-portal.eu/packs/media/images/gfx_whole_illustation_desktop-fc94d4f7e15455d1785ef4793e1573fb.png">
+  
+  
+</div>
 <div class="uk-section graph-background" *ngIf="aggregator.graphSectionText && aggregator.graphSectionTitle">
   <div class="uk-container">
     <div class="uk-flex uk-flex-top uk-child-width-1-1 uk-child-width-1-2@m" uk-grid>
@@ -95,9 +109,9 @@
     </div>
   </div>
 </div>
-<!-- Funders Cards -->
 <ng-container *ngIf="this.customFilter && this.customFilter.valueId == 'CA'">
-<div *ngIf="  funders.length" class="uk-section uk-padding-remove-bottom"   style="background: linear-gradient(180deg, #FAFAFA 50%, #FFFFFF 55%);">
+  <!-- Funders Cards -->
+  <div *ngIf="  funders.length" class="uk-section uk-padding-remove-bottom"   style="background: linear-gradient(180deg, #FAFAFA 50%, #FFFFFF 55%);">
   <h3 class="uk-text-center uk-margin-medium-bottom">Our Canadian <span class="uk-text-bold">Funders</span></h3>
   <!-- TODO: individual component -->
   <div class="uk-section uk-container uk-container-large">
@@ -122,7 +136,8 @@
   </div>
 </div>
 </ng-container>
-<div class="uk-section uk-padding-remove-bottom">
+<div class="uk-section uk-padding-remove-bottom " [class.uk-hidden]="!( this.customFilter && 
+this.customFilter.valueId == 'CA')">
   <h3 class="uk-text-center uk-margin-medium-bottom">Our growing <span class="uk-text-bold">Community</span></h3>
   <numbers #numbersComponent [defaultInit]="false" backgroundClass="numbers-background"></numbers>
 </div>

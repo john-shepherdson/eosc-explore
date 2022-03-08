@@ -18,7 +18,7 @@ import {Router} from "@angular/router";
   selector: 'app-root',
   template: `
     <div *ngIf="agg">
-      <navbar *ngIf="properties && loginCheck && header " portal="aggregator" [properties]=properties [onlyTop]=false
+      <navbar *ngIf="properties && loginCheck && header && agg.menuId != 'eosc'" portal="aggregator" [properties]=properties [onlyTop]=false
               [user]="user" [userMenuItems]="userMenuItems"
               [communityId]="properties.adminToolsCommunity" [menuItems]=menuItems
               [userMenu]="agg.enableLogin" [header]="header"></navbar>
@@ -148,6 +148,63 @@ export class AppComponent {
     css = css.concat('}');
     let css2 = `
 
+#searchImage{
+background: url('https://marketplace.eosc-portal.eu/packs/media/images/eosc-logo-color-883f208671ef77b15b9cd067ecdc369b.png') no-repeat center left;
+width: 250px;
+height: 80px;
+background-size: 250px 80px;
+margin-left: 80px;
+margin-bottom: 37px;
+}
+#searchForm advanced-search-form{
+float:right;
+}
+#searchForm{
+padding:0;
+ width:100%;
+  max-width:100%;
+}
+search-filter h6::after{
+border-bottom: 1px solid gray;
+}
+search-filter h6{
+text-transform: uppercase !important;
+font-size: 12px;
+}
+
+search-filter .tm-child-list-divider > ul > li:nth-child(n+2), .uk-list-divider > li:nth-child(n+2){
+border: none;
+}
+
+.filterHeader{
+border-bottom:1px solid #ced4da;
+}
+.matSelection.mat-select {
+
+    padding: 4px;
+    border: 1px solid #ced4da;
+
+}
+
+  
+ 
+.search-results .uk-card-default.uk-card-hover:hover{
+    box-shadow: none;
+}
+.search-results .uk-card-default {
+    border: 1px solid #ced4da;
+    box-shadow:none;
+}
+
+element {
+
+}
+.uk-pagination > .uk-active > *, .uk-pagination > .uk-active > :hover {
+
+   border-radius: 0px;
+ 
+
+}
     .uk-button-primary:not(.uk-icon-button), .portal-button:not(.uk-icon-button) {
       color: #fff !important;
       background-color: #0c2bd5 !important;
@@ -224,7 +281,9 @@ background-color: white;
  
 
     `;
-    css = css.concat(css2);
+    if(this.agg.menuId == 'eosc') {
+      css = css.concat(css2);
+    }
     try {
       if( this.document.getElementById('customStyle')){
         try {

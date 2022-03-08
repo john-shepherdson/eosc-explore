@@ -115,7 +115,7 @@ export let properties: EnvProperties = {
   depositLearnHowPage: "/participate/deposit/learn-how",
   depositSearchPage: "/participate/deposit/search",
   altMetricsAPIURL: "https://api.altmetric.com/v1/doi/",
-  reCaptchaSiteKey: "6LezhVIUAAAAAOb4nHDd87sckLhMXFDcHuKyS76P",
+  reCaptchaSiteKey: null,
   footerGrantText : "This OpenAIRE gateway is part of a project that has received funding from the European Union's Horizon 2020 research and innovation programme under grant agreements No. 777541 and 101017452"
 
 };
