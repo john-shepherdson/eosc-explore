@@ -4,3 +4,6 @@
 [submodule "src/assets/common-assets"]
 	path = src/assets/common-assets
 	url = gitea@code-repo.d4science.org:MaDgIK/openaire-assets.git
+[submodule "src/assets/openaire-theme"]
+	path = src/assets/openaire-theme
+	url = gitea@code-repo.d4science.org:MaDgIK/openaire-theme.git

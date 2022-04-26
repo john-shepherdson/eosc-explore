@@ -1,5 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-@import "assets/common-assets/common/theme.css";
-@import "assets/common-assets/common/custom.css";
+@import "assets/openaire-theme/css/import.css";
 @import "assets/common-assets/library.css";
 @import "assets/portal-custom.css";

@@ -1,53 +1,75 @@
+/*:root {*/
+/*    --portal-main-color:  #2d72d6;*/
+/*    --portal-main-contrast: white;*/
+/*    --portal-dark-color: #313179;*/
+/*    --openaire-main-color: #313179;*/
+/*    --graph-background:  no-repeat bottom;;*/
+/*}*/
+/*new theme */
 :root {
-    --portal-main-color:  #2d72d6;
-    --portal-main-contrast: white;
-    --portal-dark-color: #313179;
-    --openaire-main-color: #313179;
-    --graph-background:  no-repeat bottom;;
-}
+    /*buttons*/
+    /*--button-primary-background: var(--explore-color);*/
+    /*--button-primary-background-image: linear-gradient(104deg, var(--explore-dark-color) 0%, var(--explore-light-color) 100%);*/
 
-.graph-background {
-    background-size: cover !important;
-    padding-bottom: 100px;
-    background-color: #FAFAFA !important;
-    background: var(--graph-background);
-}
-.mainPageSearchForm{
-    background-color: white !important;
-    background-image: none !important;
-    margin-bottom: 20px;
-}
+    /*backgrounds*/
+    /*--background-primary:var(--explore-color);*/
+    /*--background-primary-image:none;*/
+    /*--background-secondary: var(--grey-color);*/
+    /*--background-secondary-image:none;*/
 
-.searchForm, .generalSearchForm,
-.publicationsSearchForm,
-.projectsSearchForm, .projectsTableSearchForm,
-.organizationsSearchForm,
-.datasetsSearchForm,
-.softwareSearchForm,
-.orpsSearchForm,
-.datasourcesSearchForm,  .compatibleDatasourcesSearchForm, .compatibleDatasourcesTableSearchForm, .datasourcesTableSearchForm,
- .journalsSearchForm, .journalsTableSearchForm,
-.entityRegistriesSearchForm, .entityRegistriesTableSearchForm {
+    /*fonts*/
+    /*--text-primary-color: var(--explore-color);*/
+    /*--text-gradient-color: linear-gradient(110deg, var(--explore-dark-color) 0%, var(--explore-light-color) 100%);*/
 
-    background-color: white !important;
-    background-image: none !important;
-}
+    /* Label */
+    /*--label-secondary: var(--explore-color);*/
 
-.explorePanelBackground {
-    background: transparent linear-gradient(133deg, #F5F5F5 0%, #D8D8D8 100%) 0 0 no-repeat padding-box;
+    /*slider*/
+    /*--slider-dot-background: rgba(var(--explore-color-rgb), 0.5);*/
+    /*--slider-dot-active-background: var(--explore-color);*/
 }
+/*.graph-background {*/
+/*    background-size: cover !important;*/
+/*    padding-bottom: 100px;*/
+/*    background-color: #FAFAFA !important;*/
+/*    background: var(--graph-background);*/
+/*}*/
+/*.mainPageSearchForm{*/
+/*    background-color: white !important;*/
+/*    background-image: none !important;*/
+/*    margin-bottom: 20px;*/
+/*}*/
 
-.explorePanelBackground .uk-grid-divider > :not(.uk-first-column)::before {
-    border-left: 1px solid rgba(0, 0, 0, .2);
-}
+/*.searchForm, .generalSearchForm,*/
+/*.publicationsSearchForm,*/
+/*.projectsSearchForm, .projectsTableSearchForm,*/
+/*.organizationsSearchForm,*/
+/*.datasetsSearchForm,*/
+/*.softwareSearchForm,*/
+/*.orpsSearchForm,*/
+/*.datasourcesSearchForm,  .compatibleDatasourcesSearchForm, .compatibleDatasourcesTableSearchForm, .datasourcesTableSearchForm,*/
+/* .journalsSearchForm, .journalsTableSearchForm,*/
+/*.entityRegistriesSearchForm, .entityRegistriesTableSearchForm {*/
 
-.explorePanelBackground .uk-breadcrumb > :nth-child(n+2):not(.uk-first-column)::before {
-    color: #bfbfbf;
-}
+/*    background-color: white !important;*/
+/*    background-image: none !important;*/
+/*}*/
 
-.numbers-background {
-    background: transparent url('numbers_background_pattern.svg') repeat-x center bottom;
-}
-.number {
-    color: #1d1d1d;
-}
+/*.explorePanelBackground {*/
+/*    background: transparent linear-gradient(133deg, #F5F5F5 0%, #D8D8D8 100%) 0 0 no-repeat padding-box;*/
+/*}*/
+
+/*.explorePanelBackground .uk-grid-divider > :not(.uk-first-column)::before {*/
+/*    border-left: 1px solid rgba(0, 0, 0, .2);*/
+/*}*/
+
+/*.explorePanelBackground .uk-breadcrumb > :nth-child(n+2):not(.uk-first-column)::before {*/
+/*    color: #bfbfbf;*/
+/*}*/
+
+/*.numbers-background {*/
+/*    background: transparent url('numbers_background_pattern.svg') repeat-x center bottom;*/
+/*}*/
+/*.number {*/
+/*    color: #1d1d1d;*/
+/*}*/
