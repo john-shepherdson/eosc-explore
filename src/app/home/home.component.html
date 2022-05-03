@@ -1,5 +1,5 @@
 <div class="image-front-topbar">
-  <div class="uk-section mainPageSearchForm">
+<!--  <div class="uk-section mainPageSearchForm">
     <div class="">
       <div class="search_box_bg ">
         <div id="searchForm" class="uk-grid  uk-flex uk-flex-center">
@@ -35,7 +35,7 @@
                   Search
                 </button>
                 <div class="uk-margin-small-top  uk-margin-left">
-                  <!--                        (click)="goTo(false)"-->
+                  &lt;!&ndash;                        (click)="goTo(false)"&ndash;&gt;
                   <a *ngIf="selectedEntity!='all'" (click)="goTo(false)" class="portal-link">Advanced Search</a>
                   <a *ngIf="selectedEntity=='all'" class="portal-link ">Advanced Search</a></div>
                 <div *ngIf="selectedEntity=='all'" uk-dropdown class="uk-dropdown default-dropdown">
@@ -65,6 +65,27 @@
         </div>
       </div>
     </div>
+  </div>-->
+  <div class="uk-section  uk-margin-large-top uk-margin-large-bottom uk-grd uk-flex uk-overflow-hidden home-background">
+    <div id="searchImage" class="uk-margin-medium-top uk-margin-small-right "></div>
+    <div class="uk-width-expand search_box_bg uk-height-medium" uk-scrollspy="target: [uk-scrollspy-class]; cls: uk-animation-slide-bottom-medium; delay: 200">
+
+          <div [class.uk-invisible]="disableSelect" class="uk-margin-medium-top uk-width-3-5@m" uk-scrollspy-class>
+            <advanced-search-input (searchEmitter)="goTo(true)">
+              <entities-selection #entities [simpleView]="true" currentEntity="all" [selectedEntity]="selectedEntity"
+                                  (selectionChange)="entityChanged($event)" (disableSelectEmitter)="disableSelect = $event"
+                                  [onChangeNavigate]="false"></entities-selection>
+              <div input placeholder="Scholary works" [hint]="'Search in OpenAIRE'" [(value)]="keyword"></div>
+            </advanced-search-input>
+
+            <div *ngIf="selectedEntity === 'result' && !entities.input.focused" class="uk-dropdown uk-display-block uk-margin-top uk-width-auto">
+              <div class="uk-padding-small">
+                <quick-selections [resultTypes]="resultTypes" [quickFilter]="resultsQuickFilter"></quick-selections>
+              </div>
+            </div>
+          </div>
+        </div>
+
   </div>
 </div>
 <div *ngIf="aggregatorId == 'eosc'" class="uk-grid uk-child-width-1-2@m uk-child-width-1-1@s">

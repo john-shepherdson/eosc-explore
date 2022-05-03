@@ -1,44 +1,41 @@
 import {NgModule} from '@angular/core';
 import {Router, RouterModule, Routes} from '@angular/router';
 import {OpenaireErrorPageComponent} from './error/errorPage.component';
-import {ConnectHelper} from "./openaireLibrary/connect/connectHelper";
-import {PortalAggregators} from "./utils/aggregators";
-import {properties} from "../environments/environment";
 import {ConfigurationService} from "./openaireLibrary/utils/configuration/configuration.service";
 
 const routes: Routes = [
   {path: '', loadChildren: () => import('./home/home.module').then(m => m.HomeModule)},
   {
     path: 'search/result',
-    loadChildren: () => import('./landingPages/result/libResult.module').then(m => m.LibResultModule)
+    loadChildren: () => import('./landingPages/result/libResult.module').then(m => m.LibResultModule), data: { showHeader: true}
   },
   {
     path: 'search/publication',
-    loadChildren: () => import('./landingPages/publication/libPublication.module').then(m => m.LibPublicationModule)
+    loadChildren: () => import('./landingPages/publication/libPublication.module').then(m => m.LibPublicationModule), data: { showHeader: true}
   },
   {
     path: 'search/dataset',
-    loadChildren: () => import('./landingPages/dataset/libDataset.module').then(m => m.LibDatasetModule)
+    loadChildren: () => import('./landingPages/dataset/libDataset.module').then(m => m.LibDatasetModule), data: { showHeader: true}
   },
   {
     path: 'search/software',
-    loadChildren: () => import('./landingPages/software/libSoftware.module').then(m => m.LibSoftwareModule)
+    loadChildren: () => import('./landingPages/software/libSoftware.module').then(m => m.LibSoftwareModule), data: { showHeader: true}
   },
   {
     path: 'search/other',
-    loadChildren: () => import('./landingPages/orp/libOrp.module').then(m => m.LibOrpModule)
+    loadChildren: () => import('./landingPages/orp/libOrp.module').then(m => m.LibOrpModule), data: { showHeader: true}
   },
   {
     path: 'search/project',
-    loadChildren: () => import('./landingPages/project/libProject.module').then(m => m.LibProjectModule)
+    loadChildren: () => import('./landingPages/project/libProject.module').then(m => m.LibProjectModule), data: { showHeader: true}
   },
   {
     path: 'search/dataprovider',
-    loadChildren: () => import('./landingPages/dataProvider/libDataProvider.module').then(m => m.LibDataProviderModule)
+    loadChildren: () => import('./landingPages/dataProvider/libDataProvider.module').then(m => m.LibDataProviderModule), data: { showHeader: true}
   },
   {
     path: 'search/organization',
-    loadChildren: () => import('./landingPages/organization/libOrganization.module').then(m => m.LibOrganizationModule)
+    loadChildren: () => import('./landingPages/organization/libOrganization.module').then(m => m.LibOrganizationModule), data: { showHeader: true}
   },
   {
     path: 'search/find',

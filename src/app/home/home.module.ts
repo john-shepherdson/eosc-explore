@@ -26,6 +26,8 @@ import {IconsModule} from "../openaireLibrary/utils/icons/icons.module";
 import {IconsService} from "../openaireLibrary/utils/icons/icons.service";
 import {arrow_right, book, cog, database, earth} from "../openaireLibrary/utils/icons/icons";
 import {NumbersModule} from "../openaireLibrary/sharedComponents/numbers/numbers.module";
+import {AdvancedSearchInputModule} from "../openaireLibrary/sharedComponents/advanced-search-input/advanced-search-input.module";
+import {InputModule} from "../openaireLibrary/sharedComponents/input/input.module";
 
 @NgModule({
   imports: [
@@ -38,7 +40,7 @@ import {NumbersModule} from "../openaireLibrary/sharedComponents/numbers/numbers
     HomeRoutingModule,
     HelperModule,
     ErrorMessagesModule,
-    SEOServiceModule, EntitiesSelectionModule, QuickSelectionsModule, IconsModule, NumbersModule
+    SEOServiceModule, EntitiesSelectionModule, QuickSelectionsModule, IconsModule, NumbersModule, AdvancedSearchInputModule, InputModule
   ],
   declarations: [
     HomeComponent

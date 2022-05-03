@@ -58,6 +58,7 @@ export class HomeComponent {
     value: "Open Access"
   };
   selectedEntity = "all";
+  disableSelect;
   selectedEntitySimpleUrl;
   selectedEntityAdvancedUrl;
   resultTypes:Filter = {values:[],filterId:"type", countSelectedValues: 0, filterType: 'checkbox', originalFilterId: "", valueIsExact: true, title: "Result Types",filterOperator:"or"};

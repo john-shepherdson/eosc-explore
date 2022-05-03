@@ -12,13 +12,13 @@ import {ConfigurationService} from "./openaireLibrary/utils/configuration/config
 import {Subscriber} from "rxjs";
 import {DOCUMENT} from "@angular/common";
 import {SmoothScroll} from "./openaireLibrary/utils/smooth-scroll";
-import {Router} from "@angular/router";
+import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
   template: `
     <div *ngIf="agg">
-      <navbar *ngIf="properties && loginCheck && header && agg.menuId != 'eosc'" portal="aggregator" [properties]=properties [onlyTop]=false
+      <navbar *ngIf="properties && loginCheck && header && showHeader" portal="aggregator" [properties]=properties [onlyTop]=false
               [user]="user" [userMenuItems]="userMenuItems"
               [communityId]="properties.adminToolsCommunity" [menuItems]=menuItems
               [userMenu]="agg.enableLogin" [header]="header"></navbar>
@@ -52,19 +52,30 @@ export class AppComponent {
   loginCheck: boolean = false;
   footer = portalProperties.sectionFooter;
   header: Header;
+  showHeader;
   agg: AggregatorInfo = null;
   subscriptions = [];
 
   constructor(private userManagementService: UserManagementService,
               private configurationService: ConfigurationService, private smoothScroll: SmoothScroll,
-              @Inject(DOCUMENT) private document, private rendererFactory: RendererFactory2) {
+              @Inject(DOCUMENT) private document, private rendererFactory: RendererFactory2,  private router: Router, private route: ActivatedRoute) {
     this.id = ConnectHelper.getCommunityFromDomain(this.properties.domain);
     this.agg = PortalAggregators.getFilterInfoByMenuId(this.id);
     this.setStyles();
     this.configurationService.initStaticCommunityInformation(PortalAggregators.getCommunityInfoByMenuId(this.id));
+    this.showHeader = this.agg.showHeaderAlways;
   }
 
   ngOnInit() {
+    this.subscriptions.push(this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        let r = this.route;
+        while (r.firstChild) {
+          r = r.firstChild;
+        }
+        this.showHeader = (r.snapshot.data.showHeader == true || this.agg.showHeaderAlways);
+      }
+    }));
     if (typeof document !== 'undefined') {
         this.isClient = true;
     }
@@ -135,155 +146,7 @@ export class AppComponent {
 
   }
   setStyles(){
-    let css:string =':root {\n';
-    if(this.agg.mainColor){
-      css = css.concat('--portal-main-color: ' + this.agg.mainColor + ';\n');
-    }
-    if(this.agg.darkColor){
-      css = css.concat('--portal-dark-color: ' + this.agg.darkColor + ';\n');
-    }
-    if(this.agg.darkColor){
-      css = css.concat("--graph-background:  url('" + this.agg.background + "\') no-repeat bottom;\n");
-    }
-    css = css.concat('}');
-    let css2 = `
-
-#searchImage{
-background: url('https://marketplace.eosc-portal.eu/packs/media/images/eosc-logo-color-883f208671ef77b15b9cd067ecdc369b.png') no-repeat center left;
-width: 250px;
-height: 80px;
-background-size: 250px 80px;
-margin-left: 80px;
-margin-bottom: 37px;
-}
-#searchForm advanced-search-form{
-float:right;
-}
-#searchForm{
-padding:0;
- width:100%;
-  max-width:100%;
-}
-search-filter h6::after{
-border-bottom: 1px solid gray;
-}
-search-filter h6{
-text-transform: uppercase !important;
-font-size: 12px;
-}
-
-search-filter .tm-child-list-divider > ul > li:nth-child(n+2), .uk-list-divider > li:nth-child(n+2){
-border: none;
-}
-
-.filterHeader{
-border-bottom:1px solid #ced4da;
-}
-.matSelection.mat-select {
-
-    padding: 4px;
-    border: 1px solid #ced4da;
-
-}
-
-  
- 
-.search-results .uk-card-default.uk-card-hover:hover{
-    box-shadow: none;
-}
-.search-results .uk-card-default {
-    border: 1px solid #ced4da;
-    box-shadow:none;
-}
-
-element {
-
-}
-.uk-pagination > .uk-active > *, .uk-pagination > .uk-active > :hover {
-
-   border-radius: 0px;
- 
-
-}
-    .uk-button-primary:not(.uk-icon-button), .portal-button:not(.uk-icon-button) {
-      color: #fff !important;
-      background-color: #0c2bd5 !important;
-      background-image: linear-gradient(135deg,#05cae7,#0c2bd5) !important;
-      border:none !important;
-     }
-     
-   .uk-button-primary:hover, .portal-button:hover:not(.uk-icon-button) {
-       background: #0c2bd5 !important;
-        border:none !important;
-    }
-
-       .search_box_bg .uk-button, #searchForm .uk-button, .search_box_bg .uk-button:hover, #searchForm .uk-button:hover {
-      border-radius: 0px;
-      margin-left: 0px !important;
-      color: rgb(102, 102, 102) !important;
-      background-color: #0c2bd5 !important;
-      background-color: rgba(255, 255, 255, 1.0) !important;
-      border: 1px solid rgba(0, 0, 0, 0.40) !important;
-      background-image: none !important;
-
-    }
-
-    .uk-navbar-nav > li > a, .uk-navbar-dropdown-nav > li > a, .uk-navbar-dropdown-nav > li > a:focus, .uk-navbar-dropdown-nav > li > a:hover {
-      color: #555 !important;
-    }
-    .uk-navbar-nav > li:hover > a, .uk-navbar-nav > li > a.uk-open, .uk-navbar-nav > li > a:focus {
-      color: #555 ;
-      outline: 0;
-    }
-    
-.aggregator-menu .uk-navbar-nav>li {
- margin-right:20px
-}
-.aggregator-menu .uk-navbar-nav>li>a {
- padding:0
-}
-
-.navbar .nav > li > .dropdown-menu, .uk-navbar-dropdown{
-background-color: white;
- color: #555;
-}
- 
-.aggregator-menu .uk-navbar-dropdown li:before {
- bottom:0
-} 
-.navbar .nav>li>.dropdown-menu,
-.uk-navbar-dropdown {
- padding:20px
-}
- 
-
-/* .aggregator-menu .uk-navbar-dropdown li:active::before, .aggregator-menu .uk-navbar-dropdown li:focus::before, .aggregator-menu .uk-navbar-dropdown li:hover::before, .aggregator-menu .uk-navbar-nav > li > a:active::before, .aggregator-menu .uk-navbar-nav > li > a:focus::before, .aggregator-menu .uk-navbar-nav > li > a:hover::before {
-
-    transform: scaleX(1);
-    transform-origin: 0 50%;
-
-}
-.aggregator-menu .uk-navbar-dropdown li::before, .aggregator-menu .uk-navbar-nav > li > a::before {
-
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 3px;
-    bottom: 20px;
-    z-index: 300;
-    left: 0;
-    background-color: #dc9d19;
-    transform: scaleX(0);
-    transition: transform .5s cubic-bezier(.7,0,.3,1);
-    transform-origin: 100% 50%;
-
-}*/
- 
-
-    `;
-    if(this.agg.menuId == 'eosc') {
-      css = css.concat(css2);
-    }
+    let css:string = this.agg.customCss;
     try {
       if( this.document.getElementById('customStyle')){
         try {
