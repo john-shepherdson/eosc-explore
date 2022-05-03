@@ -35,6 +35,8 @@ export let properties: EnvProperties = {
   cordisURL: "http://cordis.europa.eu/projects/",
   openDoarURL: "http://v2.sherpa.ac.uk/id/repository/",
   r3DataURL: "http://service.re3data.org/repository/",
+  fairSharingURL: "https://fairsharing.org/",
+  eoscMarketplaceURL: "https://marketplace.eosc-portal.eu/services/",
   sherpaURL: "http://sherpa.ac.uk/romeo/issn/",
   sherpaURLSuffix: "/",
   zenodo: "https://zenodo.org/",
