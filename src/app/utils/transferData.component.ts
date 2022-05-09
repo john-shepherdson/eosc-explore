@@ -8,74 +8,90 @@ declare var UIkit;
 @Component({
   selector: 'egi-transfer-data',
   template: `
-      <a (click)="open()" > Transfer data to EGI storage</a>
-      
+      <a (click)="open()"> Transfer data to EGI storage</a>
+
 
       <!-- This is the modal -->
-      <div  id="modal-example" class="uk-modal uk-open " style="display: block" [class.uk-invisible]="!isOpen">
+      <div id="modal-example" class="uk-modal uk-open " style="display: block" [class.uk-invisible]="!isOpen">
           <div class="uk-modal-dialog uk-modal-body uk-width-expand">
               <button class="uk-modal-close-default" type="button" uk-close (click)="close()"></button>
               <div class="uk-padding">
-                <div *ngIf="!loggedIn" class="">
-                    <div class="uk-width-1-1 uk-text-center">
-                        <h2 class="uk-modal-title">Title</h2>
-                    </div>
-                    <div class="uk-width-1-1 uk-margin-top uk-margin-bottom">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    </div>
-                    <div class="uk-text-center">
-                        <button *ngIf="!loggedIn" class="uk-button uk-button-default" (click)="checkin()">EGI checkin</button>
-                    </div>
-                </div>
-                <div *ngIf="loggedIn" class="">
-                    <div class="uk-width-1-1  uk-text-center">
-                        <h2 class="uk-modal-title">Title</h2>
-                    </div>
-                    <div class="uk-width-1-1 uk-margin-top uk-margin-bottom">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    </div>
-                    <div class="uk-grid uk-child-width-1-2 uk-grid-divider">
-                      <div class="uk-first-column">
-                          <p class="uk-text-meta">Lorem ipsum ....</p>
-                        <div input [(value)]="sourceUrl" placeholder="Give a Zenodo DOI url..." type="URL" label="URL"  [validators]="validators"></div>
-<!--                        <button *ngIf="!downloadElements"  (click)="parse()" class="uk-button uk-button-default uk-margin-top"  [class.uk-disabled]="sourceUrl.length == 0">Parse</button>-->
+                  <div *ngIf="!loggedIn" class="">
+                      <div class="uk-width-1-1 uk-text-center">
+                          <h2 class="uk-modal-title">Title</h2>
                       </div>
-                      <div>
-                          <p class="uk-text-meta">Lorem ipsum ....</p>
-                          <div input [(value)]="destinationUrl" placeholder="Give a destination path url..." type="URL" label="URL" [validators]="validators"></div>
-                          <button  (click)="parse()"
-                                  class="uk-button uk-button-primary uk-margin-top" [class.uk-disabled]="destinationUrl.length == 0 || status == 'success' ||status == 'loading' "> >> Transfer to EGI Storage</button>
+                      <div class="uk-width-1-1 uk-margin-top uk-margin-bottom">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                          labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                          laboris nisi ut aliquip ex ea commodo consequat.
                       </div>
-                    </div>
-                    <div *ngIf="status == 'loading'" class="uk-flex uk-flex-center uk-text-muted"  >
-                      <div>
-                        <span class="uk-icon uk-spinner"  >
-                        <svg width="60" height="60" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg" data-svg="spinner"><circle
+                      <div class="uk-text-center">
+                          <button *ngIf="!loggedIn" class="uk-button uk-button-default" (click)="checkin()">EGI
+                              checkin
+                          </button>
+                      </div>
+                  </div>
+                  <div *ngIf="loggedIn" class="">
+                      <div class="uk-width-1-1  uk-text-center">
+                          <h2 class="uk-modal-title">Title</h2>
+                      </div>
+                      <div class="uk-width-1-1 uk-margin-top uk-margin-bottom">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                          labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                          laboris nisi ut aliquip ex ea commodo consequat.
+                      </div>
+                      <div class="uk-grid uk-child-width-1-2 uk-grid-divider">
+                          <div class="uk-first-column">
+                              <p class="uk-text-meta">Lorem ipsum ....</p>
+                              <div input [(value)]="sourceUrl" placeholder="Give a Zenodo DOI url..." type="URL"
+                                   label="URL" [validators]="validators"></div>
+                              <!--                        <button *ngIf="!downloadElements"  (click)="parse()" class="uk-button uk-button-default uk-margin-top"  [class.uk-disabled]="sourceUrl.length == 0">Parse</button>-->
+                          </div>
+                          <div>
+                              <p class="uk-text-meta">Lorem ipsum ....</p>
+                              <div input [(value)]="destinationPath" placeholder="Give a destination path..."
+                                  [validators]="validators[0]"></div>
+                              <button (click)="parse()"
+                                      class="uk-button uk-button-primary uk-margin-top"
+                                      [class.uk-disabled]="destinationPath.length == 0 || status == 'success' ||status == 'loading' ">
+                                  >> Transfer to EGI Storage
+                              </button>
+                          </div>
+                      </div>
+                      <div *ngIf="status == 'loading'" class="uk-flex uk-flex-center uk-text-muted">
+                          <div>
+                        <span class="uk-icon uk-spinner">
+                        <svg width="60" height="60" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"
+                             data-svg="spinner"><circle
                             fill="none" stroke="#000" cx="15" cy="15" r="14" style="stroke-width: 2px;"></circle></svg>
                         </span>
+                          </div>
                       </div>
-                    </div>
-                    <div *ngIf="message" class="uk-width-1-1 uk-alert"  [class.uk-alert-success]="status && status.indexOf('error')==-1" [class.uk-alert-error]="status && status.indexOf('error')!=-1" 
-                    [innerHTML]="message">
-                    </div>
-                 
-                    <div class="uk-width-1-1 uk-text-right " [class.uk-invisible]="!(status == 'success' || status.indexOf('error')!=-1)">
-                        <button class="uk-button uk-button-default uk-margin-top " (click)="close()">Close</button>
-                    </div>
-                </div>
+                      <div *ngIf="message" class="uk-width-1-1 uk-alert"
+                           [class.uk-alert-success]="status && status.indexOf('error')==-1"
+                           [class.uk-alert-error]="status && status.indexOf('error')!=-1"
+                           [innerHTML]="message">
+                      </div>
+
+                      <div class="uk-width-1-1 uk-text-right "
+                           [class.uk-invisible]="!(status == 'success' || status.indexOf('error')!=-1)">
+                          <button class="uk-button uk-button-default uk-margin-top " (click)="close()">Close</button>
+                      </div>
+                  </div>
               </div>
-              
+
           </div>
       </div>
 
-    
+
   `
 })
 export class EGIDataTransfer {
   subscriptions = [];
   loggedIn =  false;
   sourceUrl = "https://doi.org/10.5281/zenodo.6507535";
-  destinationUrl = "https://egi.storage.eu/my-path/";
+  destinationPath = "";
+  destinationURL = "https://egi.storage.eu";
   downloadElements = null;
   isOpen = false;
   APIURL = "https://virtserver.swaggerhub.com/thebe14/eosc-future-data-transfer/1.0.0";
@@ -104,7 +120,7 @@ export class EGIDataTransfer {
   close(){
     this.isOpen = false;
     this.downloadElements = null;
-    this.destinationUrl = "";
+    this.destinationPath = "";
     this.message = null;
     this.status = "init";
   }
@@ -180,10 +196,10 @@ export class EGIDataTransfer {
       ],
         "destinations": [
         {
-          "url":this.destinationUrl + element.filename
+          "url": this.destinationURL + this.destinationPath + element.filename
         }
       ],
-        "filesize": element['size'],
+        "filesize": element['size']
       };
      //TODO priority? checksum?
      body.files.push(file);
@@ -203,7 +219,7 @@ export class EGIDataTransfer {
         this.status = "success"
         this.message = `
             <div class="uk-text-large uk-margin-bottom">Data transfer has began!</div>
-            <div>Transfering ` + this.downloadElements.length + ` files:
+            <div>Transfering ` + this.downloadElements.length + ` files to <a href="`+ this.destinationURL + this.destinationPath + `" target=_blank> EGI Storage</a>: 
           <ul>
 `;
         // TODO LATER we can call status for each file and see if the transfer has been complete
