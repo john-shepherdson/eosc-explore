@@ -13,6 +13,7 @@ import {Subscriber} from "rxjs";
 import {DOCUMENT} from "@angular/common";
 import {SmoothScroll} from "./openaireLibrary/utils/smooth-scroll";
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
+import {OpenaireEntities} from "./openaireLibrary/utils/properties/searchFields";
 
 @Component({
   selector: 'app-root',
@@ -139,10 +140,11 @@ export class AppComponent {
     ];
     let params = {};
     // params[this.agg.queryFieldName] = this.agg.valueId;
-    this.menuItems[1].items.push(new MenuItem("", "Research outcomes", "", "/search/find/research-outcomes", false, [], ["/search/find/research-outcomes"], params));
-    this.menuItems[1].items.push(new MenuItem("", "Projects", "", "/search/find/projects", false, ["project"], ["/search/find/projects"], params));
-    this.menuItems[1].items.push(new MenuItem("", "Content Providers", "", "/search/find/dataproviders", false, ["datasource"], ["/search/find/dataproviders"], params));
-    this.menuItems[1].items.push(new MenuItem("", "Organizations", "", "/search/find/organizations", false, ["organization"], ["/search/find/organizations"], params));
+    this.menuItems[1].items.push(new MenuItem("", OpenaireEntities.RESULTS, "", properties.searchLinkToResults, false, [], ["/search/find/research-outcomes"], params));
+    this.menuItems[1].items.push(new MenuItem("", OpenaireEntities.PROJECTS, "", properties.searchLinkToProjects, false, ["project"], ["/search/find/projects"], params));
+    this.menuItems[1].items.push(new MenuItem("", OpenaireEntities.DATASOURCES, "", properties.searchLinkToDataProviders, false, ["datasource"], ["/search/find/dataproviders"], params));
+    this.menuItems[1].items.push(new MenuItem("", OpenaireEntities.SERVICES, "", properties.searchLinkToServices, false, ["datasource"], ["/search/find/services"], params));
+    this.menuItems[1].items.push(new MenuItem("", OpenaireEntities.ORGANIZATIONS, "", properties.searchLinkToOrganizations, false, ["organization"], ["/search/find/organizations"], params));
 
   }
   setStyles(){

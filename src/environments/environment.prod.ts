@@ -79,6 +79,7 @@ export let properties: EnvProperties = {
   searchLinkToPublication: "/search/publication?articleId=",
   searchLinkToProject: "/search/project?projectId=",
   searchLinkToDataProvider: "/search/dataprovider?datasourceId=",
+  searchLinkToService: "/search/service?serviceId=",
   searchLinkToDataset: "/search/dataset?datasetId=",
   searchLinkToSoftwareLanding: "/search/software?softwareId=",
   searchLinkToOrp: "/search/other?orpId=",
@@ -86,6 +87,7 @@ export let properties: EnvProperties = {
 
   searchLinkToPublications: "/search/find/publications",
   searchLinkToDataProviders: "/search/find/dataproviders",
+  searchLinkToServices: "/search/find/services",
   searchLinkToProjects: "/search/find/projects",
   searchLinkToDatasets: "/search/find/datasets",
   searchLinkToSoftware: "/search/find/software",
@@ -104,8 +106,11 @@ export let properties: EnvProperties = {
   searchLinkToAdvancedSoftware: "/search/advanced/software",
   searchLinkToAdvancedOrps: "/search/advanced/other",
   searchLinkToAdvancedDataProviders: "/search/advanced/dataproviders",
+  searchLinkToAdvancedServices: "/search/advanced/services",
   searchLinkToAdvancedOrganizations: "/search/advanced/organizations",
   searchLinkToAdvancedResults: "/search/advanced/research-outcomes",
+
+  errorLink: "/error",
 
   lastIndexInformationLink: "https://www.openaire.eu/aggregation-and-content-provision-workflows",
   showLastIndexInformationLink: true,
