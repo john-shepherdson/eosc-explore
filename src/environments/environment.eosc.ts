@@ -2,8 +2,8 @@ import {EnvProperties} from "../app/openaireLibrary/utils/properties/env-propert
 
 export let properties: EnvProperties = {
   environment: "production",
-  adminToolsPortalType: "aggregator",
-  dashboard: "explore",
+  adminToolsPortalType: "eosc",
+  dashboard: "aggregator",
   enablePiwikTrack: true,
   useCache: false,
   useLongCache: true,

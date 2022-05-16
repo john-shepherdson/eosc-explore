@@ -3,7 +3,7 @@ import {EnvProperties} from "../app/openaireLibrary/utils/properties/env-propert
 export let properties: EnvProperties = {
   environment: "production",
   adminToolsPortalType: "aggregator",
-  dashboard: "explore",
+  dashboard: "aggregator",
   enablePiwikTrack: true,
   useCache: false,
   useLongCache: true,
