@@ -6,7 +6,7 @@ import {InputModule} from "../openaireLibrary/sharedComponents/input/input.modul
 
 @NgModule({
   imports: [
-    CommonModule, FormsModule, InputModule,
+    CommonModule, FormsModule, InputModule
 
   ],
   declarations: [
