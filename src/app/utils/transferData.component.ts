@@ -126,20 +126,9 @@ export class EGIDataTransferComponent {
   }
 
   ngOnInit() {
-    console.log(  window.location.href)
-    console.log(COOKIE.getCookie("EGIAccessToken"))
-    this.accessToken = COOKIE.getCookie("EGIAccessToken");
-    for(let doi of this.dois){
-      console.log(doi)
-      if(doi.indexOf("zenodo.")!=-1){
-        this.sourceUrls.push("https://doi.org/" + doi);
-      }
-
-
+    if(this.isOpen){
+      this.open();
     }
-    this.selectedSourceUrl = this.sourceUrls[0];
-    this.selectedDestination = this.destinationOptions[0].value;
-    this.parse();
   }
 
   ngOnDestroy() {
@@ -151,6 +140,15 @@ export class EGIDataTransferComponent {
 
   }
   open(){
+    this.accessToken = COOKIE.getCookie("EGIAccessToken");
+    for(let doi of this.dois){
+      if(doi.indexOf("zenodo.")!=-1){
+        this.sourceUrls.push("https://doi.org/" + doi);
+      }
+    }
+    this.selectedSourceUrl = this.sourceUrls[0];
+    this.selectedDestination = this.destinationOptions[0].value;
+    this.parse();
     this.isOpen = true;
   }
   close(){
