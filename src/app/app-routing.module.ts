@@ -89,7 +89,11 @@ const routes: Routes = [
     path: 'project-report',
     loadChildren: () => import('./landingPages/htmlProjectReport/libHtmlProjectReport.module').then(m => m.LibHtmlProjectReportModule)
   },
-
+  {
+    path: 'reload',
+    loadChildren: () => import('./reload/libReload.module').then(m => m.LibReloadModule),
+    data: {hasSidebar: false}
+  },
   {path: 'user-info', loadChildren: () => import('./login/libUser.module').then(m => m.LibUserModule)},
   {path: 'error', component: OpenaireErrorPageComponent},
   {path: '**', pathMatch: 'full', component: OpenaireErrorPageComponent}

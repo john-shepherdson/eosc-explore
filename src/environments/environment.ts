@@ -13,6 +13,7 @@ export let properties: EnvProperties = {
   useCache: true,
   useLongCache: true,
   showAddThis: true,
+  enableEoscDataTransfer: true,
   metricsAPIURL: "https://beta.services.openaire.eu/usagestats/",
   framesAPIURL: "https://beta.openaire.eu/stats3/",
   statisticsAPIURL: "https://beta.services.openaire.eu/stats-api/",

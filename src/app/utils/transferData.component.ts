@@ -1,24 +1,34 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {Subscriber} from "rxjs";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Validators} from "@angular/forms";
+import {Location} from '@angular/common';
 import {StringUtils} from "../openaireLibrary/utils/string-utils.class";
+import {COOKIE} from "../openaireLibrary/login/utils/helper.class";
+import {Router} from "@angular/router";
 declare var UIkit;
 
 @Component({
   selector: 'egi-transfer-data',
   template: `
-      <a (click)="open()"> Transfer data to EGI storage</a>
+      <a (click)="open()"
+         [title]="'Transfer Data'"
+         [attr.uk-tooltip]="'pos: right; cls: uk-active landing-action-tooltip landing-action-tooltip-portal uk-text-small uk-padding-small'"
+      > <span icon="cloud-upload"></span>
+          <span class="uk-icon-button uk-icon landing-action-button landing-action-button-portal">
+                     <span uk-icon="cloud-upload"></span>
+                  </span>
+      </a>
 
 
       <!-- This is the modal -->
       <div id="modal-example" class="uk-modal uk-open " style="display: block" [class.uk-invisible]="!isOpen">
-          <div class="uk-modal-dialog uk-modal-body uk-width-expand">
+          <div class="uk-modal-dialog uk-modal-body uk-width-expand uk-text-left">
               <button class="uk-modal-close-default" type="button" uk-close (click)="close()"></button>
               <div class="uk-padding">
-                  <div *ngIf="!loggedIn" class="">
+                  <div *ngIf="!accessToken" class="">
                       <div class="uk-width-1-1 uk-text-center">
-                          <h2 class="uk-modal-title">Title</h2>
+                          <h2 class="uk-modal-title">EOSC data transfer service</h2>
                       </div>
                       <div class="uk-width-1-1 uk-margin-top uk-margin-bottom">
                           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
@@ -26,14 +36,13 @@ declare var UIkit;
                           laboris nisi ut aliquip ex ea commodo consequat.
                       </div>
                       <div class="uk-text-center">
-                          <button *ngIf="!loggedIn" class="uk-button uk-button-default" (click)="checkin()">EGI
-                              checkin
+                          <button *ngIf="!accessToken" class="uk-button uk-button-default" (click)="checkin()">Login
                           </button>
                       </div>
                   </div>
-                  <div *ngIf="loggedIn" class="">
+                  <div *ngIf="accessToken" class="">
                       <div class="uk-width-1-1  uk-text-center">
-                          <h2 class="uk-modal-title">Title</h2>
+                          <h2 class="uk-modal-title">EOSC data transfer service</h2>
                       </div>
                       <div class="uk-width-1-1 uk-margin-top uk-margin-bottom">
                           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
@@ -43,18 +52,27 @@ declare var UIkit;
                       <div class="uk-grid uk-child-width-1-2 uk-grid-divider">
                           <div class="uk-first-column">
                               <p class="uk-text-meta">Lorem ipsum ....</p>
-                              <div input [(value)]="sourceUrl" placeholder="Give a Zenodo DOI url..." type="URL"
-                                   label="URL" [validators]="validators"></div>
-                              <!--                        <button *ngIf="!downloadElements"  (click)="parse()" class="uk-button uk-button-default uk-margin-top"  [class.uk-disabled]="sourceUrl.length == 0">Parse</button>-->
+                              <div input type="select" [(value)]="selectedSourceUrl" placeholder="Zenodo DOI URL" hint="Select..."
+                                   [options]="sourceUrls" (valueChange)="this.parse()"></div>
+                            <div class="uk-margin-top">
+                                <div>Files to be transfered:</div>
+                                <ul>
+                                    
+                                    <li *ngFor=" let element of this.downloadElements">{{ element.filename}}
+                                    </li>
+                                </ul>
+                            </div>                              
                           </div>
                           <div>
                               <p class="uk-text-meta">Lorem ipsum ....</p>
+                              <div input type="select" [(value)]="selectedDestination" placeholder="Storage" hint="Select..."
+                                   [options]="destinationOptions"></div>
                               <div input [(value)]="destinationPath" placeholder="Give a destination path..."
-                                  [validators]="validators[0]"></div>
-                              <button (click)="parse()"
+                                   [validators]="validators[0]" class="uk-margin-top"></div>
+                              <button (click)="transfer()"
                                       class="uk-button uk-button-primary uk-margin-top"
                                       [class.uk-disabled]="destinationPath.length == 0 || status == 'success' ||status == 'loading' ">
-                                  >> Transfer to EGI Storage
+                                  >> Transfer to Storage
                               </button>
                           </div>
                       </div>
@@ -86,24 +104,41 @@ declare var UIkit;
 
   `
 })
-export class EGIDataTransfer {
+export class EGIDataTransferComponent {
   subscriptions = [];
-  loggedIn =  false;
-  sourceUrl = "https://doi.org/10.5281/zenodo.6507535";
+  accessToken =  null;
+  @Input() dois;
+  loginURL = "http://rudie.di.uoa.gr:8580/openid_connect_login"
+  sourceUrls = []
+  selectedSourceUrl = null;
   destinationPath = "";
-  destinationURL = "https://egi.storage.eu";
+  destinationOptions = [{label: "EGI storage", value: { url: "https://egi.storage.eu", id: "egi" } }];
+  selectedDestination = null;
+
   downloadElements = null;
-  isOpen = false;
+  @Input() isOpen = false;
   APIURL = "https://virtserver.swaggerhub.com/thebe14/eosc-future-data-transfer/1.0.0";
   status: "loading" | "success" | "errorParser" | "errorUser" | "errorTransfer" | "init" = "init";
   message;
   validators = [Validators.required, StringUtils.urlValidator()];
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private location: Location,  private _router: Router) {
 
   }
 
   ngOnInit() {
+    console.log(COOKIE.getCookie("EGIAccessToken"))
+    this.accessToken = COOKIE.getCookie("EGIAccessToken");
+    for(let doi of this.dois){
+      console.log(doi)
+      if(doi.indexOf("zenodo.")!=-1){
+        this.sourceUrls.push("https://doi.org/" + doi);
+      }
 
+
+    }
+    this.selectedSourceUrl = this.sourceUrls[0];
+    this.selectedDestination = this.destinationOptions[0].value;
+    this.parse();
   }
 
   ngOnDestroy() {
@@ -119,24 +154,24 @@ export class EGIDataTransfer {
   }
   close(){
     this.isOpen = false;
-    this.downloadElements = null;
+    // this.downloadElements = [];
     this.destinationPath = "";
+    this.selectedDestination = this.destinationOptions[0].value;
+    this.selectedSourceUrl = this.sourceUrls[0];
     this.message = null;
     this.status = "init";
+    if(this._router.url.indexOf("&egiTransfer")){
+      this.location.go(this._router.url.split("&egiTransfer")[0]);
+    }
+    
   }
   checkin(){
-    this.loggedIn = true;
+    window.location.href = this.loginURL+"?redirect="+ encodeURIComponent("http://scoobydoo.di.uoa.gr:4400"+this._router.url+"&egiTransfer=t");
+
   }
   parse(){
-  //  check get user info
-  //  .pipe(catch(error: any) => {
-    //         return Observable.throw(new Error(error.status));
-    //     }))
-    this.status = "loading";
-    this.subscriptions.push(this.http.get(this.APIURL + "/user/info").subscribe(
-      res => {
-        console.log(res)
-        this.subscriptions.push(this.http.get(this.APIURL + "/parser/zenodo?source=" + this.sourceUrl ).subscribe(
+
+        this.subscriptions.push(this.http.get(this.APIURL + "/parser/zenodo?source=" + this.selectedSourceUrl ).subscribe(
           res => {
             console.log(res)
             this.downloadElements = [];
@@ -150,7 +185,7 @@ export class EGIDataTransfer {
             }
 
             console.log(this.downloadElements)
-            this.transfer();
+            // this.transfer();
 
           }, error => {
             this.status = "errorParser";
@@ -163,21 +198,16 @@ export class EGIDataTransfer {
 
           }
         ));
-      }, error => {
-        this.status = "errorUser";
-        this.message = "User can't be authenticated!";
-        UIkit.notification("User can't be authenticated!", {
-          status: 'error',
-          timeout: 6000,
-          pos: 'bottom-right'
-        });
 
-      }
-    ));
   }
 
   transfer() {
-
+    console.log(this.selectedDestination)
+  this.status = "loading";
+  let headers = new HttpHeaders({'Authorization': 'Bearer '+this.accessToken});
+  this.subscriptions.push(this.http.get(this.APIURL + "/user/info", {headers: headers}).subscribe(
+    res => {
+      console.log(res)
     let body = {
       "files": [],
       "params": {
@@ -186,6 +216,7 @@ export class EGIDataTransfer {
         "retry": 3
       }
     };
+      console.log(this.selectedDestination)
     for (let element of this.downloadElements) {
 
      let file = {
@@ -196,7 +227,7 @@ export class EGIDataTransfer {
       ],
         "destinations": [
         {
-          "url": this.destinationURL + this.destinationPath + element.filename
+          "url": this.selectedDestination.url + this.destinationPath + element.filename
         }
       ],
         "filesize": element['size']
@@ -205,9 +236,8 @@ export class EGIDataTransfer {
      body.files.push(file);
     }
 
-
-
-    this.subscriptions.push(this.http.post(this.APIURL + "/transfer" ,body ).subscribe(
+    let headers = new HttpHeaders({'Authorization': 'Bearer '+this.accessToken});
+    this.subscriptions.push(this.http.post(this.APIURL + "/transfer" ,body, {headers: headers}).subscribe(
       res => {
         console.log(res)
         UIkit.notification('Data transfer has began! ', {
@@ -219,8 +249,8 @@ export class EGIDataTransfer {
         this.status = "success"
         this.message = `
             <div class="uk-text-large uk-margin-bottom">Data transfer has began!</div>
-            <div>Transfering ` + this.downloadElements.length + ` files to <a href="`+ this.destinationURL + this.destinationPath + `" target=_blank> EGI Storage</a>: 
-          <ul>
+            <div>Transfering ` + this.downloadElements.length + ` files to <a href="`+ this.selectedDestination.url + this.destinationPath + `" target=_blank> EGI Storage</a>: 
+            <ul>           
 `;
         // TODO LATER we can call status for each file and see if the transfer has been complete
         for(let element of this.downloadElements){
@@ -243,7 +273,17 @@ export class EGIDataTransfer {
 
       }
     ));
+    }, error => {
+      this.status = "errorUser";
+      this.message = "User can't be authenticated!";
+      UIkit.notification("User can't be authenticated!", {
+        status: 'error',
+        timeout: 6000,
+        pos: 'bottom-right'
+      });
 
+    }
+  ));
   }
   private parseFilename(url){
     let filename = url.split("/")[url.split("/").length - 1];
