@@ -4,21 +4,23 @@ import {AggregatorInfo, PortalAggregators} from "../../utils/aggregators";
 import {ConnectHelper} from "../../openaireLibrary/connect/connectHelper";
 import {properties} from "../../../environments/environment";
 import {EnvProperties} from "../../openaireLibrary/utils/properties/env-properties";
+import {SearchForm} from "../../openaireLibrary/searchPages/searchUtils/newSearchPage.component";
 
 @Component({
     selector: 'openaire-search-projects',
     template: `
 
     <search-projects [customFilter]="customFilter" [openaireLink]="customFilter?'https://'+(properties.environment != 'production'?'beta.':'')+'explore.openaire.eu/search/find/projects':null"
-                     [piwikSiteId]="properties.piwikSiteId" [hasPrefix]="false">
+                     [piwikSiteId]="properties.piwikSiteId" [hasPrefix]="false" [searchForm]="searchForm">
     </search-projects>
      `
 
 })
 export class OpenaireSearchProjectsComponent {
-    customFilter: SearchCustomFilter = null;
-    properties: EnvProperties;
-    constructor ( ) {}
+  customFilter: SearchCustomFilter = null;
+  properties: EnvProperties;
+  public searchForm: SearchForm = {class: 'search-form', dark: properties.adminToolsPortalType == "eosc" ? false : true};
+  constructor ( ) {}
     ngOnInit() {
         this.properties = properties;
         let id = ConnectHelper.getCommunityFromDomain(properties.domain);

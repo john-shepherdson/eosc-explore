@@ -131,7 +131,7 @@ export class DevelopComponent implements OnInit {
   }
 
   private navigateToError() {
-    this._router.navigate(['/error'], {queryParams: {'page': this._router.url}});
+    this._router.navigate([properties.errorLink], {queryParams: {'page': this._router.url}});
   }
 
 

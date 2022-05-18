@@ -3,13 +3,14 @@ import {RouterModule} from '@angular/router';
 import {OpenaireOrpComponent} from './orp.component';
 import {FreeGuard} from '../../openaireLibrary/login/freeGuard.guard';
 import {PreviousRouteRecorder} from '../../openaireLibrary/utils/piwik/previousRouteRecorder.guard';
+import {properties} from "../../../environments/environment";
 
 
 @NgModule({
  imports: [
   RouterModule.forChild([
     { path: '', component: OpenaireOrpComponent, canActivate: [FreeGuard], data: {
-        redirect: '/error'
+        redirect: properties.errorLink
       },canDeactivate: [PreviousRouteRecorder] }
   ])
 ]
