@@ -7,8 +7,8 @@ import {EnvProperties} from "../app/openaireLibrary/utils/properties/env-propert
 
 export let properties: EnvProperties = {
   environment: "development",
-  adminToolsPortalType: "aggregator",
-  dashboard: "explore",
+  adminToolsPortalType: "eosc",
+  dashboard: "aggregator",
   enablePiwikTrack: false,
   useCache: true,
   useLongCache: true,
@@ -21,7 +21,7 @@ export let properties: EnvProperties = {
   useNewStatistisTool: true,
   claimsAPIURL: "http://dl170.madgik.di.uoa.gr:8180/dnet-claims-service-2.0.0-SNAPSHOT/rest/claimsService/",
   searchAPIURLLAst: "http://beta.services.openaire.eu/search/v2/api/",
-  searchResourcesAPIURL: "https://beta.services.openaire.eu/search/v2/api/resources",
+  searchResourcesAPIURL: "http://beta.services.openaire.eu/search/v2/api/resources",
   openCitationsAPIURL: "https://services.openaire.eu/opencitations/getCitations?id=",
   csvAPIURL: "https://beta.services.openaire.eu/search/v2/api/reports",
   searchCrossrefAPIURL: "https://api.crossref.org/works",
@@ -81,6 +81,7 @@ export let properties: EnvProperties = {
   searchLinkToPublication: "/search/publication?articleId=",
   searchLinkToProject: "/search/project?projectId=",
   searchLinkToDataProvider: "/search/dataprovider?datasourceId=",
+  searchLinkToService: "/search/service?serviceId=",
   searchLinkToDataset: "/search/dataset?datasetId=",
   searchLinkToSoftwareLanding: "/search/software?softwareId=",
   searchLinkToOrp: "/search/other?orpId=",
@@ -88,6 +89,7 @@ export let properties: EnvProperties = {
   
   searchLinkToPublications: "/search/find/publications",
   searchLinkToDataProviders: "/search/find/dataproviders",
+  searchLinkToServices: "/search/find/services",
   searchLinkToProjects: "/search/find/projects",
   searchLinkToDatasets: "/search/find/datasets",
   searchLinkToSoftware: "/search/find/software",
@@ -106,9 +108,12 @@ export let properties: EnvProperties = {
   searchLinkToAdvancedSoftware: "/search/advanced/software",
   searchLinkToAdvancedOrps: "/search/advanced/other",
   searchLinkToAdvancedDataProviders: "/search/advanced/dataproviders",
+  searchLinkToAdvancedServices: "/search/advanced/services",
   searchLinkToAdvancedOrganizations: "/search/advanced/organizations",
   searchLinkToAdvancedResults: "/search/advanced/research-outcomes",
-  
+
+  errorLink: "/error",
+
   lastIndexInformationLink: "https://www.openaire.eu/aggregation-and-content-provision-workflows",
   showLastIndexInformationLink: true,
   widgetLink: "https://beta.openaire.eu/index.php?option=com_openaire&view=widget&format=raw&projectId=",

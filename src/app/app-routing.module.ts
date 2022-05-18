@@ -34,6 +34,10 @@ const routes: Routes = [
     loadChildren: () => import('./landingPages/dataProvider/libDataProvider.module').then(m => m.LibDataProviderModule), data: { showHeader: true}
   },
   {
+    path: 'search/service',
+    loadChildren: () => import('./landingPages/service/libService.module').then(m => m.LibServiceModule), data: { showHeader: true}
+  },
+  {
     path: 'search/organization',
     loadChildren: () => import('./landingPages/organization/libOrganization.module').then(m => m.LibOrganizationModule), data: { showHeader: true}
   },
@@ -54,6 +58,10 @@ const routes: Routes = [
     loadChildren: () => import('./searchPages/simple/searchDataProviders.module').then(m => m.LibSearchDataProvidersModule)
   },
   {
+    path: 'search/find/services',
+    loadChildren: () => import('./searchPages/simple/searchServices.module').then(m => m.LibSearchServicesModule)
+  },
+  {
     path: 'search/find/organizations',
     loadChildren: () => import('./searchPages/simple/searchOrganizations.module').then(m => m.LibSearchOrganizationsModule)
   },
@@ -68,6 +76,10 @@ const routes: Routes = [
   {
     path: 'search/advanced/dataproviders',
     loadChildren: () => import('./searchPages/advanced/advancedSearchDataProviders.module').then(m => m.LibAdvancedSearchDataProvidersModule)
+  },
+  {
+    path: 'search/advanced/services',
+    loadChildren: () => import('./searchPages/advanced/advancedSearchServices.module').then(m => m.LibAdvancedSearchServicesModule)
   },
   {
     path: 'search/advanced/projects',
