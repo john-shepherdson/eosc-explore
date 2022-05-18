@@ -8,6 +8,7 @@ export let properties: EnvProperties = {
   useCache: false,
   useLongCache: true,
   showAddThis: true,
+  enableEoscDataTransfer: true,
   metricsAPIURL: "https://services.openaire.eu/usagestats/",
   framesAPIURL: "https://www.openaire.eu/stats3/",
   statisticsAPIURL: "https://beta.services.openaire.eu/stats-api/",
@@ -47,7 +48,7 @@ export let properties: EnvProperties = {
   vocabulariesAPI: "https://services.openaire.eu/provision/mvc/vocabularies/",
 
   piwikBaseUrl: "https://analytics.openaire.eu/piwik.php?idsite=",
-  piwikSiteId: "582",
+  piwikSiteId: "594",
 
   loginUrl: "https://services.openaire.eu/login-service/openid_connect_login",
   userInfoUrl: "https://services.openaire.eu/login-service/userInfo",
