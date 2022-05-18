@@ -126,6 +126,7 @@ export class EGIDataTransferComponent {
   }
 
   ngOnInit() {
+    console.log(  window.location.href)
     console.log(COOKIE.getCookie("EGIAccessToken"))
     this.accessToken = COOKIE.getCookie("EGIAccessToken");
     for(let doi of this.dois){
@@ -166,7 +167,7 @@ export class EGIDataTransferComponent {
     
   }
   checkin(){
-    window.location.href = this.loginURL+"?redirect="+ encodeURIComponent("http://scoobydoo.di.uoa.gr:4400"+this._router.url+"&egiTransfer=t");
+    window.location.href = this.loginURL+"?redirect="+ encodeURIComponent(window.location.href + "&egiTransfer=t");
 
   }
   parse(){
