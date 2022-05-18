@@ -23,7 +23,7 @@ export class OpenaireSearchServicesComponent {
   customFilter: SearchCustomFilter = null;
   properties: EnvProperties;
   public openaireEntities = OpenaireEntities;
-  public searchForm: SearchForm = {class: 'search-form', dark: false};
+  public searchForm: SearchForm = {class: 'search-form', dark: properties.adminToolsPortalType == "eosc" ? false : true};
   constructor ( ) {}
   ngOnInit() {
     this.properties = properties;
