@@ -188,8 +188,9 @@ border-bottom:1px solid #ced4da;
     "canada": {pages: ["/search/find/services"], entities: ["software", "service"]},
     "italy": {pages: ["/search/find/services"], entities: ["service"]},
     "greece": {pages: ["/search/find/services"], entities: ["service"]},
-    "eosc": {pages: ["/participate/deposit/search", "/participate/deposit/learn-how","/participate/claim", "/participate/direct-claim", "/myclaims","/claims", "/develop"]
-      , entities: []}
+    "eosc": {pages: ["/participate/deposit/search", "/participate/deposit/learn-how","/participate/claim", "/participate/direct-claim", "/myclaims","/claims", "/develop",
+        "/search/find/datasources"]
+      , entities: ["datasource"]}
   };
   static defaultAggregator: AggregatorInfo = PortalAggregators.list[0];
 

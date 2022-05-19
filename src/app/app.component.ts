@@ -143,7 +143,7 @@ export class AppComponent {
     this.menuItems[1].items.push(new MenuItem("", OpenaireEntities.RESULTS, "", properties.searchLinkToResults, false, [], ["/search/find/research-outcomes"], params));
     this.menuItems[1].items.push(new MenuItem("", OpenaireEntities.PROJECTS, "", properties.searchLinkToProjects, false, ["project"], ["/search/find/projects"], params));
     this.menuItems[1].items.push(new MenuItem("", OpenaireEntities.DATASOURCES, "", properties.searchLinkToDataProviders, false, ["datasource"], ["/search/find/dataproviders"], params));
-    this.menuItems[1].items.push(new MenuItem("", OpenaireEntities.SERVICES, "", properties.searchLinkToServices, false, ["datasource"], ["/search/find/services"], params));
+    this.menuItems[1].items.push(new MenuItem("", OpenaireEntities.SERVICES, "", properties.searchLinkToServices, false, ["service"], ["/search/find/services"], params));
     this.menuItems[1].items.push(new MenuItem("", OpenaireEntities.ORGANIZATIONS, "", properties.searchLinkToOrganizations, false, ["organization"], ["/search/find/organizations"], params));
 
   }
