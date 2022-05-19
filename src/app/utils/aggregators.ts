@@ -100,10 +100,10 @@ export class PortalAggregators {
   color:#0c2bd5;
   }
 .search_box_bg {
-  background: url(//marketplace.eosc-portal.eu/packs/media/images/home-bg-89b63b3d579f3530ec6283f51e1648bc.png) no-repeat;
-    background-position-x: 0%;
-    background-position-y: 0%;
-  background-position: 50% -120px;
+  /*background: url(//marketplace.eosc-portal.eu/packs/media/images/home-bg-89b63b3d579f3530ec6283f51e1648bc.png) no-repeat;*/
+    /* background-position-x: 0%;*/
+    /* background-position-y: 0%;*/
+  /* background-position: 50% -120px;*/
   z-index: 3;
 }
 #searchImage{
@@ -170,7 +170,7 @@ border-bottom:1px solid #ced4da;
         border:none !important;
     }
 
-       .search_box_bg .uk-button, #searchForm .uk-button, .search_box_bg .uk-button:hover, #searchForm .uk-button:hover {
+       .search_box_bg .uk-button, #searchForm .uk-button:not(.uk-button-text), .search_box_bg .uk-button:hover, #searchForm .uk-button:hover:not(.uk-button-text) {
       border-radius: 0px;
       margin-left: 0px !important;
       color: rgb(102, 102, 102) !important;
@@ -178,7 +178,7 @@ border-bottom:1px solid #ced4da;
       background-color: rgba(255, 255, 255, 1.0) !important;
       border: 1px solid rgba(0, 0, 0, 0.40) !important;
       background-image: none !important;
-
+      padding: 10px;
     }
  
       `)
