@@ -111,15 +111,15 @@ background: url('https://marketplace.eosc-portal.eu/packs/media/images/eosc-logo
 width: 250px;
 height: 80px;
 background-size: 250px 80px;
-margin-left: 80px;
+/*margin-left: 80px;*/
 }
 #searchForm advanced-search-form{
 float:right;
 }
 #searchForm{
-padding:0;
- width:100%;
-  max-width:100%;
+/*padding:0;*/
+ /*width:100%;*/
+  /*max-width:100%;*/
 }
 search-filter h6::after{
 border-bottom: 1px solid gray;
@@ -170,7 +170,7 @@ border-bottom:1px solid #ced4da;
         border:none !important;
     }
 
-       .search_box_bg .uk-button, #searchForm .uk-button:not(.uk-button-text), .search_box_bg .uk-button:hover, #searchForm .uk-button:hover:not(.uk-button-text) {
+       .search_box_bg .uk-button, #searchForm .uk-button:not(.uk-button-text):not(.uk-button-link), .search_box_bg .uk-button:hover, #searchForm .uk-button:hover:not(.uk-button-text):not(.uk-button-link) {
       border-radius: 0px;
       margin-left: 0px !important;
       color: rgb(102, 102, 102) !important;

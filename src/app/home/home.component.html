@@ -66,9 +66,11 @@
       </div>
     </div>
   </div>-->
-  <div class="uk-section  uk-margin-large-top uk-margin-large-bottom uk-grd uk-flex uk-overflow-hidden home-background">
-    <div id="searchImage" class="uk-margin-medium-top uk-margin-small-right "></div>
-    <div class="uk-width-expand search_box_bg uk-height-medium" uk-scrollspy="target: [uk-scrollspy-class]; cls: uk-animation-slide-bottom-medium; delay: 200">
+  <div class="uk-section uk-margin-large-left uk-margin-large-bottom uk-grd uk-flex uk-overflow-hidden home-background">
+<!--    <div id="searchImage" class="uk-margin-medium-top uk-margin-small-right "></div>-->
+    <div class="uk-grid uk-width-1-1">
+      <div class="uk-width-1-1 uk-width-auto@m uk-margin-medium-top"><div id="searchImage"></div></div>
+      <div class="uk-width-expand search_box_bg" uk-scrollspy="target: [uk-scrollspy-class]; cls: uk-animation-slide-bottom-medium; delay: 200">
 
           <div [class.uk-invisible]="disableSelect" class="uk-margin-medium-top uk-width-3-5@m" uk-scrollspy-class>
             <advanced-search-input (searchEmitter)="goTo(true)">
@@ -84,6 +86,7 @@
               </div>
             </div>
           </div>
+        </div>
         </div>
 
   </div>
