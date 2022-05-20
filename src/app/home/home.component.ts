@@ -8,7 +8,7 @@ import {SearchDataprovidersService} from '../openaireLibrary/services/searchData
 import {SearchProjectsService} from '../openaireLibrary/services/searchProjects.service';
 import {SearchOrganizationsService} from '../openaireLibrary/services/searchOrganizations.service';
 import {RefineFieldResultsService} from '../openaireLibrary/services/refineFieldResults.service';
-import {SearchFields} from '../openaireLibrary/utils/properties/searchFields';
+import {OpenaireEntities, SearchFields} from '../openaireLibrary/utils/properties/searchFields';
 
 import {RouterHelper} from '../openaireLibrary/utils/routerHelper.class';
 import {EnvProperties} from '../openaireLibrary/utils/properties/env-properties';
@@ -130,16 +130,16 @@ export class HomeComponent {
             this.showDataProviders = !!showEntity["datasource"];
             this.showOrganizations = !!showEntity["organization"];
             if(this.showPublications){
-              this.resultTypes.values.push({name: "Publications" , id:"publications",selected:true, number:0});
+              this.resultTypes.values.push({name: OpenaireEntities.PUBLICATIONS , id:"publications",selected:false, number:0});
             }
             if(this.showDatasets){
-              this.resultTypes.values.push({name: "Research data" , id:"datasets",selected:true, number:0});
+              this.resultTypes.values.push({name: OpenaireEntities.DATASETS , id:"datasets",selected:false, number:0});
             }
             if(this.showSoftware){
-              this.resultTypes.values.push({name: "Software" , id:"software",selected:true, number:0});
+              this.resultTypes.values.push({name: OpenaireEntities.SOFTWARE , id:"software",selected:false, number:0});
             }
             if(this.showOrp){
-              this.resultTypes.values.push({name: "Other research products" , id:"other",selected:true, number:0});
+              this.resultTypes.values.push({name: OpenaireEntities.OTHER , id:"other",selected:false, number:0});
             }
             if(this.numbersComponent) {
               this.numbersComponent.init(false, false, this.showPublications, this.showDatasets,
