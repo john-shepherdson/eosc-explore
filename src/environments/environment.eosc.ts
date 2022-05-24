@@ -1,7 +1,7 @@
 import {EnvProperties} from "../app/openaireLibrary/utils/properties/env-properties";
 
 export let properties: EnvProperties = {
-  environment: "production",
+  environment: "beta",
   adminToolsPortalType: "eosc",
   dashboard: "aggregator",
   enablePiwikTrack: true,
@@ -113,12 +113,12 @@ export let properties: EnvProperties = {
 
   errorLink: "/error",
 
-  lastIndexInformationLink: "https://www.openaire.eu/aggregation-and-content-provision-workflows",
+  lastIndexInformationLink: "https://beta.openaire.eu/aggregation-and-content-provision-workflows",
   showLastIndexInformationLink: true,
-  widgetLink: "https://www.openaire.eu/index.php?option=com_openaire&view=widget&format=raw&projectId=",
+  widgetLink: "https://beta.openaire.eu/index.php?option=com_openaire&view=widget&format=raw&projectId=",
   claimsInformationLink: "https://www.openaire.eu/linking",
   lastIndexUpdate: "2020-06-15",
-  indexInfoAPI: "https://services.openaire.eu/openaire/info/",
+  indexInfoAPI: "https://beta.services.openaire.eu/openaire/info/",
 
   depositLearnHowPage: "/participate/deposit/learn-how",
   depositSearchPage: "/participate/deposit/search",
