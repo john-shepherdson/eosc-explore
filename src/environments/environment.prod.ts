@@ -8,7 +8,6 @@ export let properties: EnvProperties = {
   useCache: false,
   useLongCache: true,
   showAddThis: true,
-  metricsAPIURL: "https://services.openaire.eu/usagestats/",
   framesAPIURL: "https://www.openaire.eu/stats3/",
   statisticsAPIURL: "https://beta.services.openaire.eu/stats-api/",
   statisticsFrameAPIURL: "https://www.openaire.eu/stats/",
