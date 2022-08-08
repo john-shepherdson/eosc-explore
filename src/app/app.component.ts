@@ -18,6 +18,7 @@ import {OpenaireEntities} from "./openaireLibrary/utils/properties/searchFields"
 @Component({
   selector: 'app-root',
   template: `
+    <div id="modal-container"></div>
     <div *ngIf="agg">
       <navbar *ngIf="properties && loginCheck && header && showHeader" portal="aggregator" [properties]=properties [onlyTop]=false
               [user]="user" [userMenuItems]="userMenuItems"
