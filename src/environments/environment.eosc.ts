@@ -95,9 +95,7 @@ export let properties: EnvProperties = {
   searchLinkToOrganizations: "/search/find/organizations",
   searchLinkToCompatibleDataProviders: "/search/content-providers",
   searchLinkToEntityRegistriesDataProviders: "/search/entity-registries",
-  searchLinkToEntityRegistriesDataProvidersTable: "/search/entity-registries-table",
   searchLinkToJournals: "/search/journals",
-  searchLinkToJournalsTable: "/search/journals-table",
   searchLinkToResults: "/search/find/research-outcomes",
 
   searchLinkToAdvancedPublications: "/search/advanced/publications",
