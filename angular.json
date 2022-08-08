@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "aggregator": {
+    "eosc": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -36,7 +36,7 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "aot": true,
-            "outputPath": "dist/aggregator/browser",
+            "outputPath": "dist/eosc/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -154,63 +154,24 @@
                   "maximumWarning": "6kb"
                 }
               ]
-            },
-            "eosc": {
-              "assets": [
-                "src/assets",
-                {
-                  "input": "src/eosc/",
-                  "output": "/",
-                  "glob": "*.txt"
-                }
-              ],
-              "index": {
-                "input": "src/eosc/index.html",
-                "output": "index.html"
-              },
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.eosc.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ]
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "aggregator:build"
+            "browserTarget": "eosc:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "aggregator:build:production"
+              "browserTarget": "eosc:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "aggregator:build"
+            "browserTarget": "eosc:build"
           }
         },
         "test": {
@@ -244,7 +205,7 @@
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {
-            "outputPath": "dist/aggregator/server",
+            "outputPath": "dist/eosc/server",
             "main": "server.ts",
             "tsConfig": "src/tsconfig.server.json"
           },
@@ -275,38 +236,27 @@
               ],
               "sourceMap": false,
               "optimization": true
-            },
-            "eosc": {
-              "outputHashing": "media",
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.eosc.ts"
-                }
-              ],
-              "sourceMap": false,
-              "optimization": true
             }
           }
         },
         "serve-ssr": {
           "builder": "@nguniversal/builders:ssr-dev-server",
           "options": {
-            "browserTarget": "aggregator:build",
-            "serverTarget": "aggregator:server"
+            "browserTarget": "eosc:build",
+            "serverTarget": "eosc:server"
           },
           "configurations": {
             "production": {
-              "browserTarget": "aggregator:build:production",
-              "serverTarget": "aggregator:server:production"
+              "browserTarget": "eosc:build:production",
+              "serverTarget": "eosc:server:production"
             }
           }
         },
         "prerender": {
           "builder": "@nguniversal/builders:prerender",
           "options": {
-            "browserTarget": "aggregator:build:production",
-            "serverTarget": "aggregator:server:production",
+            "browserTarget": "eosc:build:production",
+            "serverTarget": "eosc:server:production",
             "routes": [
               "/"
             ]
@@ -317,7 +267,7 @@
         }
       }
     },
-    "aggregator-e2e": {
+    "eosc-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -326,11 +276,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "aggregator:serve"
+            "devServerTarget": "eosc:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "aggregator:serve:production"
+              "devServerTarget": "eosc:serve:production"
             }
           }
         },
@@ -346,5 +296,5 @@
       }
     }
   },
-  "defaultProject": "aggregator"
+  "defaultProject": "eosc"
 }

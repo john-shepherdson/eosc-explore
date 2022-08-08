@@ -16,7 +16,7 @@ import {REQUEST, RESPONSE} from "./src/app/openaireLibrary/utils/tokens";
 export function app() {
   const server = express();
   server.use(compression());
-  const distFolder = join(process.cwd(), 'dist/aggregator/browser');
+  const distFolder = join(process.cwd(), 'dist/eosc/browser');
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
   
   const prometheus: Prometheus = new Prometheus();

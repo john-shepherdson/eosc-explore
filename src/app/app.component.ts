@@ -20,7 +20,7 @@ import {OpenaireEntities} from "./openaireLibrary/utils/properties/searchFields"
   template: `
     <div id="modal-container"></div>
     <div *ngIf="agg">
-      <navbar *ngIf="properties && loginCheck && header && showHeader" portal="aggregator" [properties]=properties [onlyTop]=false
+      <navbar *ngIf="properties && loginCheck && header && showHeader" portal="eosc" [properties]=properties [onlyTop]=false
               [user]="user" [userMenuItems]="userMenuItems"
               [communityId]="properties.adminToolsCommunity" [menuItems]=menuItems
               [userMenu]="agg.enableLogin" [header]="header"></navbar>
@@ -29,17 +29,6 @@ import {OpenaireEntities} from "./openaireLibrary/utils/properties/searchFields"
           <router-outlet></router-outlet>
         </main>
       </div>
-      <cookie-law *ngIf="isClient && agg.menuId != 'eosc'" position="bottom">
-        OpenAIRE uses cookies in order to function properly.<br>
-        Cookies are small pieces of data that websites store in your browser to allow us to give you the best browsing
-        experience possible.
-        By using the OpenAIRE portal you accept our use of cookies. <a
-          href="https://www.openaire.eu/privacy-policy#cookies" target="_blank"> Read more <span class="uk-icon">
-              <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" icon="chevron-right"
-                   ratio="1"><polyline fill="none" stroke="#000" stroke-width="1.03" points="7 4 13 10 7 16"></polyline></svg>
-              </span></a>
-      </cookie-law>
-      <bottom *ngIf="isClient && properties && agg.menuId != 'eosc'" [properties]=properties [centered]="true" [showMenuItems]="true" [menuItems]="[]" [darkBackground]="false" ></bottom>
     </div>
   `
 })
@@ -48,7 +37,6 @@ export class AppComponent {
   menuItems: RootMenuItem [] = [];
   userMenuItems: MenuItem[] = [];
   community = null;
-  id: string = null;
   properties: EnvProperties = properties;
   user: User;
   loginCheck: boolean = false;
@@ -61,10 +49,9 @@ export class AppComponent {
   constructor(private userManagementService: UserManagementService,
               private configurationService: ConfigurationService, private smoothScroll: SmoothScroll,
               @Inject(DOCUMENT) private document, private rendererFactory: RendererFactory2,  private router: Router, private route: ActivatedRoute) {
-    this.id = ConnectHelper.getCommunityFromDomain(this.properties.domain);
-    this.agg = PortalAggregators.getFilterInfoByMenuId(this.id);
+    this.agg = PortalAggregators.eoscInfo;
     this.setStyles();
-    this.configurationService.initStaticCommunityInformation(PortalAggregators.getCommunityInfoByMenuId(this.id));
+    this.configurationService.initStaticCommunityInformation(PortalAggregators.getCommunityInfo());
     this.showHeader = this.agg.showHeaderAlways;
   }
 
@@ -81,8 +68,7 @@ export class AppComponent {
     if (typeof document !== 'undefined') {
         this.isClient = true;
     }
-    this.id = ConnectHelper.getCommunityFromDomain(this.properties.domain);
-    this.agg = PortalAggregators.getFilterInfoByMenuId(this.id);
+    this.agg = PortalAggregators.eoscInfo;
     if (this.agg) {
       this.header = {
         route: '/',
@@ -90,9 +76,9 @@ export class AppComponent {
         title: this.agg.title,
         logoUrl: this.agg.logoUrl,
         logoSmallUrl: this.agg.logoUrl,
-        position:  this.agg.menuId == 'eosc'?'center':'left',
-        menuPosition: this.agg.menuId == 'eosc'?'center':'right',
-        badge: this.agg.menuId == 'eosc'?false:true
+        position:  'center',
+        menuPosition: 'center',
+        badge: false
       };
       this.buildMenu();
     }

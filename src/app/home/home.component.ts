@@ -64,7 +64,6 @@ export class HomeComponent {
   resultTypes:Filter = {values:[],filterId:"type", countSelectedValues: 0, filterType: 'checkbox', originalFilterId: "", valueIsExact: true, title: "Result Types",filterOperator:"or"};
   public pageContents = null;
   customFilter:SearchCustomFilter= null;
-  aggregatorId;
   aggregator:AggregatorInfo;
   @ViewChild('numbersComponent', { static: true }) numbersComponent: NumbersComponent;
   
@@ -80,9 +79,8 @@ export class HomeComponent {
     private config: ConfigurationService, private _meta: Meta, private _title: Title, private seoService: SEOService,
     private helper: HelperService
   ) {
-    this.aggregatorId = ConnectHelper.getCommunityFromDomain(properties.domain);
-    this.aggregator =  PortalAggregators.getFilterInfoByMenuId(this.aggregatorId);
-    this.customFilter = PortalAggregators.getSearchCustomFilterByAggregator(this.aggregator);
+    this.aggregator =  PortalAggregators.eoscInfo;
+    this.customFilter = PortalAggregators.getSearchCustomFilterByAggregator();
     let description = "OpenAIRE Explore: Over 100M of research deduplicated, 170K research software, 11M research data. One of the largest open scholarly records collection worldwide.";
     let title = "OpenAIRE - Explore| " +this.aggregator.title;
 

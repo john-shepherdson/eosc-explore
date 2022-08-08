@@ -1,14 +1,14 @@
 // The file contents for the current environment will overwrite these during build.
 // The build system defaults to the dev environment which uses `environment.ts`, but if you do
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
-// The list of which env maps to which file can be found in `.angular-cli.json`.
+// The eoscInfo of which env maps to which file can be found in `.angular-cli.json`.
 
 import {EnvProperties} from "../app/openaireLibrary/utils/properties/env-properties";
 
 export let properties: EnvProperties = {
   environment: "development",
   adminToolsPortalType: "eosc",
-  dashboard: "aggregator",
+  dashboard: "eosc",
   enablePiwikTrack: false,
   useCache: true,
   useLongCache: true,
@@ -48,35 +48,26 @@ export let properties: EnvProperties = {
   helpdesk: "https://www.openaire.eu/support/helpdesk",
   helpdeskEmail: "helpdesk@openaire.eu",
   utilsService: "http://dl170.madgik.di.uoa.gr:8000",
-  
   vocabulariesAPI: "https://dev-openaire.d4science.org/provision/mvc/vocabularies/",
-  
   piwikBaseUrl: "https://analytics.openaire.eu/piwik.php?idsite=",
   piwikSiteId: "6",
   loginUrl: "http://mpagasas.di.uoa.gr:8080/login-service/openid_connect_login",
   userInfoUrl: "http://mpagasas.di.uoa.gr:8080/login-service/userInfo",
   logoutUrl: "http://mpagasas.di.uoa.gr:8080/login-service/openid_logout",
-  
   cookieDomain: ".di.uoa.gr",
-  
   feedbackmail: "kostis30fylloy@gmail.com",
-  
   cacheUrl: "http://dl170.madgik.di.uoa.gr:3000/get?url=",
-
   adminToolsCommunity: "aggregator",
   adminToolsAPIURL: "http://duffy.di.uoa.gr:8080/uoa-admin-tools/",
   useHelpTexts: false,
   datasourcesAPI: "https://beta.services.openaire.eu/openaire/ds/search/",
   contextsAPI: "https://dev-openaire.d4science.org/openaire/context",
   communityAPI: "https://dev-openaire.d4science.org/openaire/community/",
-  
   csvLimit: 2000,
   pagingLimit: 20,
   resultsPerPage: 10,
-
   "baseLink" : "",
   "domain":"https://explore.eosc-portal.eu",
-  
   searchLinkToResult: "/search/result?id=",
   searchLinkToPublication: "/search/publication?articleId=",
   searchLinkToProject: "/search/project?projectId=",
@@ -86,7 +77,6 @@ export let properties: EnvProperties = {
   searchLinkToSoftwareLanding: "/search/software?softwareId=",
   searchLinkToOrp: "/search/other?orpId=",
   searchLinkToOrganization: "/search/organization?organizationId=",
-  
   searchLinkToPublications: "/search/find/publications",
   searchLinkToDataProviders: "/search/find/dataproviders",
   searchLinkToServices: "/search/find/services",
@@ -99,7 +89,6 @@ export let properties: EnvProperties = {
   searchLinkToEntityRegistriesDataProviders: "/search/entity-registries",
   searchLinkToJournals: "/search/journals",
   searchLinkToResults: "/search/find/research-outcomes",
-  
   searchLinkToAdvancedPublications: "/search/advanced/publications",
   searchLinkToAdvancedProjects: "/search/advanced/projects",
   searchLinkToAdvancedDatasets: "/search/advanced/datasets",
@@ -109,16 +98,13 @@ export let properties: EnvProperties = {
   searchLinkToAdvancedServices: "/search/advanced/services",
   searchLinkToAdvancedOrganizations: "/search/advanced/organizations",
   searchLinkToAdvancedResults: "/search/advanced/research-outcomes",
-
   errorLink: "/error",
-
   lastIndexInformationLink: "https://www.openaire.eu/aggregation-and-content-provision-workflows",
   showLastIndexInformationLink: true,
   widgetLink: "https://beta.openaire.eu/index.php?option=com_openaire&view=widget&format=raw&projectId=",
   claimsInformationLink: "https://www.openaire.eu/linking-beta",
   lastIndexUpdate: "2019-11-01",
   indexInfoAPI: "https://beta.services.openaire.eu/openaire/info/",
-  
   depositLearnHowPage: "/participate/deposit/learn-how",
   depositSearchPage: "/participate/deposit/search",
   altMetricsAPIURL: "https://api.altmetric.com/v1/doi/",

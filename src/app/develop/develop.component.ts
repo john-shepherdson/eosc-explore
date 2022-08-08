@@ -106,8 +106,7 @@ export class DevelopComponent implements OnInit {
   }
   ngOnInit() {
 
-      let id = ConnectHelper.getCommunityFromDomain(properties.domain);
-      this.aggregator = PortalAggregators.getFilterInfoByMenuId(id);
+      this.aggregator = PortalAggregators.eoscInfo;
       if (this.aggregator) {
 
         /* Metadata */
