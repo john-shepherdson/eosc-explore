@@ -1,6 +1,6 @@
 import {Component, Inject, RendererFactory2, ViewEncapsulation} from '@angular/core';
 import {EnvProperties} from './openaireLibrary/utils/properties/env-properties';
-import {MenuItem, RootMenuItem} from './openaireLibrary/sharedComponents/menu';
+import {MenuItem} from './openaireLibrary/sharedComponents/menu';
 import {AggregatorInfo, PortalAggregators} from "./utils/aggregators";
 import {UserManagementService} from "./openaireLibrary/services/user-management.service";
 import {User} from "./openaireLibrary/login/utils/helper.class";
@@ -34,7 +34,7 @@ import {OpenaireEntities} from "./openaireLibrary/utils/properties/searchFields"
 })
 export class AppComponent {
   isClient: boolean = false;
-  menuItems: RootMenuItem [] = [];
+  menuItems: MenuItem [] = [];
   userMenuItems: MenuItem[] = [];
   community = null;
   properties: EnvProperties = properties;
@@ -106,24 +106,17 @@ export class AppComponent {
 
   private buildMenu() {
     this.menuItems = [
-      {rootItem: new MenuItem("home", "Home", "", "/", false, [], null, {}), items: []},
-      {
-        rootItem: new MenuItem("search", "Search", "", "/search/find", false, [], ["/search/find"], {}),
-        items: []
-      },
-      {
-        rootItem: new MenuItem("deposit", "Deposit", "", "/participate/deposit/learn-how", false, [], ["/participate/deposit/learn-how"], {}),
-        items: []
-      },
-      {
-        rootItem: new MenuItem("link", "Link", "", "/participate/claim", false, [], ["/participate/claim"], {}),
-        items: [new MenuItem("", "Start linking", "", "/participate/claim", false, [], ["/participate/claim"], {}),
-          new MenuItem("", "Learn more", this.properties.claimsInformationLink, "", false, [], [], {})]
-      },
-      {
-        rootItem: new MenuItem("develop", "Develop", "", "/develop", false, [], ["/develop"], {}),
-        items: []
-      }
+      new MenuItem("home", "Home", "", "/", false, [], null, {}),
+      new MenuItem("search", "Search", "", "/search/find", false, [], ["/search/find"], {}),
+      new MenuItem("deposit", "Deposit", "", "/participate/deposit/learn-how", false, [], ["/participate/deposit/learn-how"], {}),
+      new MenuItem("link", "Link", "", "/participate/claim", false, [], ["/participate/claim"], {},
+        null, null, null, null, "_blank", "internal", false,
+        [
+          new MenuItem("", "Start linking", "", "/participate/claim", false, [], ["/participate/claim"], {}),
+          new MenuItem("", "Learn more", this.properties.claimsInformationLink, "", false, [], [], {})
+        ]
+      ),
+      new MenuItem("develop", "Develop", "", "/develop", false, [], ["/develop"], {})
     ];
     let params = {};
     // params[this.agg.queryFieldName] = this.agg.valueId;

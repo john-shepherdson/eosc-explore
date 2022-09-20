@@ -50,8 +50,8 @@
               "src/material.scss"
             ],
             "scripts": [
-              "src/assets/openaire-theme/js/uikit.min.js",
-              "src/assets/openaire-theme/js/uikit-icons.min.js",
+              "node_modules/uikit/dist/js/uikit.min.js",
+              "node_modules/uikit/dist/js/uikit-icons.min.js",
               "node_modules/jquery/dist/jquery.js"
             ]
           },
