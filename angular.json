@@ -45,7 +45,7 @@
             ],
             "styles": [
               "src/styles.css",
-              "src/material.scss"
+              "src/assets/common-assets/library-css/material.scss"
             ],
             "scripts": [
               "node_modules/uikit/dist/js/uikit.min.js",
