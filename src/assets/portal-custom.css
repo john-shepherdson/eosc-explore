@@ -68,3 +68,8 @@
 .number {
     color: #1d1d1d;
 }
+
+.search-form {
+  background-color: inherit !important;
+  background-image: none !important;
+}

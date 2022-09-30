@@ -44,7 +44,7 @@
               "src/robots.txt"
             ],
             "styles": [
-              "src/styles.css",
+              "src/styles.less",
               "src/assets/common-assets/library-css/material.scss"
             ],
             "scripts": [
@@ -184,7 +184,7 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
-              "src/styles.css"
+              "src/styles.less"
             ],
             "scripts": [],
             "assets": [
