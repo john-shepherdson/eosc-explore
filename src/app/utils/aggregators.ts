@@ -162,7 +162,7 @@ border-bottom:1px solid #ced4da;
   }
 
   public static getCommunityInfo(): any {
-    return Portal.getMockCommunityInfo(PortalAggregators.disabled.entities,PortalAggregators.disabled.pages);
+    return Portal.getMockCommunityInfo(PortalAggregators.eoscInfo.menuId, PortalAggregators.disabled.entities,PortalAggregators.disabled.pages);
   }
 }
 
