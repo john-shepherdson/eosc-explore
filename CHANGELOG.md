@@ -10,6 +10,7 @@ For datasets there is the demo funtionality of Datatransfer service, using zenod
 There is link to EOSC market place (beta) for results connected to EOSC services.
 
 ## [1.0.1]
+* Production search
 * Data Transfer: NEW Browse functionality
 * EOSC Subjects: NEW field eoscifguidelines
 * Filter "Type" in search services: NEW field eoscdatasourcetype
