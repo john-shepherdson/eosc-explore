@@ -9,3 +9,7 @@ It contists of the search pages and the landing pages for the content of the BET
 For datasets there is the demo funtionality of Datatransfer service, using zenodo as source and EDI demo dcache as destination.
 There is link to EOSC market place (beta) for results connected to EOSC services.
 
+## [1.0.1]
+* Data Transfer: NEW Browse functionality
+* EOSC Subjects: NEW field eoscifguidelines
+* Filter "Type" in search services: NEW field eoscdatasourcetype
