@@ -113,9 +113,14 @@ export let properties: EnvProperties = {
   eoscDataTransferAPI : "https://eosc-data-transfer.test.fedcloud.eu",
   eoscDataTransferLoginUrl:"https://explore.eosc-portal.eu/egi-login-service/openid_connect_login",
   eoscDataTransferDestinations : [
-    {label: "EGI dCache (dcache-demo.desy.de)", value:
-    {label : "EGI dCache (dcache-demo.desy.de)", url: "https://dcache-demo.desy.de:2443", id: "dcache",
-      webpage : "https://dcache-demo.desy.de", defaultFolder: "/", hasBrowse: true,
-      loginUrl : "https://explore.eosc-portal.eu/egi-login-service/openid_connect_login", cookieName: "EGIAccessToken"}
+    {label: "dcache", value:
+        {label : "EGI dCache",   id: "dcache",
+          defaultFolder: "/", auth: "token"}
+    },
+    {label: "FTP", value:
+        {label : "FTP",  id: "ftp", auth: "password"}
+    },
+    {label: "S3", value:
+        {label : "S3",  id: "s3",  auth: "keys"}
     }]
 };
