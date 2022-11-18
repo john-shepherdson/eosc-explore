@@ -14,3 +14,6 @@ There is link to EOSC market place (beta) for results connected to EOSC services
 * Data Transfer: NEW Browse functionality
 * EOSC Subjects: NEW field eoscifguidelines
 * Filter "Type" in search services: NEW field eoscdatasourcetype
+
+## [1.0.2]
+* Fixes and updates in advanced search form and data transfer functionality. 
