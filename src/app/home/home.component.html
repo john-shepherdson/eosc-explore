@@ -1,48 +1,52 @@
 <div class="image-front-topbar">
-  <div class="uk-section uk-margin-large-left uk-padding-remove-bottom uk-grd uk-flex uk-overflow-hidden home-background">
-    <div class="uk-grid uk-width-1-1 uk-margin-bottom uk-height-medium">
-      <div class="uk-width-1-1 uk-width-auto@m uk-margin-medium-top"><div id="searchImage"></div></div>
-      <div class="uk-width-expand search_box_bg" uk-scrollspy="target: [uk-scrollspy-class]; cls: uk-animation-slide-bottom-medium; delay: 200">
-
-          <div [class.uk-invisible]="disableSelect" class="uk-margin-medium-top uk-width-3-5@m" uk-scrollspy-class>
-            <advanced-search-input (searchEmitter)="goTo(true)">
-              <entities-selection #entities [simpleView]="true" currentEntity="all" [selectedEntity]="selectedEntity"
-                                  (selectionChange)="entityChanged($event)" (disableSelectEmitter)="disableSelect = $event"
-                                  [onChangeNavigate]="false" class="uk-width-2-5"></entities-selection>
-              <div class="uk-width-expand" input placeholder="Scholary works" [hint]="'Search in OpenAIRE'"
-                   [(value)]="keyword" tooltip="true"></div>
-            </advanced-search-input>
-
-            <div *ngIf="selectedEntity === 'result' && !entities.input.focused" class="uk-dropdown uk-display-block uk-margin-top uk-width-auto">
-              <div class="uk-padding-small">
-                <quick-selections [resultTypes]="resultTypes" [quickFilter]="resultsQuickFilter"></quick-selections>
+  <div class="uk-section uk-section-small home-background">
+    <div id="searchForm" class="uk-container uk-container-large uk-section uk-section-xsmall uk-padding-remove-bottom">
+      <div class="uk-grid  uk-flex uk-flex-center uk-margin-small-top">
+        <div class="uk-width-1-1 uk-width-auto@m uk-first-column"><div id="searchImage"></div></div>
+        <div  class="uk-width-expand uk-padding-remove-vertical search_box_bg" uk-scrollspy="target: [uk-scrollspy-class]; cls: uk-animation-slide-bottom-medium; delay: 200">
+          <div class="uk-flex uk-flex-center uk-flex-wrap">
+            <div class="uk-width-xlarge@l uk-width-large">
+              <div class="uk-flex uk-flex-center uk-child-width-1-1">
+                <div [class.uk-invisible]="disableSelect" uk-scrollspy-class>
+                  <advanced-search-input (searchEmitter)="goTo(true)">
+                    <entities-selection #entities [simpleView]="true" currentEntity="all" [selectedEntity]="selectedEntity"
+                                        (selectionChange)="entityChanged($event)" (disableSelectEmitter)="disableSelect = $event"
+                                        [onChangeNavigate]="false" class="uk-width-2-5"></entities-selection>
+                    <div class="uk-width-expand" input placeholder="Scholary works" [hint]="'Search in OpenAIRE'"
+                         [(value)]="keyword" tooltip="true"></div>
+                  </advanced-search-input>
+                  <div *ngIf="selectedEntity === 'result' && !entities.input.focused" class="uk-dropdown uk-display-block uk-margin-top uk-width-auto">
+                    <div class="uk-padding-small">
+                      <quick-selections [resultTypes]="resultTypes" [quickFilter]="resultsQuickFilter"></quick-selections>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        </div>
-
-  </div>
-</div>
-<div class="uk-grid  uk-child-width-1-1@s">
-  <div class="uk-width-expand">
-    <div class="uk-margin-large-left">
-      <div class=" ">
-        <span class=" uk-h1">Welcome to  EOSC Explore
-      </span>
-      <i class=" uk-h5 uk-text-italics"><br>
-        The in-context research discovery portal over the EOSC Exchange and the global map of science.
-      </i>
       </div>
-      <div class="uk-margin-large-top uk-text-large">The EOSC Explore supports discovery of research products and services onboarded in the EOSC Exchange in the wider context of scientific research outcomes, research funding, and research organization. The EOSC Research Graph, powered by the OpenAIRE Research Graph, provides links from products and services to funders, projects, organizations, and authors, collects and infers SDGs subjects, communities, many more. The portal exploits the EOSC Interoperability Framework to identify relationships between research products in the graph and EOSC Services in the EOSC Marketplace, to facilitate and enable composability of resources.  </div>
     </div>
   </div>
-  <img
-    class="uk-width-large@m uk-width-1-1@s" 
-    src="https://marketplace.eosc-portal.eu/packs/media/images/gfx_whole_illustation_desktop-fc94d4f7e15455d1785ef4793e1573fb.png">
-  
-  
 </div>
+<div class="uk-section uk-container uk-container-large">
+  <div class="contentbox uk-grid uk-child-width-1-1@s uk-flex-row-reverse">
+    <div class="uk-width-medium@m uk-width-large@l uk-width-xlarge@xl uk-width-1-1 uk-flex uk-flex-middle uk-padding-remove-horizontal">
+      <img src="https://marketplace.eosc-portal.eu/packs/media/images/gfx_whole_illustation_desktop-fc94d4f7e15455d1785ef4793e1573fb.png">
+    </div>
+    <div class="uk-width-expand">
+      <div class="">
+        <div class=" ">
+          <h1 class=" uk-h2 uk-text-normal">Welcome to  EOSC Explore</h1>
+          <h2 class="uk-h5 uk-text-normal uk-text-italics"><br>
+            <i>The in-context research discovery portal over the EOSC Exchange and the global map of science.</i>
+          </h2>
+        </div>
+        <div class="uk-margin-large-top uk-text-large uk-text-light">The EOSC Explore supports discovery of research products and services onboarded in the EOSC Exchange in the wider context of scientific research outcomes, research funding, and research organization. The EOSC Research Graph, powered by the OpenAIRE Research Graph, provides links from products and services to funders, projects, organizations, and authors, collects and infers SDGs subjects, communities, many more. The portal exploits the EOSC Interoperability Framework to identify relationships between research products in the graph and EOSC Services in the EOSC Marketplace, to facilitate and enable composability of resources.  </div>
+      </div>
+    </div>
+  <!--  <aside><img src="https://marketplace.eosc-portal.eu/packs/media/images/gfx_whole_illustation_desktop-fc94d4f7e15455d1785ef4793e1573fb.png"></aside>-->
+      </div>
 <div class="uk-section graph-background" *ngIf="aggregator.graphSectionText && aggregator.graphSectionTitle">
   <div class="uk-container">
     <div class="uk-flex uk-flex-top uk-child-width-1-1 uk-child-width-1-2@m" uk-grid>
@@ -124,4 +128,4 @@
     </div>
   </div>
 </div>
-
+</div>

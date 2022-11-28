@@ -16,7 +16,7 @@ import {SearchForm} from "../../openaireLibrary/searchPages/searchUtils/newSearc
 export class OpenaireSearchServicesComponent {
   properties: EnvProperties;
   public openaireEntities = OpenaireEntities;
-  public searchForm: SearchForm = {class: 'search-form', dark: false};
+  public searchForm: SearchForm = {class: 'search-form', dark: true};
   constructor ( ) {}
   ngOnInit() {
     this.properties = properties;
