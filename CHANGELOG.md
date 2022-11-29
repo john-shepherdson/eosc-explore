@@ -9,3 +9,22 @@ It contists of the search pages and the landing pages for the content of the BET
 For datasets there is the demo funtionality of Datatransfer service, using zenodo as source and EDI demo dcache as destination.
 There is link to EOSC market place (beta) for results connected to EOSC services.
 
+## [1.0.1]
+* Production search
+* Data Transfer: NEW Browse functionality
+* EOSC Subjects: NEW field eoscifguidelines
+* Filter "Type" in search services: NEW field eoscdatasourcetype
+
+## [1.0.2]
+* Fixes and updates in advanced search form and data transfer functionality. 
+
+## [1.0.3]
+* Updated styles according to new view in EOSC Marketplace  & new Search
+  * Blue banner
+  * White logo 
+  * Search form rounded and aligned to the center 
+  * Fonts adjusted
+  * Grey background on page & white background on results
+* Detailed page: Display of EOSC subjects updated
+* [Bug fix] In description of research products' versions
+* Strip html tags from titles & descriptions

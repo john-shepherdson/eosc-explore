@@ -109,5 +109,18 @@ export let properties: EnvProperties = {
   depositSearchPage: "/participate/deposit/search",
   altMetricsAPIURL: "https://api.altmetric.com/v1/doi/",
   reCaptchaSiteKey: null,
-  footerGrantText : "This OpenAIRE gateway is part of a project that has received funding from the European Union's Horizon 2020 research and innovation programme under grant agreements No. 777541 and 101017452"
+  footerGrantText : "This OpenAIRE gateway is part of a project that has received funding from the European Union's Horizon 2020 research and innovation programme under grant agreements No. 777541 and 101017452",
+  eoscDataTransferAPI : "https://eosc-data-transfer.vm.fedcloud.eu",
+  eoscDataTransferDestinations : [
+    {label: "EGI dCache (dcache-demo.desy.de)", value:
+        {label : "EGI dCache (dcache-demo.desy.de)", url: "https://dcache-demo.desy.de:2443", id: "dcache",
+          webpage : "https://dcache-demo.desy.de", defaultFolder: "/", hasBrowse: true,
+          loginUrl : "http://rudie.di.uoa.gr:8580/openid_connect_login", cookieName: "EGIAccessToken"}
+    },
+    {label: "FTP", value:
+        {label : "FTP",  id: "ftp",
+          loginUrl : null}
+    }
+  ]
+ 
 };

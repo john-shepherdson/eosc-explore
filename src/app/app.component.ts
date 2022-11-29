@@ -78,7 +78,8 @@ export class AppComponent {
         logoSmallUrl: this.agg.logoUrl,
         position:  'center',
         menuPosition: 'center',
-        badge: false
+        badge: false,
+        darkBg: true
       };
       this.buildMenu();
     }

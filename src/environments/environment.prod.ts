@@ -109,5 +109,12 @@ export let properties: EnvProperties = {
   depositSearchPage: "/participate/deposit/search",
   altMetricsAPIURL: "https://api.altmetric.com/v1/doi/",
   reCaptchaSiteKey: null,
-  footerGrantText : ""
+  footerGrantText : "",
+  eoscDataTransferAPI : "https://eosc-data-transfer.vm.fedcloud.eu",
+  eoscDataTransferDestinations : [
+    {label: "EGI dCache (dcache-demo.desy.de)", value:
+    {label : "EGI dCache (dcache-demo.desy.de)", url: "https://dcache-demo.desy.de:2443", id: "dcache",
+      webpage : "https://dcache-demo.desy.de", defaultFolder: "/", hasBrowse: true,
+      loginUrl : "https://explore.eosc-portal.eu/egi-login-service/openid_connect_login", cookieName: "EGIAccessToken"}
+    }]
 };
