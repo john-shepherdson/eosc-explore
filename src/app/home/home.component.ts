@@ -22,9 +22,6 @@ import {AggregatorInfo, PortalAggregators} from "../utils/aggregators";
 import {SearchCustomFilter} from "../openaireLibrary/searchPages/searchUtils/searchUtils.class";
 import {properties} from "../../environments/environment";
 import {portalProperties} from "../../environments/environment-aggregator";
-import {StringUtils} from "../openaireLibrary/utils/string-utils.class";
-import {ConnectHelper} from "../openaireLibrary/connect/connectHelper";
-import {NumbersComponent} from "../openaireLibrary/sharedComponents/numbers/numbers.component";
 
 @Component({
   selector: 'home',
@@ -65,8 +62,7 @@ export class HomeComponent {
   public pageContents = null;
   customFilter:SearchCustomFilter= null;
   aggregator:AggregatorInfo;
-  @ViewChild('numbersComponent', { static: true }) numbersComponent: NumbersComponent;
-  
+
   constructor (
     private route: ActivatedRoute,
     private _router: Router,
@@ -139,12 +135,6 @@ export class HomeComponent {
             if(this.showOrp){
               this.resultTypes.values.push({name: OpenaireEntities.OTHER , id:"other",selected:false, number:0});
             }
-            if(this.numbersComponent) {
-              this.numbersComponent.init(false, false, this.showPublications, this.showDatasets,
-                this.showSoftware, this.showOrp, this.showProjects, this.showDataProviders, this.customFilter ?
-                  StringUtils.URIEncode(this.customFilter.queryFieldName + " exact " + StringUtils.quote((this.customFilter.valueId))) : '');
-            }
-					 
           }
         },
         error => {
