@@ -28,3 +28,6 @@ There is link to EOSC market place (beta) for results connected to EOSC services
 * Detailed page: Display of EOSC subjects updated
 * [Bug fix] In description of research products' versions
 * Strip html tags from titles & descriptions
+
+## [1.1.0]
+Angular 14 upgrade
