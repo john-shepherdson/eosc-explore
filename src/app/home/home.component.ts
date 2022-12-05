@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, ViewChild} from '@angular/core';
 import {Subscription, zip} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Location} from '@angular/common';
@@ -55,7 +55,7 @@ export class HomeComponent {
     value: "Open Access"
   };
   selectedEntity = "all";
-  disableSelect;
+  disableSelect: boolean = true;
   selectedEntitySimpleUrl;
   selectedEntityAdvancedUrl;
   resultTypes:Filter = {values:[],filterId:"type", countSelectedValues: 0, filterType: 'checkbox', originalFilterId: "", valueIsExact: true, title: "Result Types",filterOperator:"or"};
@@ -73,7 +73,7 @@ export class HomeComponent {
     private _refineFieldResultsService:RefineFieldResultsService,
     private location: Location, private _piwikService:PiwikService,
     private config: ConfigurationService, private _meta: Meta, private _title: Title, private seoService: SEOService,
-    private helper: HelperService
+    private helper: HelperService, private cdr: ChangeDetectorRef
   ) {
     this.aggregator =  PortalAggregators.eoscInfo;
     this.customFilter = PortalAggregators.getSearchCustomFilterByAggregator();
@@ -225,5 +225,10 @@ export class HomeComponent {
       }
     }
     return false;
+  }
+
+  disableSelectChange(event: boolean) {
+    this.disableSelect = event;
+    this.cdr.detectChanges();
   }
 }

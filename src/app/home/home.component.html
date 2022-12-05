@@ -10,7 +10,7 @@
                 <div [class.uk-invisible]="disableSelect" uk-scrollspy-class>
                   <advanced-search-input (searchEmitter)="goTo(true)">
                     <entities-selection #entities [simpleView]="true" currentEntity="all" [selectedEntity]="selectedEntity"
-                                        (selectionChange)="entityChanged($event)" (disableSelectEmitter)="disableSelect = $event"
+                                        (selectionChange)="entityChanged($event)" (disableSelectEmitter)="disableSelectChange($event)"
                                         [onChangeNavigate]="false" class="uk-width-2-5"></entities-selection>
                     <div class="uk-width-expand" input placeholder="Scholary works" [hint]="'Search in OpenAIRE'"
                          [(value)]="keyword" tooltip="true"></div>
