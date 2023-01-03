@@ -24,7 +24,7 @@ import {EntitiesSelectionModule} from "../openaireLibrary/searchPages/searchUtil
 import {QuickSelectionsModule} from "../openaireLibrary/searchPages/searchUtils/quick-selections.module";
 import {IconsModule} from "../openaireLibrary/utils/icons/icons.module";
 import {IconsService} from "../openaireLibrary/utils/icons/icons.service";
-import {arrow_right, book, cog, database, earth} from "../openaireLibrary/utils/icons/icons";
+import {book, cog, database, earth} from "../openaireLibrary/utils/icons/icons";
 import {NumbersModule} from "../openaireLibrary/sharedComponents/numbers/numbers.module";
 import {AdvancedSearchInputModule} from "../openaireLibrary/sharedComponents/advanced-search-input/advanced-search-input.module";
 import {InputModule} from "../openaireLibrary/sharedComponents/input/input.module";
@@ -54,6 +54,6 @@ import {InputModule} from "../openaireLibrary/sharedComponents/input/input.modul
 })
 export class HomeModule {
   constructor(private iconsService: IconsService) {
-    this.iconsService.registerIcons([arrow_right, book, earth, cog, database]);
+    this.iconsService.registerIcons([book, earth, cog, database]);
   }
 }
