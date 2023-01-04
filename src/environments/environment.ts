@@ -113,14 +113,36 @@ export let properties: EnvProperties = {
   eoscDataTransferAPI : "https://eosc-data-transfer.test.fedcloud.eu",
   eoscDataTransferLoginUrl:"http://rudie.di.uoa.gr:8580/openid_connect_login",
   eoscDataTransferDestinations : [
-    {label: "dcache", value:
-        {label : "EGI dCache",   id: "dcache",
-          defaultFolder: "/", auth: "token"}
+    // {label: "dcache", value:
+    //     {label : "EGI dCache",   id: "dcache",
+    //       auth: "token"}
+    // },
+    // {label: "FTP", value:
+    //     {label : "FTP",  id: "ftp", auth: "password"}
+    // },
+    // {label: "S3", value:
+    //     {label : "S3",  id: "s3",  auth: "keys"}
+    // }]
+
+    {
+      "kind": "StorageInfo",
+      "destination": "dcache",
+      // "id": "dcache", //
+      "description": "EGI dCache",
+      // "label": "EGI dCache", //
+      "authType": "token",
+      "canBrowse": true,
+      "transferWith": "EGI Data Transfer"
     },
-    {label: "FTP", value:
-        {label : "FTP",  id: "ftp", auth: "password"}
-    },
-    {label: "S3", value:
-        {label : "S3",  id: "s3",  auth: "keys"}
-    }]
+    {
+      "kind": "StorageInfo",
+      "destination": "s3",
+      // "id": "s3", //
+      "description": "Amazon S3 compatible object storage",
+      // "label": "Amazon S3 compatible object storage", //
+      "authType": "keys",
+      "canBrowse": true,
+      "transferWith": "EGI Data Transfer"
+    }
+]
 };
