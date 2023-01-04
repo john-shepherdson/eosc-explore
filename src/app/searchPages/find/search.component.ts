@@ -11,7 +11,7 @@ import {SearchForm} from "../../openaireLibrary/searchPages/searchUtils/newSearc
  })
 export class OpenaireSearchComponent{
   piwikSiteId = properties.piwikSiteId;
-  public searchForm: SearchForm = {class: 'search-form', dark: false};
+  public searchForm: SearchForm = {class: 'search-form', dark: true};
   constructor ( ) {}
   ngOnInit() {}
 }

@@ -128,7 +128,7 @@ export class AppRoutingModule {
       }));
   }
   getOptionalRoutes(){
-    let optionalRoutes = [
+    let optionalRoutes: Routes = [
       // Deposit Pages
     { path: 'participate/deposit-datasets',  redirectTo: 'participate/deposit/learn-how', pathMatch: 'full'},
     { path: 'participate/deposit-datasets-result',  redirectTo: 'participate/deposit/learn-how', pathMatch: 'full'},
