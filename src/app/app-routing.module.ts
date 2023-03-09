@@ -43,51 +43,58 @@ const routes: Routes = [
   },
   {
     path: 'search/find',
-    loadChildren: () => import('./searchPages/find/libSearch.module').then(m => m.LibMainSearchModule)
+    redirectTo: ''
+    // loadChildren: () => import('./searchPages/find/libSearch.module').then(m => m.LibMainSearchModule)
   },
   {
     path: 'search/find/research-outcomes',
-    loadChildren: () => import('./searchPages/simple/searchResearchResults.module').then(m => m.OpenaireSearchResearchResultsModule)
+    redirectTo: ''
+    // loadChildren: () => import('./searchPages/simple/searchResearchResults.module').then(m => m.OpenaireSearchResearchResultsModule)
   },
   {
     path: 'search/find/projects',
-    loadChildren: () => import('./searchPages/simple/searchProjects.module').then(m => m.LibSearchProjectsModule)
+    redirectTo: ''
+    // loadChildren: () => import('./searchPages/simple/searchProjects.module').then(m => m.LibSearchProjectsModule)
   },
   {
     path: 'search/find/dataproviders',
-    loadChildren: () => import('./searchPages/simple/searchDataProviders.module').then(m => m.LibSearchDataProvidersModule)
+    redirectTo: ''
+    // loadChildren: () => import('./searchPages/simple/searchDataProviders.module').then(m => m.LibSearchDataProvidersModule)
   },
   {
     path: 'search/find/services',
-    loadChildren: () => import('./searchPages/simple/searchServices.module').then(m => m.LibSearchServicesModule)
+    redirectTo: ''
+    // loadChildren: () => import('./searchPages/simple/searchServices.module').then(m => m.LibSearchServicesModule)
   },
   {
     path: 'search/find/organizations',
-    loadChildren: () => import('./searchPages/simple/searchOrganizations.module').then(m => m.LibSearchOrganizationsModule)
+    redirectTo: ''
+    // loadChildren: () => import('./searchPages/simple/searchOrganizations.module').then(m => m.LibSearchOrganizationsModule)
   },
   {
     path: 'search/advanced/research-outcomes',
-    loadChildren: () => import('./searchPages/advanced/searchResearchResults.module').then(m => m.OpenaireAdvancedSearchResearchResultsModule)
+    redirectTo: ''
+    // loadChildren: () => import('./searchPages/advanced/searchResearchResults.module').then(m => m.OpenaireAdvancedSearchResearchResultsModule)
   },
   {
     path: 'search/advanced/organizations',
-    loadChildren: () => import('./searchPages/advanced/advancedSearchOrganizations.module').then(m => m.LibAdvancedSearchOrganizationsModule)
+    redirectTo: ''
+    // loadChildren: () => import('./searchPages/advanced/advancedSearchOrganizations.module').then(m => m.LibAdvancedSearchOrganizationsModule)
   },
   {
     path: 'search/advanced/dataproviders',
-    loadChildren: () => import('./searchPages/advanced/advancedSearchDataProviders.module').then(m => m.LibAdvancedSearchDataProvidersModule)
+    redirectTo: ''
+    // loadChildren: () => import('./searchPages/advanced/advancedSearchDataProviders.module').then(m => m.LibAdvancedSearchDataProvidersModule)
   },
   {
     path: 'search/advanced/services',
-    loadChildren: () => import('./searchPages/advanced/advancedSearchServices.module').then(m => m.LibAdvancedSearchServicesModule)
+    redirectTo: ''
+    // loadChildren: () => import('./searchPages/advanced/advancedSearchServices.module').then(m => m.LibAdvancedSearchServicesModule)
   },
   {
     path: 'search/advanced/projects',
-    loadChildren: () => import('./searchPages/advanced/advancedSearchProjects.module').then(m => m.LibAdvancedSearchProjectsModule)
-  },
-  {
-    path: 'project-report',
-    loadChildren: () => import('./landingPages/htmlProjectReport/libHtmlProjectReport.module').then(m => m.LibHtmlProjectReportModule)
+    redirectTo: ''
+    // loadChildren: () => import('./searchPages/advanced/advancedSearchProjects.module').then(m => m.LibAdvancedSearchProjectsModule)
   },
   {
     path: 'reload',
@@ -120,36 +127,10 @@ export class AppRoutingModule {
               this.enabledRoutes[data['pages'][i]['route']] = data['pages'][i]['isEnabled'];
             }
           }
-          this.getOptionalRoutes();
         }
       },
       error => {
         // this.handleError('Error getting community information (e.g. pages,entities) for community with id: ' + this.communityId, error);
       }));
-  }
-  getOptionalRoutes(){
-    let optionalRoutes: Routes = [
-      // Deposit Pages
-    { path: 'participate/deposit-datasets',  redirectTo: 'participate/deposit/learn-how', pathMatch: 'full'},
-    { path: 'participate/deposit-datasets-result',  redirectTo: 'participate/deposit/learn-how', pathMatch: 'full'},
-    { path: 'participate/deposit-subject-result',  redirectTo: 'participate/deposit/learn-how', pathMatch: 'full'},
-    { path: 'participate/deposit-publications',  redirectTo: 'participate/deposit/learn-how', pathMatch: 'full'},
-    { path: 'participate/deposit-publications-result',  redirectTo: 'participate/deposit/learn-how', pathMatch: 'full'},
-    
-    { path: 'participate/deposit/learn-how', loadChildren: () => import('./deposit/deposit.module').then(m => m.LibDepositModule)},
-    { path: 'participate/deposit/search', loadChildren: () => import('./deposit/searchDataprovidersToDeposit.module').then(m => m.LibSearchDataprovidersToDepositModule)},
-    // Linking Pages
-    { path: 'myclaims', loadChildren: () => import('./claims/myClaims/myClaims.module').then(m => m.LibMyClaimsModule)},
-    { path: 'participate/claim', loadChildren: () => import('./claims/linking/linkingGeneric.module').then(m => m.LibLinkingGenericModule)},
-    { path: 'participate/direct-claim', loadChildren: () => import('./claims/directLinking/directLinking.module').then(m => m.LibDirectLinkingModule)},
-    {path: 'develop', loadChildren: () => import('./develop/develop.module').then(m => m.DevelopModule)}
-    ];
-    for (var i = 0; i <optionalRoutes.length; i++) {
-      if(this.enabledRoutes[("/"+optionalRoutes[i].path)]){
-        this.router.config.push(optionalRoutes[i]);
-      }
-    }
-    this.router.config.push({path: '**', pathMatch: 'full', component: OpenaireErrorPageComponent});
-    return routes;
   }
 }

@@ -1,6 +1,6 @@
-# Aggregator
+# EOSC EXPLORE
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.10 and has been updated to 11.2.14.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.10 and has been updated to 14.2.3.
 
 ## Install packages
 

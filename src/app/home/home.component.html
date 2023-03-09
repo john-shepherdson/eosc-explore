@@ -1,131 +1,131 @@
-<div class="image-front-topbar">
-  <div class="uk-section uk-section-small home-background">
-    <div id="searchForm" class="uk-container uk-container-large uk-section uk-section-xsmall uk-padding-remove-bottom">
-      <div class="uk-grid  uk-flex uk-flex-center uk-margin-small-top">
-        <div class="uk-width-1-1 uk-width-auto@m uk-first-column"><div id="searchImage"></div></div>
-        <div  class="uk-width-expand uk-padding-remove-vertical search_box_bg" uk-scrollspy="target: [uk-scrollspy-class]; cls: uk-animation-slide-bottom-medium; delay: 200">
-          <div class="uk-flex uk-flex-center uk-flex-wrap">
-            <div class="uk-width-xlarge@l uk-width-large">
-              <div class="uk-flex uk-flex-center uk-child-width-1-1">
-                <div [class.uk-invisible]="disableSelect" uk-scrollspy-class>
-                  <advanced-search-input (searchEmitter)="goTo(true)">
-                    <entities-selection #entities [simpleView]="true" currentEntity="all" [selectedEntity]="selectedEntity"
-                                        (selectionChange)="entityChanged($event)" (disableSelectEmitter)="disableSelectChange($event)"
-                                        [onChangeNavigate]="false" class="uk-width-2-5"></entities-selection>
-                    <div class="uk-width-expand" input placeholder="Scholary works" [hint]="'Search in OpenAIRE'"
-                         [(value)]="keyword" tooltip="true"></div>
-                  </advanced-search-input>
-                  <div *ngIf="selectedEntity === 'result' && !entities.input.focused" class="uk-dropdown uk-display-block uk-margin-top uk-width-auto">
-                    <div class="uk-padding-small">
-                      <quick-selections [resultTypes]="resultTypes" [quickFilter]="resultsQuickFilter"></quick-selections>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="uk-section uk-container uk-container-large">
-  <div class="contentbox uk-grid uk-child-width-1-1@s uk-flex-row-reverse">
-    <div class="uk-width-medium@m uk-width-large@l uk-width-xlarge@xl uk-width-1-1 uk-flex uk-flex-middle uk-padding-remove-horizontal">
-      <img src="https://marketplace.eosc-portal.eu/packs/media/images/gfx_whole_illustation_desktop-fc94d4f7e15455d1785ef4793e1573fb.png">
-    </div>
-    <div class="uk-width-expand">
-      <div class="">
-        <div class=" ">
-          <h1 class=" uk-h2 uk-text-normal">Welcome to  EOSC Explore</h1>
-          <h2 class="uk-h5 uk-text-normal uk-text-italics"><br>
-            <i>The in-context research discovery portal over the EOSC Exchange and the global map of science.</i>
-          </h2>
-        </div>
-        <div class="uk-margin-large-top uk-text-large uk-text-light">The EOSC Explore supports discovery of research products and services onboarded in the EOSC Exchange in the wider context of scientific research outcomes, research funding, and research organization. The EOSC Research Graph, powered by the OpenAIRE Research Graph, provides links from products and services to funders, projects, organizations, and authors, collects and infers SDGs subjects, communities, many more. The portal exploits the EOSC Interoperability Framework to identify relationships between research products in the graph and EOSC Services in the EOSC Marketplace, to facilitate and enable composability of resources.  </div>
-      </div>
-    </div>
-  <!--  <aside><img src="https://marketplace.eosc-portal.eu/packs/media/images/gfx_whole_illustation_desktop-fc94d4f7e15455d1785ef4793e1573fb.png"></aside>-->
-      </div>
-<div class="uk-section graph-background" *ngIf="aggregator.graphSectionText && aggregator.graphSectionTitle">
-  <div class="uk-container">
-    <div class="uk-flex uk-flex-top uk-child-width-1-1 uk-child-width-1-2@m" uk-grid>
-      <div class="uk-flex-last@m">
-        <div [class.lines-10]="!readMore" class="uk-margin-bottom multi-line-ellipsis">
-          <div class="uk-h3">{{aggregator.graphSectionTitle}}</div>
-          <p [innerHtml]="aggregator.graphSectionText">
-          </p>
-        </div>
-        <div *ngIf="aggregator.graphSectionText">
-          <div *ngIf="!readMore" class="uk-text-center clickable" (click)="readMore = true">
-            <span>Read more<span class="space" uk-icon="chevron-down"></span></span>
-          </div>
-          <div *ngIf="readMore" class="uk-text-center clickable" (click)="readMore = false">
-            <span>Read less<span class="space" uk-icon="chevron-up"></span></span>
-          </div>
-        </div>
-      </div>
-      <div class="uk-flex uk-flex-bottom">
-        <div class="uk-width-1-3 uk-width-1-2@m">
-          <img src="assets/graph.svg">
-        </div>
-        <div class="uk-padding uk-width-1-2">
-          <img src="assets/common-assets/logo-large-graph.png">
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="uk-section" *ngIf="isRouteAvailable('participate/deposit/learn-how') || isRouteAvailable('participate/claim')">
-  <div class="uk-padding uk-padding-remove-horizontal">
-    <div class="uk-container uk-container-small">
-      <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid="">
-        <div class="uk-width-1-1@m uk-first-column">
-          <div
-              class="uk-margin uk-text-center uk-child-width-1-1 uk-grid-match uk-child-width-1-1@s uk-child-width-1-2@m uk-child-width-1-2@l uk-grid"
-              id="page#8" uk-grid="" uk-height-match="target: .target">
-            <div class="uk-first-column" *ngIf="isRouteAvailable('participate/deposit/learn-how')">
-              <div class="el-item uk-card uk-card-default uk-card-medium uk-card-body">
-                <div class="uk-text-center target"><img alt="Share" class="uk-width-1-3@m uk-width-small"
-                                                        src="assets/share.svg"></div>
+<!--<div class="image-front-topbar">-->
+<!--  <div class="uk-section uk-section-small home-background">-->
+<!--    <div id="searchForm" class="uk-container uk-container-large uk-section uk-section-xsmall uk-padding-remove-bottom">-->
+<!--      <div class="uk-grid  uk-flex uk-flex-center uk-margin-small-top">-->
+<!--        <div class="uk-width-1-1 uk-width-auto@m uk-first-column"><div id="searchImage"></div></div>-->
+<!--        <div  class="uk-width-expand uk-padding-remove-vertical search_box_bg" uk-scrollspy="target: [uk-scrollspy-class]; cls: uk-animation-slide-bottom-medium; delay: 200">-->
+<!--          <div class="uk-flex uk-flex-center uk-flex-wrap">-->
+<!--            <div class="uk-width-xlarge@l uk-width-large">-->
+<!--              <div class="uk-flex uk-flex-center uk-child-width-1-1">-->
+<!--                <div [class.uk-invisible]="disableSelect" uk-scrollspy-class>-->
+<!--                  <advanced-search-input (searchEmitter)="goTo(true)">-->
+<!--                    <entities-selection #entities [simpleView]="true" currentEntity="all" [selectedEntity]="selectedEntity"-->
+<!--                                        (selectionChange)="entityChanged($event)" (disableSelectEmitter)="disableSelectChange($event)"-->
+<!--                                        [onChangeNavigate]="false" class="uk-width-2-5"></entities-selection>-->
+<!--                    <div class="uk-width-expand" input placeholder="Scholary works" [hint]="'Search in OpenAIRE'"-->
+<!--                         [(value)]="keyword" tooltip="true"></div>-->
+<!--                  </advanced-search-input>-->
+<!--                  <div *ngIf="selectedEntity === 'result' && !entities.input.focused" class="uk-dropdown uk-display-block uk-margin-top uk-width-auto">-->
+<!--                    <div class="uk-padding-small">-->
+<!--                      <quick-selections [resultTypes]="resultTypes" [quickFilter]="resultsQuickFilter"></quick-selections>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+<!--<div class="uk-section uk-container uk-container-large">-->
+<!--  <div class="contentbox uk-grid uk-child-width-1-1@s uk-flex-row-reverse">-->
+<!--    <div class="uk-width-medium@m uk-width-large@l uk-width-xlarge@xl uk-width-1-1 uk-flex uk-flex-middle uk-padding-remove-horizontal">-->
+<!--      <img src="https://marketplace.eosc-portal.eu/packs/media/images/gfx_whole_illustation_desktop-fc94d4f7e15455d1785ef4793e1573fb.png">-->
+<!--    </div>-->
+<!--    <div class="uk-width-expand">-->
+<!--      <div class="">-->
+<!--        <div class=" ">-->
+<!--          <h1 class=" uk-h2 uk-text-normal">Welcome to  EOSC Explore</h1>-->
+<!--          <h2 class="uk-h5 uk-text-normal uk-text-italics"><br>-->
+<!--            <i>The in-context research discovery portal over the EOSC Exchange and the global map of science.</i>-->
+<!--          </h2>-->
+<!--        </div>-->
+<!--        <div class="uk-margin-large-top uk-text-large uk-text-light">The EOSC Explore supports discovery of research products and services onboarded in the EOSC Exchange in the wider context of scientific research outcomes, research funding, and research organization. The EOSC Research Graph, powered by the OpenAIRE Research Graph, provides links from products and services to funders, projects, organizations, and authors, collects and infers SDGs subjects, communities, many more. The portal exploits the EOSC Interoperability Framework to identify relationships between research products in the graph and EOSC Services in the EOSC Marketplace, to facilitate and enable composability of resources.  </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  &lt;!&ndash;  <aside><img src="https://marketplace.eosc-portal.eu/packs/media/images/gfx_whole_illustation_desktop-fc94d4f7e15455d1785ef4793e1573fb.png"></aside>&ndash;&gt;-->
+<!--      </div>-->
+<!--<div class="uk-section graph-background" *ngIf="aggregator.graphSectionText && aggregator.graphSectionTitle">-->
+<!--  <div class="uk-container">-->
+<!--    <div class="uk-flex uk-flex-top uk-child-width-1-1 uk-child-width-1-2@m" uk-grid>-->
+<!--      <div class="uk-flex-last@m">-->
+<!--        <div [class.lines-10]="!readMore" class="uk-margin-bottom multi-line-ellipsis">-->
+<!--          <div class="uk-h3">{{aggregator.graphSectionTitle}}</div>-->
+<!--          <p [innerHtml]="aggregator.graphSectionText">-->
+<!--          </p>-->
+<!--        </div>-->
+<!--        <div *ngIf="aggregator.graphSectionText">-->
+<!--          <div *ngIf="!readMore" class="uk-text-center clickable" (click)="readMore = true">-->
+<!--            <span>Read more<span class="space" uk-icon="chevron-down"></span></span>-->
+<!--          </div>-->
+<!--          <div *ngIf="readMore" class="uk-text-center clickable" (click)="readMore = false">-->
+<!--            <span>Read less<span class="space" uk-icon="chevron-up"></span></span>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="uk-flex uk-flex-bottom">-->
+<!--        <div class="uk-width-1-3 uk-width-1-2@m">-->
+<!--          <img src="assets/graph.svg">-->
+<!--        </div>-->
+<!--        <div class="uk-padding uk-width-1-2">-->
+<!--          <img src="assets/common-assets/logo-large-graph.png">-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+<!--<div class="uk-section" *ngIf="isRouteAvailable('participate/deposit/learn-how') || isRouteAvailable('participate/claim')">-->
+<!--  <div class="uk-padding uk-padding-remove-horizontal">-->
+<!--    <div class="uk-container uk-container-small">-->
+<!--      <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid="">-->
+<!--        <div class="uk-width-1-1@m uk-first-column">-->
+<!--          <div-->
+<!--              class="uk-margin uk-text-center uk-child-width-1-1 uk-grid-match uk-child-width-1-1@s uk-child-width-1-2@m uk-child-width-1-2@l uk-grid"-->
+<!--              id="page#8" uk-grid="" uk-height-match="target: .target">-->
+<!--            <div class="uk-first-column" *ngIf="isRouteAvailable('participate/deposit/learn-how')">-->
+<!--              <div class="el-item uk-card uk-card-default uk-card-medium uk-card-body">-->
+<!--                <div class="uk-text-center target"><img alt="Share" class="uk-width-1-3@m uk-width-small"-->
+<!--                                                        src="assets/share.svg"></div>-->
 
-                <div class="el-content uk-margin uk-text-large"><span class="uk-text-bold">Deposit</span> your research
-                </div>
+<!--                <div class="el-content uk-margin uk-text-large"><span class="uk-text-bold">Deposit</span> your research-->
+<!--                </div>-->
 
-                <div class="uk-margin-small-top uk-text-left card-text uk-flex uk-flex-center">
-                  <div class="uk-margin-left uk-margin-right">Deposit in a repository of your choice.<br>
-                    Select an OpenAIRE compatible<br>
-                    repository (2.0 +) so that your research is linked to your funding information. Use Zenodo, a
-                    catch-all repository hosted by CERN to deposit all your research results (publications, data,
-                    software, etc.)
-                  </div>
-                </div>
-                <a class="uk-button portal-button uk-padding uk-padding-remove-vertical uk-margin-small-left ng-star-inserted uk-margin uk-margin-bottom uk-width-1-2"
-                   href="/participate/deposit/learn-how" type="submit">Deposit </a></div>
-            </div>
+<!--                <div class="uk-margin-small-top uk-text-left card-text uk-flex uk-flex-center">-->
+<!--                  <div class="uk-margin-left uk-margin-right">Deposit in a repository of your choice.<br>-->
+<!--                    Select an OpenAIRE compatible<br>-->
+<!--                    repository (2.0 +) so that your research is linked to your funding information. Use Zenodo, a-->
+<!--                    catch-all repository hosted by CERN to deposit all your research results (publications, data,-->
+<!--                    software, etc.)-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <a class="uk-button portal-button uk-padding uk-padding-remove-vertical uk-margin-small-left ng-star-inserted uk-margin uk-margin-bottom uk-width-1-2"-->
+<!--                   href="/participate/deposit/learn-how" type="submit">Deposit </a></div>-->
+<!--            </div>-->
 
-            <div *ngIf=" isRouteAvailable('participate/claim')">
-              <div class="el-item uk-card uk-card-default uk-card-medium uk-card-body">
-                <div class="uk-text-center target"><img alt="Share" class="uk-width-1-3@m uk-width-small"
-                                                        src="assets/link.svg"></div>
+<!--            <div *ngIf=" isRouteAvailable('participate/claim')">-->
+<!--              <div class="el-item uk-card uk-card-default uk-card-medium uk-card-body">-->
+<!--                <div class="uk-text-center target"><img alt="Share" class="uk-width-1-3@m uk-width-small"-->
+<!--                                                        src="assets/link.svg"></div>-->
 
-                <div class="el-content uk-margin uk-text-large"><span class="uk-text-bold">Link</span> your work</div>
+<!--                <div class="el-content uk-margin uk-text-large"><span class="uk-text-bold">Link</span> your work</div>-->
 
-                <div class="uk-margin-small-top uk-text-left card-text uk-flex uk-flex-center">
-                  <div class="uk-margin-left uk-margin-right">Connect all your research.<br>
-                    If you can't find your research results in OpenAIRE, don't worry! Use our Link Out service , that
-                    reaches out to many<br>
-                    external sources via APIs, to connect<br>
-                    your research results and claim them to your project.
-                  </div>
-                </div>
-                <a class="uk-button portal-button uk-padding uk-padding-remove-vertical uk-margin-small-left ng-star-inserted uk-margin uk-margin-bottom uk-width-1-2"
-                   href="/participate/claim" type="submit">Link </a></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
+<!--                <div class="uk-margin-small-top uk-text-left card-text uk-flex uk-flex-center">-->
+<!--                  <div class="uk-margin-left uk-margin-right">Connect all your research.<br>-->
+<!--                    If you can't find your research results in OpenAIRE, don't worry! Use our Link Out service , that-->
+<!--                    reaches out to many<br>-->
+<!--                    external sources via APIs, to connect<br>-->
+<!--                    your research results and claim them to your project.-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <a class="uk-button portal-button uk-padding uk-padding-remove-vertical uk-margin-small-left ng-star-inserted uk-margin uk-margin-bottom uk-width-1-2"-->
+<!--                   href="/participate/claim" type="submit">Link </a></div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+<!--</div>-->

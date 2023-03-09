@@ -20,10 +20,10 @@ import {OpenaireEntities} from "./openaireLibrary/utils/properties/searchFields"
   template: `
     <div id="modal-container"></div>
     <div *ngIf="agg">
-      <navbar *ngIf="properties && loginCheck && header && showHeader" portal="eosc" [properties]=properties [onlyTop]=false
-              [user]="user" [userMenuItems]="userMenuItems"
-              [communityId]="properties.adminToolsCommunity" [menuItems]=menuItems
-              [userMenu]="agg.enableLogin" [header]="header"></navbar>
+<!--      <navbar *ngIf="properties && loginCheck && header && showHeader" portal="eosc" [properties]=properties [onlyTop]=false-->
+<!--              [user]="user" [userMenuItems]="userMenuItems"-->
+<!--              [communityId]="properties.adminToolsCommunity" [menuItems]=menuItems-->
+<!--              [userMenu]="agg.enableLogin" [header]="header"></navbar>-->
       <div class="custom-main-content">
         <main>
           <router-outlet></router-outlet>
