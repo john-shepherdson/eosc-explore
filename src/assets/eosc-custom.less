@@ -37,9 +37,9 @@
 
 @eosc-color: #3D4DB6;
 @eosc-light-color: #05A6E7;
-@eosc-dark-color: #0C2BD5;
+@eosc-dark-color: #233d4c;
 //@eosc-secondary-color: #2255A4;
-@eosc-secondary-color: #1890FF;
+@eosc-secondary-color: #233d4c;
 @eosc-default-background: #F2F2F2;
 
 
@@ -48,9 +48,27 @@
 
 @general-search-form-background: @eosc-color;
 @base-body-background: @eosc-default-background;
+//@global-header-height: 120px;
+//.hook-search-misc() {
+//  .search-input {
+//    --search-input-border-radius: 8px;
+//    --search-input-icon-padding-vertical: 5px;
+//    --search-input-icon-color: @global-primary-background;
+//  }
+//}
+//.input-wrapper {
+//  &.search {
+//    --input-padding-vertical: 5px !important;
+//  }
+//}
 
-.image-front-topbar, .search-form, #main-menu .uk-navbar-container, #main-menu-small .uk-navbar-container {
-  background: @global-primary-background;
+//.image-front-topbar, .search-form, #main-menu .uk-navbar-container, #main-menu-small .uk-navbar-container {
+.eosc-explore-back-search-bar {
+  //background: @global-primary-background;
+  //background: #000 url(https://search.marketplace.eosc-portal.eu/top-bar-bg.d5173dd5fee84543.jpg) no-repeat !important;
+  background: #000 url(top-bar.svg) no-repeat !important;
+  position: relative;
+  height: 60px;
 }
 
 #searchImage{
