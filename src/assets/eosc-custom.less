@@ -35,13 +35,19 @@
 //}
 
 
-@eosc-color: #3D4DB6;
-@eosc-light-color: #05A6E7;
-@eosc-dark-color: #233d4c;
+@eosc-color: #010F87;
+@eosc-light-color: #3D4DB6;
+@eosc-dark-color: #000745;
 //@eosc-secondary-color: #2255A4;
-@eosc-secondary-color: #233d4c;
+@eosc-secondary-color: #000745;
 @eosc-default-background: #F2F2F2;
 
+@primary-color: @eosc-color;
+@primary-light-color: @eosc-light-color;
+@primary-dark-color: @eosc-dark-color;
+@secondary-color: @eosc-secondary-color;
+
+@global-link-color: @eosc-color;
 
 @global-primary-background: @eosc-color;
 @global-secondary-background: @eosc-secondary-color;
@@ -81,6 +87,10 @@
 .search-results-container {
   background-color: white;
   border-radius: 25px;
+}
+
+.uk-button-primary {
+  background-image: none;
 }
 //
 //.contentbox {
