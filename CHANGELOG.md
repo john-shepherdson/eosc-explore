@@ -31,3 +31,10 @@ There is link to EOSC market place (beta) for results connected to EOSC services
 
 ## [1.1.0]
 Angular 14 upgrade
+
+## [2.0.0]
+* Redirect to eosc search portal from any page except landing.
+* Updated favicon to show the eosc logo, not OpenAIRE. 
+* Added top bar to go "back" to eosc search.
+* Updated colors (synched with all eosc portals).
+* In landing pages used Graph badge to acknowledge OpenAIRE Graph.
