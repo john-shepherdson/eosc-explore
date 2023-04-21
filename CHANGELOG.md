@@ -38,3 +38,10 @@ Angular 14 upgrade
 * Added top bar to go "back" to eosc search.
 * Updated colors (synched with all eosc portals).
 * In landing pages used Graph badge to acknowledge OpenAIRE Graph.
+
+## [2.0.1]
+* Result Detailed page: Renamed "Providers" to "Data sources" 
+* Updated "Go to search" link: Redirect to the previous page of marketplace
+  * Combine referrer and new url parameter "pv"
+* Added font-family "Inter" to align with Marketplace and set default font to 'Inter', sans-serif
+* Updated Uikit version
