@@ -1,6 +1,7 @@
 import {Component, Inject} from "@angular/core";
 import {DOCUMENT} from "@angular/common";
 import {Meta, Title} from "@angular/platform-browser";
+import {properties} from "../../environments/environment";
 
 @Component({
   selector: 'home',
@@ -23,7 +24,7 @@ export class HomeComponent {
   ngOnInit() {
     // this.window.location.href = '...';
     if (typeof document !== 'undefined') {
-      this.window.open('https://search.eosc-portal.eu/search/all?q=*', "_self");
+      this.window.open('https://'+(properties.environment == "beta" ? "beta." : "")+'search.marketplace.eosc-portal.eu/search/all?q=*', "_self");
     }
   }
 }

@@ -34,14 +34,33 @@
 //  background-color: rgba(61,77, 182);
 //}
 
+@font-url: e("/assets/media/fonts/inter/static/");
 
-@eosc-color: #3D4DB6;
-@eosc-light-color: #05A6E7;
-@eosc-dark-color: #233d4c;
+/* Inter */
+
+@font-face {  font-family: "inter";  font-style: normal;  font-weight: 100;    src: url("@{font-url}Inter-Thin-thin.ttf") format('truetype');  font-display: swap}
+@font-face {  font-family: "inter";  font-style: normal;  font-weight: 300;   src: url("@{font-url}Inter-Light.ttf") format('truetype');  font-display: swap}
+@font-face {  font-family: "inter";  font-style: normal;  font-weight: 400;   src: url("@{font-url}Inter-Regular.ttf") format('truetype');  font-display: swap}
+@font-face {  font-family: "inter";  font-style: normal;  font-weight: 600;   src: url("@{font-url}Inter-SemiBold.ttf") format('truetype');  font-display: swap}
+@font-face {  font-family: "inter";  font-style: normal;  font-weight: 700;   src: url("@{font-url}Inter-Bold.ttf") format('truetype');  font-display: swap}
+@font-face {  font-family: "inter";  font-style: normal;  font-weight: 900;   src: url("@{font-url}Inter-Black.ttf") format('truetype');  font-display: swap}
+
+
+@global-font-family: 'Inter', sans-serif;
+
+@eosc-color: #010F87;
+@eosc-light-color: #3D4DB6;
+@eosc-dark-color: #000745;
 //@eosc-secondary-color: #2255A4;
-@eosc-secondary-color: #233d4c;
+@eosc-secondary-color: #000745;
 @eosc-default-background: #F2F2F2;
 
+@primary-color: @eosc-color;
+@primary-light-color: @eosc-light-color;
+@primary-dark-color: @eosc-dark-color;
+@secondary-color: @eosc-secondary-color;
+
+@global-link-color: @eosc-color;
 
 @global-primary-background: @eosc-color;
 @global-secondary-background: @eosc-secondary-color;
@@ -81,6 +100,10 @@
 .search-results-container {
   background-color: white;
   border-radius: 25px;
+}
+
+.uk-button-primary {
+  background-image: none;
 }
 //
 //.contentbox {
