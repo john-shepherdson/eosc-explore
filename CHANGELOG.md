@@ -14,6 +14,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - *Fixed (for any bug fixes)*
 - *Security (in case of vulnerabilities)*
 
+## [3.0.0] - 08/06/2023
+### Changed
+* Upgraded uikit version to 3.13.10
+* NEW user interface & API calls to Data Transfer Service
 
 ## [2.0.2] - 01/06/2023
 ### Added

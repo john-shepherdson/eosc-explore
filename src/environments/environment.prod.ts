@@ -110,7 +110,7 @@ export let properties: EnvProperties = {
   altMetricsAPIURL: "https://api.altmetric.com/v1/doi/",
   reCaptchaSiteKey: null,
   footerGrantText : "",
-  eoscDataTransferAPI : "https://eosc-data-transfer.test.fedcloud.eu",
+  eoscDataTransferAPI : "https://eosc-data-transfer.vm.fedcloud.eu",
   eoscDataTransferLoginUrl:"https://explore.eosc-portal.eu/egi-login-service/openid_connect_login",
   eoscDataTransferDestinations : [
     {label: "dcache", value:
