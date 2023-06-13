@@ -110,17 +110,39 @@ export let properties: EnvProperties = {
   altMetricsAPIURL: "https://api.altmetric.com/v1/doi/",
   reCaptchaSiteKey: null,
   footerGrantText : "This OpenAIRE gateway is part of a project that has received funding from the European Union's Horizon 2020 research and innovation programme under grant agreements No. 777541 and 101017452",
-  eoscDataTransferAPI : "https://eosc-data-transfer.vm.fedcloud.eu",
+  eoscDataTransferAPI : "https://eosc-data-transfer.test.fedcloud.eu",
+  eoscDataTransferLoginUrl:"http://rudie.di.uoa.gr:8580/openid_connect_login",
   eoscDataTransferDestinations : [
-    {label: "EGI dCache (dcache-demo.desy.de)", value:
-        {label : "EGI dCache (dcache-demo.desy.de)", url: "https://dcache-demo.desy.de:2443", id: "dcache",
-          webpage : "https://dcache-demo.desy.de", defaultFolder: "/", hasBrowse: true,
-          loginUrl : "http://rudie.di.uoa.gr:8580/openid_connect_login", cookieName: "EGIAccessToken"}
+    // {label: "dcache", value:
+    //     {label : "EGI dCache",   id: "dcache",
+    //       auth: "token"}
+    // },
+    // {label: "FTP", value:
+    //     {label : "FTP",  id: "ftp", auth: "password"}
+    // },
+    // {label: "S3", value:
+    //     {label : "S3",  id: "s3",  auth: "keys"}
+    // }]
+
+    {
+      "kind": "StorageInfo",
+      "destination": "dcache",
+      // "id": "dcache", //
+      "description": "EGI dCache",
+      // "label": "EGI dCache", //
+      "authType": "token",
+      "canBrowse": true,
+      "transferWith": "EGI Data Transfer"
     },
-    {label: "FTP", value:
-        {label : "FTP",  id: "ftp",
-          loginUrl : null}
+    {
+      "kind": "StorageInfo",
+      "destination": "s3",
+      // "id": "s3", //
+      "description": "Amazon S3 compatible object storage",
+      // "label": "Amazon S3 compatible object storage", //
+      "authType": "keys",
+      "canBrowse": true,
+      "transferWith": "EGI Data Transfer"
     }
-  ]
- 
+]
 };
