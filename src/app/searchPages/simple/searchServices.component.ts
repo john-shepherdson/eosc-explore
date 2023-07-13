@@ -7,7 +7,7 @@ import {SearchForm} from "../../openaireLibrary/searchPages/searchUtils/newSearc
 @Component({
   selector: 'openaire-search-services',
   template: `
-    <search-dataproviders [piwikSiteId]="properties.piwikSiteId" [hasPrefix]="false"
+    <search-dataproviders [hasPrefix]="false"
                           type="services" entityType="service" [typeName]="openaireEntities.SERVICES" 
                           [searchForm]="searchForm">
     </search-dataproviders>

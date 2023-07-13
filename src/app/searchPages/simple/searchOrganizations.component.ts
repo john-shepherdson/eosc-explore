@@ -6,7 +6,7 @@ import {SearchForm} from "../../openaireLibrary/searchPages/searchUtils/newSearc
 @Component({
   selector: 'openaire-search-organizations',
   template: `
-    <search-organizations [piwikSiteId]="properties.piwikSiteId" [hasPrefix]="false" [searchForm]="searchForm"></search-organizations>
+    <search-organizations [hasPrefix]="false" [searchForm]="searchForm"></search-organizations>
   `
 })
 export class OpenaireSearchOrganizationsComponent {

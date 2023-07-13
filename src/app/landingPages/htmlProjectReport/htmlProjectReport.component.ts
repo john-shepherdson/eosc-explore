@@ -1,20 +1,8 @@
 import {Component} from '@angular/core';
-import {properties} from "../../../environments/environment";
 
 @Component({
     selector: 'openaire-htmlProjectReport',
-    template: `<htmlProjectReport [piwikSiteId]=""></htmlProjectReport>`,
+    template: `<htmlProjectReport></htmlProjectReport>`,
  })
 export class OpenaireHtmlProjectReportComponent{
-  piwikSiteId = properties.piwikSiteId;
-
-  constructor (  ) {
-
-  }
-
-  ngOnInit() {
-}
-
-
-
 }

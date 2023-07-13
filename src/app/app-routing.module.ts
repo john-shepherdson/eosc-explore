@@ -120,7 +120,7 @@ export class AppRoutingModule {
     }
   }
   constructor( private config: ConfigurationService, private router: Router){
-    this.subs.push(this.config.communityInformationState.subscribe(data => {
+    this.subs.push(this.config.portalAsObservable.subscribe(data => {
         if (data) {
           if (data['pages']) {
             for (var i = 0; i < data['pages'].length; i++) {

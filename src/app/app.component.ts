@@ -51,7 +51,7 @@ export class AppComponent {
               @Inject(DOCUMENT) private document, private rendererFactory: RendererFactory2,  private router: Router, private route: ActivatedRoute) {
     this.agg = PortalAggregators.eoscInfo;
     this.setStyles();
-    this.configurationService.initStaticCommunityInformation(PortalAggregators.getCommunityInfo());
+    this.configurationService.initStaticPortal(PortalAggregators.getCommunityInfo());
     this.showHeader = this.agg.showHeaderAlways;
   }
 
