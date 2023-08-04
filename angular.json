@@ -226,7 +226,8 @@
             "development": {
               "outputHashing": "media",
               "sourceMap": false,
-              "optimization": true
+              "optimization": true,
+              "vendorChunk": true
             },
             "beta": {
               "outputHashing": "media",
