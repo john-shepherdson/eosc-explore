@@ -14,6 +14,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - *Fixed (for any bug fixes)*
 - *Security (in case of vulnerabilities)*
 
+## [3.1.0] - 05/09/2023 [BETA]
+### Added
+* Message for non eosc results i.e. This publication is not part of the European Open Science Cloud
+* Impact-based indicators - Citations, Popularity, Influence, Impulse 
+### Changed
+* Smaller window for the Data Transfer Service - not full screen
+* Disabled overwrite params when submitting a job to EOSC Data transfer API
+* NEW user interface & structure of the detailed page & specific user interface for small devices i.e. mobiles
+* Updated access right icons
+* Include Subjects as a new tab
+### Fixed
+* Too much recursion error in validating destination path of Data transfer - updated check 
+
 ## [3.0.0] - 13/06/2023
 ### Changed
 * Upgraded uikit version to 3.13.10
