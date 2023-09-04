@@ -14,9 +14,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - *Fixed (for any bug fixes)*
 - *Security (in case of vulnerabilities)*
 
-## [3.1.0] - 05/09/2023 [BETA]
+## [3.1.0] - 05/09/2023
 ### Added
-* Message for non eosc results i.e. This publication is not part of the European Open Science Cloud
 * Impact-based indicators - Citations, Popularity, Influence, Impulse 
 ### Changed
 * Smaller window for the Data Transfer Service - not full screen
