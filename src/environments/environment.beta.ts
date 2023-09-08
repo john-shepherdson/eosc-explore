@@ -112,6 +112,7 @@ export let properties: EnvProperties = {
   reCaptchaSiteKey: null,
   footerGrantText: "",
   eoscDataTransferAPI : "https://eosc-data-transfer.vm.fedcloud.eu",
+  eoscDataTransferLoginUrl:"https://explore.eosc-portal.eu/egi-login-service/openid_connect_login",
   eoscDataTransferDestinations : [
     {label: "EGI dCache (dcache-demo.desy.de)", value:
         {label : "EGI dCache (dcache-demo.desy.de)", url: "https://dcache-demo.desy.de:2443", id: "dcache",
