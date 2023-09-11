@@ -8,7 +8,7 @@ import {SearchForm} from "../../openaireLibrary/searchPages/searchUtils/newSearc
   selector: 'openaire-advanced-search-dataprovider',
   template: `
     <search-dataproviders [simpleView]="false" 
-                          [piwikSiteId]="properties.piwikSiteId" [hasPrefix]="false" [searchForm]="searchForm">
+                          [hasPrefix]="false" [searchForm]="searchForm">
     </search-dataproviders>
 
   `

@@ -18,6 +18,7 @@ export let properties: EnvProperties = {
   statisticsAPIURL: "https://beta.services.openaire.eu/stats-api/",
   statisticsFrameAPIURL: "https://beta.openaire.eu/stats/",
   statisticsFrameNewAPIURL: "https://beta.services.openaire.eu/stats-tool/",
+  bipFrameAPIURL: "https://bip.imsi.athenarc.gr/api/impact-chart?id=",
   useNewStatistisTool: true,
   claimsAPIURL: "https://beta.services.openaire.eu/claims/rest/claimsService/",
   searchAPIURLLAst: "https://beta.services.openaire.eu/search/v2/api/",
@@ -111,6 +112,7 @@ export let properties: EnvProperties = {
   reCaptchaSiteKey: null,
   footerGrantText: "",
   eoscDataTransferAPI : "https://eosc-data-transfer.vm.fedcloud.eu",
+  eoscDataTransferLoginUrl:"https://explore.eosc-portal.eu/egi-login-service/openid_connect_login",
   eoscDataTransferDestinations : [
     {label: "EGI dCache (dcache-demo.desy.de)", value:
         {label : "EGI dCache (dcache-demo.desy.de)", url: "https://dcache-demo.desy.de:2443", id: "dcache",

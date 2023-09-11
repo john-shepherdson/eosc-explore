@@ -9,7 +9,7 @@ import {properties} from "../../../environments/environment";
 @Component({
     selector: 'openaire-my-claims',
     template: `
-    <my-claims *ngIf="userInfoURL && claimsInfoURL" [claimsInfoURL]=claimsInfoURL [userInfoURL]="userInfoURL" [piwikSiteId]="piwikSiteId">
+    <my-claims *ngIf="userInfoURL && claimsInfoURL" [claimsInfoURL]=claimsInfoURL [userInfoURL]="userInfoURL">
 </my-claims>
 `
 
@@ -18,7 +18,6 @@ import {properties} from "../../../environments/environment";
   claimsInfoURL:string;
   userInfoURL: string;
   sub;
-  piwikSiteId = properties.piwikSiteId;
 
   constructor (private route: ActivatedRoute) {
   }

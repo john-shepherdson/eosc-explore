@@ -119,10 +119,7 @@ export class DevelopComponent implements OnInit {
         this._meta.updateTag({content: description}, "property='og:description'");
         this._meta.updateTag({content: title}, "property='og:title'");
         this._title.setTitle(title);
-        if(properties.enablePiwikTrack && (typeof document !== 'undefined')){
-          this.subs.push(this._piwikService.trackView(properties, "OpenAIRE").subscribe());
-        }
-
+        this.subs.push(this._piwikService.trackView(properties, "OpenAIRE").subscribe());
       }else {
         this.navigateToError();
       }

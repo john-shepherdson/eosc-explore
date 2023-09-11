@@ -57,7 +57,7 @@ export class PortalAggregators {
   }
 
   public static getCommunityInfo(): any {
-    return Portal.getMockCommunityInfo(PortalAggregators.eoscInfo.menuId, PortalAggregators.disabled.entities,PortalAggregators.disabled.pages);
+    return Portal.getMockCommunityInfo(PortalAggregators.eoscInfo.menuId, PortalAggregators.eoscInfo.title, PortalAggregators.disabled.entities,PortalAggregators.disabled.pages);
   }
 }
 
