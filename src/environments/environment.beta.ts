@@ -19,7 +19,7 @@ export let properties: EnvProperties = {
   statisticsFrameAPIURL: "https://beta.openaire.eu/stats/",
   statisticsFrameNewAPIURL: "https://beta.services.openaire.eu/stats-tool/",
   useNewStatistisTool: true,
-  claimsAPIURL: "https://beta.services.openaire.eu/claims/rest/claimsService/",
+  claimsAPIURL: "https://beta.services.openaire.eu/claims-new/rest/claimsService/",
   searchAPIURLLAst: "https://beta.services.openaire.eu/search/v2/api/",
   searchResourcesAPIURL: "https://beta.services.openaire.eu/search/v2/api/resources",
   openCitationsAPIURL: "https://services.openaire.eu/opencitations/getCitations?id=",
