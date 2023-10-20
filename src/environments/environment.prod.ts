@@ -18,6 +18,7 @@ export let properties: EnvProperties = {
   statisticsAPIURL: "https://beta.services.openaire.eu/stats-api/",
   statisticsFrameAPIURL: "https://www.openaire.eu/stats/",
   statisticsFrameNewAPIURL: "https://services.openaire.eu/stats-tool/",
+  bipFrameAPIURL: "https://bip.imsi.athenarc.gr/api/impact-chart?id=",
   useNewStatistisTool: true,
   claimsAPIURL: "https://services.openaire.eu/claims/rest/claimsService/",
   searchAPIURLLAst: "https://services.openaire.eu/search/v2/api/",
