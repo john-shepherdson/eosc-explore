@@ -43,7 +43,7 @@
     "rxjs": "^6.5.1",
     "ts-md5": "^1.2.0",
     "tslib": "^2.0.0",
-    "uikit": "3.16.24",
+    "uikit": "3.16.14",
     "zone.js": "~0.13.1"
   },
   "devDependencies": {
