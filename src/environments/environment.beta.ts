@@ -4,8 +4,9 @@
 // The eoscInfo of which env maps to which file can be found in `.angular-cli.json`.
 
 import {EnvProperties} from "../app/openaireLibrary/utils/properties/env-properties";
+import {common, commonBeta} from "../app/openaireLibrary/utils/properties/environments/environment";
 
-export let properties: EnvProperties = {
+let props: EnvProperties = {
   environment: "beta",
   adminToolsPortalType: "eosc",
   dashboard: "eosc",
@@ -119,3 +120,7 @@ export let properties: EnvProperties = {
           loginUrl : "https://explore.eosc-portal.eu/egi-login-service/openid_connect_login", cookieName: "EGIAccessToken"}
     }]
 };
+
+export let properties: EnvProperties = {
+  ...props,  ...common, ...commonBeta
+}
