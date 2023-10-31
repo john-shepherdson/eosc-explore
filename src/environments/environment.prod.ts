@@ -4,8 +4,9 @@
 // The eoscInfo of which env maps to which file can be found in `.angular-cli.json`.
 
 import {EnvProperties} from "../app/openaireLibrary/utils/properties/env-properties";
+import {common, commonProd} from "../app/openaireLibrary/utils/properties/environments/environment";
 
-export let properties: EnvProperties = {
+let props: EnvProperties = {
   environment: "production",
   adminToolsPortalType: "eosc",
   dashboard: "eosc",
@@ -125,3 +126,7 @@ export let properties: EnvProperties = {
         {label : "S3",  id: "s3",  auth: "keys"}
     }]
 };
+
+export let properties: EnvProperties = {
+  ...props,  ...common, ...commonProd
+}
