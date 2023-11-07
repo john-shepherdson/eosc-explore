@@ -1,6 +1,6 @@
-import {NgModule} from '@angular/core';
+import {APP_ID, NgModule} from '@angular/core';
 import {SharedModule} from './shared/shared.module';
-import {BrowserModule, BrowserTransferStateModule} from '@angular/platform-browser';
+import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CommonModule} from '@angular/common';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
@@ -27,14 +27,14 @@ import {ConfigurationService} from "./openaireLibrary/utils/configuration/config
     NavigationBarModule, FeedbackModule, BottomModule,
     CookieLawModule,
     BrowserAnimationsModule,
-    BrowserTransferStateModule,
-    BrowserModule.withServerTransition({appId: 'eosc'}),
+    BrowserModule,
     AppRoutingModule
   ],
   declarations: [AppComponent, OpenaireErrorPageComponent],
   exports: [AppComponent],
   providers: [
     ConfigurationService,
+    {provide: APP_ID, useValue: 'eosc'},
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpInterceptorService,
