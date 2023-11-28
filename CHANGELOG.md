@@ -14,10 +14,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - *Fixed (for any bug fixes)*
 - *Security (in case of vulnerabilities)*
 
-## [4.0.0] - 07/11/2023
+## [4.0.0] - 28/11/2023
+### Added
+* Research product detailed page: Updated parsing of measures - views/downloads per data source if available
 ### Changed
 * Angular 16 upgrade
 * Uikit version to 3.16.24
+* Data source detailed page: Get number of collected fulltexts by new stats API
 
 ## [3.1.0] - 11/09/2023
 ### Added

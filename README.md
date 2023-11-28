@@ -37,3 +37,15 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 ## Running end-to-end tests
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+
+## System Architecture
+![](./src/assets/architecture.png)
+
+Users can access the EOSC EXPLORE portal via the EOSC Marketplace portal when searching for Publications, Data, Software and Other Research Products.
+
+The EOSC EXPLORE portal serves detailed pages for specific research products, providing an overview of all the metadata available in OpenAIRE Graph and the relationships among the entities of the graph, such as related research, supplementary research, funding projects, related organizations and data sources. Users can navigate through the different entities of OpenAIRE Graph by following the relationships.
+
+In the detailed pages of research data users can transfer files found in Zenodo and other sources in their own data storage, such as dcache or s3  using the Data Transfer Service.
+Metrics, indicators and charts, calculated by OpenAIRE or external tools, are also available in the detailed pages of EOSC EXPLORE.
+
+The detailed pages share the same navigation bar with EOSC Marketplace for easy and quick navigation and users can be redirected easily back to the search page of EOSC Marketplace from which they entered EOSC EXPLORE.
