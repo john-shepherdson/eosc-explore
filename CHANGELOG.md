@@ -14,6 +14,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - *Fixed (for any bug fixes)*
 - *Security (in case of vulnerabilities)*
 
+## [4.0.1] - 12/12/2023
+### Changed
+* Updated links (to the Marketplace) for Compatible EOSC Services (eosc interoperability framework (eoscif) guidelines)
+
 ## [4.0.0] - 29/11/2023
 ### Added
 * Research product detailed page: Updated parsing of measures - views/downloads per data source if available
