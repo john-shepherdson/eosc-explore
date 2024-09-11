@@ -31,7 +31,7 @@ let props: EnvProperties = {
   useHelpTexts: false,
   contextsAPI: "https://services.openaire.eu/openaire/context",
   communityAPI: "https://services.openaire.eu/openaire/community/",
-  domain: "https://explore.eosc-portal.eu",
+  domain: "https://explore.sandbox.eosc-beyond.eu",
   lastIndexInformationLink: "https://openaire.eu/aggregation-and-content-provision-workflows",
   widgetLink: "https://openaire.eu/index.php?option=com_openaire&view=widget&format=raw&projectId=",
   claimsInformationLink: "https://www.openaire.eu/linking",
@@ -39,13 +39,7 @@ let props: EnvProperties = {
   reCaptchaSiteKey: null,
   footerGrantText: "",
   eoscDataTransferAPI : "https://eosc-data-transfer.vm.fedcloud.eu",
-  eoscDataTransferLoginUrl:"https://explore.eosc-portal.eu/egi-login-service/openid_connect_login",
-  eoscDataTransferDestinations : [
-    {label: "EGI dCache (dcache-demo.desy.de)", value:
-        {label : "EGI dCache (dcache-demo.desy.de)", url: "https://dcache-demo.desy.de:2443", id: "dcache",
-          webpage : "https://dcache-demo.desy.de", defaultFolder: "/", hasBrowse: true,
-          loginUrl : "https://explore.eosc-portal.eu/egi-login-service/openid_connect_login", cookieName: "EGIAccessToken"}
-    }]
+  eoscDataTransferLoginUrl:"https://explore.sandbox.eosc-beyond.eu/egi-login-service/openid_connect_login"
 };
 
 export let properties: EnvProperties = {

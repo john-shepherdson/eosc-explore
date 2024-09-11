@@ -20,22 +20,11 @@ let props: EnvProperties = {
   piwikSiteId: "594",
   adminToolsCommunity: "eosc",
   useHelpTexts:false,
-  domain: "https://explore.eosc-portal.eu",
+  domain: "https://explore.eosc-beyond.eu",
   reCaptchaSiteKey: null,
   footerGrantText : "",
   eoscDataTransferAPI : "https://eosc-data-transfer.vm.fedcloud.eu",
-  eoscDataTransferLoginUrl:"https://explore.eosc-portal.eu/egi-login-service/openid_connect_login",
-  eoscDataTransferDestinations : [
-    {label: "dcache", value:
-        {label : "EGI dCache",   id: "dcache",
-          defaultFolder: "/", auth: "token"}
-    },
-    {label: "FTP", value:
-        {label : "FTP",  id: "ftp", auth: "password"}
-    },
-    {label: "S3", value:
-        {label : "S3",  id: "s3",  auth: "keys"}
-    }]
+  eoscDataTransferLoginUrl:"https://explore.eosc-beyond.eu/egi-login-service/openid_connect_login"
 };
 
 export let properties: EnvProperties = {

@@ -24,7 +24,7 @@ export class HomeComponent {
   ngOnInit() {
     // this.window.location.href = '...';
     if (typeof document !== 'undefined') {
-      this.window.open('https://'+(properties.environment == "beta" ? "beta." : "")+'search.marketplace.eosc-portal.eu/search/all?q=*', "_self");
+      this.window.open(properties.eoscMarketplaceURL+'search/all?q=*', "_self");
     }
   }
 }

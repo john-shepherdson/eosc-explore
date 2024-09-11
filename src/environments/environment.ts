@@ -28,7 +28,7 @@ let props: EnvProperties = {
   datasourcesAPI: "https://beta.services.openaire.eu/openaire/ds/search/",
   contextsAPI: "https://dev-openaire.d4science.org/openaire/context",
   communityAPI: "https://dev-openaire.d4science.org/openaire/community/",
-  domain:"https://explore.eosc-portal.eu",
+  domain:"https://explore.eosc-beyond.eu",
   lastIndexInformationLink: "https://www.openaire.eu/aggregation-and-content-provision-workflows",
   widgetLink: "https://beta.openaire.eu/index.php?option=com_openaire&view=widget&format=raw&projectId=",
   claimsInformationLink: "https://www.openaire.eu/linking-beta",
@@ -36,29 +36,7 @@ let props: EnvProperties = {
   reCaptchaSiteKey: null,
   footerGrantText : "This OpenAIRE gateway is part of a project that has received funding from the European Union's Horizon 2020 research and innovation programme under grant agreements No. 777541 and 101017452",
   eoscDataTransferAPI : "https://eosc-data-transfer.test.fedcloud.eu",
-  eoscDataTransferLoginUrl:"http://rudie.di.uoa.gr:8580/openid_connect_login",
-  eoscDataTransferDestinations : [
-    {
-      "kind": "StorageInfo",
-      "destination": "dcache",
-      // "id": "dcache", //
-      "description": "EGI dCache",
-      // "label": "EGI dCache", //
-      "authType": "token",
-      "canBrowse": true,
-      "transferWith": "EGI Data Transfer"
-    },
-    {
-      "kind": "StorageInfo",
-      "destination": "s3",
-      // "id": "s3", //
-      "description": "Amazon S3 compatible object storage",
-      // "label": "Amazon S3 compatible object storage", //
-      "authType": "keys",
-      "canBrowse": true,
-      "transferWith": "EGI Data Transfer"
-    }
-  ]
+  eoscDataTransferLoginUrl:"http://rudie.di.uoa.gr:8580/openid_connect_login"
 };
 
 export let properties: EnvProperties = {
