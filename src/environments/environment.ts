@@ -15,7 +15,7 @@ let props: EnvProperties = {
   showAddThis: true,
   enableEoscDataTransfer: true,
   statisticsFrameNewAPIURL: "https://services.openaire.eu/stats-tool/",
-  searchAPIURLLAst: "http://beta.services.openaire.eu/search/v2/api/",
+  searchAPIURLLAst: "http://services.openaire.eu/search/v2/api/",
   searchResourcesAPIURL: "http://services.openaire.eu/search/v2/api/resources",
   csvAPIURL: "https://services.openaire.eu/search/v2/api/reports",
   utilsService: "http://dl170.madgik.di.uoa.gr:8000",

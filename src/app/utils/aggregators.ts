@@ -34,7 +34,7 @@ export class AggregatorInfo {
 
 export class PortalAggregators {
   static eoscInfo: AggregatorInfo =
-    new AggregatorInfo("eosc", "Eosc Explore", "https://marketplace.eosc-portal.eu/packs/media/images/eosc-logo-mono-65a4962b88cf1caa9e35838e33022ca8.png",
+    new AggregatorInfo("eosc", "Eosc Explore", "https://marketplace.sandbox.eosc-beyond.eu/assets/eosc-logo-mono-b16b8ce4ff6b7fa81907f3c509a61224250d662c27b5575e7ad8d154ae188074.png",
        null, null, null,    null,null,null ,false,false,
       `
  
