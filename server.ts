@@ -4,17 +4,24 @@ import 'zone.js/node';
 import { APP_BASE_HREF } from '@angular/common';
 import { CommonEngine } from '@angular/ssr';
 import * as express from 'express';
+import * as compression from 'compression';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
-import bootstrap from './src/main.server';
+import {AppServerModule} from "./src/main.server";
+import {REQUEST, RESPONSE} from "./src/app/openaireLibrary/utils/tokens";
+import {Prometheus} from "./prometheus";
+import {Counter} from "prom-client";
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
   const server = express();
+  server.use(compression());
   const distFolder = join(process.cwd(), 'dist/eosc/browser');
   const indexHtml = existsSync(join(distFolder, 'index.original.html'))
     ? join(distFolder, 'index.original.html')
     : join(distFolder, 'index.html');
+
+  const prometheus: Prometheus = new Prometheus();
 
   const commonEngine = new CommonEngine();
 
@@ -28,21 +35,64 @@ export function app(): express.Express {
     maxAge: '1y'
   }));
 
+  server.get('/metrics', (req, res) => {
+    res.set('Content-Type', prometheus.register.contentType);
+    res.end(prometheus.register.metrics());
+  });
+
+  server.get('/health-check', async (_req, res, _next) => {
+    var uptime = process.uptime();
+    const date = new Date(uptime*1000);
+    const days = date.getUTCDate() - 1,
+      hours = date.getUTCHours(),
+      minutes = date.getUTCMinutes(),
+      seconds = date.getUTCSeconds(),
+      milliseconds = date.getUTCMilliseconds();
+
+
+    const healthcheck = {
+      uptime: days + " days, " + hours + " hours, " + minutes + " minutes, " + seconds + " seconds, " + milliseconds + " milliseconds",
+      message: 'OK',
+      timestamp: new Date()
+    };
+    try {
+      res.send(healthcheck);
+    } catch (error) {
+      healthcheck.message = error;
+      res.status(503).send();
+    }
+  });
+
   // All regular routes use the Angular engine
   server.get('*', (req, res, next) => {
     const { protocol, originalUrl, baseUrl, headers } = req;
 
-    commonEngine
-      .render({
-        bootstrap,
-        documentFilePath: indexHtml,
-        url: `${protocol}://${headers.host}${originalUrl}`,
-        publicPath: distFolder,
-        providers: [
-          { provide: APP_BASE_HREF, useValue: baseUrl },],
-      })
-      .then((html) => res.send(html))
-      .catch((err) => next(err));
+    let start = new Date();
+    let counter: Counter = prometheus.counters.get(req.path);
+
+    if(counter !== undefined) {
+      counter.inc(1, new Date());
+
+      commonEngine
+        .render({
+          bootstrap: AppServerModule,
+          inlineCriticalCss: false,
+          documentFilePath: indexHtml,
+          url: req.url,
+          publicPath: distFolder,
+          providers: [
+            { provide: APP_BASE_HREF, useValue: req.baseUrl },
+            {
+              provide: REQUEST, useValue: (req)
+            },
+            {
+              provide: RESPONSE, useValue: (res)
+            }
+          ],
+        })
+        .then((html) => res.send(html))
+        .catch((err) => next(err));
+    }
   });
 
   return server;
@@ -67,5 +117,3 @@ const moduleFilename = mainModule && mainModule.filename || '';
 if (moduleFilename === __filename || moduleFilename.includes('iisnode')) {
   run();
 }
-
-export default bootstrap;
