@@ -183,18 +183,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "eosc:build"
+            "buildTarget": "eosc:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "eosc:build:production"
+              "buildTarget": "eosc:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "eosc:build"
+            "buildTarget": "eosc:build"
           }
         },
         "test": {
@@ -259,7 +259,7 @@
           "defaultConfiguration": ""
         },
         "serve-ssr": {
-          "builder": "@nguniversal/builders:ssr-dev-server",
+          "builder": "@angular-devkit/build-angular:ssr-dev-server",
           "options": {
             "browserTarget": "eosc:build",
             "serverTarget": "eosc:server"
@@ -272,7 +272,7 @@
           }
         },
         "prerender": {
-          "builder": "@nguniversal/builders:prerender",
+          "builder": "@angular-devkit/build-angular:prerender",
           "options": {
             "browserTarget": "eosc:build:production",
             "serverTarget": "eosc:server:production",
