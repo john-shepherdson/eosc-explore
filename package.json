@@ -39,7 +39,7 @@
     "core-js": "^2.5.4",
     "express": "^4.15.2",
     "jquery": "^3.4.1",
-    "ng-recaptcha": "^12.0.2",
+    "ng-recaptcha": "^13.2.1",
     "prom-client": "^11.3.0",
     "rxjs": "^6.5.1",
     "ts-md5": "^1.2.0",
