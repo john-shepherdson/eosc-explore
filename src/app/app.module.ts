@@ -3,7 +3,7 @@ import {SharedModule} from './shared/shared.module';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CommonModule} from '@angular/common';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import {AppComponent} from './app.component';
 import {NavigationBarModule} from './openaireLibrary/sharedComponents/navigationBar.module';
 import {CookieLawModule} from './openaireLibrary/sharedComponents/cookie-law/cookie-law.module';
@@ -17,38 +17,32 @@ import {ErrorInterceptorService} from "./openaireLibrary/error-interceptor.servi
 import {DEFAULT_TIMEOUT, TimeoutInterceptor} from "./openaireLibrary/timeout-interceptor.service";
 import {ConfigurationService} from "./openaireLibrary/utils/configuration/configuration.service";
 
-@NgModule({
-  imports: [
-    SharedModule,
-    BrowserAnimationsModule,
-    CommonModule,
-    HttpClientModule,
-    ErrorModule,
-    NavigationBarModule, FeedbackModule, BottomModule,
-    CookieLawModule,
-    BrowserAnimationsModule,
-    BrowserModule,
-    AppRoutingModule
-  ],
-  declarations: [AppComponent, OpenaireErrorPageComponent],
-  exports: [AppComponent],
-  providers: [
-    ConfigurationService,
-    {provide: APP_ID, useValue: 'eosc'},
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpInterceptorService,
-      multi: true
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ErrorInterceptorService,
-      multi: true
-    },
-    [{provide: HTTP_INTERCEPTORS, useClass: TimeoutInterceptor, multi: true}],
-    [{provide: DEFAULT_TIMEOUT, useValue: 30000}]
-  ],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [AppComponent, OpenaireErrorPageComponent],
+    exports: [AppComponent],
+    bootstrap: [AppComponent], imports: [SharedModule,
+        BrowserAnimationsModule,
+        CommonModule,
+        ErrorModule,
+        NavigationBarModule, FeedbackModule, BottomModule,
+        CookieLawModule,
+        BrowserAnimationsModule,
+        BrowserModule,
+        AppRoutingModule], providers: [
+        ConfigurationService,
+        { provide: APP_ID, useValue: 'eosc' },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: HttpInterceptorService,
+            multi: true
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: ErrorInterceptorService,
+            multi: true
+        },
+        [{ provide: HTTP_INTERCEPTORS, useClass: TimeoutInterceptor, multi: true }],
+        [{ provide: DEFAULT_TIMEOUT, useValue: 30000 }],
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class AppModule {
 }
