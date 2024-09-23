@@ -1,6 +1,6 @@
 # EOSC EXPLORE
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.10 and has been updated to 14.2.3.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.10 and has been updated to 18.2.5.
 
 ## Install packages
 

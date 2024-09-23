@@ -73,25 +73,49 @@ export function app(): express.Express {
     if(counter !== undefined) {
       counter.inc(1, new Date());
 
-      commonEngine
-        .render({
-          bootstrap: AppServerModule,
-          inlineCriticalCss: false,
-          documentFilePath: indexHtml,
-          url: req.url,
-          publicPath: distFolder,
-          providers: [
-            { provide: APP_BASE_HREF, useValue: req.baseUrl },
-            {
-              provide: REQUEST, useValue: (req)
-            },
-            {
-              provide: RESPONSE, useValue: (res)
-            }
-          ],
-        })
-        .then((html) => res.send(html))
-        .catch((err) => next(err));
+      commonEngine.render({
+        bootstrap: AppServerModule,
+        inlineCriticalCss: false,
+        documentFilePath: indexHtml,
+        url: `${protocol}://${headers.host}${originalUrl}`,
+        publicPath: distFolder,
+        providers: [
+          { provide: APP_BASE_HREF, useValue: req.baseUrl },
+          {
+            provide: REQUEST, useValue: (req)
+          },
+          {
+            provide: RESPONSE, useValue: (res)
+          }
+        ],
+      })
+      .then((html) => {
+        // event triggers when express is done sending response
+        res.on('finish', function() {
+          console.log(new Date().getTime() - start.getTime());
+        });
+        res.status(200).send(html);
+      })
+      .catch((err) => res.status(500).send('Error during SSR'))
+    } else {
+      commonEngine.render({
+        bootstrap: AppServerModule,
+        inlineCriticalCss: false,
+        documentFilePath: indexHtml,
+        url: `${protocol}://${headers.host}${originalUrl}`,
+        publicPath: distFolder,
+        providers: [
+          { provide: APP_BASE_HREF, useValue: req.baseUrl },
+          {
+            provide: REQUEST, useValue: (req)
+          },
+          {
+            provide: RESPONSE, useValue: (res)
+          }
+        ],
+      })
+      .then((html) => res.status(200).send(html))
+      .catch((err) => res.status(500).send('Error during SSR'))
     }
   });
 

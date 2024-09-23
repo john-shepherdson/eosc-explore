@@ -3,7 +3,7 @@ import {SharedModule} from './shared/shared.module';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CommonModule} from '@angular/common';
-import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withFetch } from '@angular/common/http';
 import {AppComponent} from './app.component';
 import {NavigationBarModule} from './openaireLibrary/sharedComponents/navigationBar.module';
 import {CookieLawModule} from './openaireLibrary/sharedComponents/cookie-law/cookie-law.module';
@@ -42,7 +42,7 @@ import {ConfigurationService} from "./openaireLibrary/utils/configuration/config
         },
         [{ provide: HTTP_INTERCEPTORS, useClass: TimeoutInterceptor, multi: true }],
         [{ provide: DEFAULT_TIMEOUT, useValue: 30000 }],
-        provideHttpClient(withInterceptorsFromDi())
+        provideHttpClient(withFetch())
     ] })
 export class AppModule {
 }
