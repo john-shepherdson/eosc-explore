@@ -5,42 +5,54 @@ import {ConfigurationService} from "./openaireLibrary/utils/configuration/config
 
 const routes: Routes = [
   {path: '', loadChildren: () => import('./home/home.module').then(m => m.HomeModule)},
-  {
-    path: 'search/result',
-    loadChildren: () => import('./landingPages/result/libResult.module').then(m => m.LibResultModule), data: { showHeader: true}
-  },
-  {
-    path: 'search/publication',
-    loadChildren: () => import('./landingPages/publication/libPublication.module').then(m => m.LibPublicationModule), data: { showHeader: true}
-  },
-  {
-    path: 'search/dataset',
-    loadChildren: () => import('./landingPages/dataset/libDataset.module').then(m => m.LibDatasetModule), data: { showHeader: true}
-  },
-  {
-    path: 'search/software',
-    loadChildren: () => import('./landingPages/software/libSoftware.module').then(m => m.LibSoftwareModule), data: { showHeader: true}
-  },
-  {
-    path: 'search/other',
-    loadChildren: () => import('./landingPages/orp/libOrp.module').then(m => m.LibOrpModule), data: { showHeader: true}
-  },
-  {
-    path: 'search/project',
-    loadChildren: () => import('./landingPages/project/libProject.module').then(m => m.LibProjectModule), data: { showHeader: true}
-  },
-  {
-    path: 'search/dataprovider',
-    loadChildren: () => import('./landingPages/dataProvider/libDataProvider.module').then(m => m.LibDataProviderModule), data: { showHeader: true}
-  },
-  {
-    path: 'search/service',
-    loadChildren: () => import('./landingPages/service/libService.module').then(m => m.LibServiceModule), data: { showHeader: true}
-  },
-  {
-    path: 'search/organization',
-    loadChildren: () => import('./landingPages/organization/libOrganization.module').then(m => m.LibOrganizationModule), data: { showHeader: true}
-  },
+// Landing Pages
+  {path: 'search/result', loadChildren: () => import('./openaireLibrary/landingPages/result/resultLanding.module').then(m => m.ResultLandingModule), data: {type: 'result', showHeader: true}},
+  {path: 'search/publication', loadChildren: () => import('./openaireLibrary/landingPages/result/resultLanding.module').then(m => m.ResultLandingModule), data: {type: 'publication', showHeader: true}},
+  {path: 'search/dataset', loadChildren: () => import('./openaireLibrary/landingPages/result/resultLanding.module').then(m => m.ResultLandingModule), data: {type: 'dataset', showHeader: true}},
+  {path: 'search/software', loadChildren: () => import('./openaireLibrary/landingPages/result/resultLanding.module').then(m => m.ResultLandingModule), data: {type: 'software', showHeader: true}},
+  {path: 'search/other', loadChildren: () => import('./openaireLibrary/landingPages/result/resultLanding.module').then(m => m.ResultLandingModule), data: {type: 'orp', showHeader: true}},
+  {path: 'search/project', loadChildren: () => import('./openaireLibrary/landingPages/project/project.module').then(m => m.ProjectModule), data: {showHeader: true}},
+  {path: 'search/dataprovider', loadChildren: () => import('./openaireLibrary/landingPages/dataProvider/dataProvider.module').then(m => m.DataProviderModule), data: {type: 'dataProvider', showHeader: true}},
+  {path: 'search/service', loadChildren: () => import('./openaireLibrary/landingPages/dataProvider/dataProvider.module').then(m => m.DataProviderModule), data: {type: 'service', showHeader: true}},
+  {path: 'search/organization', loadChildren: () => import('./openaireLibrary/landingPages/organization/organization.module').then(m => m.OrganizationModule), data: {showHeader: true}},
+
+  // {
+  //   path: 'search/result',
+  //   loadChildren: () => import('./landingPages/result/libResult.module').then(m => m.LibResultModule), data: { showHeader: true}
+  // },
+  // {
+  //   path: 'search/publication',
+  //   loadChildren: () => import('./landingPages/publication/libPublication.module').then(m => m.LibPublicationModule), data: { showHeader: true}
+  // },
+  // {
+  //   path: 'search/dataset',
+  //   loadChildren: () => import('./landingPages/dataset/libDataset.module').then(m => m.LibDatasetModule), data: { showHeader: true}
+  // },
+  // // {path: 'search/dataset', loadChildren: () => import('./openaireLibrary/landingPages/result/resultLanding.module').then(m => m.ResultLandingModule), data: {hasQuickContact: false, hasMenuSearchBar: true, type: 'dataset', community: 'openaire'}},
+  // {
+  //   path: 'search/software',
+  //   loadChildren: () => import('./landingPages/software/libSoftware.module').then(m => m.LibSoftwareModule), data: { showHeader: true}
+  // },
+  // {
+  //   path: 'search/other',
+  //   loadChildren: () => import('./landingPages/orp/libOrp.module').then(m => m.LibOrpModule), data: { showHeader: true}
+  // },
+  // {
+  //   path: 'search/project',
+  //   loadChildren: () => import('./landingPages/project/libProject.module').then(m => m.LibProjectModule), data: { showHeader: true}
+  // },
+  // {
+  //   path: 'search/dataprovider',
+  //   loadChildren: () => import('./landingPages/dataProvider/libDataProvider.module').then(m => m.LibDataProviderModule), data: { showHeader: true}
+  // },
+  // {
+  //   path: 'search/service',
+  //   loadChildren: () => import('./landingPages/service/libService.module').then(m => m.LibServiceModule), data: { showHeader: true}
+  // },
+  // {
+  //   path: 'search/organization',
+  //   loadChildren: () => import('./landingPages/organization/libOrganization.module').then(m => m.LibOrganizationModule), data: { showHeader: true}
+  // },
   {
     path: 'search/find',
     redirectTo: ''
